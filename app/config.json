@@ -1,5 +1,5 @@
 {
-  "serviceName": "Service name goes here",
+  "serviceName": "Claim an early years recognition payment",
   "useServiceNavigation": true,
   "plugins": {
     "govuk-frontend": {

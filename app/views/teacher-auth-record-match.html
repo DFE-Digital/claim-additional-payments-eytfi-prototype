@@ -1,0 +1,31 @@
+{% extends "layouts/main.html" %}
+
+{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+
+{% set pageName = "Teacher auth record match" %}
+
+{% block pageBeforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "/teacher-auth-teacher-reference-number.html"
+  }) }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-xl">Teacher auth record match</h1>
+
+    {{ govukButton({
+      text: "Record matched",
+      href: "/teacher-auth-record-matched"
+    }) }}
+
+    {{ govukButton({
+      text: "Record not matched",
+      href: "/teacher-auth-record-not-matched"
+    }) }}
+  </div>
+</div>
+{% endblock %}

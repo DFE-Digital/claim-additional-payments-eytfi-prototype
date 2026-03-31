@@ -4,3 +4,18 @@
 // 
 
 // Add extra styles here
+.govuk-panel--informational {
+  background-color: $govuk-brand-colour;
+  color: govuk-colour("white");
+  margin-bottom: govuk-spacing(7);
+  text-align: left;
+
+  h2.govuk-heading-m {
+    color: govuk-colour("white");
+  }
+
+  p.govuk-body {
+    color: govuk-colour("white");
+    text-align: left;
+  }
+}

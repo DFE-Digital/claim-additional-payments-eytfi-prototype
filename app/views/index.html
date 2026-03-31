@@ -1,19 +1,53 @@
 {% extends "layouts/main.html" %}
 
-{% set pageName="Home" %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+
+{% set pageName="Claim a recognition payment" %}
 
 {% block content %}
 
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-xl">Claim a recognition payment</h1>
 
-    {% include "govuk-prototype-kit/includes/homepage-top.njk" %}
+    <p class="govuk-body">
+      Use this service to claim a recognition payment if you're an eligible early
+      years teacher.
+    </p>
 
-    <h1 class="govuk-heading-xl">
-      {{ serviceName }}
-    </h1>
+    <p class="govuk-body">
+      You can check if you're eligibile by visiting the
+      <a href="#" class="govuk-link">guidance</a>.
+    </p>
 
-    {% include "govuk-prototype-kit/includes/homepage-bottom.njk" %}
+    <p class="govuk-body">Submitting a claim takes about 10 minutes.</p>
+
+    <h2 class="govuk-heading-m">You will need:</h2>
+
+    <ul class="govuk-list govuk-list--bullet">
+      <li>
+        Proof of identity - you'll need a GOV.UK One Login account if you don't
+        already have one. This requires a UK passport, UK photo driving licence
+        or biometric residence permit to set up.
+      </li>
+      <li>
+        Your bank details - full name on the account, sort code and account
+        number to receive the payment.
+      </li>
+    </ul>
+
+    <p class="govuk-body">
+      If you have questions about eligibility, accessibility or assisted digital
+      needs email
+      <a href="mailto:EYTrecognitionpayment@education.gov.uk" class="govuk-link">
+        EYTrecognitionpayment@education.gov.uk
+      </a>
+    </p>
+
+    {{ govukButton({
+      text: "Start now",
+      href: "/nursery-search"
+    }) }}
   </div>
 </div>
 

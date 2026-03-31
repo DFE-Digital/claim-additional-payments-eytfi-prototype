@@ -1,0 +1,63 @@
+{% extends "layouts/main.html" %}
+
+{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/input/macro.njk" import govukInput %}
+{% from "govuk/components/radios/macro.njk" import govukRadios %}
+
+{% set pageName = "Do you have a teacher reference number (TRN)?" %}
+
+{% block pageBeforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "/teacher-auth-national-insurance-number"
+  }) }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    {% set teacherReferenceNumberHtml %}
+      {{ govukInput({
+        label: {
+          text: "Teacher reference number (TRN)"
+        },
+        id: "teacher-reference-number",
+        name: "teacherReferenceNumber",
+        classes: "govuk-input--width-10"
+      }) }}
+    {% endset %}
+
+    <form action="/check-teacher-reference-number" method="get">
+      {{ govukRadios({
+        idPrefix: "has-teacher-reference-number",
+        name: "hasTeacherReferenceNumber",
+        fieldset: {
+          legend: {
+            text: "Do you have a teacher reference number (TRN)?",
+            isPageHeading: true,
+            classes: "govuk-fieldset__legend--l"
+          }
+        },
+        items: [
+          {
+            value: "yes",
+            text: "Yes",
+            conditional: {
+              html: teacherReferenceNumberHtml
+            }
+          },
+          {
+            value: "no",
+            text: "No"
+          }
+        ]
+      }) }}
+
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+    </form>
+  </div>
+</div>
+{% endblock %}

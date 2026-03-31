@@ -1,0 +1,45 @@
+{% extends "layouts/main.html" %}
+
+{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/panel/macro.njk" import govukPanel %}
+
+{% set pageName = "Find you teaching record" %}
+
+{% block pageBeforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "/one-login-continue-to-service"
+  }) }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+    {% set panelHtml %}
+      <p class="govuk-body govuk-!-color-white">
+        You've signed into GOVU.UK One Login and verified your identity.
+      </p>
+
+      <p class="govuk-body govuk-!-color-white">
+        We'll ask for your National Insurance number or teacher reference number (TRN)
+        so we can find you teaching record.
+      </p>
+
+      <p class="govuk-body govuk-!-color-white">You won't need to do this again.</p>
+
+      {{ govukButton({
+        text: "Find your teaching record",
+        href: "/teacher-auth-national-insurance-number",
+        classes: "govuk-button--inverse"
+      }) }}
+    {% endset %}
+
+    {{ govukPanel({
+      titleText: "Find your teaching record",
+      html: panelHtml,
+      classes: "govuk-panel--informational"
+    }) }}
+  </div>
+</div>
+{% endblock %}

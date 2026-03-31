@@ -1,0 +1,99 @@
+{% extends "layouts/main.html" %}
+
+{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+
+{% set pageName = "Check your answers" %}
+
+{% block pageBeforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "/teacher-auth-record-not-matched"
+  }) }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-xl">Check your answers</h1>
+
+    <h2 class="govuk-heading-m">GOV.UK One Login</h2>
+
+    {{ govukSummaryList({
+      rows: [
+        {
+          key: {
+            text: "Emails address"
+          },
+          value: {
+            text: "edna.krabappel@springfield-elementary.edu"
+          }
+        },
+        {
+          key: {
+            text: "Name"
+          },
+          value: {
+            text: "Edna Krabappel"
+          }
+        },
+        {
+          key: {
+            text: "Date of birth"
+          },
+          value: {
+            text: "4th September 1965"
+          }
+        }
+      ]
+    }) }}
+
+    <h2 class="govuk-heading-m">Additional details</h2>
+
+    {{ govukSummaryList({
+      rows: [
+        {
+          key: {
+            text: "National Insurance number"
+          },
+          value: {
+            text: "AB123456C"
+          },
+          actions: {
+            items: [
+              {
+                href: "/teacher-auth-national-insurance-number",
+                text: "Change",
+                visuallyHiddenText: "National Insurance number"
+              }
+            ]
+          }
+        },
+        {
+          key: {
+            text: "Teacher reference number"
+          },
+          value: {
+            text: "1111111"
+          },
+          actions: {
+            items: [
+              {
+                href: "/teacher-auth-teacher-reference-number",
+                text: "Change",
+                visuallyHiddenText: "teacher reference number"
+              }
+            ]
+          }
+        }
+      ]
+    }) }}
+
+    {{ govukButton({
+      text: "Submit support request",
+      href: "/teacher-auth-record-not-matched-support-request-confirmation"
+    }) }}
+  </div>
+</div>
+{% endblock %}
