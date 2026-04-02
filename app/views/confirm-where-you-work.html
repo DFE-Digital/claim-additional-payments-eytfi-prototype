@@ -1,0 +1,65 @@
+{% extends "layouts/main.html" %}
+
+{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/file-upload/macro.njk" import govukFileUpload %}
+
+{% set pageName = "Confirm where you work" %}
+
+{% block pageBeforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "/teacher-auth-record-match"
+  }) }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-xl">Confirm where you work</h1>
+
+    <p class="govuk-body">
+      Upload a recent document to show that you work at Sunny Days Nursery.
+    </p>
+
+    <p class="govuk-body">The document must:</p>
+
+    <ul class="govuk-list govuk-list--bullet">
+      <li>show your full name</li>
+      <li>show the name of your workplace</li>
+      <li>be dated within the last 2 months</li>
+    </ul>
+
+    <p class="govuk-body">For example, you can upload:</p>
+
+    <ul class="govuk-list govuk-list--bullet">
+      <li>a recent payslip</li>
+      <li>a letter from your employer</li>
+      <li>a P60</li>
+    </ul>
+
+    <p class="govuk-body">
+      You can upload a clear photo or a scanned copy of the document.
+    </p>
+
+    <form action="/confirm-where-you-work-uploaded" method="get">
+      {{ govukFileUpload({
+        id: "workplace-document",
+        name: "workplaceDocument",
+        label: {
+          text: "Upload document",
+          classes: "govuk-label--m"
+        },
+        attributes: {
+          accept: "image/*,.pdf,application/pdf",
+          capture: "environment"
+        }
+      }) }}
+
+      {{ govukButton({
+        text: "Upload"
+      }) }}
+    </form>
+  </div>
+</div>
+{% endblock %}

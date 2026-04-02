@@ -1,0 +1,54 @@
+{% extends "layouts/main.html" %}
+
+{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/checkboxes/macro.njk" import govukCheckboxes %}
+
+{% set pageName = "Confirm you are eligible" %}
+
+{% block pageBeforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "/confirm-where-you-work-uploaded-documents-confirmation"
+  }) }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-xl">Confirm you are eligible</h1>
+
+    <p class="govuk-body govuk-hint">
+      By continuing, you confirm that the information you've given is true and
+      accurate, and that you meet all the eligibility criteria in the
+      <a
+        href="https://draft-origin.publishing.service.gov.uk/guidance/claim-an-early-years-teacher-recognition-payment?token=eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiZGVmNjBhMy0wNzBjLTQyZTEtOGFjMi01ZTJjZjMxNzQ3ZDgiLCJjb250ZW50X2lkIjoiNGFhZTE2MmMtMzk0MS00OTAxLWE5OGItMzEzNjNhMzQxYjEyIiwiaWF0IjoxNzc0NjE3ODgxLCJleHAiOjE3NzcyOTI2ODF9.wck6dlSt_NfO1mzxFDJTs57LGEmnnmXP6c9c-PlK0Wc&utm_campaign=govuk_publishing&utm_medium=preview&utm_source=share"
+        class="govuk-link"
+      >
+        guidance
+      </a>.
+    </p>
+
+    <p class="govuk-body govuk-hint">
+      We may check your details with your employer or other official records.
+    </p>
+
+    <form action="/accept-payment" method="get">
+      {{ govukCheckboxes({
+        idPrefix: "eligibility-confirmed",
+        name: "eligibilityConfirmed",
+        items: [
+          {
+            value: "yes",
+            text: "I confirm that I understand and accept these conditions."
+          }
+        ]
+      }) }}
+
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+    </form>
+  </div>
+</div>
+{% endblock %}

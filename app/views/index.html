@@ -2,43 +2,84 @@
 
 {% from "govuk/components/button/macro.njk" import govukButton %}
 
-{% set pageName="Claim a recognition payment" %}
+{% set pageName="Claim an early years teacher recognition payment" %}
 
 {% block content %}
 
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
-    <h1 class="govuk-heading-xl">Claim a recognition payment</h1>
+    <h1 class="govuk-heading-xl">Claim an early years teacher recognition payment</h1>
 
     <p class="govuk-body">
-      Use this service to claim a recognition payment if you're an eligible early
-      years teacher.
+      Use this service to claim a recognition payment if you're an eligible early years teacher.
     </p>
 
     <p class="govuk-body">
-      You can check if you're eligibile by visiting the
-      <a href="#" class="govuk-link">guidance</a>.
+      You must meet the eligibility criteria for the early years teacher recognition
+      payment. Read the
+      <a
+        href="https://draft-origin.publishing.service.gov.uk/guidance/claim-an-early-years-teacher-recognition-payment?token=eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiZGVmNjBhMy0wNzBjLTQyZTEtOGFjMi01ZTJjZjMxNzQ3ZDgiLCJjb250ZW50X2lkIjoiNGFhZTE2MmMtMzk0MS00OTAxLWE5OGItMzEzNjNhMzQxYjEyIiwiaWF0IjoxNzc0NjE3ODgxLCJleHAiOjE3NzcyOTI2ODF9.wck6dlSt_NfO1mzxFDJTs57LGEmnnmXP6c9c-PlK0Wc&utm_campaign=govuk_publishing&utm_medium=preview&utm_source=share"
+        class="govuk-link"
+				target="_blank"
+      >
+        Claim an early years recognition payment guidance
+      </a>
+      for full details about who can claim and how the payment works.
     </p>
 
-    <p class="govuk-body">Submitting a claim takes about 10 minutes.</p>
+    <h2 class="govuk-heading-m">What you need</h2>
 
-    <h2 class="govuk-heading-m">You will need:</h2>
+    <p class="govuk-body">You will need:</p>
 
     <ul class="govuk-list govuk-list--bullet">
       <li>
-        Proof of identity - you'll need a GOV.UK One Login account if you don't
-        already have one. This requires a UK passport, UK photo driving licence
-        or biometric residence permit to set up.
+        your Teacher Reference Number (TRN) - you'll have one if you have, or are
+        working towards, Early Years Professional Status (EYPS), qualified teacher
+        status (QTS) or early years teacher status (EYTS)
       </li>
       <li>
-        Your bank details - full name on the account, sort code and account
-        number to receive the payment.
+        a GOV.UK One Login account to prove your identity - you'll need a UK
+        passport, UK photo driving licence or biometric residence permit to set
+        it up
+      </li>
+      <li>
+        your bank details, including the full name on the account, sort code and
+        account number
       </li>
     </ul>
 
+    <h2 class="govuk-heading-m">Before you start</h2>
+
     <p class="govuk-body">
-      If you have questions about eligibility, accessibility or assisted digital
-      needs email
+      If you need to
+      <a
+        href="https://claim-additional-payments-find-db7e9c956f5b.herokuapp.com/start"
+        class="govuk-link",
+				target="_blank"
+      >
+        find a lost TRN
+      </a>,
+      do this before you claim. It can take 5 working days to recover your TRN.
+    </p>
+
+    <p class="govuk-body">
+      If you need to get set up on One Login account, this can take 2 weeks.
+    </p>
+
+    <h2 class="govuk-heading-m">How long it takes to claim</h2>
+
+    <p class="govuk-body">It takes around 10 minutes to submit a claim.</p>
+
+    <h2 class="govuk-heading-m">What happens after you submit a claim</h2>
+
+    <p class="govuk-body">You'll get an email to tell you if you're eligible.</p>
+
+    <p class="govuk-body">If you're eligible, you'll be paid within X days.</p>
+
+    <h2 class="govuk-heading-m">Contact us</h2>
+
+    <p class="govuk-body">
+      If you have any questions, email
       <a href="mailto:EYTrecognitionpayment@education.gov.uk" class="govuk-link">
         EYTrecognitionpayment@education.gov.uk
       </a>

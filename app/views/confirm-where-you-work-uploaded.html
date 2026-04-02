@@ -1,0 +1,57 @@
+{% extends "layouts/main.html" %}
+
+{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/radios/macro.njk" import govukRadios %}
+
+{% set pageName = "Check your document" %}
+
+{% block pageBeforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "/confirm-where-you-work"
+  }) }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-xl">Check your document</h1>
+
+    <img
+      src="/public/images/example-payslip.png"
+      alt="Example uploaded document"
+      class="govuk-!-width-full govuk-!-margin-bottom-3"
+    >
+
+    <p class="govuk-body">document.jpg, 2MB</p>
+
+    <form action="/check-uploaded-file" method="get">
+      {{ govukRadios({
+        idPrefix: "is-file-correct",
+        name: "isFileCorrect",
+        fieldset: {
+          legend: {
+            text: "Is this file correct?",
+            classes: "govuk-fieldset__legend--m"
+          }
+        },
+        items: [
+          {
+            value: "yes",
+            text: "Yes, add this file"
+          },
+          {
+            value: "no",
+            text: "No, I want to choose a different file"
+          }
+        ]
+      }) }}
+
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+    </form>
+  </div>
+</div>
+{% endblock %}

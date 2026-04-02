@@ -1,0 +1,63 @@
+{% extends "layouts/main.html" %}
+
+{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/radios/macro.njk" import govukRadios %}
+
+{% set pageName = "What is your gender?" %}
+
+{% block pageBeforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "/select-address"
+  }) }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <form action="/bank-details" method="get">
+      {{ govukRadios({
+        idPrefix: "gender",
+        name: "gender",
+        fieldset: {
+          legend: {
+            text: "What is your gender?",
+            isPageHeading: true,
+            classes: "govuk-fieldset__legend--l"
+          }
+        },
+        hint: {
+          text: "We need this information to process your payment"
+        },
+        items: [
+          {
+            value: "female",
+            text: "Female"
+          },
+          {
+            value: "male",
+            text: "Male"
+          },
+          {
+            value: "non-binary",
+            text: "Non-binary"
+          },
+          {
+            value: "other",
+            text: "Other"
+          },
+          {
+            value: "prefer-not-to-say",
+            text: "Prefer not to say"
+          }
+        ]
+      }) }}
+
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+    </form>
+  </div>
+</div>
+{% endblock %}

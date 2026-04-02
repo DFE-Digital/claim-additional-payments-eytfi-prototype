@@ -1,0 +1,39 @@
+{% extends "layouts/main.html" %}
+
+{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/input/macro.njk" import govukInput %}
+
+{% set pageName = "What is your home address?" %}
+
+{% block pageBeforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "/how-we-will-use-your-information"
+  }) }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <form action="/select-address" method="get">
+      {{ govukInput({
+        label: {
+          text: "What is your home address?",
+          isPageHeading: true,
+          classes: "govuk-label--l"
+        },
+        hint: {
+          text: "Search by town, city or postcode or enter your address"
+        },
+        id: "home-address-search",
+        name: "homeAddressSearch"
+      }) }}
+
+      {{ govukButton({
+        text: "Find address"
+      }) }}
+    </form>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,56 @@
+{% extends "layouts/main.html" %}
+
+{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/radios/macro.njk" import govukRadios %}
+
+{% set pageName = "What is your home address?" %}
+
+{% block pageBeforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "/home-address"
+  }) }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <form action="/gender" method="get">
+      {{ govukRadios({
+        idPrefix: "selected-address",
+        name: "selectedAddress",
+        fieldset: {
+          legend: {
+            text: "What is your home address?",
+            isPageHeading: true,
+            classes: "govuk-fieldset__legend--l"
+          }
+        },
+        items: [
+          {
+            value: "1",
+            text: "12 Willow Close, Bristol, BS1 4AA"
+          },
+          {
+            value: "2",
+            text: "14 Willow Close, Bristol, BS1 4AA"
+          },
+          {
+            value: "3",
+            text: "18 Maple Road, Bristol, BS2 1BB"
+          },
+          {
+            value: "4",
+            text: "22 Orchard Street, Bristol, BS3 2CC"
+          }
+        ]
+      }) }}
+
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+    </form>
+  </div>
+</div>
+{% endblock %}

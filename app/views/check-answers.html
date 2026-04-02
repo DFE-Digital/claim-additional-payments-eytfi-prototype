@@ -1,0 +1,12 @@
+{% extends "layouts/main.html" %}
+
+{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+
+{% set pageName = "Check answers" %}
+
+{% block pageBeforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "/bank-details"
+  }) }}
+{% endblock %}
