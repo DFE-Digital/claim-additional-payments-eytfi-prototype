@@ -1,0 +1,50 @@
+{% extends "layouts/main.html" %}
+
+{% from "govuk/components/panel/macro.njk" import govukPanel %}
+
+{% set pageName = "Claim complete" %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    {{ govukPanel({
+      titleText: "Claim complete",
+      html: 'Your reference number<br><strong>HDJ2123F</strong>',
+      classes: "govuk-panel--confirmation"
+    }) }}
+
+    <p class="govuk-body">
+      We have sent you an email to confirm we have received your claim.
+    </p>
+
+    <h2 class="govuk-heading-m">What happens next</h2>
+
+    <p class="govuk-body">
+      We'll send you an email to let you know whether your claim has been approved
+      or rejected
+    </p>
+
+    <p class="govuk-body">
+      <a href="/#TODO" class="govuk-link">What did you think of this service</a>
+      (Takes 30 seconds)
+    </p>
+
+    <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+
+    <p class="govuk-body-s">
+      Prototype only:
+      <a href="/emails-confirmation" class="govuk-link" target="_blank" rel="noreferrer noopener">View confirmation email</a>
+    </p>
+
+    <p class="govuk-body-s">
+      Prototype only:
+      <a href="/emails-approved" class="govuk-link" target="_blank" rel="noreferrer noopener">View approved email</a>
+    </p>
+
+    <p class="govuk-body-s">
+      Prototype only:
+      <a href="/emails-rejected" class="govuk-link" target="_blank" rel="noreferrer noopener">View rejected email</a>
+    </p>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,71 @@
+{% extends "govuk-prototype-kit/layouts/unbranded.html" %}
+
+{% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+
+{% set pageName = "Confirmation email" %}
+
+{% block pageTitle %}
+  Confirmation email
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    {{ govukSummaryList({
+      rows: [
+        {
+          key: {
+            text: "From"
+          },
+          value: {
+            text: "Claim an early years financial incentive payment"
+          }
+        },
+        {
+          key: {
+            text: "To"
+          },
+          value: {
+            text: "test@example.com"
+          }
+        },
+        {
+          key: {
+            text: "Subject"
+          },
+          value: {
+            text: "We've received your claim for an early years recognition payment"
+          }
+        }
+      ]
+    }) }}
+
+    <p class="govuk-body">Hello Edna,</p>
+
+    <p class="govuk-body">
+      We've received your claim for an early years teacher recognition payment.
+    </p>
+
+    <blockquote class="govuk-inset-text">
+      Your reference number: HDJ2123F
+    </blockquote>
+
+    <h2 class="govuk-heading-m">What happens next</h2>
+
+    <p class="govuk-body">
+      We'll review your claim. Then we'll email you to let you know whether we have
+      approved or rejected it.
+    </p>
+
+    <p class="govuk-body">
+      Thank you for your contribution to early years education.
+    </p>
+
+    <p class="govuk-body">
+      Early years teacher recognition payment team<br>
+      Department for Education<br>
+      EYTrecognitionpayment@education.gov.uk
+    </p>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,78 @@
+{% extends "govuk-prototype-kit/layouts/unbranded.html" %}
+
+{% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+
+{% set pageName = "Rejected email" %}
+
+{% block pageTitle %}
+  Rejected email
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    {{ govukSummaryList({
+      rows: [
+        {
+          key: {
+            text: "From"
+          },
+          value: {
+            text: "Claim an early years financial incentive payment"
+          }
+        },
+        {
+          key: {
+            text: "To"
+          },
+          value: {
+            text: "text@example.com"
+          }
+        },
+        {
+          key: {
+            text: "Subject"
+          },
+          value: {
+            text: "Your early years recognition payment application was not approved"
+          }
+        }
+      ]
+    }) }}
+
+    <p class="govuk-body">Hello Edna,</p>
+
+    <p class="govuk-body">
+      We're sorry to let you know that you're not eligible for an early years
+      recognition payment at the moment.
+    </p>
+
+    <p class="govuk-body">The reason your claim was not approved is:</p>
+
+    <ul class="govuk-list govuk-list--bullet">
+      <li>inset reason</li>
+    </ul>
+
+    <blockquote class="govuk-inset-text">
+      You may be eligible in the future. You can check the
+      <a
+        href="https://draft-origin.publishing.service.gov.uk/guidance/claim-an-early-years-teacher-recognition-payment?token=eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiZGVmNjBhMy0wNzBjLTQyZTEtOGFjMi01ZTJjZjMxNzQ3ZDgiLCJjb250ZW50X2lkIjoiNGFhZTE2MmMtMzk0MS00OTAxLWE5OGItMzEzNjNhMzQxYjEyIiwiaWF0IjoxNzc0NjE3ODgxLCJleHAiOjE3NzcyOTI2ODF9.wck6dlSt_NfO1mzxFDJTs57LGEmnnmXP6c9c-PlK0Wc&utm_campaign=govuk_publishing&utm_medium=preview&utm_source=share"
+        class="govuk-link"
+      >
+        guidance
+      </a>
+      again to see the full eligibility criteria and when you might be able to apply.
+    </blockquote>
+
+    <p class="govuk-body">
+      Thank you for your contribution to early years education.
+    </p>
+
+    <p class="govuk-body">
+      Early years teacher recognition payment team<br>
+      Department for Education<br>
+      EYTrecognitionpayment@education.gov.uk
+    </p>
+  </div>
+</div>
+{% endblock %}

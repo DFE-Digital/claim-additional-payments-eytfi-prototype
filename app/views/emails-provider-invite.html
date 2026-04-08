@@ -1,0 +1,82 @@
+{% extends "govuk-prototype-kit/layouts/unbranded.html" %}
+
+{% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+
+{% set pageName = "Provider invite email" %}
+
+{% block pageTitle %}
+  Provider invite email
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    {{ govukSummaryList({
+      rows: [
+        {
+          key: {
+            text: "From"
+          },
+          value: {
+            text: "Claim an early years financial incentive payment"
+          }
+        },
+        {
+          key: {
+            text: "To"
+          },
+          value: {
+            text: "text@example.com"
+          }
+        },
+        {
+          key: {
+            text: "Subject"
+          },
+          value: {
+            text: "Blank"
+          }
+        }
+      ]
+    }) }}
+
+    <p class="govuk-body">Hello Sunny Days Nursery</p>
+
+    <p class="govuk-body">
+      To recognise the hard work that goes into supporting young children every day,
+      we are offering a yearly payment of £4,500 to eligible early years teachers.
+      They can claim this year and for the next 2 financial years.
+    </p>
+
+    <h2 class="govuk-heading-m">How to claim</h2>
+
+    <p class="govuk-body">
+      You can send early years teachers employed at your setting the
+      <a
+        href="https://draft-origin.publishing.service.gov.uk/guidance/claim-an-early-years-teacher-recognition-payment?token=eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiZGVmNjBhMy0wNzBjLTQyZTEtOGFjMi01ZTJjZjMxNzQ3ZDgiLCJjb250ZW50X2lkIjoiNGFhZTE2MmMtMzk0MS00OTAxLWE5OGItMzEzNjNhMzQxYjEyIiwiaWF0IjoxNzc0NjE3ODgxLCJleHAiOjE3NzcyOTI2ODF9.wck6dlSt_NfO1mzxFDJTs57LGEmnnmXP6c9c-PlK0Wc&utm_campaign=govuk_publishing&utm_medium=preview&utm_source=share"
+        class="govuk-link"
+      >
+        guidance
+      </a>
+      so they can check if they meet the eligibility criteria and claim a payment.
+    </p>
+
+    <blockquote class="govuk-inset-text">
+      <strong>Claim deadline</strong><br>
+      Teachers must submit your claim by 31 March 2027.
+    </blockquote>
+
+    <p class="govuk-body">
+      Thank you for your continued contribution to early years education.
+    </p>
+
+    <p class="govuk-body">
+      Early years teacher recognition payment team<br>
+      Department for Education<br>
+      <a href="mailto:EYTrecognitionpayment@education.gov.uk" class="govuk-link">
+        EYTrecognitionpayment@education.gov.uk
+      </a>
+    </p>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,87 @@
+{% extends "govuk-prototype-kit/layouts/unbranded.html" %}
+
+{% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+
+{% set pageName = "Practitioner invite email" %}
+
+{% block pageTitle %}
+  Practitioner invite email
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    {{ govukSummaryList({
+      rows: [
+        {
+          key: {
+            text: "From"
+          },
+          value: {
+            text: "Claim an early years financial incentive payment"
+          }
+        },
+        {
+          key: {
+            text: "To"
+          },
+          value: {
+            text: "text@example.com"
+          }
+        },
+        {
+          key: {
+            text: "Subject"
+          },
+          value: {
+            text: "Blank"
+          }
+        }
+      ]
+    }) }}
+
+    <p class="govuk-body">Hello Edna,</p>
+
+    <p class="govuk-body">
+      We know how much hard work goes into supporting young children every day. Your
+      commitment to their early learning helps to shape the next generation.
+    </p>
+
+    <h2 class="govuk-heading-m">What the payment is</h2>
+
+    <p class="govuk-body">
+      To recognise your work, we are offering a yearly payment of £4,500 to eligible
+      early years teachers. You can claim this year and for the next 2 financial
+      years.
+    </p>
+
+    <p class="govuk-body">
+      The payment counts as taxable income. This means it may affect the tax you pay,
+      but you will not have to pay the payment back.
+    </p>
+
+    <h2 class="govuk-heading-m">How to claim</h2>
+
+    <p class="govuk-body">
+      You can <a href="/" class="govuk-link">start your claim</a> now.
+    </p>
+
+    <blockquote class="govuk-inset-text">
+      <strong>Claim deadline</strong><br>
+      You must submit your claim by 31 March 2027.
+    </blockquote>
+
+    <p class="govuk-body">
+      Thank you for your continued contribution to early years education.
+    </p>
+
+    <p class="govuk-body">
+      Early years teacher recognition payment team<br>
+      Department for Education<br>
+      <a href="mailto:EYTrecognitionpayment@education.gov.uk" class="govuk-link">
+        EYTrecognitionpayment@education.gov.uk
+      </a>
+    </p>
+  </div>
+</div>
+{% endblock %}

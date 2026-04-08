@@ -28,6 +28,16 @@ function buildUploadedDocumentRows(uploadedDocuments) {
   ]))
 }
 
+function buildUploadedDocumentSummary(uploadedDocuments) {
+  if (!uploadedDocuments || uploadedDocuments.length === 0) {
+    return '<a class="govuk-link" href="/public/images/example-payslip.png" target="_blank" rel="noreferrer noopener">document.jpg</a>, 2MB'
+  }
+
+  return uploadedDocuments
+    .map((document) => `<a class="govuk-link" href="${document.imagePath}" target="_blank" rel="noreferrer noopener">${document.fileName}</a>, ${document.fileSize}`)
+    .join('<br>')
+}
+
 router.get('/check-nursery', (req, res) => {
   const { nursery } = req.query
 
@@ -87,6 +97,14 @@ router.get('/check-another-document', (req, res) => {
   }
 
   return res.redirect('/confirm-where-you-work-uploaded-documents-confirmation')
+})
+
+router.get('/check-answers', (req, res) => {
+  const uploadedDocuments = req.session.data.uploadedDocuments || [uploadedDocumentPreview]
+
+  return res.render('check-answers', {
+    uploadedDocumentsSummary: buildUploadedDocumentSummary(uploadedDocuments)
+  })
 })
 
 router.get('/check-payment-acceptance', (req, res) => {

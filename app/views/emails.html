@@ -1,0 +1,39 @@
+{% extends "layouts/main.html" %}
+
+{% set pageName = "Emails" %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-xl">Emails</h1>
+
+    <ul class="govuk-list govuk-list--bullet">
+      <li>
+        <a href="/emails-confirmation" class="govuk-link" target="_blank" rel="noreferrer noopener">
+          Confirmation email
+        </a>
+      </li>
+      <li>
+        <a href="/emails-approved" class="govuk-link" target="_blank" rel="noreferrer noopener">
+          Approved email
+        </a>
+      </li>
+      <li>
+        <a href="/emails-rejected" class="govuk-link" target="_blank" rel="noreferrer noopener">
+          Rejected email
+        </a>
+      </li>
+      <li>
+        <a href="/emails-practitioner-invite" class="govuk-link" target="_blank" rel="noreferrer noopener">
+          Practitioner invite email
+        </a>
+      </li>
+      <li>
+        <a href="/emails-provider-invite" class="govuk-link" target="_blank" rel="noreferrer noopener">
+          Provider invite email
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
+{% endblock %}
