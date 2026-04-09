@@ -1,0 +1,43 @@
+{% extends "layouts/main.html" %}
+
+{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/input/macro.njk" import govukInput %}
+
+{% set pageName = "Check your email" %}
+
+{% block pageBeforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "/one-login-sign-up-email"
+  }) }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-xl">Check your email</h1>
+
+    <p class="govuk-body">We have sent a code to test@example.com</p>
+
+    <p class="govuk-body">The code will expire in 15 minutes</p>
+
+    <form action="/one-login-sign-up-create-your-password" method="get">
+      {{ govukInput({
+        label: {
+          text: "Enter the 6 digit code"
+        },
+        id: "sign-up-email-code",
+        name: "signUpEmailCode",
+        inputmode: "numeric",
+        autocomplete: "one-time-code",
+        spellcheck: false
+      }) }}
+
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+    </form>
+  </div>
+</div>
+{% endblock %}

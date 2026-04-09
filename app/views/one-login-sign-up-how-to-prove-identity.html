@@ -1,0 +1,40 @@
+{% extends "layouts/main.html" %}
+
+{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
+
+{% set pageName = "How to prove your identity" %}
+
+{% block pageBeforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "/one-login-sign-up-mobile-confirmation"
+  }) }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-xl">How to prove your identity</h1>
+
+    <p class="govuk-body">You need to prove your identity to continue.</p>
+
+    <p class="govuk-body">You will need to:</p>
+
+    <ul class="govuk-list govuk-list--bullet">
+      <li>enter your details from a photo ID</li>
+      <li>scan your face using your device</li>
+    </ul>
+
+    {{ govukInsetText({
+      html: '<h2 class="govuk-heading-m">If you do not have a photo ID</h2><p class="govuk-body govuk-!-margin-bottom-0">You can <a class="govuk-link" href="#">prove your identity another way</a></p>'
+    }) }}
+
+    {{ govukButton({
+      text: "Continue",
+      href: "/one-login-sign-up-choose-photo-id"
+    }) }}
+  </div>
+</div>
+{% endblock %}

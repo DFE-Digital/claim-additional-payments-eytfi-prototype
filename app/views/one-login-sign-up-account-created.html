@@ -1,0 +1,31 @@
+{% extends "layouts/main.html" %}
+
+{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+
+{% set pageName = "You have created your GOV.UK One Login" %}
+
+{% block pageBeforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "/one-login-sign-up-identity-confirmation"
+  }) }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-xl">You have created your GOV.UK One Login</h1>
+
+    <p class="govuk-body">
+      You can now use your GOV.UK One Login to access this service and other
+      government services.
+    </p>
+
+    {{ govukButton({
+      text: "Continue",
+      href: "/teacher-auth-find-your-teaching-record"
+    }) }}
+  </div>
+</div>
+{% endblock %}

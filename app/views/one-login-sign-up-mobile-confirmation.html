@@ -1,0 +1,47 @@
+{% extends "layouts/main.html" %}
+
+{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/input/macro.njk" import govukInput %}
+
+{% set pageName = "Check your phone" %}
+
+{% block pageBeforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "/one-login-sign-up-mobile"
+  }) }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-xl">Check your phone</h1>
+
+    <p class="govuk-body">
+      We have sent a code to your phone number ending in ***5.
+    </p>
+
+    <p class="govuk-body">
+      It might take a few minutes to arrive. The code will expire in 15 minutes.
+    </p>
+
+    <form action="/one-login-sign-up-how-to-prove-identity" method="get">
+      {{ govukInput({
+        label: {
+          text: "Security code"
+        },
+        id: "sign-up-mobile-code",
+        name: "signUpMobileCode",
+        inputmode: "numeric",
+        autocomplete: "one-time-code",
+        spellcheck: false
+      }) }}
+
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+    </form>
+  </div>
+</div>
+{% endblock %}

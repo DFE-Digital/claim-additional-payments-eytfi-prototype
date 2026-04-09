@@ -1,0 +1,57 @@
+{% extends "layouts/main.html" %}
+
+{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/radios/macro.njk" import govukRadios %}
+
+{% set pageName = "Choose a photo ID" %}
+
+{% block pageBeforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "/one-login-sign-up-how-to-prove-identity"
+  }) }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <form action="/one-login-sign-up-enter-passport-details" method="get">
+      {{ govukRadios({
+        name: "photoIdType",
+        fieldset: {
+          legend: {
+            text: "Choose a photo ID",
+            classes: "govuk-fieldset__legend--xl",
+            isPageHeading: true
+          }
+        },
+        items: [
+          {
+            value: "uk-passport",
+            text: "UK passport",
+            hint: {
+              text: "You can use an expired passport if it expired less than 18 months ago"
+            }
+          },
+          {
+            value: "uk-driving-licence",
+            text: "UK driving license",
+            hint: {
+              text: "Full or provisional photocard"
+            }
+          },
+          {
+            value: "brp",
+            text: "Biometric residence permit (BRP)"
+          }
+        ]
+      }) }}
+
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+    </form>
+  </div>
+</div>
+{% endblock %}

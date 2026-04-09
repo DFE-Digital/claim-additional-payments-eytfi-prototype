@@ -1,0 +1,54 @@
+{% extends "layouts/main.html" %}
+
+{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/date-input/macro.njk" import govukDateInput %}
+{% from "govuk/components/input/macro.njk" import govukInput %}
+
+{% set pageName = "Enter your passport details" %}
+
+{% block pageBeforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "/one-login-sign-up-choose-photo-id"
+  }) }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-xl">Enter your passport details</h1>
+
+    <form action="/one-login-sign-up-identity-confirmation" method="get">
+      {{ govukInput({
+        label: {
+          text: "Passport number"
+        },
+        hint: {
+          text: "This is the 9 digit number in the top right of the photo page."
+        },
+        id: "passport-number",
+        name: "passportNumber",
+        spellcheck: false
+      }) }}
+
+      {{ govukDateInput({
+        id: "passport-expiry-date",
+        namePrefix: "passportExpiryDate",
+        fieldset: {
+          legend: {
+            text: "Expiry date"
+          }
+        },
+        hint: {
+          text: "For example, 27 3 2028"
+        }
+      }) }}
+
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+    </form>
+  </div>
+</div>
+{% endblock %}

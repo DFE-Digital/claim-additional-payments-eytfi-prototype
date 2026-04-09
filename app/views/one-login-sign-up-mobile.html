@@ -1,0 +1,57 @@
+{% extends "layouts/main.html" %}
+
+{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/checkboxes/macro.njk" import govukCheckboxes %}
+{% from "govuk/components/input/macro.njk" import govukInput %}
+
+{% set pageName = "Enter your mobile phone number" %}
+
+{% block pageBeforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "/one-login-sign-up-create-your-password"
+  }) }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-xl">Enter your mobile phone number</h1>
+
+    <p class="govuk-body">
+      We will send a 6 digit security code to this number. You will need it to verify
+      your identity.
+    </p>
+
+    <form action="/one-login-sign-up-mobile-confirmation" method="get">
+      {{ govukInput({
+        label: {
+          text: "UK mobile phone number"
+        },
+        id: "sign-up-mobile-number",
+        name: "signUpMobileNumber",
+        type: "tel",
+        autocomplete: "tel",
+        inputmode: "numeric",
+        spellcheck: false
+      }) }}
+
+      {{ govukCheckboxes({
+        idPrefix: "no-uk-mobile-number",
+        name: "noUkMobileNumber",
+        items: [
+          {
+            value: "true",
+            text: "I do not have a UK mobile number"
+          }
+        ]
+      }) }}
+
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+    </form>
+  </div>
+</div>
+{% endblock %}

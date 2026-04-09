@@ -42,23 +42,32 @@
       submit a claim for a recognition payment.
     </p>
 
-		<p class="govuk-body">
-			{{ govukButton({
-				text: "Continue",
-				href: "/one-login-continue-to-service"
-			}) }}
+    <p class="govuk-body">
+      {{ govukButton({
+        text: "Continue",
+        href: "/one-login-continue-to-service"
+      }) }}
 
-			<span class="govuk-body-s govuk-!-margin-left-4">signed in journey</span>
-		</p>
+      <span class="govuk-body-s govuk-!-margin-left-4">signed in journey</span>
+    </p>
 
-		<p class="govuk-body">
-			{{ govukButton({
-				text: "Continue",
-				href: "/one-login-sign-in-email"
-			}) }}
+    <p class="govuk-body">
+      {{ govukButton({
+        text: "Continue",
+        href: "/one-login-sign-in-email"
+      }) }}
 
-			<span class="govuk-body-s govuk-!-margin-left-4">signed out journey</span>
-		</p>
+      <span class="govuk-body-s govuk-!-margin-left-4">signed out journey</span>
+    </p>
+
+    <p class="govuk-body">
+      {{ govukButton({
+        text: "Continue",
+        href: "/one-login-sign-up-email"
+      }) }}
+
+      <span class="govuk-body-s govuk-!-margin-left-4">sign up journey</span>
+    </p>
   </div>
 </div>
 {% endblock %}
