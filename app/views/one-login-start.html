@@ -2,6 +2,7 @@
 
 {% from "govuk/components/back-link/macro.njk" import govukBackLink %}
 {% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/radios/macro.njk" import govukRadios %}
 
 {% set pageName = "Sign in with GOV.UK One Login" %}
 
@@ -42,32 +43,39 @@
       submit a claim for a recognition payment.
     </p>
 
-    <p class="govuk-body">
+    <form action="/check-one-login-journey" method="get">
       {{ govukButton({
-        text: "Continue",
-        href: "/one-login-continue-to-service"
+        text: "Continue"
       }) }}
 
-      <span class="govuk-body-s govuk-!-margin-left-4">signed in journey</span>
-    </p>
+      <p class="govuk-body-s govuk-!-margin-bottom-2">Prototype journey selector</p>
 
-    <p class="govuk-body">
-      {{ govukButton({
-        text: "Continue",
-        href: "/one-login-sign-in-email"
+      {{ govukRadios({
+        classes: "govuk-radios--small",
+        name: "oneLoginJourney",
+        fieldset: {
+          legend: {
+            text: "Choose a One Login journey",
+            classes: "govuk-visually-hidden"
+          }
+        },
+        items: [
+          {
+            value: "signed-in",
+            text: "signed in journey",
+            checked: true
+          },
+          {
+            value: "signed-out",
+            text: "signed out journey"
+          },
+          {
+            value: "sign-up",
+            text: "sign up journey"
+          }
+        ]
       }) }}
-
-      <span class="govuk-body-s govuk-!-margin-left-4">signed out journey</span>
-    </p>
-
-    <p class="govuk-body">
-      {{ govukButton({
-        text: "Continue",
-        href: "/one-login-sign-up-email"
-      }) }}
-
-      <span class="govuk-body-s govuk-!-margin-left-4">sign up journey</span>
-    </p>
+    </form>
   </div>
 </div>
 {% endblock %}

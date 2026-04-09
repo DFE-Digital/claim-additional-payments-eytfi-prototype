@@ -48,6 +48,20 @@ router.get('/check-nursery', (req, res) => {
   return res.redirect('/one-login-start')
 })
 
+router.get('/check-one-login-journey', (req, res) => {
+  const { oneLoginJourney } = req.query
+
+  if (oneLoginJourney === 'signed-out') {
+    return res.redirect('/one-login-sign-in-email')
+  }
+
+  if (oneLoginJourney === 'sign-up') {
+    return res.redirect('/one-login-sign-up-email')
+  }
+
+  return res.redirect('/one-login-continue-to-service')
+})
+
 router.get('/check-teacher-reference-number', (req, res) => {
   const { hasTeacherReferenceNumber } = req.query
 
