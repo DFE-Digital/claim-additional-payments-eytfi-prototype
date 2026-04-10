@@ -1,0 +1,37 @@
+{% extends "layouts/main.html" %}
+
+{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+
+{% set pageName = "You are eligible to apply" %}
+
+{% block pageBeforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "/teaching-qualification-confirmation"
+  }) }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-xl">You are eligible to apply</h1>
+
+    <p class="govuk-body">
+      You can apply because the nursery you work at is eligible and you have the
+      right qualification.
+    </p>
+
+    <h2 class="govuk-heading-m">What you need to do next</h2>
+
+    <p class="govuk-body">
+      To continue your claim, you need to prove your identity using GOV.UK One Login.
+    </p>
+
+    {{ govukButton({
+      text: "Continue",
+      href: "/one-login-start"
+    }) }}
+  </div>
+</div>
+{% endblock %}

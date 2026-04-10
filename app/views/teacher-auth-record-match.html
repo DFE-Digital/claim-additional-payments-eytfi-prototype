@@ -2,6 +2,7 @@
 
 {% from "govuk/components/back-link/macro.njk" import govukBackLink %}
 {% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/radios/macro.njk" import govukRadios %}
 
 {% set pageName = "Teacher auth record match" %}
 
@@ -17,15 +18,39 @@
   <div class="govuk-grid-column-two-thirds">
     <h1 class="govuk-heading-l">Teacher auth record match</h1>
 
-    {{ govukButton({
-      text: "Record matched",
-      href: "/confirm-where-you-work"
-    }) }}
+    <form action="/check-teacher-auth-record-match" method="get">
+      {{ govukButton({
+        text: "Continue"
+      }) }}
 
-    {{ govukButton({
-      text: "Record not matched",
-      href: "/teacher-auth-record-not-matched"
-    }) }}
+      <p class="govuk-body-s govuk-!-margin-bottom-2">Prototype record match selector</p>
+
+      {{ govukRadios({
+        classes: "govuk-radios--small",
+        name: "teacherAuthRecordMatch",
+        fieldset: {
+          legend: {
+            text: "Choose a record match outcome",
+            classes: "govuk-visually-hidden"
+          }
+        },
+        items: [
+          {
+            value: "matched",
+            text: "Record matched",
+            checked: true
+          },
+          {
+            value: "matched-qualification-ineligible",
+            text: "Record matched - qualification ineligible"
+          },
+          {
+            value: "not-matched",
+            text: "Record not matched"
+          }
+        ]
+      }) }}
+    </form>
   </div>
 </div>
 {% endblock %}

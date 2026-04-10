@@ -45,7 +45,17 @@ router.get('/check-nursery', (req, res) => {
     return res.redirect('/ineligible-nursery')
   }
 
-  return res.redirect('/one-login-start')
+  return res.redirect('/teaching-qualification-confirmation')
+})
+
+router.get('/check-teaching-qualification', (req, res) => {
+  const { hasEligibleTeachingQualification } = req.query
+
+  if (hasEligibleTeachingQualification === 'no') {
+    return res.redirect('/ineligible-teaching-qualification-held')
+  }
+
+  return res.redirect('/eligible-teaching-qualification-held')
 })
 
 router.get('/check-one-login-journey', (req, res) => {
@@ -70,6 +80,20 @@ router.get('/check-teacher-reference-number', (req, res) => {
   }
 
   return res.redirect('/teacher-auth-record-match')
+})
+
+router.get('/check-teacher-auth-record-match', (req, res) => {
+  const { teacherAuthRecordMatch } = req.query
+
+  if (teacherAuthRecordMatch === 'not-matched') {
+    return res.redirect('/teacher-auth-record-not-matched')
+  }
+
+  if (teacherAuthRecordMatch === 'matched-qualification-ineligible') {
+    return res.redirect('/ineligible-qualification-confirmed')
+  }
+
+  return res.redirect('/eligibile-qualification-confirmed')
 })
 
 router.post('/confirm-where-you-work-uploaded', (req, res) => {

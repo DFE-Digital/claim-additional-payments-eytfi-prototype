@@ -1,0 +1,41 @@
+{% extends "layouts/main.html" %}
+
+{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+
+{% set pageName = "You hold an eligible qualification" %}
+
+{% block pageBeforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "/teacher-auth-record-match"
+  }) }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-xl">You hold an eligible qualification</h1>
+
+    <p class="govuk-body">
+      We've confirmed that you hold one of the following teaching qualifications:
+    </p>
+
+    <ul class="govuk-list govuk-list--bullet">
+      <li>Qualified Teacher Status (QTS)</li>
+      <li>Early Years Teacher Status (EYTS)</li>
+      <li>Early Years Professional Status (EYPS)</li>
+    </ul>
+
+    <p class="govuk-body">
+      This means you meet the qualification requirement for the early years teacher
+      recognition payment.
+    </p>
+
+    {{ govukButton({
+      text: "Continue",
+      href: "/confirm-where-you-work"
+    }) }}
+  </div>
+</div>
+{% endblock %}

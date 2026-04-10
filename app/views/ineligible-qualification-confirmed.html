@@ -1,0 +1,47 @@
+{% extends "layouts/main.html" %}
+
+{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+
+{% set pageName = "You're not eligible based on your qualification" %}
+
+{% block pageBeforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "/teacher-auth-record-match"
+  }) }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-xl">You're not eligible based on your qualification</h1>
+
+    <p class="govuk-body">
+      We've checked your details and you do not hold one of the following teaching
+      qualifications:
+    </p>
+
+    <ul class="govuk-list govuk-list--bullet">
+      <li>Qualified Teacher Status (QTS)</li>
+      <li>Early Years Teacher Status (EYTS)</li>
+      <li>Early Years Professional Status (EYPS)</li>
+    </ul>
+
+    <p class="govuk-body">
+      Unfortunately, this means you're not eligible for an early years teacher
+      recognition payment.
+    </p>
+
+    <p class="govuk-body">
+      You may be eligible in the future if your circumstances change. Check the
+      guidance again if you gain one of these qualifications.
+    </p>
+
+    {{ govukButton({
+      text: "Sign out",
+      href: "/"
+    }) }}
+  </div>
+</div>
+{% endblock %}
