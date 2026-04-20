@@ -41,7 +41,7 @@ function buildUploadedDocumentSummary(uploadedDocuments) {
 router.get('/check-nursery', (req, res) => {
   const { nursery } = req.query
 
-  if (nursery === 'ineligible-nursery') {
+  if (nursery === 'little-stars-nursery') {
     return res.redirect('/ineligible-nursery')
   }
 
