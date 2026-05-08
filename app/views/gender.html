@@ -16,19 +16,19 @@
 {% block content %}
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
-    <form action="/bank-details" method="get">
+    <form action="/check-answers" method="get">
       {{ govukRadios({
         idPrefix: "gender",
         name: "gender",
         fieldset: {
           legend: {
-            text: "What is your gender?",
+            text: "How is your gender recorded on your employer's payroll system?",
             isPageHeading: true,
             classes: "govuk-fieldset__legend--l"
           }
         },
         hint: {
-          text: "We need this information to process your payment"
+          text: "We need to match HMRC’s records to make tax contributions for you. If you’re not sure, contact your Payroll team."
         },
         items: [
           {

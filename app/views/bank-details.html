@@ -17,7 +17,7 @@
 {% block content %}
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
-    <form action="/check-answers" method="get">
+    <form action="/gender" method="get">
       <h1 class="govuk-heading-l">Enter your personal bank account details</h1>
 
       {{ govukInput({
@@ -55,6 +55,43 @@
         name: "accountNumber",
         classes: "govuk-input--width-10",
         inputmode: "numeric"
+      }) }}
+
+      {{ govukRadios({
+        idPrefix: "gender",
+        name: "gender",
+        fieldset: {
+          legend: {
+            text: "How is your gender recorded on your employer's payroll system?",
+            isPageHeading: true,
+            classes: "govuk-fieldset__legend--s"
+          }
+        },
+        hint: {
+          text: "We need to match HMRC’s records to make tax contributions for you. If you’re not sure, contact your Payroll team."
+        },
+        items: [
+          {
+            value: "female",
+            text: "Female"
+          },
+          {
+            value: "male",
+            text: "Male"
+          },
+          {
+            value: "non-binary",
+            text: "Non-binary"
+          },
+          {
+            value: "other",
+            text: "Other"
+          },
+          {
+            value: "prefer-not-to-say",
+            text: "Prefer not to say"
+          }
+        ]
       }) }}
 
       {{ govukWarningText({
