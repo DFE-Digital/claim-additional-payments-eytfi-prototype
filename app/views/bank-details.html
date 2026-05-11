@@ -57,43 +57,6 @@
         inputmode: "numeric"
       }) }}
 
-      {{ govukRadios({
-        idPrefix: "gender",
-        name: "gender",
-        fieldset: {
-          legend: {
-            text: "How is your gender recorded on your employer's payroll system?",
-            isPageHeading: true,
-            classes: "govuk-fieldset__legend--s"
-          }
-        },
-        hint: {
-          text: "We need to match HMRC’s records to make tax contributions for you. If you’re not sure, contact your Payroll team."
-        },
-        items: [
-          {
-            value: "female",
-            text: "Female"
-          },
-          {
-            value: "male",
-            text: "Male"
-          },
-          {
-            value: "non-binary",
-            text: "Non-binary"
-          },
-          {
-            value: "other",
-            text: "Other"
-          },
-          {
-            value: "prefer-not-to-say",
-            text: "Prefer not to say"
-          }
-        ]
-      }) }}
-
       {{ govukWarningText({
         text: "Incorrect details will cause a delay to your payment."
       }) }}

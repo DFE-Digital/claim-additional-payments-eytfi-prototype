@@ -22,7 +22,7 @@
         name: "gender",
         fieldset: {
           legend: {
-            text: "How is your gender recorded on your employer's payroll system?",
+            text: "Are you recorded as male or female on your employer's payroll system?",
             isPageHeading: true,
             classes: "govuk-fieldset__legend--l"
           }
@@ -32,27 +32,26 @@
         },
         items: [
           {
-            value: "female",
-            text: "Female"
-          },
-          {
             value: "male",
             text: "Male"
           },
           {
-            value: "non-binary",
-            text: "Non-binary"
-          },
-          {
-            value: "other",
-            text: "Other"
-          },
-          {
-            value: "prefer-not-to-say",
-            text: "Prefer not to say"
+            value: "female",
+            text: "Female"
           }
         ]
       }) }}
+
+      <details class="govuk-details">
+        <summary class="govuk-details__summary">
+          <span class="govuk-details__summary-text">
+            Why do we ask this?
+          </span>
+        </summary>
+        <div class="govuk-details__text">
+          We need to know your nationality so we can work out which elections you’re entitled to vote in. If you cannot provide your nationality, you’ll have to send copies of identity documents through the post.
+        </div>
+      </details>
 
       {{ govukButton({
         text: "Continue"
