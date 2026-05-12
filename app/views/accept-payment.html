@@ -17,42 +17,47 @@
 {% block content %}
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
-
-    <h1 class="govuk-heading-l">You may be eligible for a recognition payment</h1>
+    {{ govukPanel({
+      titleText: "You're eligible for a recognition payment",
+      classes: "govuk-panel--informational"
+    }) }}
 
     <p class="govuk-body">
-      We've confirmed your identity and that you have an eligible qualification. We still need to review your employment evidence before we can make a decision.
+      You're eligible for an early years teacher recognition payment
+      of £4,500.
     </p>
 
-    <h2 class="govuk-heading-m">Before you accept the claim</h2>
+    <h1 class="govuk-heading-l">Before you accept the claim</h1>
 
     <p class="govuk-body">
-      The payment may affect your finances. You should check how it could impact you before you decide whether to accept it.
+      The payment may affect your finances. You should check how it could impact you
+      before you decide whether to accept it.
     </p>
 
-    <h3 class="govuk-heading-s">Student loan deductions</h3>
+    <h2 class="govuk-heading-m">Student loan deductions</h2>
 
     <p class="govuk-body">
-      If you are currently repaying a student loan, a deduction from your payment will go towards repaying it.
+      If you're currently repaying a student loan, a deduction from your payment
+      will go towards repaying it.
     </p>
 
-    <h3 class="govuk-heading-s">Income tax</h3>
+    <h2 class="govuk-heading-m">Income tax</h2>
 
     <p class="govuk-body">
-      If you pay <a target="_blank" href="https://www.gov.uk/income-tax-rates#income-tax-rates-and-bands" class="govuk-link govuk-link--no-visited-state">the basic rate of Income Tax</a>,
-      we will pay tax and National Insurance for you and you will receive the full
+      If you pay <a href="https://www.gov.uk/income-tax-rates#income-tax-rates-and-bands" class="govuk-link">the basic rate of Income Tax</a>,
+      we'll pay tax and National Insurance for you and you'll receive the full
       amount. You may have to pay additional Income Tax if you pay the higher rate.
     </p>
 
-    <h3 class="govuk-heading-s">Benefits</h3>
+    <h2 class="govuk-heading-m">Benefits</h2>
 
     <p class="govuk-body govuk-!-margin-bottom-8">
       The payment may affect any benefits you receive. You should
-      <a target="_blank" href="https://www.gov.uk/benefits-calculators" class="govuk-link govuk-link--no-visited-state">check how they might be affected</a> before
-      you accept the payment.
+      <a href="https://www.gov.uk/benefits-calculators" class="govuk-link">check how they might be affected</a> before
+      you accept the payment
     </p>
 
-    <form action="/confirm-where-you-work" method="get">
+    <form action="/check-payment-acceptance" method="get">
       {{ govukRadios({
         classes: "govuk-radios--inline",
         idPrefix: "accept-payment",
