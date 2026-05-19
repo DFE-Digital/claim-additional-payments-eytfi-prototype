@@ -1,0 +1,106 @@
+{% extends "layouts/main.html" %}
+
+{% from "govuk/components/button/macro.njk" import govukButton %}
+
+{% set pageName="Claim an early years teacher recognition payment" %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+  
+  <form class="feedback-form" id="feedback-form-example" action="#" accept-charset="UTF-8" method="post">
+    <input type="hidden" name="authenticity_token" value="" autocomplete="off" />
+
+    <h1 class="govuk-heading-l">Have time to share some feedback?</h1>
+    <p class="govuk-body">Your feedback can help us improve the service.</p>
+
+    <div class="govuk-form-group">
+      <fieldset class="govuk-fieldset">
+      <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
+          <h3 class="govuk-fieldset__heading">How satisfied are you with your experience of using Teaching Vacancies?</h3>
+      </legend>
+
+      <input value="" autocomplete="off" type="hidden" name="feedback_form[rating]" id="feedback_form_rating_example" />
+      <div class="govuk-radios" data-module="govuk-radios">
+          <div class="govuk-radios__item">
+            <input id="rating-highly-satisfied" class="govuk-radios__input" type="radio" value="highly_satisfied" name="feedback_form[rating]" />
+            <label for="rating-highly-satisfied" class="govuk-label govuk-radios__label">Highly satisfied</label>
+          </div>
+          <div class="govuk-radios__item">
+            <input id="rating-somewhat-satisfied" class="govuk-radios__input" type="radio" value="somewhat_satisfied" name="feedback_form[rating]" />
+            <label for="rating-somewhat-satisfied" class="govuk-label govuk-radios__label">Somewhat satisfied</label>
+          </div>
+          <div class="govuk-radios__item">
+            <input id="rating-neither" class="govuk-radios__input" type="radio" value="neither" name="feedback_form[rating]" />
+            <label for="rating-neither" class="govuk-label govuk-radios__label">Neither satisfied nor dissatisfied</label>
+          </div>
+          <div class="govuk-radios__item">
+            <input id="rating-somewhat-dissatisfied" class="govuk-radios__input" type="radio" value="somewhat_dissatisfied" name="feedback_form[rating]" />
+            <label for="rating-somewhat-dissatisfied" class="govuk-label govuk-radios__label">Somewhat dissatisfied</label>
+          </div>
+          <div class="govuk-radios__item">
+            <input id="rating-highly-dissatisfied" class="govuk-radios__input" type="radio" value="highly_dissatisfied" name="feedback_form[rating]" />
+            <label for="rating-highly-dissatisfied" class="govuk-label govuk-radios__label">Highly dissatisfied</label>
+          </div>
+      </div>
+      </fieldset>
+    </div>
+
+    <div class="govuk-form-group govuk-character-count" data-module="govuk-character-count" data-maxlength="1200">
+      <label for="comment-field-example" class="govuk-label govuk-label--s">Do you have any
+        suggestions on how we should improve the service? (optional<span class='govuk-visually-hidden'> field</span>)</label>
+      <textarea id="comment-field-example" class="govuk-textarea govuk-js-character-count" rows="4" aria-describedby="comment-field-info" name="feedback_form[comment]"></textarea>
+      <span id="comment-field-info" class="govuk-hint govuk-character-count__message">You can enter up to 1200 characters</span>
+    </div>
+
+    <div class="govuk-form-group">
+      <fieldset class="govuk-fieldset">
+      <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
+          <h3 class="govuk-fieldset__heading">Would you like to participate in our research?</h3>
+      </legend>
+      <div class="govuk-radios" data-module="govuk-radios">
+
+          <div class="govuk-radios__item">
+            <input id="participation-yes-example" class="govuk-radios__input" data-aria-controls="participation-yes-conditional-example" type="radio" value="interested" name="feedback_form[user_participation_response]" />
+            <label for="participation-yes-example" class="govuk-label govuk-radios__label">Yes</label>
+          </div>
+
+          <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="participation-yes-conditional-example">
+            <div class="govuk-form-group">
+                  <label for="email-field-example" class="govuk-label">
+                      What is your email address?
+                  </label>
+                  <div class="govuk-hint" id="email-hint-example">We&#39;ll only use this to tell you about opportunities to take part in user research.</div>
+                  <input id="email-field-example" class="govuk-input" aria-describedby="email-hint-example" value="" type="email" name="feedback_form[email]" />
+            </div>
+
+            <div class="govuk-form-group">
+                  <label for="occupation-field-example" class="govuk-label">
+                      Occupation
+                  </label>
+                  <div class="govuk-hint" id="occupation-hint-example">We&#39;ll only use this to tell you about opportunities to take part in user research that is relevant to you.</div>
+                  <textarea id="occupation-field-example" class="govuk-textarea" rows="1" aria-describedby="occupation-hint-example" name="feedback_form[occupation]"></textarea>
+            </div>
+          </div>
+
+          <div class="govuk-radios__item">
+            <input id="participation-no-example" class="govuk-radios__input" type="radio" value="uninterested" name="feedback_form[user_participation_response]" />
+            <label for="participation-no-example" class="govuk-label govuk-radios__label">No</label>
+          </div>
+      </div>
+      </fieldset>
+    </div>
+
+    <div class="govuk-button-group">
+      <button type="submit" formnovalidate="formnovalidate" class="govuk-button" data-module="govuk-button" data-prevent-double-click="true">Submit feedback</button>
+      <a class="govuk-link govuk-link--no-visited-state" href="#">Skip feedback</a>
+    </div>
+  </form>
+
+
+
+
+</div>
+
+{% endblock %}
