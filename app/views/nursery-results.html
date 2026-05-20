@@ -15,11 +15,15 @@
 
 {% block content %}
 <div class="govuk-grid-row">
-  <div class="govuk-grid-column-full">
+  <div class="govuk-grid-column-three-quarters">
     <form action="/check-nursery" method="get">
       <h1 class="govuk-heading-l">What nursery do you teach in?</h1>
 
       <p class="govuk-body">Select your nursery from the search results.</p>
+
+      <p class="govuk-body">
+        If you teach at a <a class="govuk-link govuk-link--no-visited-state" href="https://www.gov.uk/guidance/childcare-on-domestic-premises">provider of childcare on domestic premises (CoDP)</a> and you cannot find it in the search, email <a href="mailto:EY-teacher.recognitionpayment@education.gov.uk" class="govuk-link">EY-teacher.recognitionpayment@education.gov.uk</a>.
+      </p>
 
       {{ govukRadios({
         idPrefix: "nursery",
