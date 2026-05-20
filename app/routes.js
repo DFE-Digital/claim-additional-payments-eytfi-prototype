@@ -160,3 +160,11 @@ router.get('/start-new-claim', (req, res) => {
 
   return res.redirect('/')
 })
+
+router.post('/feedback', (req, res) => {
+
+  req.session.data.success = 'Your feedback has been submitted'
+
+  res.redirect('/feedback')
+})
+

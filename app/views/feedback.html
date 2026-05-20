@@ -2,54 +2,105 @@
 
 {% from "govuk/components/button/macro.njk" import govukButton %}
 
-{% set pageName="Claim an early years teacher recognition payment" %}
+{% set pageName="Give feedback on Claim an early years teacher recognition payment" %}
 
 {% block content %}
 
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
+
+    {% if data.success %}
+     
+      <div class="govuk-notification-banner govuk-notification-banner--success" role="alert" aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner">
+        <div class="govuk-notification-banner__header">
+          <h2 class="govuk-notification-banner__title" id="govuk-notification-banner-title">
+            Success
+          </h2>
+        </div>
+        <div class="govuk-notification-banner__content">
+          <h3 class="govuk-notification-banner__heading">
+            {{ data.success }}
+          </h3>
+        </div>
+      </div>
+    {% endif %}
+
   
-  <form class="feedback-form" id="feedback-form-example" action="#" accept-charset="UTF-8" method="post">
+  <form class="feedback-form" id="feedback-form-example" accept-charset="UTF-8" method="post">
     <input type="hidden" name="authenticity_token" value="" autocomplete="off" />
 
-    <h1 class="govuk-heading-l">Have time to share some feedback?</h1>
-    <p class="govuk-body">Your feedback can help us improve the service.</p>
+    <h1 class="govuk-heading-l">Give feedback on Claim an early years teacher recognition payment</h1>
 
     <div class="govuk-form-group">
       <fieldset class="govuk-fieldset">
       <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
-          <h3 class="govuk-fieldset__heading">How satisfied are you with your experience of using Teaching Vacancies?</h3>
+          <h3 class="govuk-fieldset__heading">How would you rate your experience claiming a recognition payment?</h3>
       </legend>
 
       <input value="" autocomplete="off" type="hidden" name="feedback_form[rating]" id="feedback_form_rating_example" />
       <div class="govuk-radios" data-module="govuk-radios">
           <div class="govuk-radios__item">
-            <input id="rating-highly-satisfied" class="govuk-radios__input" type="radio" value="highly_satisfied" name="feedback_form[rating]" />
-            <label for="rating-highly-satisfied" class="govuk-label govuk-radios__label">Highly satisfied</label>
+            <input id="rating-highly-satisfied" class="govuk-radios__input" type="radio" value="very_satisfied" name="feedback_form[rating]" />
+            <label for="rating-highly-satisfied" class="govuk-label govuk-radios__label">Very satisfied</label>
           </div>
           <div class="govuk-radios__item">
-            <input id="rating-somewhat-satisfied" class="govuk-radios__input" type="radio" value="somewhat_satisfied" name="feedback_form[rating]" />
-            <label for="rating-somewhat-satisfied" class="govuk-label govuk-radios__label">Somewhat satisfied</label>
+            <input id="rating-somewhat-satisfied" class="govuk-radios__input" type="radio" value="satisfied" name="feedback_form[rating]" />
+            <label for="rating-somewhat-satisfied" class="govuk-label govuk-radios__label">Satisfied</label>
           </div>
           <div class="govuk-radios__item">
             <input id="rating-neither" class="govuk-radios__input" type="radio" value="neither" name="feedback_form[rating]" />
             <label for="rating-neither" class="govuk-label govuk-radios__label">Neither satisfied nor dissatisfied</label>
           </div>
           <div class="govuk-radios__item">
-            <input id="rating-somewhat-dissatisfied" class="govuk-radios__input" type="radio" value="somewhat_dissatisfied" name="feedback_form[rating]" />
-            <label for="rating-somewhat-dissatisfied" class="govuk-label govuk-radios__label">Somewhat dissatisfied</label>
+            <input id="rating-somewhat-dissatisfied" class="govuk-radios__input" type="radio" value="dissatisfied" name="feedback_form[rating]" />
+            <label for="rating-somewhat-dissatisfied" class="govuk-label govuk-radios__label">Dissatisfied</label>
           </div>
           <div class="govuk-radios__item">
-            <input id="rating-highly-dissatisfied" class="govuk-radios__input" type="radio" value="highly_dissatisfied" name="feedback_form[rating]" />
-            <label for="rating-highly-dissatisfied" class="govuk-label govuk-radios__label">Highly dissatisfied</label>
+            <input id="rating-highly-dissatisfied" class="govuk-radios__input" type="radio" value="very_dissatisfied" name="feedback_form[rating]" />
+            <label for="rating-highly-dissatisfied" class="govuk-label govuk-radios__label">Very dissatisfied</label>
           </div>
       </div>
       </fieldset>
     </div>
 
+    <div class="govuk-form-group">
+      <fieldset class="govuk-fieldset">
+      <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
+          <h3 class="govuk-fieldset__heading">Which area of the service is your feedback for?</h3>
+      </legend>
+      <div class="govuk-radios" data-module="govuk-radios">
+
+          <div class="govuk-radios__item">
+            <input id="participation-yes-example" class="govuk-radios__input" type="radio" value="interested" name="feedback_form[user_participation_response]" />
+            <label for="participation-yes-example" class="govuk-label govuk-radios__label">The whole service</label>
+          </div>
+
+          
+          <div class="govuk-radios__item">
+            <input id="participation-yes-example" class="govuk-radios__input" data-aria-controls="page-service" type="radio" value="interested" name="feedback_form[user_participation_response]" />
+            <label for="participation-yes-example" class="govuk-label govuk-radios__label">A specific page</label>
+          </div>
+
+          <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="page-service">
+            
+            <div class="govuk-form-group">
+                  <label for="page-url" class="govuk-label">
+                      What is the page URL or page name?
+                  </label>
+                  <input id="page-url" class="govuk-input" value="" type="text" name="page-url" />
+            </div>
+
+            
+          </div>
+
+
+
+      </div>
+      </fieldset>
+    </div>
+
     <div class="govuk-form-group govuk-character-count" data-module="govuk-character-count" data-maxlength="1200">
-      <label for="comment-field-example" class="govuk-label govuk-label--s">Do you have any
-        suggestions on how we should improve the service? (optional<span class='govuk-visually-hidden'> field</span>)</label>
+      <label for="comment-field-example" class="govuk-label govuk-label--s">How could we improve this service? (optional<span class='govuk-visually-hidden'> field</span>)</label>
       <textarea id="comment-field-example" class="govuk-textarea govuk-js-character-count" rows="4" aria-describedby="comment-field-info" name="feedback_form[comment]"></textarea>
       <span id="comment-field-info" class="govuk-hint govuk-character-count__message">You can enter up to 1200 characters</span>
     </div>
