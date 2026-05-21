@@ -169,6 +169,19 @@ router.post('/feedback', (req, res) => {
 })
 
 
+router.post('/teaching-qualification-confirmation', (req, res) => {
+
+  var hasEligibleTeachingQualification = req.session.data.hasEligibleTeachingQualification
+
+  if (hasEligibleTeachingQualification == 'yes') {
+    res.redirect('/eligibility-criteria')
+  }else{
+    res.redirect('/ineligible-teaching-qualification-held')
+  }
+
+})
+
+
 router.post('/eligibility-criteria', (req, res) => {
 
   var hasEligibleWorking = req.session.data.hasEligibleWorking
