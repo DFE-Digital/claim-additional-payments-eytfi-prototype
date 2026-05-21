@@ -78,18 +78,50 @@
           
           <div class="govuk-radios__item">
             <input id="participation-yes-example" class="govuk-radios__input" data-aria-controls="page-service" type="radio" value="interested" name="feedback_form[user_participation_response]" />
-            <label for="participation-yes-example" class="govuk-label govuk-radios__label">A specific page</label>
+            <label for="participation-yes-example" class="govuk-label govuk-radios__label">A specific area</label>
           </div>
 
           <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="page-service">
-            
+         
             <div class="govuk-form-group">
-                  <label for="page-url" class="govuk-label">
-                      What is the page URL or page name?
-                  </label>
-                  <input id="page-url" class="govuk-input" value="" type="text" name="page-url" />
+              <fieldset class="govuk-fieldset">
+                <legend class="govuk-fieldset__legend">
+                  What area of the service is your feedback for?
+                </legend>
+                <div class="govuk-radios" data-module="govuk-radios">
+                  <div class="govuk-radios__item">
+                    <input class="govuk-radios__input" id="area" name="area" type="radio" value="guidance">
+                    <label class="govuk-label govuk-radios__label" for="area">
+                      Guidance
+                    </label>
+                  </div>
+                  <div class="govuk-radios__item">
+                    <input class="govuk-radios__input" id="area-2" name="area" type="radio" value="nursery">
+                    <label class="govuk-label govuk-radios__label" for="area-2">
+                      Nursery selection
+                    </label>
+                  </div>
+                  <div class="govuk-radios__item">
+                    <input class="govuk-radios__input" id="area-3" name="area" type="radio" value="uploading">
+                    <label class="govuk-label govuk-radios__label" for="area-3">
+                      Uploading proof of employment
+                    </label>
+                  </div>
+                  <div class="govuk-radios__item">
+                    <input class="govuk-radios__input" id="area-4" name="area" type="radio" value="bank">
+                    <label class="govuk-label govuk-radios__label" for="area-4">
+                      Providing bank details
+                    </label>
+                  </div>
+                  <div class="govuk-radios__item">
+                    <input class="govuk-radios__input" id="area-5" name="area" type="radio" value="submission">
+                    <label class="govuk-label govuk-radios__label" for="area-5">
+                      Submission and confirmation
+                    </label>
+                  </div>
+                </div>
+              </fieldset>
             </div>
-
             
           </div>
 
