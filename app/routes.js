@@ -168,3 +168,16 @@ router.post('/feedback', (req, res) => {
   res.redirect('/feedback')
 })
 
+
+router.post('/eligibility-criteria', (req, res) => {
+
+  var hasEligibleWorking = req.session.data.hasEligibleWorking
+
+  if (hasEligibleWorking == 'yes') {
+    res.redirect('/check-teaching-qualification')
+  }else{
+    res.redirect('/ineligible-teaching-qualification-held')
+  }
+
+})
+

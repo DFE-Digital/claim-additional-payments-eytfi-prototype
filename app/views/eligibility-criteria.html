@@ -16,21 +16,28 @@
 {% block content %}
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
-    <form action="/eligibility-criteria" method="get">
-      <h1 class="govuk-heading-l">Do you hold one of these teaching qualifications?</h1>
+    <form method="post">
 
-      <p class="govuk-body">You must hold one of the following to be eligible:</p>
+      
+      <h1 class="govuk-heading-l">Eligibility criteria</h1>
+
+      <p class="govuk-body">To be eligible, you must:</p>
 
       <ul class="govuk-list govuk-list--bullet">
-        <li>Qualified Teacher Status (QTS)</li>
-        <li>Early Years Teacher Status (EYTS)</li>
-        <li>Early Years Professional Status (EYPS)</li>
+        <li>spend at least 50% of your working time fulfilling the role of an early years teacher, as set out in the <a target="_blank" class="govuk-link govuk-link--no-visited-state" href="https://www.gov.uk/government/publications/early-years-teachers-standards">Early years teacher standards</a></li>
+        <li>not be subject to formal performance measures</li>
       </ul>
 
-      <p class="govuk-body">If you're not sure check your certificates.</p>
-
       {{ govukRadios({
-        name: "hasEligibleTeachingQualification",
+        classes: "govuk-radios",
+        name: "hasEligibleWorking",
+        fieldset: {
+          legend: {
+            text: "Do you meet this eligibility criteria?",
+            isPageHeading: true,
+            classes: "govuk-fieldset__legend--m"
+          }
+        },
         items: [
           {
             value: "yes",
