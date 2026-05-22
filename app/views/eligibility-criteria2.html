@@ -1,0 +1,53 @@
+{% extends "layouts/main.html" %}
+
+{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/radios/macro.njk" import govukRadios %}
+
+{% set pageName = "Do you hold one of these teaching qualifications" %}
+
+{% block pageBeforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "/nursery-results"
+  }) }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <form action="/check-teaching-qualification" method="get">
+
+    {{ govukCheckboxes({
+      name: "waste",
+      fieldset: {
+        legend: {
+          text: "Eligibility criteria",
+          isPageHeading: true,
+          classes: "govuk-fieldset__legend--l"
+        }
+      },
+      hint: {
+        text: "Select all that apply"
+      },
+      items: [
+        {
+          value: "workingtime",
+          html: 'I spend at least 50% of your working time fulfilling the role of an early years teacher, as set out in the <a target="_blank" class="govuk-link govuk-link--no-visited-state" href="https://www.gov.uk/government/publications/early-years-teachers-standards">Early years teacher standards</a>'
+        },
+        {
+          value: "performance",
+          text: "I am not subject to formal performance measures"
+        }
+      ]
+    }) }}
+
+
+
+      {{ govukButton({
+        text: "Confirm and continue"
+      }) }}
+    </form>
+  </div>
+</div>
+{% endblock %}
