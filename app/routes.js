@@ -184,11 +184,18 @@ router.post('/teaching-qualification-confirmation', (req, res) => {
 
 router.post('/eligibility-criteria', (req, res) => {
 
-  var hasEligibleWorking = req.session.data.hasEligibleWorking
+  const eligible = req.session.data.eligible || []
 
-  if (hasEligibleWorking == 'yes') {
+  const selected = Array.isArray(eligible)
+    ? eligible
+    : [eligible]
+
+  if (
+    selected.includes('time') &&
+    selected.includes('performance')
+  ) {
     res.redirect('/check-teaching-qualification')
-  }else{
+  } else {
     res.redirect('/ineligible-teaching-qualification-held')
   }
 
