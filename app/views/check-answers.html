@@ -18,7 +18,7 @@
   <div class="govuk-grid-column-two-thirds">
     <h1 class="govuk-heading-l">Confirm your details and complete your claim</h1>
 
-    <h2 class="govuk-heading-m">Nursey details</h2>
+    <h2 class="govuk-heading-m">Employment details</h2>
 
     {{ govukSummaryList({
       rows: [
@@ -38,6 +38,31 @@
               }
             ]
           }
+        },
+        {
+          key: {
+            text: "Uploaded payslip"
+          },
+          value: {
+            html: uploadedDocumentsSummary
+          },
+          actions: {
+            items: [
+              {
+                href: "/confirm-where-you-work-uploaded-documents",
+                text: "Change",
+                visuallyHiddenText: "uploaded documents"
+              }
+            ]
+          }
+        },
+        {
+          key: {
+            text: "Qualification"
+          },
+          value: {
+            text: data.qualifications or "Qualified Teacher Status (QTS)"
+          }
         }
       ]
     }) }}
@@ -47,6 +72,22 @@
 
     {{ govukSummaryList({
       rows: [
+        {
+          key: {
+            text: "Name"
+          },
+          value: {
+            text: data.name or "Edna Krabappel"
+          }
+        },
+        {
+          key: {
+            text: "Email address"
+          },
+          value: {
+            text: data.email or "edna.krabappel@example.com"
+          }
+        },
         {
           key: {
             text: "Home address"
@@ -153,30 +194,6 @@
                 href: "/bank-details",
                 text: "Change",
                 visuallyHiddenText: "account number"
-              }
-            ]
-          }
-        }
-      ]
-    }) }}
-
-    <h2 class="govuk-heading-m">Uploaded documents</h2>
-
-    {{ govukSummaryList({
-      rows: [
-        {
-          key: {
-            text: "Files"
-          },
-          value: {
-            html: uploadedDocumentsSummary
-          },
-          actions: {
-            items: [
-              {
-                href: "/confirm-where-you-work-uploaded-documents",
-                text: "Change",
-                visuallyHiddenText: "uploaded documents"
               }
             ]
           }
