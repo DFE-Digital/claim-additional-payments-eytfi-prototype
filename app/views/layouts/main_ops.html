@@ -1,0 +1,148 @@
+{#
+For guidance on how to use layouts see:
+https://prototype-kit.service.gov.uk/docs/how-to-use-layouts
+#}
+
+{%- set assetPath = assetPath | default('/plugin-assets/govuk-frontend' + govukFrontend.assetPath) -%}
+
+{% extends "govuk/template.njk" %}
+
+{# 
+  Import ServiceNavigation for when the Kit runs and GOV.UK Frontend is
+  uninstalled. In that situation, it loads the Page template from GOV.UK
+  Frontend used by the management pages. The version used by the management
+  pages predates when we added the Service Navigation to the page template, so
+  we need to import it explicitly.
+  
+  TODO: Remove once the management pages run GOV.UK Frontend 6.0.0
+#}
+{% from "govuk/components/service-navigation/macro.njk" import govukServiceNavigation %}
+
+{% block head %}
+  {% block meta %}{% endblock %}
+  {% block stylesheets %}
+    {% include "govuk-prototype-kit/includes/stylesheets.njk" %}
+  {% endblock %}
+{% endblock %}
+
+{% set serviceName = "Claim additional payments for teaching" %}
+{% set serviceUrl = "/ops/" %}
+{% set bodyClasses = "ops" %}
+
+{% block pageTitle %}
+  {% if pageName %}{{ pageName }} - {% endif %}{{ serviceName }} - GOV.UK
+{% endblock %}
+
+{% from "govuk/components/service-navigation/macro.njk" import govukServiceNavigation %}
+
+{% block header %}
+  {% if pluginVersionSatisfies('govuk-frontend', '>=6.0.0') %}
+    {{ super() }}
+  {% else %}
+  
+    {{ govukHeader({
+      homepageUrl: "/",
+      serviceName: 'Hello',
+      serviceUrl: serviceUrl if not useServiceNavigation,
+      containerClasses: "govuk-width-container"
+    }) }}
+    
+  {% endif %}
+
+  {{ govukServiceNavigation({
+    classes: "service-navigation--secondary",
+    navigation: [
+      {
+        href: "/",
+        text: "Claim overview",
+        current: true
+      },
+       {
+        href: "/my",
+        text: "My claims"
+      },
+      {
+        href: "/claims",
+        text: "Claims"
+      },
+      {
+        href: "/search",
+        text: "Search"
+      },
+      {
+        href: "/payroll",
+        text: "Payroll"
+      },
+      {
+        href: "/services",
+        text: "Manage services"
+      },
+      {
+        href: "/reports",
+        text: "QA Reports"
+      },
+      {
+        href: "/sign-out",
+        text: "Sign out"
+      }
+    ]
+  }) }}
+
+
+{% endblock %}
+
+{% if (GOVUKPrototypeKit.isDevelopment) %}
+  {% set footerItems = [
+    {
+      href: "/manage-prototype",
+      text: "Manage your prototype"
+    }, {
+      href: "/manage-prototype/clear-data",
+      text: "Clear data"
+    }
+  ] %}
+{% else %}
+  {% set footerItems = [
+    {
+      href: "/manage-prototype/clear-data",
+      text: "Clear data"
+    }
+  ] %}
+{% endif %}
+
+{# 
+  Because the macro is used inside `set` rather than a `block`
+  `govukFooter` needs to be explicitely imported
+#}
+{% from 'govuk/components/footer/macro.njk' import govukFooter %}
+{% set govukFooterHtml %}
+  {{ govukFooter({
+    meta: {
+      items: footerItems,
+      visuallyHiddenTitle: "Footer links"
+    }
+  }) }}
+{% endset %}
+
+{# Override only the GOV.UK Footer component for GOV.UK Frontend >=6.0.0 #}
+{% block govukFooter %}{{govukFooterHtml | safe}}{% endblock %}
+
+{% block footer %}
+  {% if pluginVersionSatisfies('govuk-frontend', '>=6.0.0') %}
+    {{ super() }}
+  {% else %}
+    {{govukFooterHtml | safe }}
+  {% endif %}
+{% endblock %}
+
+{% block bodyEnd %}
+  {% block scripts %}
+    {% include "govuk-prototype-kit/includes/scripts.njk" %}
+    {% block pageScripts %}{% endblock %}
+  {% endblock %}
+{% endblock %}
+
+
+{% from "govuk/components/phase-banner/macro.njk" import govukPhaseBanner %}
+
+
