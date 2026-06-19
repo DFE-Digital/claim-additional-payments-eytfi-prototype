@@ -1,0 +1,99 @@
+{% extends "layouts/main_ops.html" %}
+
+{% from "govuk/components/button/macro.njk" import govukButton %}
+
+{% set pageName="Claim an early years teacher recognition payment" %}
+
+{% set activeNav = 'myclaims' %}
+
+{% block content %}
+
+
+	<div class="govuk-grid-row">
+		<div class="govuk-grid-column-full">
+			
+			<h1 class="govuk-heading-l">
+				My claims
+			</h1>
+			
+			
+			<div class="train">
+				<div class="train__carriage">
+					<div class="train__carriage__title">
+					<h2 class="govuk-heading-m">Overdue</h2>
+					</div>
+
+					<div class="train__carriage__body">
+					<p class="govuk-body govuk-!-font-size-36">0<span class="govuk-visually-hidden"> overdue claims</span></p>
+					</div>
+				</div>
+
+				<div>
+					<hr>
+				</div>
+
+				<div class="train__carriage">
+					<div class="train__carriage__title">
+						<h2 class="govuk-heading-m">Due today</h2>
+					</div>
+
+					<div class="train__carriage__body">
+					<p class="govuk-body govuk-!-font-size-36">	0<span class="govuk-visually-hidden"> claims due today</span></p>
+					</div>
+				</div>
+
+				<div>
+					<hr>
+				</div>
+
+				<div class="train__carriage">
+					<div class="train__carriage__title">
+						<h2 class="govuk-heading-m">Due in 7 days</h2>
+					</div>
+
+					<div class="train__carriage__body">
+					<p class="govuk-body govuk-!-font-size-36">0<span class="govuk-visually-hidden"> claims due within 7 days</span></p>
+					</div>
+				</div>
+
+				<div>
+					<hr>
+				</div>
+
+				<div class="train__carriage">
+					<div class="train__carriage__title">
+						<h2 class="govuk-heading-m">On hold</h2>
+					</div>
+
+					<div class="train__carriage__body">
+					<p class="govuk-body govuk-!-font-size-36">0<span class="govuk-visually-hidden"> on hold claims</span></p>
+					</div>
+				</div>
+
+				<div>
+					<hr>
+				</div>
+
+				<div class="train__carriage">
+					<div class="train__carriage__title">
+						<h2 class="govuk-heading-m">Active claims</h2>
+					</div>
+
+					<div class="train__carriage__body">
+						<p class="govuk-body govuk-!-font-size-36">0<span class="govuk-visually-hidden"> active assigned claims</span></p>
+					</div>
+				</div>	
+			</div>
+
+			<table class="govuk-table"><thead class="govuk-table__head"><tr class="govuk-table__row"><th class="govuk-table__header" scope="col">Reference</th><th class="govuk-table__header" scope="col">Applicant</th><th class="govuk-table__header" scope="col">Policy</th><th class="govuk-table__header" scope="col">Submitted</th><th class="govuk-table__header" scope="col">Decision deadline</th><th class="govuk-table__header" scope="col">On hold</th></tr></thead><tbody class="govuk-table__body"></tbody></table>
+			 
+		</div>
+
+	</div>
+
+
+  
+
+
+
+{% endblock %}

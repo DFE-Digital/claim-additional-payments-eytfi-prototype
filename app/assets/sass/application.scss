@@ -40,4 +40,32 @@
     border-bottom: 1px solid #8eb8dc;
   }
 
+  /* line 1, app/assets/stylesheets/components/train.scss */
+  .train {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    margin-bottom: 30px;
+    flex-direction: column;
+  }
+
+  @media (min-width: 780px) {
+    /* line 1, app/assets/stylesheets/components/train.scss */
+    .train {
+      flex-direction: row;
+    }
+  }
+
+  /* line 12, app/assets/stylesheets/components/train.scss */
+  .train hr {
+    min-height: 100%;
+  }
+
+  /* line 21, app/assets/stylesheets/components/train.scss */
+  .train .train__carriage .train__carriage__body {
+    margin-bottom: 10px;
+    text-align: center;
+  }
+
+
 }

@@ -49,41 +49,48 @@ https://prototype-kit.service.gov.uk/docs/how-to-use-layouts
     
   {% endif %}
 
-  {{ govukServiceNavigation({
-    classes: "service-navigation--secondary",
-    navigation: [
-      {
-        href: "/",
-        text: "Claim overview",
-        current: true
-      },
-       {
-        href: "/my",
-        text: "My claims"
-      },
-      {
-        href: "/claims",
-        text: "Claims"
-      },
-      {
-        href: "/search",
-        text: "Search"
-      },
-      {
-        href: "/payroll",
-        text: "Payroll"
-      },
-      {
-        href: "/services",
-        text: "Manage services"
-      },
-      {
-        href: "/reports",
-        text: "QA Reports"
+    {{ govukServiceNavigation({
+      classes: "service-navigation--secondary",
+      navigation: [
+        {
+          href: "/ops/",
+          text: "Claim overview",
+          current: activeNav == 'overview'
+        },
+        {
+          href: "/ops/my",
+          text: "My claims",
+          current: activeNav == 'myclaims'
+        },
+        {
+          href: "/ops/claims",
+          text: "Claims",
+          current: activeNav == 'claims'
+        },
+        {
+          href: "/ops/search",
+          text: "Search",
+          current: activeNav == 'search'
+        },
+        {
+          href: "/ops/payroll",
+          text: "Payroll",
+          current: activeNav == 'payroll'
+        },
+        {
+          href: "/ops/services",
+          text: "Manage services",
+          current: activeNav == 'services'
+        },
+        {
+        href: "/ops/reports",
+        text: "QA Reports",
+        current: activeNav == 'reports'
       },
       {
         href: "/sign-out",
-        text: "Sign out"
+        text: "Sign out",
+        current: activeNav == 'signout'
       }
     ]
   }) }}

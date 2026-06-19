@@ -1,0 +1,358 @@
+{% extends "layouts/main_ops.html" %}
+
+{% from "govuk/components/button/macro.njk" import govukButton %}
+
+{% set pageName="Claim an early years teacher recognition payment" %}
+
+{% set activeNav = 'claims' %}
+
+{% block content %}
+
+
+	<div class="govuk-grid-row">
+		<div class="govuk-grid-column-full">
+			<h1 class="govuk-heading-xl">
+		Claims
+		</h1> <a class="govuk-button govuk-button--secondary" data-module="govuk-button" role="button" href="/admin/claims.csv" data-govuk-button-init="">Download report request file</a> <a class="govuk-button govuk-button--secondary" data-module="govuk-button" role="button" href="/admin/school_workforce_census_data_uploads/new" data-govuk-button-init="">Upload School Workforce Census data</a> <a class="govuk-button govuk-button--secondary" data-module="govuk-button" role="button" href="/admin/tps_data_uploads/new" data-govuk-button-init="">Upload TPS data</a> <a class="govuk-button govuk-button--secondary" data-module="govuk-button" role="button" href="/admin/qualification_report_uploads/new" data-govuk-button-init="">Upload DQT report</a> <a class="govuk-button govuk-button--secondary" data-module="govuk-button" role="button" href="/admin/dqt_higher_education_qualification_uploads/new" data-govuk-button-init="">Upload DQT HE Qualifications</a> <a class="govuk-button govuk-button--secondary" data-module="govuk-button" role="button" href="/admin/student_loans_data_uploads/new" data-govuk-button-init="">Upload SLC data</a> <a class="govuk-button govuk-button--secondary" data-module="govuk-button" role="button" href="/admin/fraud_risk_csv_uploads/new" data-govuk-button-init="">Upload fraud prevention data</a> <a class="govuk-button govuk-button--secondary" data-module="govuk-button" role="button" href="/admin/reports" data-govuk-button-init="">Reports</a>
+			<h2 class="govuk-heading-m">Allocate claims</h2>
+			<form action="/admin/bulk_allocate" accept-charset="UTF-8" method="post">
+				<input type="hidden" name="_method" value="patch" autocomplete="off">
+				<input type="hidden" name="authenticity_token" value="xomq8VxcD6yWJoDF60B6riAM18ZFPMNvRMB7u6CZJg4bAeDeGeQFo-w3pZW-d3ws2dMf1EgCPPJDQPTD3XEwiA" autocomplete="off">
+				<div id="allocations">
+					<div class="govuk-grid-row">
+						<div class="govuk-grid-column-one-quarter">
+							<div class="govuk-form-group">
+								<label for="allocate-to-team-member-field" class="govuk-label">Team members:</label>
+								<select id="allocate-to-team-member-field" class="govuk-select govuk-!-width-full" name="allocate_to_team_member">
+									<option value="0e1d7add-47a6-4118-9114-da8a4f9d6edb"></option>
+								</select>
+							</div>
+						</div>
+						<div class="govuk-grid-column-one-quarter">
+							<div class="govuk-form-group">
+								<label for="allocate-to-policy-field" class="govuk-label">Policy:</label>
+								<select id="allocate-to-policy-field" class="govuk-select govuk-!-width-full" name="allocate_to_policy">
+									<option value="">All</option>
+									<option value="student-loans">Student Loans</option>
+									<option value="early-career-payments">Early-Career Payments</option>
+									<option value="targeted-retention-incentive-payments">School Targeted Retention Incentive</option>
+									<option value="international-relocation-payments">International Relocation Payments</option>
+									<option value="further-education-payments">Further Education Targeted Retention Incentive</option>
+									<option value="early-years-payments">Early Years Financial Incentive Payments</option>
+									<option value="early-years-teachers-financial-incentive-payments">Early Years Teachers Recognition Payments</option>
+								</select>
+							</div>
+						</div>
+						<div class="govuk-grid-column-one-quarter">
+							<div class="govuk-form-group">
+								<label for="status-field" class="govuk-label">Status</label>
+								<select id="status-field" class="govuk-select govuk-!-width-full" name="status">
+									<optgroup label="Awaiting">
+										<option value="awaiting_decision" selected=""> Awaiting decision - not on hold </option>
+										<option value="awaiting_provider_verification"> Awaiting provider verification </option>
+										<option value="awaiting_claimant_data"> Awaiting claimant data </option>
+										<option value="awaiting_retention_period_completion"> Awaiting retention period completion </option>
+										<option value="awaiting_retention_check_data"> Awaiting retention check data </option>
+										<option value="held"> Awaiting decision - on hold </option>
+										<option value="failed_bank_validation"> Awaiting decision - failed bank details </option>
+									</optgroup>
+									<optgroup label="QA">
+										<option value="approved_awaiting_qa"> Approved awaiting QA </option>
+										<option value="rejected_awaiting_qa"> Rejected awaiting QA </option>
+										<option value="quality_assured"> Quality assured </option>
+										<option value="quality_assured_approved"> Quality assured - approved </option>
+										<option value="quality_assured_rejected"> Quality assured - rejected </option>
+									</optgroup>
+									<optgroup label="Payroll">
+										<option value="approved_awaiting_payroll"> Approved awaiting payroll </option>
+										<option value="automatically_approved_awaiting_payroll"> Automatically approved awaiting payroll </option>
+									</optgroup>
+									<optgroup label="Decisioned">
+										<option value="automatically_approved"> Automatically approved </option>
+										<option value="approved"> Approved </option>
+										<option value="rejected"> Rejected </option>
+									</optgroup>
+								</select>
+							</div>
+						</div>
+						<div class="govuk-grid-column-one-quarter">
+							<div class="govuk-form-group">
+								<label for="allocate-claim-count-field" class="govuk-label">Number of claims:</label>
+								<select id="allocate-claim-count-field" class="govuk-select govuk-!-width-full" name="allocate_claim_count">
+									<option value="1">1</option>
+									<option value="5">5</option>
+									<option value="10">10</option>
+									<option selected="selected" value="25">25</option>
+								</select>
+							</div>
+						</div>
+					</div>
+					<div class="govuk-grid-row">
+						<div class="govuk-form-group">
+							<div class="govuk-grid-column-two-thirds">
+								<input type="submit" name="commit" value="Allocate claims" class="govuk-button govuk-button--secondary" id="allocate" data-disable-with="Allocate claims">
+								<input type="submit" name="commit" value="Unallocate claims" class="govuk-button govuk-button--secondary" id="unallocate" formaction="/admin/bulk_deallocate" data-disable-with="Unallocate claims"> </div>
+						</div>
+					</div>
+				</div>
+			</form>
+			<div id="filters">
+				<h2 id="filter" class="govuk-heading-m">Filter claims</h2>
+				<form action="/admin/claims#filter" accept-charset="UTF-8" method="get">
+					<div class="admin-filter-group">
+						<div>
+							<div class="govuk-form-group">
+								<label for="filter-team-member-field" class="govuk-label">Team member</label>
+								<select id="filter-team-member-field" class="govuk-select" name="filter[team_member]">
+									<option selected="selected" value="all">All</option>
+									<option value="unassigned">Unassigned</option>
+									<option value="0e1d7add-47a6-4118-9114-da8a4f9d6edb"></option>
+								</select>
+							</div>
+						</div>
+						<div>
+							<div class="govuk-form-group">
+								<label for="filter-policy-field" class="govuk-label">Policy</label>
+								<select id="filter-policy-field" class="govuk-select" name="filter[policy]">
+									<option selected="selected" value="all">All</option>
+									<option value="student-loans">Student Loans</option>
+									<option value="early-career-payments">Early-Career Payments</option>
+									<option value="targeted-retention-incentive-payments">School Targeted Retention Incentive</option>
+									<option value="international-relocation-payments">International Relocation Payments</option>
+									<option value="further-education-payments">Further Education Targeted Retention Incentive</option>
+									<option value="early-years-payments">Early Years Financial Incentive Payments</option>
+									<option value="early-years-teachers-financial-incentive-payments">Early Years Teachers Recognition Payments</option>
+								</select>
+							</div>
+						</div>
+						<div>
+							<div class="govuk-form-group">
+								<label for="filter-status-field" class="govuk-label">Status</label>
+								<select id="filter-status-field" class="govuk-select" name="filter[status]">
+									<optgroup label="Awaiting">
+										<option value="awaiting_decision" selected=""> Awaiting decision - not on hold </option>
+										<option value="awaiting_provider_verification"> Awaiting provider verification </option>
+										<option value="awaiting_claimant_data"> Awaiting claimant data </option>
+										<option value="awaiting_retention_period_completion"> Awaiting retention period completion </option>
+										<option value="awaiting_retention_check_data"> Awaiting retention check data </option>
+										<option value="held"> Awaiting decision - on hold </option>
+										<option value="failed_bank_validation"> Awaiting decision - failed bank details </option>
+									</optgroup>
+									<optgroup label="QA">
+										<option value="approved_awaiting_qa"> Approved awaiting QA </option>
+										<option value="rejected_awaiting_qa"> Rejected awaiting QA </option>
+										<option value="quality_assured"> Quality assured </option>
+										<option value="quality_assured_approved"> Quality assured - approved </option>
+										<option value="quality_assured_rejected"> Quality assured - rejected </option>
+									</optgroup>
+									<optgroup label="Payroll">
+										<option value="approved_awaiting_payroll"> Approved awaiting payroll </option>
+										<option value="automatically_approved_awaiting_payroll"> Automatically approved awaiting payroll </option>
+									</optgroup>
+									<optgroup label="Decisioned">
+										<option value="automatically_approved"> Automatically approved </option>
+										<option value="approved"> Approved </option>
+										<option value="rejected"> Rejected </option>
+									</optgroup>
+								</select>
+							</div>
+						</div>
+						<div>
+							<button type="submit" formnovalidate="formnovalidate" class="govuk-button govuk-button--secondary admin-filter-group__button" data-module="govuk-button" data-prevent-double-click="true" data-govuk-button-init="">Apply filters</button> <a class="govuk-link button-link admin-filter-group__button" href="/admin/claims?filter%5Breset%5D=true#filter">Clear filters</a> </div>
+					</div>
+				</form>
+			</div>
+			<h2 class="govuk-heading-m">18 claims awaiting a decision</h2>
+			<table class="govuk-table">
+				<thead class="govuk-table__head">
+					<tr class="govuk-table__row">
+						<th scope="col" class="govuk-table__header">Reference</th>
+						<th scope="col" class="govuk-table__header">Applicant Name</th>
+						<th scope="col" class="govuk-table__header">ID Verification</th>
+						<th scope="col" class="govuk-table__header">Policy</th>
+						<th scope="col" class="govuk-table__header">Submitted</th>
+						<th scope="col" class="govuk-table__header">Decision deadline</th>
+						<th scope="col" class="govuk-table__header">Assigned to</th>
+					</tr>
+				</thead>
+				<tbody class="govuk-table__body">
+					<tr class="govuk-table__row">
+						<th scope="row" class="govuk-table__header"><a class="govuk-link" href="/admin/claims/5ecb99dd-1f49-4e17-959a-c2f27302c333/tasks">22VAFBPT</a></th>
+						<td class="govuk-table__cell">Mallory Bahringer</td>
+						<td class="govuk-table__cell"><strong class="govuk-tag app-task-list__task-completed govuk-tag--grey">Unverified</strong></td>
+						<td class="govuk-table__cell">FE</td>
+						<td class="govuk-table__cell">14 May 2026</td>
+						<td class="govuk-table__cell">24 September 2026</td>
+						<td class="govuk-table__cell"></td>
+					</tr>
+					<tr class="govuk-table__row">
+						<th scope="row" class="govuk-table__header"><a class="govuk-link" href="/admin/claims/0ed15eb8-bb7a-4beb-a8ec-8f93c9f0b801/tasks">HHBXBHY5</a></th>
+						<td class="govuk-table__cell">Danielle Dean</td>
+						<td class="govuk-table__cell"><strong class="govuk-tag app-task-list__task-completed govuk-tag--green">Passed</strong></td>
+						<td class="govuk-table__cell">EYTRP</td>
+						<td class="govuk-table__cell">1 June 2026</td>
+						<td class="govuk-table__cell">10 August 2026</td>
+						<td class="govuk-table__cell"></td>
+					</tr>
+					<tr class="govuk-table__row">
+						<th scope="row" class="govuk-table__header"><a class="govuk-link" href="/admin/claims/4f62f35b-1fff-47f9-86f6-18aadd403878/tasks">7WCEFFH7</a></th>
+						<td class="govuk-table__cell">Danielle Dean</td>
+						<td class="govuk-table__cell"><strong class="govuk-tag app-task-list__task-completed govuk-tag--green">Passed</strong></td>
+						<td class="govuk-table__cell">EYTRP</td>
+						<td class="govuk-table__cell">1 June 2026</td>
+						<td class="govuk-table__cell">10 August 2026</td>
+						<td class="govuk-table__cell"></td>
+					</tr>
+					<tr class="govuk-table__row">
+						<th scope="row" class="govuk-table__header"><a class="govuk-link" href="/admin/claims/fc52fe3a-9076-4af1-8633-48a8b14a1db7/tasks">H4NYGJF5</a></th>
+						<td class="govuk-table__cell">Danielle Dean</td>
+						<td class="govuk-table__cell"><strong class="govuk-tag app-task-list__task-completed govuk-tag--green">Passed</strong></td>
+						<td class="govuk-table__cell">EYTRP</td>
+						<td class="govuk-table__cell">1 June 2026</td>
+						<td class="govuk-table__cell">10 August 2026</td>
+						<td class="govuk-table__cell"></td>
+					</tr>
+					<tr class="govuk-table__row">
+						<th scope="row" class="govuk-table__header"><a class="govuk-link" href="/admin/claims/ad5d73c5-e5f2-417c-ad0a-417a06faeffd/tasks">WQ38SPBV</a></th>
+						<td class="govuk-table__cell">Danielle Dean</td>
+						<td class="govuk-table__cell"><strong class="govuk-tag app-task-list__task-completed govuk-tag--green">Passed</strong></td>
+						<td class="govuk-table__cell">EYTRP</td>
+						<td class="govuk-table__cell">1 June 2026</td>
+						<td class="govuk-table__cell">10 August 2026</td>
+						<td class="govuk-table__cell"></td>
+					</tr>
+					<tr class="govuk-table__row">
+						<th scope="row" class="govuk-table__header"><a class="govuk-link" href="/admin/claims/2da03ac0-1585-4c7e-b821-8221d399b178/tasks">P2BTXGW6</a></th>
+						<td class="govuk-table__cell">Danielle Dean</td>
+						<td class="govuk-table__cell"><strong class="govuk-tag app-task-list__task-completed govuk-tag--green">Passed</strong></td>
+						<td class="govuk-table__cell">EYTRP</td>
+						<td class="govuk-table__cell">1 June 2026</td>
+						<td class="govuk-table__cell">10 August 2026</td>
+						<td class="govuk-table__cell"></td>
+					</tr>
+					<tr class="govuk-table__row">
+						<th scope="row" class="govuk-table__header"><a class="govuk-link" href="/admin/claims/045cb820-28ec-4008-81e9-88ec2e6d5a4f/tasks">YHEXCHTK</a></th>
+						<td class="govuk-table__cell">Danielle Dean</td>
+						<td class="govuk-table__cell"><strong class="govuk-tag app-task-list__task-completed govuk-tag--green">Passed</strong></td>
+						<td class="govuk-table__cell">EYTRP</td>
+						<td class="govuk-table__cell">1 June 2026</td>
+						<td class="govuk-table__cell">10 August 2026</td>
+						<td class="govuk-table__cell"></td>
+					</tr>
+					<tr class="govuk-table__row">
+						<th scope="row" class="govuk-table__header"><a class="govuk-link" href="/admin/claims/71154a46-025f-42f3-a552-131df6a106e2/tasks">DV3M2GYA</a></th>
+						<td class="govuk-table__cell">Danielle Dean</td>
+						<td class="govuk-table__cell"><strong class="govuk-tag app-task-list__task-completed govuk-tag--green">Passed</strong></td>
+						<td class="govuk-table__cell">EYTRP</td>
+						<td class="govuk-table__cell">1 June 2026</td>
+						<td class="govuk-table__cell">10 August 2026</td>
+						<td class="govuk-table__cell"></td>
+					</tr>
+					<tr class="govuk-table__row">
+						<th scope="row" class="govuk-table__header"><a class="govuk-link" href="/admin/claims/f3527b79-f487-475e-88aa-cfbb2a39d356/tasks">XC5V5F2H</a></th>
+						<td class="govuk-table__cell">Danielle Dean</td>
+						<td class="govuk-table__cell"><strong class="govuk-tag app-task-list__task-completed govuk-tag--green">Passed</strong></td>
+						<td class="govuk-table__cell">EYTRP</td>
+						<td class="govuk-table__cell">1 June 2026</td>
+						<td class="govuk-table__cell">10 August 2026</td>
+						<td class="govuk-table__cell"></td>
+					</tr>
+					<tr class="govuk-table__row">
+						<th scope="row" class="govuk-table__header"><a class="govuk-link" href="/admin/claims/70169270-29fb-4feb-ba64-31680fbd2291/tasks">AEVYG63B</a></th>
+						<td class="govuk-table__cell">somenameunlikelytobeusedonotherclaim somenameunlikelytobeusedonotherclaim</td>
+						<td class="govuk-table__cell"><strong class="govuk-tag app-task-list__task-completed govuk-tag--yellow">Partial match</strong></td>
+						<td class="govuk-table__cell">STRI</td>
+						<td class="govuk-table__cell">3 June 2026</td>
+						<td class="govuk-table__cell">14 October 2026</td>
+						<td class="govuk-table__cell"></td>
+					</tr>
+					<tr class="govuk-table__row">
+						<th scope="row" class="govuk-table__header"><a class="govuk-link" href="/admin/claims/a3dc7ab5-0681-4eed-a1c4-5baec4405376/tasks">PQEBWW2Z</a></th>
+						<td class="govuk-table__cell">Danielle Dean</td>
+						<td class="govuk-table__cell"><strong class="govuk-tag app-task-list__task-completed govuk-tag--green">Passed</strong></td>
+						<td class="govuk-table__cell">EYTRP</td>
+						<td class="govuk-table__cell">4 June 2026</td>
+						<td class="govuk-table__cell">13 August 2026</td>
+						<td class="govuk-table__cell"></td>
+					</tr>
+					<tr class="govuk-table__row">
+						<th scope="row" class="govuk-table__header"><a class="govuk-link" href="/admin/claims/6bc5a5e4-5770-4f26-b944-a52a204c2a1e/tasks">RTHBJLCT</a></th>
+						<td class="govuk-table__cell">Isiah Schultz</td>
+						<td class="govuk-table__cell"><strong class="govuk-tag app-task-list__task-completed govuk-tag--green">Passed</strong></td>
+						<td class="govuk-table__cell">EYTRP</td>
+						<td class="govuk-table__cell">8 June 2026</td>
+						<td class="govuk-table__cell">17 August 2026</td>
+						<td class="govuk-table__cell"></td>
+					</tr>
+					<tr class="govuk-table__row">
+						<th scope="row" class="govuk-table__header"><a class="govuk-link" href="/admin/claims/8b0b3f99-03fe-4f57-9f8e-1704edd60aa2/tasks">CZDN39GU</a></th>
+						<td class="govuk-table__cell">Tama Crona</td>
+						<td class="govuk-table__cell"><strong class="govuk-tag app-task-list__task-completed govuk-tag--green">Passed</strong></td>
+						<td class="govuk-table__cell">EYTRP</td>
+						<td class="govuk-table__cell">8 June 2026</td>
+						<td class="govuk-table__cell">17 August 2026</td>
+						<td class="govuk-table__cell"></td>
+					</tr>
+					<tr class="govuk-table__row">
+						<th scope="row" class="govuk-table__header"><a class="govuk-link" href="/admin/claims/c3da4a88-394e-4148-9683-13305874f7b5/tasks">PS3LSFQU</a></th>
+						<td class="govuk-table__cell">Rhett Heller</td>
+						<td class="govuk-table__cell"><strong class="govuk-tag app-task-list__task-completed govuk-tag--green">Passed</strong></td>
+						<td class="govuk-table__cell">EYTRP</td>
+						<td class="govuk-table__cell">8 June 2026</td>
+						<td class="govuk-table__cell">17 August 2026</td>
+						<td class="govuk-table__cell"></td>
+					</tr>
+					<tr class="govuk-table__row">
+						<th scope="row" class="govuk-table__header"><a class="govuk-link" href="/admin/claims/d1b1429d-9788-4fca-ab5f-15e092bbbf52/tasks">6JHL5HBN</a></th>
+						<td class="govuk-table__cell">Wilfred Jacobson</td>
+						<td class="govuk-table__cell"><strong class="govuk-tag app-task-list__task-completed govuk-tag--green">Passed</strong></td>
+						<td class="govuk-table__cell">EYTRP</td>
+						<td class="govuk-table__cell">8 June 2026</td>
+						<td class="govuk-table__cell">17 August 2026</td>
+						<td class="govuk-table__cell"></td>
+					</tr>
+					<tr class="govuk-table__row">
+						<th scope="row" class="govuk-table__header"><a class="govuk-link" href="/admin/claims/6a534d74-4071-480d-b8b0-4143a6146520/tasks">GP8LCBMG</a></th>
+						<td class="govuk-table__cell">Kara Nikolaus</td>
+						<td class="govuk-table__cell"><strong class="govuk-tag app-task-list__task-completed govuk-tag--green">Passed</strong></td>
+						<td class="govuk-table__cell">EYTRP</td>
+						<td class="govuk-table__cell">8 June 2026</td>
+						<td class="govuk-table__cell">17 August 2026</td>
+						<td class="govuk-table__cell"></td>
+					</tr>
+					<tr class="govuk-table__row">
+						<th scope="row" class="govuk-table__header"><a class="govuk-link" href="/admin/claims/bf9cd475-d69c-4598-b81d-d2c799eac36f/tasks">NGQNAEF5</a></th>
+						<td class="govuk-table__cell">Rev. Hagenes</td>
+						<td class="govuk-table__cell"><strong class="govuk-tag app-task-list__task-completed govuk-tag--green">Passed</strong></td>
+						<td class="govuk-table__cell">EYTRP</td>
+						<td class="govuk-table__cell">8 June 2026</td>
+						<td class="govuk-table__cell">17 August 2026</td>
+						<td class="govuk-table__cell"></td>
+					</tr>
+					<tr class="govuk-table__row">
+						<th scope="row" class="govuk-table__header"><a class="govuk-link" href="/admin/claims/db32a54b-d788-43e2-b807-4140423148c7/tasks">V5VNWZLY</a></th>
+						<td class="govuk-table__cell">Bo Dare</td>
+						<td class="govuk-table__cell"><strong class="govuk-tag app-task-list__task-completed govuk-tag--green">Passed</strong></td>
+						<td class="govuk-table__cell">EYTRP</td>
+						<td class="govuk-table__cell">17 June 2026</td>
+						<td class="govuk-table__cell">26 August 2026</td>
+						<td class="govuk-table__cell"></td>
+					</tr>
+				</tbody>
+			</table>
+			<nav class="govuk-pagination" aria-label="results">
+				<ul class="govuk-pagination__list">
+					<li class="govuk-pagination__item govuk-pagination__item--current"> <a class="govuk-link govuk-pagination__link" href="#" aria-label="Page 1" aria-current="page">
+			1
+			</a> </li>
+				</ul>
+			</nav>
+		</div>
+	</div>
+
+
+  
+
+
+
+{% endblock %}
