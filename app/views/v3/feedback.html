@@ -1,0 +1,189 @@
+{% extends "layouts/main.html" %}
+
+{% from "govuk/components/button/macro.njk" import govukButton %}
+
+{% set pageName="Give feedback on Claim an early years teacher recognition payment" %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    {% if data.success %}
+     
+      <div class="govuk-notification-banner govuk-notification-banner--success" role="alert" aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner">
+        <div class="govuk-notification-banner__header">
+          <h2 class="govuk-notification-banner__title" id="govuk-notification-banner-title">
+            Success
+          </h2>
+        </div>
+        <div class="govuk-notification-banner__content">
+          <h3 class="govuk-notification-banner__heading">
+            {{ data.success }}
+          </h3>
+        </div>
+      </div>
+    {% endif %}
+
+  
+  <form class="feedback-form" id="feedback-form-example" accept-charset="UTF-8" method="post">
+    <input type="hidden" name="authenticity_token" value="" autocomplete="off" />
+
+    <h1 class="govuk-heading-l">Give feedback on Claim an early years teacher recognition payment</h1>
+
+    <div class="govuk-form-group">
+      <fieldset class="govuk-fieldset">
+      <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
+          <h3 class="govuk-fieldset__heading">How would you rate your experience claiming a recognition payment?</h3>
+      </legend>
+
+      <input value="" autocomplete="off" type="hidden" name="feedback_form[rating]" id="feedback_form_rating_example" />
+      <div class="govuk-radios" data-module="govuk-radios">
+          <div class="govuk-radios__item">
+            <input id="rating-highly-satisfied" class="govuk-radios__input" type="radio" value="very_satisfied" name="feedback_form[rating]" />
+            <label for="rating-highly-satisfied" class="govuk-label govuk-radios__label">Very satisfied</label>
+          </div>
+          <div class="govuk-radios__item">
+            <input id="rating-somewhat-satisfied" class="govuk-radios__input" type="radio" value="satisfied" name="feedback_form[rating]" />
+            <label for="rating-somewhat-satisfied" class="govuk-label govuk-radios__label">Satisfied</label>
+          </div>
+          <div class="govuk-radios__item">
+            <input id="rating-neither" class="govuk-radios__input" type="radio" value="neither" name="feedback_form[rating]" />
+            <label for="rating-neither" class="govuk-label govuk-radios__label">Neither satisfied nor dissatisfied</label>
+          </div>
+          <div class="govuk-radios__item">
+            <input id="rating-somewhat-dissatisfied" class="govuk-radios__input" type="radio" value="dissatisfied" name="feedback_form[rating]" />
+            <label for="rating-somewhat-dissatisfied" class="govuk-label govuk-radios__label">Dissatisfied</label>
+          </div>
+          <div class="govuk-radios__item">
+            <input id="rating-highly-dissatisfied" class="govuk-radios__input" type="radio" value="very_dissatisfied" name="feedback_form[rating]" />
+            <label for="rating-highly-dissatisfied" class="govuk-label govuk-radios__label">Very dissatisfied</label>
+          </div>
+      </div>
+      </fieldset>
+    </div>
+
+    <div class="govuk-form-group">
+      <fieldset class="govuk-fieldset">
+      <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
+          <h3 class="govuk-fieldset__heading">Which area of the service is your feedback for?</h3>
+      </legend>
+      <div class="govuk-radios" data-module="govuk-radios">
+
+          <div class="govuk-radios__item">
+            <input id="participation-yes-example" class="govuk-radios__input" type="radio" value="interested" name="feedback_form[user_participation_response]" />
+            <label for="participation-yes-example" class="govuk-label govuk-radios__label">The whole service</label>
+          </div>
+
+          
+          <div class="govuk-radios__item">
+            <input id="participation-yes-example" class="govuk-radios__input" data-aria-controls="page-service" type="radio" value="interested" name="feedback_form[user_participation_response]" />
+            <label for="participation-yes-example" class="govuk-label govuk-radios__label">A specific area</label>
+          </div>
+
+          <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="page-service">
+         
+            <div class="govuk-form-group">
+              <fieldset class="govuk-fieldset">
+                <legend class="govuk-fieldset__legend">
+                  What area of the service is your feedback for?
+                </legend>
+                <div class="govuk-radios" data-module="govuk-radios">
+                  <div class="govuk-radios__item">
+                    <input class="govuk-radios__input" id="area" name="area" type="radio" value="guidance">
+                    <label class="govuk-label govuk-radios__label" for="area">
+                      Guidance
+                    </label>
+                  </div>
+                  <div class="govuk-radios__item">
+                    <input class="govuk-radios__input" id="area-2" name="area" type="radio" value="nursery">
+                    <label class="govuk-label govuk-radios__label" for="area-2">
+                      Nursery selection
+                    </label>
+                  </div>
+                  <div class="govuk-radios__item">
+                    <input class="govuk-radios__input" id="area-3" name="area" type="radio" value="uploading">
+                    <label class="govuk-label govuk-radios__label" for="area-3">
+                      Uploading proof of employment
+                    </label>
+                  </div>
+                  <div class="govuk-radios__item">
+                    <input class="govuk-radios__input" id="area-4" name="area" type="radio" value="bank">
+                    <label class="govuk-label govuk-radios__label" for="area-4">
+                      Providing bank details
+                    </label>
+                  </div>
+                  <div class="govuk-radios__item">
+                    <input class="govuk-radios__input" id="area-5" name="area" type="radio" value="submission">
+                    <label class="govuk-label govuk-radios__label" for="area-5">
+                      Submission and confirmation
+                    </label>
+                  </div>
+                </div>
+              </fieldset>
+            </div>
+            
+          </div>
+
+
+
+      </div>
+      </fieldset>
+    </div>
+
+    <div class="govuk-form-group govuk-character-count" data-module="govuk-character-count" data-maxlength="1200">
+      <label for="comment-field-example" class="govuk-label govuk-label--s">How could we improve this service? (optional<span class='govuk-visually-hidden'> field</span>)</label>
+      <textarea id="comment-field-example" class="govuk-textarea govuk-js-character-count" rows="4" aria-describedby="comment-field-info" name="feedback_form[comment]"></textarea>
+      <span id="comment-field-info" class="govuk-hint govuk-character-count__message">You can enter up to 1200 characters</span>
+    </div>
+
+    <div class="govuk-form-group">
+      <fieldset class="govuk-fieldset">
+      <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
+          <h3 class="govuk-fieldset__heading">Would you like to participate in our research?</h3>
+      </legend>
+      <div class="govuk-radios" data-module="govuk-radios">
+
+          <div class="govuk-radios__item">
+            <input id="participation-yes-example" class="govuk-radios__input" data-aria-controls="participation-yes-conditional-example" type="radio" value="interested" name="feedback_form[user_participation_response]" />
+            <label for="participation-yes-example" class="govuk-label govuk-radios__label">Yes</label>
+          </div>
+
+          <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="participation-yes-conditional-example">
+            <div class="govuk-form-group">
+                  <label for="email-field-example" class="govuk-label">
+                      What is your email address?
+                  </label>
+                  <div class="govuk-hint" id="email-hint-example">We&#39;ll only use this to tell you about opportunities to take part in user research.</div>
+                  <input id="email-field-example" class="govuk-input" aria-describedby="email-hint-example" value="" type="email" name="feedback_form[email]" />
+            </div>
+
+            <div class="govuk-form-group">
+                  <label for="occupation-field-example" class="govuk-label">
+                      Occupation
+                  </label>
+                  <div class="govuk-hint" id="occupation-hint-example">We&#39;ll only use this to tell you about opportunities to take part in user research that is relevant to you.</div>
+                  <textarea id="occupation-field-example" class="govuk-textarea" rows="1" aria-describedby="occupation-hint-example" name="feedback_form[occupation]"></textarea>
+            </div>
+          </div>
+
+          <div class="govuk-radios__item">
+            <input id="participation-no-example" class="govuk-radios__input" type="radio" value="uninterested" name="feedback_form[user_participation_response]" />
+            <label for="participation-no-example" class="govuk-label govuk-radios__label">No</label>
+          </div>
+      </div>
+      </fieldset>
+    </div>
+
+    <div class="govuk-button-group">
+      <button type="submit" formnovalidate="formnovalidate" class="govuk-button" data-module="govuk-button" data-prevent-double-click="true">Submit feedback</button>
+      <a class="govuk-link govuk-link--no-visited-state" href="#">Skip feedback</a>
+    </div>
+  </form>
+
+
+
+
+</div>
+
+{% endblock %}

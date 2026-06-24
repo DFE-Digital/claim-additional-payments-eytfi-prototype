@@ -1,0 +1,60 @@
+{% extends "layouts/main.html" %}
+
+{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/radios/macro.njk" import govukRadios %}
+
+{% set pageName = "Teacher auth record match" %}
+
+{% block pageBeforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "/teacher-auth-teacher-reference-number.html"
+  }) }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-l">Teacher auth record match</h1>
+
+    <form action="/accept-payment" method="get">
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+
+      <p class="govuk-body-s govuk-!-margin-bottom-2">Prototype record match selector</p>
+
+      {{ govukRadios({
+        classes: "govuk-radios--small",
+        name: "teacherAuthRecordMatch",
+        fieldset: {
+          legend: {
+            text: "Choose a record match outcome",
+            classes: "govuk-visually-hidden"
+          }
+        },
+        items: [
+          {
+            value: "matched",
+            text: "Record matched",
+            checked: true
+          },
+          {
+            value: "matched-qualification-ineligible",
+            text: "Record matched - qualification ineligible"
+          },
+          {
+            value: "not-matched",
+            text: "Record not matched"
+          },
+          {
+            value: "already-submitted",
+            text: "already submitted a claim"
+          }
+        ]
+      }) }}
+    </form>
+  </div>
+</div>
+{% endblock %}

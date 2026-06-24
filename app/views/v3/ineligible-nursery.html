@@ -1,0 +1,41 @@
+{% extends "layouts/main.html" %}
+
+{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+
+{% set pageName = "The nursery you selected may not be eligible" %}
+
+{% block pageBeforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "/nursery-results"
+  }) }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-l">The nursery you selected may not be eligible</h1>
+
+    <p class="govuk-body">
+      Based on our records, the nursery you selected is not currently eligible for the early years
+      teacher recognition payment.
+    </p>
+
+    <p class="govuk-body">
+      To be eligible, you must teach at an early years group-based setting that offers the early years entitlements.
+    </p>
+
+    <p class="govuk-body">
+      If you think this is a mistake, check you’ve selected the correct nursery. If the problem continues, email us at
+      <a href="mailto:EY-teacher.recognitionpayment@education.gov.uk" class="govuk-link">
+        EY-teacher.recognitionpayment@education.gov.uk
+      </a>.
+    </p>
+
+    <p class="govuk-body">
+      <a href="feedback" class="govuk-link govuk-link--no-visited-state">What did you think of this service?</a>
+    </p>
+    
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,49 @@
+{% extends "layouts/main.html" %}
+
+{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/panel/macro.njk" import govukPanel %}
+
+{% set pageName = "We haven't found your teaching record" %}
+
+{% block pageBeforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "/teacher-auth-record-match"
+  }) }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+    {% set panelHtml %}
+      <p class="govuk-body govuk-!-color-white">
+        We've been unable to match your answers to a teaching record.
+      </p>
+
+      <h2 class="govuk-heading-m govuk-!-color-white">Get support</h2>
+
+      <p class="govuk-body govuk-!-color-white">
+        Check your answers. If they're correct you can get support with accessing your
+        teaching qualifications.
+      </p>
+
+      <p class="govuk-body govuk-!-color-white">
+        We'll check your details and contact your if we need any more information.
+      </p>
+
+      {{ govukButton({
+        text: "Check your answers",
+        href: "/teacher-auth-record-not-matched-check-answers",
+        classes: "govuk-button--inverse"
+      }) }}
+    {% endset %}
+
+    {{ govukPanel({
+      titleText: "We haven't found your teaching record",
+      html: panelHtml,
+      classes: "govuk-panel--informational"
+    }) }}
+  </div>
+</div>
+{% endblock %}

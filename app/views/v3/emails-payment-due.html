@@ -1,0 +1,79 @@
+{% extends "govuk-prototype-kit/layouts/unbranded.html" %}
+
+{% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+
+{% set pageName = "Payment due email" %}
+
+{% block pageTitle %}
+  Payment due email
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    {{ govukSummaryList({
+      rows: [
+        {
+          key: {
+            text: "From"
+          },
+          value: {
+            text: "Claim an early years teacher recognition payment"
+          }
+        },
+        {
+          key: {
+            text: "To"
+          },
+          value: {
+            text: "test@example.com"
+          }
+        },
+        {
+          key: {
+            text: "Subject"
+          },
+          value: {
+            text: "Your early years recognition payment will be paid soon"
+          }
+        }
+      ]
+    }) }}
+
+    <p class="govuk-body">Hello Edna,</p>
+
+    <div class="govuk-inset-text">
+      You’ll receive your early years recognition payment in the next 16 weeks.
+    </div>
+
+    <p class="govuk-body">
+      This payment recognises the important work you do and the difference you make in early years education.
+    </p>
+
+    <h2 class="govuk-heading-m">How much you’ll get</h2>
+
+    <p class="govuk-body">
+      While the payment is £4,500, the amount paid into your account may be lower if you need to pay tax or repay your Student Loan.
+    </p>
+
+    <p class="govuk-body">
+      You can read more about the types of tax you may need to pay in the
+      <a href="/guidance" class="govuk-link govuk-link--no-visited-state">guidance</a>.
+    </p>
+
+    <p class="govuk-body">
+      The payment will be offered for the next 2 financial years. We’ll contact you next year to let you know if you’re still eligible.
+    </p>
+
+    <p class="govuk-body">
+      Thank you for your continued contribution to early years education,
+    </p>
+
+    <p class="govuk-body">
+      Early years teacher recognition payment team<br>
+      Department for Education<br>
+      EY-teacher.recognitionpayment@education.gov.uk
+    </p>
+  </div>
+</div>
+{% endblock %}

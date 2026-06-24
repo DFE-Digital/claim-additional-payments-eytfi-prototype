@@ -1,0 +1,52 @@
+{% extends "layouts/main.html" %}
+
+{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/radios/macro.njk" import govukRadios %}
+
+{% set pageName = "Do you hold one of these teaching qualifications" %}
+
+{% block pageBeforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "/nursery-results"
+  }) }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <form action="/eligibility-criteria" method="get">
+      <h1 class="govuk-heading-l">Do you hold one of these teaching qualifications?</h1>
+
+      <p class="govuk-body">You must hold one of the following to be eligible:</p>
+
+      <ul class="govuk-list govuk-list--bullet">
+        <li>qualified teacher status (QTS)</li>
+        <li>early years teacher status (EYTS)</li>
+        <li>early years professional status (EYPS)</li>
+      </ul>
+
+      <p class="govuk-body">If you're not sure check your certificates.</p>
+
+      {{ govukRadios({
+        name: "hasEligibleTeachingQualification",
+        items: [
+          {
+            value: "yes",
+            text: "Yes"
+          },
+          {
+            value: "no",
+            text: "No"
+          }
+        ]
+      }) }}
+
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+    </form>
+  </div>
+</div>
+{% endblock %}

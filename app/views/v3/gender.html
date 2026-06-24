@@ -1,0 +1,69 @@
+{% extends "layouts/main.html" %}
+
+{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/radios/macro.njk" import govukRadios %}
+
+{% set pageName = "What is your gender?" %}
+
+{% block pageBeforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "/select-address"
+  }) }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <form action="/check-answers" method="get">
+      {{ govukRadios({
+        idPrefix: "gender",
+        name: "gender",
+        fieldset: {
+          legend: {
+            text: "Are you recorded as male or female on your employer's payroll system?",
+            isPageHeading: true,
+            classes: "govuk-fieldset__legend--l"
+          }
+        },
+        hint: {
+          text: "We need this information to match HMRC’s records to make tax contributions for you. If you’re not sure, contact your Payroll team."
+        },
+        items: [
+          {
+            value: "male",
+            text: "Male"
+          },
+          {
+            value: "female",
+            text: "Female"
+          },
+          {
+            divider: "or"
+          },
+          {
+            value: "dont-know",
+            text: "I don't know"
+          }
+        ]
+      }) }}
+
+      <details class="govuk-details">
+        <summary class="govuk-details__summary">
+          <span class="govuk-details__summary-text">
+            Why do we ask this?
+          </span>
+        </summary>
+        <div class="govuk-details__text">
+         Payroll records your gender as male or female, and we need this information to make your payment.
+        </div>
+      </details>
+
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+    </form>
+  </div>
+</div>
+{% endblock %}

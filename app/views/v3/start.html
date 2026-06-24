@@ -1,0 +1,103 @@
+{% extends "layouts/main.html" %}
+
+{% from "govuk/components/button/macro.njk" import govukButton %}
+
+{% set pageName="Claim an early years teacher recognition payment" %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-xl">Claim an early years teacher recognition payment</h1>
+
+    <p class="govuk-body">
+      Use this service to claim a recognition payment of £4,500 after tax if you're an eligible early years teacher.
+    </p>
+
+    <p class="govuk-body">
+      You must meet the eligibility criteria for the early years teacher recognition
+      payment. Read the
+      <a
+        href="/guidance"
+        class="govuk-link govuk-link--no-visited-state"
+      >
+        guidance
+      </a>
+      for full details about who can claim and how the payment works.
+    </p>
+
+
+    <h2 class="govuk-heading-m">What you need</h2>
+
+    <section class="highlight-box">
+
+    <p class="govuk-body">You'll need:</p>
+
+    <ul class="govuk-list govuk-list--bullet">
+      <li>
+        your Teacher Reference Number (TRN) - you'll have one if you have early years professional status (EYPS), qualified teacher
+        status (QTS) or early years teacher status (EYTS)
+      </li>
+      <li>
+        a GOV.UK One Login account to prove your identity - you'll need a UK
+        passport, UK photo driving licence or biometric residence permit to set
+        it up
+      </li>
+      <li>
+        your bank details, including the full name on the account, sort code and
+        account number
+      </li>
+      <li>
+        your gender as it appears on payroll
+      </li>
+      <li>
+        a recent payslip from the last 2 months
+      </li>
+    </ul>
+
+    </section>
+
+    <h2 class="govuk-heading-m">Before you start</h2>
+
+    <p class="govuk-body">
+      If you need to
+      <a
+        href="https://claim-additional-payments-find-db7e9c956f5b.herokuapp.com/start"
+        class="govuk-link"
+        target="_blank"
+      >
+        find a lost TRN</a>,
+      do this before you claim. It can take 5 working days to recover your TRN.
+    </p>
+
+    <p class="govuk-body">
+      If you need to set up a GOV.UK One Login account, this can take 2 weeks.
+    </p>
+
+    <h2 class="govuk-heading-m">How long it takes to claim</h2>
+
+    <p class="govuk-body">If you have your  TRN and One Login account it takes around 10 minutes to submit a claim.</p>
+
+    <h2 class="govuk-heading-m">What happens after you submit a claim</h2>
+
+    <p class="govuk-body">You'll get an email to tell you if you're eligible.</p>
+
+    <p class="govuk-body">If you're eligible, you'll be paid within 16 weeks.</p>
+
+    <h2 class="govuk-heading-m">Contact us</h2>
+
+    <p class="govuk-body">
+      If you have any questions, email
+      <a href="mailto:EY-teacher.recognitionpayment@education.gov.uk" class="govuk-link">
+        EY-teacher.recognitionpayment@education.gov.uk
+      </a>
+    </p>
+
+    {{ govukButton({
+      text: "Start now",
+      href: "/nursery-search"
+    }) }}
+  </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,264 @@
+{% extends "layouts/main_ops.html" %}
+
+{% from "govuk/components/button/macro.njk" import govukButton %}
+
+{% set pageName="Claim an early years teacher recognition payment" %}
+
+{% set activeNav = 'claims' %}
+
+{% block content %}
+
+	<div class="govuk-grid-row">
+		<div class="govuk-grid-column-full"> <span class="govuk-caption-xl">Early Years Teachers Recognition Payments (2025/2026)</span>
+			<h1 class="govuk-heading-xl govuk-heading--navigation">
+				<span id="claim-heading">
+				HHBXBHY5
+				</span>
+				<span class="govuk-body-m">
+					<a class="govuk-link" href="/admin/claims/0ed15eb8-bb7a-4beb-a8ec-8f93c9f0b801/tasks">View tasks</a>
+					<a class="govuk-link" href="/admin/claims/0ed15eb8-bb7a-4beb-a8ec-8f93c9f0b801">View full claim</a>
+					<a class="govuk-link" href="/admin/claims/0ed15eb8-bb7a-4beb-a8ec-8f93c9f0b801/amendments/new">Amend claim</a>	
+				</span>
+			</h1> 
+		</div>
+		<div class="govuk-grid-column-full">
+			<div class="govuk-inset-text">
+				<p class="govuk-body"> This claim is currently unassigned </p> <a class="govuk-button" data-module="govuk-button" href="/admin/claims/0ed15eb8-bb7a-4beb-a8ec-8f93c9f0b801/assignment" data-govuk-button-init="">Assign claim</a> 
+			</div>
+		</div>
+		<div class="govuk-summary-list govuk-!-margin-bottom-9" id="claim-summary">
+			<div class="govuk-grid-column-one-half">
+				<dl class="govuk-summary-list">
+					<div class="govuk-summary-list__row"><dt class="govuk-summary-list__key">TRN</dt>
+						<dd class="govuk-summary-list__value">3013857</dd>
+					</div>
+					<div class="govuk-summary-list__row"><dt class="govuk-summary-list__key">NI number</dt>
+						<dd class="govuk-summary-list__value">JW123456C</dd>
+					</div>
+					<div class="govuk-summary-list__row"><dt class="govuk-summary-list__key">Full name</dt>
+						<dd class="govuk-summary-list__value">Danielle Dean</dd>
+					</div>
+					<div class="govuk-summary-list__row"><dt class="govuk-summary-list__key">Date of birth</dt>
+						<dd class="govuk-summary-list__value">1 January 1990</dd>
+					</div>
+					<div class="govuk-summary-list__row"><dt class="govuk-summary-list__key">Email address</dt>
+						<dd class="govuk-summary-list__value">james.grant+test4@education.gov.uk</dd>
+					</div>
+					<div class="govuk-summary-list__row"><dt class="govuk-summary-list__key">Mobile number</dt>
+						<dd class="govuk-summary-list__value">N/A</dd>
+					</div>
+					<div class="govuk-summary-list__row"><dt class="govuk-summary-list__key">Reference</dt>
+						<dd class="govuk-summary-list__value">HHBXBHY5</dd>
+					</div>
+				</dl>
+			</div>
+			<div class="govuk-grid-column-one-half">
+				<dl class="govuk-summary-list">
+					<div class="govuk-summary-list__row"><dt class="govuk-summary-list__key">Submitted</dt>
+						<dd class="govuk-summary-list__value">1 June 2026 9:57am</dd>
+					</div>
+					<div class="govuk-summary-list__row"><dt class="govuk-summary-list__key">Decision due</dt>
+						<dd class="govuk-summary-list__value">10 August 2026</dd>
+					</div>
+					<div class="govuk-summary-list__row"><dt class="govuk-summary-list__key">Status</dt>
+						<dd class="govuk-summary-list__value">Awaiting decision - not on hold</dd>
+					</div>
+					<div class="govuk-summary-list__row"><dt class="govuk-summary-list__key">Claim amount</dt>
+						<dd class="govuk-summary-list__value">£4,500.00</dd>
+					</div>
+					<div class="govuk-summary-list__row"><dt class="govuk-summary-list__key">Provider name</dt>
+						<dd class="govuk-summary-list__value">The Sunflower Centre</dd>
+					</div>
+					<div class="govuk-summary-list__row"><dt class="govuk-summary-list__key">Provider URN</dt>
+						<dd class="govuk-summary-list__value">EY480405</dd>
+					</div>
+				</dl>
+			</div>
+		</div>
+		<div class="govuk-grid-column-two-thirds">
+			<h2 class="govuk-heading-l">Matching details</h2>
+			<table id="claims-with-matches" class="govuk-table govuk-!-margin-bottom-9">
+				<thead class="govuk-table__head">
+					<tr class="govuk-table__row">
+						<th scope="col" class="govuk-table__header">Claim</th>
+						<th scope="col" class="govuk-table__header">Matching details</th>
+					</tr>
+				</thead>
+				<tbody class="govuk-table__body">
+					<tr class="govuk-table__row">
+						<th scope="row" class="govuk-table__header"><a class="govuk-link" href="/admin/claims/4f62f35b-1fff-47f9-86f6-18aadd403878">7WCEFFH7</a></th>
+						<td class="govuk-table__cell">
+							<ul class="govuk-list">
+								<li>Date of birth</li>
+								<li>First name</li>
+								<li>Surname</li>
+								<li>Teacher reference number</li>
+							</ul>
+						</td>
+					</tr>
+					<tr class="govuk-table__row">
+						<th scope="row" class="govuk-table__header"><a class="govuk-link" href="/admin/claims/fc52fe3a-9076-4af1-8633-48a8b14a1db7">H4NYGJF5</a></th>
+						<td class="govuk-table__cell">
+							<ul class="govuk-list">
+								<li>Date of birth</li>
+								<li>First name</li>
+								<li>Surname</li>
+								<li>Teacher reference number</li>
+							</ul>
+						</td>
+					</tr>
+					<tr class="govuk-table__row">
+						<th scope="row" class="govuk-table__header"><a class="govuk-link" href="/admin/claims/ad5d73c5-e5f2-417c-ad0a-417a06faeffd">WQ38SPBV</a></th>
+						<td class="govuk-table__cell">
+							<ul class="govuk-list">
+								<li>Date of birth</li>
+								<li>First name</li>
+								<li>Surname</li>
+								<li>Teacher reference number</li>
+							</ul>
+						</td>
+					</tr>
+					<tr class="govuk-table__row">
+						<th scope="row" class="govuk-table__header"><a class="govuk-link" href="/admin/claims/2da03ac0-1585-4c7e-b821-8221d399b178">P2BTXGW6</a></th>
+						<td class="govuk-table__cell">
+							<ul class="govuk-list">
+								<li>Date of birth</li>
+								<li>Email address</li>
+								<li>First name</li>
+								<li>National insurance number</li>
+								<li>Surname</li>
+								<li>Teacher reference number</li>
+							</ul>
+						</td>
+					</tr>
+					<tr class="govuk-table__row">
+						<th scope="row" class="govuk-table__header"><a class="govuk-link" href="/admin/claims/045cb820-28ec-4008-81e9-88ec2e6d5a4f">YHEXCHTK</a></th>
+						<td class="govuk-table__cell">
+							<ul class="govuk-list">
+								<li>Date of birth</li>
+								<li>First name</li>
+								<li>Surname</li>
+								<li>Teacher reference number</li>
+							</ul>
+						</td>
+					</tr>
+					<tr class="govuk-table__row">
+						<th scope="row" class="govuk-table__header"><a class="govuk-link" href="/admin/claims/71154a46-025f-42f3-a552-131df6a106e2">DV3M2GYA</a></th>
+						<td class="govuk-table__cell">
+							<ul class="govuk-list">
+								<li>Date of birth</li>
+								<li>First name</li>
+								<li>Surname</li>
+								<li>Teacher reference number</li>
+							</ul>
+						</td>
+					</tr>
+					<tr class="govuk-table__row">
+						<th scope="row" class="govuk-table__header"><a class="govuk-link" href="/admin/claims/fdfa0c01-2c40-41a2-ab53-377cb49745ff">DYW3G9EB</a></th>
+						<td class="govuk-table__cell">
+							<ul class="govuk-list">
+								<li>Date of birth</li>
+								<li>First name</li>
+								<li>Surname</li>
+								<li>Teacher reference number</li>
+							</ul>
+						</td>
+					</tr>
+					<tr class="govuk-table__row">
+						<th scope="row" class="govuk-table__header"><a class="govuk-link" href="/admin/claims/f3527b79-f487-475e-88aa-cfbb2a39d356">XC5V5F2H</a></th>
+						<td class="govuk-table__cell">
+							<ul class="govuk-list">
+								<li>Date of birth</li>
+								<li>First name</li>
+								<li>Surname</li>
+								<li>Teacher reference number</li>
+							</ul>
+						</td>
+					</tr>
+					<tr class="govuk-table__row">
+						<th scope="row" class="govuk-table__header"><a class="govuk-link" href="/admin/claims/321e7946-dfd6-47d3-b731-c6286b2f24fa">EH8T4E82</a></th>
+						<td class="govuk-table__cell">
+							<ul class="govuk-list">
+								<li>Date of birth</li>
+								<li>First name</li>
+								<li>Surname</li>
+								<li>Teacher reference number</li>
+							</ul>
+						</td>
+					</tr>
+					<tr class="govuk-table__row">
+						<th scope="row" class="govuk-table__header"><a class="govuk-link" href="/admin/claims/70169270-29fb-4feb-ba64-31680fbd2291">AEVYG63B</a></th>
+						<td class="govuk-table__cell">
+							<ul class="govuk-list">
+								<li>Teacher reference number</li>
+							</ul>
+						</td>
+					</tr>
+					<tr class="govuk-table__row">
+						<th scope="row" class="govuk-table__header"><a class="govuk-link" href="/admin/claims/a3dc7ab5-0681-4eed-a1c4-5baec4405376">PQEBWW2Z</a></th>
+						<td class="govuk-table__cell">
+							<ul class="govuk-list">
+								<li>Date of birth</li>
+								<li>First name</li>
+								<li>Surname</li>
+								<li>Teacher reference number</li>
+							</ul>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<div class="govuk-grid-column-two-thirds">
+			<form action="/admin/claims/0ed15eb8-bb7a-4beb-a8ec-8f93c9f0b801/tasks" accept-charset="UTF-8" method="post">
+				<input type="hidden" name="authenticity_token" value="6b2PdRxjCulXi9EcT4j5o47lv2QdfX1Jfoc2mOEdb5Q0NcVaWdsA5i2a9Ewav_8hdzp3dhBDgtR5B7ngnPV5Eg" autocomplete="off">
+				<input autocomplete="off" value="matching_details" type="hidden" name="form[name]" id="form_name">
+				<div class="govuk-form-group">
+					<fieldset class="govuk-fieldset">
+						<legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+							<h3 class="govuk-fieldset__heading">Is this claim still valid despite having matching details with other claims?</h3></legend>
+						<input autocomplete="off" value="" type="hidden" name="form[passed]" id="form_passed">
+						<div class="govuk-radios govuk-radios--inline" data-module="govuk-radios" data-govuk-radios-init="">
+							<div class="govuk-radios__item">
+								<input id="form-passed-true-field" class="govuk-radios__input" type="radio" value="true" name="form[passed]">
+								<label for="form-passed-true-field" class="govuk-label govuk-radios__label">Yes</label>
+							</div>
+							<div class="govuk-radios__item">
+								<input id="form-passed-field" class="govuk-radios__input" type="radio" value="false" name="form[passed]">
+								<label for="form-passed-field" class="govuk-label govuk-radios__label">No</label>
+							</div>
+						</div>
+					</fieldset>
+				</div>
+				<button type="submit" formnovalidate="formnovalidate" class="govuk-button" data-module="govuk-button" data-prevent-double-click="true" data-govuk-button-init="">Save and continue</button>
+			</form>
+			<h2 class="govuk-heading-m">Task notes</h2>
+			<form action="/admin/claims/0ed15eb8-bb7a-4beb-a8ec-8f93c9f0b801/tasks/matching_details/notes" accept-charset="UTF-8" method="post">
+				<input type="hidden" name="authenticity_token" value="6b2PdRxjCulXi9EcT4j5o47lv2QdfX1Jfoc2mOEdb5Q0NcVaWdsA5i2a9Ewav_8hdzp3dhBDgtR5B7ngnPV5Eg" autocomplete="off">
+				<div class="govuk-form-group">
+					<h3 class="govuk-label-wrapper"><label for="note-body-field" class="govuk-label govuk-label--s">Add a note to this task</label></h3>
+					<div class="govuk-hint" id="note-body-hint">Enter an update note here. Do not include any personal data about the claimant.</div>
+					<textarea id="note-body-field" class="govuk-textarea" rows="5" aria-describedby="note-body-hint" name="note[body]"></textarea>
+				</div>
+				<button type="submit" formnovalidate="formnovalidate" class="govuk-button" data-module="govuk-button" data-prevent-double-click="true" data-govuk-button-init="">Add note</button>
+			</form>
+			<nav aria-label="Pagination" class="govuk-pagination govuk-pagination--block">
+				<div class="govuk-pagination__prev">
+					<a href="/admin/claims/0ed15eb8-bb7a-4beb-a8ec-8f93c9f0b801/tasks/payroll_details" class="govuk-link govuk-pagination__link" rel="prev">
+						<svg class="govuk-pagination__icon govuk-pagination__icon--prev" xmlns="http://www.w3.org/2000/svg" height="13" width="15" focusable="false" viewBox="0 0 15 13" aria-hidden="true">
+							<path d="m6.5938-0.0078125-6.7266 6.7266 6.7441 6.4062 1.377-1.449-4.1856-3.9768h12.896v-2h-12.984l4.2931-4.293-1.414-1.414z"></path>
+						</svg><span class="govuk-pagination__link-title">Previous</span><span class="govuk-visually-hidden">:</span><span class="govuk-pagination__link-label">Payroll details</span></a>
+				</div>
+				<ul class="govuk-pagination__list"></ul>
+				<div class="govuk-pagination__next">
+					<a href="/admin/claims/0ed15eb8-bb7a-4beb-a8ec-8f93c9f0b801/decisions/new" class="govuk-link govuk-pagination__link" rel="next">
+						<svg class="govuk-pagination__icon govuk-pagination__icon--next" xmlns="http://www.w3.org/2000/svg" height="13" width="15" focusable="false" viewBox="0 0 15 13" aria-hidden="true">
+							<path d="m8.107-0.0078125-1.4136 1.414 4.2926 4.293h-12.986v2h12.896l-4.1855 3.9766 1.377 1.4492 6.7441-6.4062-6.7246-6.7266z"></path>
+						</svg><span class="govuk-pagination__link-title">Next</span><span class="govuk-visually-hidden">:</span><span class="govuk-pagination__link-label">Decision</span></a>
+				</div>
+			</nav>
+		</div>
+	</div>
+
+
+
+{% endblock %}

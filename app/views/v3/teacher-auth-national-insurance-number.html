@@ -1,0 +1,64 @@
+{% extends "layouts/main.html" %}
+
+{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/input/macro.njk" import govukInput %}
+{% from "govuk/components/radios/macro.njk" import govukRadios %}
+
+{% set pageName = "Do you have a National Insurance number?" %}
+
+{% block pageBeforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "/teacher-auth-find-your-teaching-record"
+  }) }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    {% set nationalInsuranceHtml %}
+      {{ govukInput({
+        label: {
+          text: "National Insurance number"
+        },
+        id: "national-insurance-number",
+        name: "nationalInsuranceNumber",
+        classes: "govuk-input--width-10"
+      }) }}
+    {% endset %}
+
+    <form method="get">
+      {{ govukRadios({
+        idPrefix: "has-national-insurance-number",
+        name: "hasNationalInsuranceNumber",
+        fieldset: {
+          legend: {
+            text: "Do you have a National Insurance number?",
+            isPageHeading: true,
+            classes: "govuk-fieldset__legend--l"
+          }
+        },
+        items: [
+          {
+            value: "yes",
+            text: "Yes",
+            conditional: {
+              html: nationalInsuranceHtml
+            }
+          },
+          {
+            value: "no",
+            text: "No"
+          }
+        ]
+      }) }}
+
+      {{ govukButton({
+        text: "Continue",
+        href: "/teacher-auth-teacher-reference-number.html"
+      }) }}
+    </form>
+  </div>
+</div>
+{% endblock %}

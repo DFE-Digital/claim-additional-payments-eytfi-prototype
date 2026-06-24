@@ -1,0 +1,60 @@
+{% extends "layouts/main.html" %}
+
+{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/file-upload/macro.njk" import govukFileUpload %}
+
+{% set pageName = "Confirm where you work" %}
+
+{% block pageBeforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "/eligibile-qualification-confirmed"
+  }) }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-l">Upload your payslip</h1>
+
+    <p class="govuk-body">
+      Upload a recent payslip to show that you work at Sunny Days Nursery.
+    </p>
+
+    <p class="govuk-body">The document must:</p>
+
+    <ul class="govuk-list govuk-list--bullet">
+      <li>show your full name</li>
+      <li>show the name of your workplace</li>
+      <li>be dated within the last 2 months</li>
+    </ul>
+
+    <p class="govuk-body">
+      You can upload a clear photo or a scanned copy of the document.
+    </p>
+
+    <form action="/confirm-where-you-work-uploaded" method="get">
+      {{ govukFileUpload({
+        id: "workplace-document",
+        name: "workplaceDocument",
+        label: {
+          text: "Upload document",
+          classes: "govuk-label--m"
+        },
+        attributes: {
+          accept: "image/*,.pdf,application/pdf",
+          capture: "environment"
+        }
+      }) }}
+
+      {{ govukButton({
+        text: "Upload"
+      }) }}
+    </form>
+
+    <p>Uploaded files are processed securely and retained only for as long as necessary to review your claim, after which they are securely deleted. For more information, see the <a target="_blank" class="govuk-link govuk-link--no-visited-state" href="https://www.gov.uk/government/organisations/department-for-education/about/personal-information-charter">DFE personal information charter (opens in new tab)</a>.</p>
+
+  </div>
+</div>
+{% endblock %}

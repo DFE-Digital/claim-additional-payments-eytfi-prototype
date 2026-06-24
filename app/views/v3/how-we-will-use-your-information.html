@@ -1,0 +1,68 @@
+{% extends "layouts/main.html" %}
+
+{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+
+{% set pageName = "How we'll use your information" %}
+
+{% block pageBeforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "/accept-payment"
+  }) }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <div class="govuk-notification-banner govuk-notification-banner--success" role="alert" aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner">
+      <div class="govuk-notification-banner__header">
+        <h2 class="govuk-notification-banner__title" id="govuk-notification-banner-title">
+          Success
+        </h2>
+      </div>
+      <div class="govuk-notification-banner__content">
+        <h3 class="govuk-notification-banner__heading">
+         Document uploaded successfully
+        </h3>
+        <p class="govuk-body">We'll review your document to confirm where you work.</p>
+      </div>
+    </div>
+
+    <h1 class="govuk-heading-l">How we'll use your information</h1>
+
+    <h2 class="govuk-heading-m">Student loan deductions</h2>
+
+    <p class="govuk-body">
+      We'll check if you're repaying a student loan. If you are, we'll take the right
+      amount from your recognition payment automatically.
+    </p>
+
+    <h2 class="govuk-heading-m">Income Tax</h2>
+
+    <p class="govuk-body">
+      We'll check if you pay the higher rate of Income Tax. If you do, we'll take
+      any extra tax you owe from your payment. You do not need to do anything.
+    </p>
+
+    <h2 class="govuk-heading-m">To pay you</h2>
+
+    <p class="govuk-body">
+      The Department of Education (DfE) will make the payment directly to you.
+      To complete the rest of your application, you'll need your:
+    </p>
+
+    <ul class="govuk-list govuk-list--bullet">
+      <li>home address</li>
+      <li>gender as it appears in payroll</li>
+      <li>bank account details</li>
+    </ul>
+
+    {{ govukButton({
+      text: "Continue",
+      href: "/home-address"
+    }) }}
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,56 @@
+{% extends "layouts/main.html" %}
+
+{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/input/macro.njk" import govukInput %}
+
+{% set pageName = "Which nursery do you teach in?" %}
+
+{% block pageBeforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "/"
+  }) }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+    <h1 class="govuk-heading-l govuk-!-margin-bottom-6">
+			Which nursery do you teach in?
+		</h1>
+	</div>
+</div>
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <p class="govuk-body">
+      If you work in more than one setting, choose the one you spend most of your time
+      in. 
+    </p>
+
+    <p class="govuk-body">
+     If you teach at a <a class="govuk-link govuk-link--no-visited-state" href="https://www.gov.uk/guidance/childcare-on-domestic-premises">provider of childcare on domestic premises (CoDP)</a> and you cannot find it in the search, email <a href="mailto:EY-teacher.recognitionpayment@education.gov.uk" class="govuk-link">EY-teacher.recognitionpayment@education.gov.uk</a>.
+    </p>
+
+    <form action="/nursery-results" method="get">
+      {{ govukInput({
+        label: {
+          text: "Enter nursery name or postcode",
+          classes: "govuk-label--m"
+        },
+        hint: {
+          text: "Search by name or postcode."
+        },
+        id: "nursery-search",
+        name: "nurserySearch"
+      }) }}
+
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+    </form>
+  </div>
+</div>
+{% endblock %}

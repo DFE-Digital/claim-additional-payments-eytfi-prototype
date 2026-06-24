@@ -1,0 +1,37 @@
+{% extends "layouts/main.html" %}
+
+{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+
+{% set pageName = "You're not eligible for this payment" %}
+
+{% block pageBeforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "/teaching-qualification-confirmation"
+  }) }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-xl">You're not eligible for this payment</h1>
+
+    <p class="govuk-body">
+      To be eligible for the early years teacher recognition payment you must be a
+      qualified early years teacher in an eligible setting. You also need to meet the <a target="_blank" class="govuk-link govuk-link--no-visited-state" href="/guidance#eligibility">eligibility criteria and expectations outlined in the guidance</a>.
+    </p>
+
+    <p class="govuk-body">
+      If you think this is a mistake, check your answers or contact us at
+      <a href="mailto:EY-teacher.recognitionpayment@education.gov.uk" class="govuk-link">
+        EY-teacher.recognitionpayment@education.gov.uk
+      </a>
+    </p>
+
+    <p class="govuk-body">
+      <a href="feedback" class="govuk-link govuk-link--no-visited-state">What did you think of this service?</a>
+    </p>
+
+  </div>
+</div>
+{% endblock %}

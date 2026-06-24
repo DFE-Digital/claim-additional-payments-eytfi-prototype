@@ -1,0 +1,33 @@
+{% extends "layouts/main.html" %}
+
+{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+
+{% set pageName = "Claim cancelled" %}
+
+{% block pageBeforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "/accept-payment"
+  }) }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-l">Claim cancelled</h1>
+
+    <p class="govuk-body">
+      You have chosen not to accept the payment at this time. Your claim has been
+      cancelled.
+    </p>
+
+    <p class="govuk-body">If you change your mind, you can start a new claim.</p>
+
+    {{ govukButton({
+      text: "Start a new claim",
+      href: "/start-new-claim"
+    }) }}
+  </div>
+</div>
+{% endblock %}

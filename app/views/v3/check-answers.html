@@ -1,0 +1,233 @@
+{% extends "layouts/main.html" %}
+
+{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+
+{% set pageName = "Confirm your details and complete your claim" %}
+
+{% block pageBeforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "/bank-details"
+  }) }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-l">Confirm your details and complete your claim</h1>
+
+    <h2 class="govuk-heading-m">Employment details</h2>
+
+    {{ govukSummaryList({
+      rows: [
+        {
+          key: {
+            text: "Nursery"
+          },
+          value: {
+            text: data.nursery or "Meadow View Children Centre, 56 Park Avenue, Middlesborough, BS1 4EE"
+          },
+          actions: {
+            items: [
+              {
+                href: "/nursery-results",
+                text: "Change",
+                visuallyHiddenText: "nursery"
+              }
+            ]
+          }
+        },
+        {
+          key: {
+            text: "Uploaded payslip"
+          },
+          value: {
+            html: uploadedDocumentsSummary
+          },
+          actions: {
+            items: [
+              {
+                href: "/confirm-where-you-work-uploaded-documents",
+                text: "Change",
+                visuallyHiddenText: "uploaded documents"
+              }
+            ]
+          }
+        },
+        {
+          key: {
+            text: "Qualification"
+          },
+          value: {
+            text: data.qualifications or "Qualified Teacher Status (QTS)"
+          }
+        }
+      ]
+    }) }}
+
+
+    <h2 class="govuk-heading-m">Personal details</h2>
+
+    {{ govukSummaryList({
+      rows: [
+        {
+          key: {
+            text: "Name"
+          },
+          value: {
+            text: data.name or "Edna Krabappel"
+          }
+        },
+        {
+          key: {
+            text: "Email address"
+          },
+          value: {
+            text: data.email or "edna.krabappel@example.com"
+          }
+        },
+        {
+          key: {
+            text: "Home address"
+          },
+          value: {
+            text: data.selectedAddress or data.homeAddressSearch or "12 Willow Close, Bristol, BS1 4AA"
+          },
+          actions: {
+            items: [
+              {
+                href: "/home-address",
+                text: "Change",
+                visuallyHiddenText: "home address"
+              }
+            ]
+          }
+        },
+        {
+          key: {
+            text: "Gender"
+          },
+          value: {
+            text: data.gender or "Female"
+          },
+          actions: {
+            items: [
+              {
+                href: "/gender",
+                text: "Change",
+                visuallyHiddenText: "gender"
+              }
+            ]
+          }
+        },
+        {
+          key: {
+            text: "National Insurance number"
+          },
+          value: {
+            text: data.nationalInsuranceNumber or "AB123456C"
+          },
+          actions: {
+            items: [
+              {
+                href: "#",
+                text: "Change",
+                visuallyHiddenText: "national insurance number"
+              }
+            ]
+          }
+        }
+
+      ]
+    }) }}
+
+    <h2 class="govuk-heading-m">Bank details</h2>
+
+    {{ govukSummaryList({
+      rows: [
+        {
+          key: {
+            text: "Name on your account"
+          },
+          value: {
+            text: data.accountName or "Edna Krabappel"
+          },
+          actions: {
+            items: [
+              {
+                href: "/bank-details",
+                text: "Change",
+                visuallyHiddenText: "name on your account"
+              }
+            ]
+          }
+        },
+        {
+          key: {
+            text: "Sort code"
+          },
+          value: {
+            text: data.sortCode or "309430"
+          },
+          actions: {
+            items: [
+              {
+                href: "/bank-details",
+                text: "Change",
+                visuallyHiddenText: "sort code"
+              }
+            ]
+          }
+        },
+        {
+          key: {
+            text: "Account number"
+          },
+          value: {
+            text: data.accountNumber or "00733445"
+          },
+          actions: {
+            items: [
+              {
+                href: "/bank-details",
+                text: "Change",
+                visuallyHiddenText: "account number"
+              }
+            ]
+          }
+        }
+      ]
+    }) }}
+
+    <h2 class="govuk-heading-m">Confirm your eligible</h2>
+
+    <p class="govuk-body">
+      By continuing, you confirm that the information you've given is accurate, and that you meet all the eligibility criteria and expectations in the <a target="_blank" href="/guidance" class="govuk-link govuk-link--no-visited-state" >guidance (opens in new tab)</a>.
+    </p>
+
+    <p class="govuk-body">
+      We may check your details with your employer or other official records.
+    </p>
+
+    <form action="/claim-complete" method="get">
+      {{ govukCheckboxes({
+        idPrefix: "eligibility-confirmed",
+        name: "eligibilityConfirmed",
+        items: [
+          {
+            value: "yes",
+            text: "I confirm that I understand and accept these conditions."
+          }
+        ]
+      }) }}
+
+      {{ govukButton({
+        text: "Confirm and claim"
+      }) }}
+    </form>
+
+  </div>
+</div>
+{% endblock %}

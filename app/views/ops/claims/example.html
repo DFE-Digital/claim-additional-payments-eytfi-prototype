@@ -1,0 +1,178 @@
+{% extends "layouts/main_ops.html" %}
+
+{% from "govuk/components/button/macro.njk" import govukButton %}
+
+{% set pageName="Claim an early years teacher recognition payment" %}
+
+{% set activeNav = 'claims' %}
+
+{% block content %}
+
+
+	<div class="govuk-notification-banner" role="region" aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner" data-govuk-notification-banner-init="">
+		<div class="govuk-notification-banner__header">
+			<h2 class="govuk-notification-banner__title" id="govuk-notification-banner-title">
+			Important
+			</h2> 
+		</div>
+		<div class="govuk-notification-banner__content">
+			<p class="govuk-notification-banner__heading"> <a class="govuk-notification-banner__link" href="multiple_claims">Multiple claims</a> with matching details have been made in this claim window. </p>
+		</div>
+	</div>
+	<div class="govuk-grid-row">
+		<div class="govuk-grid-column-full"> <span class="govuk-caption-xl">Early Years Teachers Recognition Payments (2025/2026)</span>
+			<h1 class="govuk-heading-xl govuk-heading--navigation">
+				<span id="claim-heading">
+					HHBXBHY5
+				</span>
+				<span class="govuk-body-m">
+				<a class="govuk-link" href="/admin/claims/0ed15eb8-bb7a-4beb-a8ec-8f93c9f0b801/tasks">View tasks</a>
+				<a class="govuk-link" href="/admin/claims/0ed15eb8-bb7a-4beb-a8ec-8f93c9f0b801">View full claim</a>
+				<a class="govuk-link" href="/admin/claims/0ed15eb8-bb7a-4beb-a8ec-8f93c9f0b801/amendments/new">Amend claim</a>	
+				</span>
+			</h1> 
+		</div>
+		<div class="govuk-grid-column-full"> </div>
+		<div class="govuk-grid-column-full">
+			<div class="govuk-inset-text">
+				<p class="govuk-body"> This claim is currently unassigned </p> <a class="govuk-button" data-module="govuk-button" href="/admin/claims/0ed15eb8-bb7a-4beb-a8ec-8f93c9f0b801/assignment" data-govuk-button-init="">Assign claim</a> </div>
+		</div>
+		<div class="govuk-summary-list govuk-!-margin-bottom-9" id="claim-summary">
+			<div class="govuk-grid-column-one-half">
+				<dl class="govuk-summary-list">
+					<div class="govuk-summary-list__row"><dt class="govuk-summary-list__key">TRN</dt>
+						<dd class="govuk-summary-list__value">3013857</dd>
+					</div>
+					<div class="govuk-summary-list__row"><dt class="govuk-summary-list__key">NI number</dt>
+						<dd class="govuk-summary-list__value">JW123456C</dd>
+					</div>
+					<div class="govuk-summary-list__row"><dt class="govuk-summary-list__key">Full name</dt>
+						<dd class="govuk-summary-list__value">Danielle Dean</dd>
+					</div>
+					<div class="govuk-summary-list__row"><dt class="govuk-summary-list__key">Date of birth</dt>
+						<dd class="govuk-summary-list__value">1 January 1990</dd>
+					</div>
+					<div class="govuk-summary-list__row"><dt class="govuk-summary-list__key">Email address</dt>
+						<dd class="govuk-summary-list__value">james.grant+test4@education.gov.uk</dd>
+					</div>
+					<div class="govuk-summary-list__row"><dt class="govuk-summary-list__key">Mobile number</dt>
+						<dd class="govuk-summary-list__value">N/A</dd>
+					</div>
+					<div class="govuk-summary-list__row"><dt class="govuk-summary-list__key">Reference</dt>
+						<dd class="govuk-summary-list__value">HHBXBHY5</dd>
+					</div>
+				</dl>
+			</div>
+			<div class="govuk-grid-column-one-half">
+				<dl class="govuk-summary-list">
+					<div class="govuk-summary-list__row"><dt class="govuk-summary-list__key">Submitted</dt>
+						<dd class="govuk-summary-list__value">1 June 2026 9:57am</dd>
+					</div>
+					<div class="govuk-summary-list__row"><dt class="govuk-summary-list__key">Decision due</dt>
+						<dd class="govuk-summary-list__value">10 August 2026</dd>
+					</div>
+					<div class="govuk-summary-list__row"><dt class="govuk-summary-list__key">Status</dt>
+						<dd class="govuk-summary-list__value">Awaiting decision - not on hold</dd>
+					</div>
+					<div class="govuk-summary-list__row"><dt class="govuk-summary-list__key">Claim amount</dt>
+						<dd class="govuk-summary-list__value">£4,500.00</dd>
+					</div>
+					<div class="govuk-summary-list__row"><dt class="govuk-summary-list__key">Provider name</dt>
+						<dd class="govuk-summary-list__value">The Sunflower Centre</dd>
+					</div>
+					<div class="govuk-summary-list__row"><dt class="govuk-summary-list__key">Provider URN</dt>
+						<dd class="govuk-summary-list__value">EY480405</dd>
+					</div>
+				</dl>
+			</div>
+		</div>
+	</div>
+	<div class="govuk-grid-row">
+		<div class="govuk-tabs">
+			<h2 class="govuk-tabs__title">Contents</h2>
+			<ul class="govuk-tabs__list">
+				<li class="govuk-tabs__list-item govuk-tabs__list-item--selected" role="presentation"> Tasks </li>
+				<li class="govuk-tabs__list-item" role="presentation"> <a class="govuk-tabs__tab" href="/admin/claims/0ed15eb8-bb7a-4beb-a8ec-8f93c9f0b801/notes">Notes and support</a> (1) </li>
+				<li class="govuk-tabs__list-item" role="presentation"> <a class="govuk-tabs__tab" href="/admin/claims/0ed15eb8-bb7a-4beb-a8ec-8f93c9f0b801/amendments">Claim amendments</a> </li>
+				<li class="govuk-tabs__list-item" role="presentation"> <a class="govuk-tabs__tab" href="/admin/claims/0ed15eb8-bb7a-4beb-a8ec-8f93c9f0b801/events">Claim timeline</a> </li>
+			</ul>
+			<div class="govuk-tabs__panel">
+				<ol class="app-task-list">
+					<li>
+						<h2 class="app-task-list__section">
+              <span class="app-task-list__section-number">1. </span> Identity confirmation
+            </h2>
+						<ul class="app-task-list__items">
+							<li class="app-task-list__item one_login_identity"> <span class="app-task-list__task-name">
+                  <a class="govuk-link" href="/admin/claims/0ed15eb8-bb7a-4beb-a8ec-8f93c9f0b801/tasks/one_login_identity">Confirm the claimant made the claim</a>
+                </span> <strong class="govuk-tag app-task-list__task-completed govuk-tag--green">Passed</strong> </li>
+						</ul>
+					</li>
+					<li>
+						<h2 class="app-task-list__section">
+              <span class="app-task-list__section-number">2. </span> Qualifications
+            </h2>
+						<ul class="app-task-list__items">
+							<li class="app-task-list__item qualifications"> <span class="app-task-list__task-name">
+                  <a class="govuk-link" href="/admin/claims/0ed15eb8-bb7a-4beb-a8ec-8f93c9f0b801/tasks/qualifications">Check qualification information</a>
+                </span> <strong class="govuk-tag app-task-list__task-completed govuk-tag--green">Passed</strong> </li>
+						</ul>
+					</li>
+					<li>
+						<h2 class="app-task-list__section">
+              <span class="app-task-list__section-number">3. </span> Employment
+            </h2>
+						<ul class="app-task-list__items">
+							<li class="app-task-list__item employment"> <span class="app-task-list__task-name">
+                  <a class="govuk-link" href="/admin/claims/0ed15eb8-bb7a-4beb-a8ec-8f93c9f0b801/tasks/employment">Check employment information</a>
+                </span> <strong class="govuk-tag app-task-list__task-completed govuk-tag--grey">Incomplete</strong> </li>
+						</ul>
+					</li>
+					<li>
+						<h2 class="app-task-list__section">
+              <span class="app-task-list__section-number">4. </span> Student loan plan
+            </h2>
+						<ul class="app-task-list__items">
+							<li class="app-task-list__item student_loan_plan"> <span class="app-task-list__task-name">
+                  <a class="govuk-link" href="/admin/claims/0ed15eb8-bb7a-4beb-a8ec-8f93c9f0b801/tasks/student_loan_plan">Check student loan plan</a>
+                </span> <strong class="govuk-tag app-task-list__task-completed govuk-tag--grey">Incomplete</strong> </li>
+						</ul>
+					</li>
+					<li>
+						<h2 class="app-task-list__section">
+              <span class="app-task-list__section-number">5. </span> Payroll details
+            </h2>
+						<ul class="app-task-list__items">
+							<li class="app-task-list__item payroll_details"> <span class="app-task-list__task-name">
+                  <a class="govuk-link" href="/admin/claims/0ed15eb8-bb7a-4beb-a8ec-8f93c9f0b801/tasks/payroll_details">Check bank account details</a>
+                </span> <strong class="govuk-tag app-task-list__task-completed govuk-tag--grey">Incomplete</strong> </li>
+						</ul>
+					</li>
+					<li>
+						<h2 class="app-task-list__section">
+              <span class="app-task-list__section-number">6. </span> Matching details
+            </h2>
+						<ul class="app-task-list__items">
+							<li class="app-task-list__item matching_details"> <span class="app-task-list__task-name">
+                  <a class="govuk-link" href="/admin/claims/0ed15eb8-bb7a-4beb-a8ec-8f93c9f0b801/tasks/matching_details">Review matching details from other claims</a>
+                </span> <strong class="govuk-tag app-task-list__task-completed govuk-tag--grey">Incomplete</strong> </li>
+						</ul>
+					</li>
+					<li>
+						<h2 class="app-task-list__section">
+            <span class="app-task-list__section-number">7. </span> Decision
+          </h2>
+						<ul class="app-task-list__items">
+							<li class="app-task-list__item"> <span class="app-task-list__task-name">
+                  <a class="govuk-link" href="/admin/claims/0ed15eb8-bb7a-4beb-a8ec-8f93c9f0b801/decisions/new">Approve or reject this claim</a>
+              </span> </li>
+						</ul>
+					</li>
+				</ol>
+			</div>
+		</div>
+	</div>
+
+
+
+{% endblock %}

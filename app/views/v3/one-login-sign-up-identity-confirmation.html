@@ -1,0 +1,29 @@
+{% extends "layouts/main.html" %}
+
+{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/panel/macro.njk" import govukPanel %}
+
+{% set pageName = "You have successfully verified your identity" %}
+
+{% block pageBeforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "/one-login-sign-up-enter-passport-details"
+  }) }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    {{ govukPanel({
+      titleText: "You have successfully verified your identity"
+    }) }}
+
+    {{ govukButton({
+      text: "Continue",
+      href: "/one-login-sign-up-account-created"
+    }) }}
+  </div>
+</div>
+{% endblock %}
