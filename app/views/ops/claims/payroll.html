@@ -1,0 +1,214 @@
+{% extends "layouts/main_ops.html" %}
+
+{% from "govuk/components/button/macro.njk" import govukButton %}
+
+{% set pageName="Claim an early years teacher recognition payment" %}
+
+{% set activeNav = 'claims' %}
+
+{% block content %}
+
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-full"> <span class="govuk-caption-xl">Early Years Teachers Recognition Payments (2025/2026)</span>
+		<h1 class="govuk-heading-xl govuk-heading--navigation">
+    <span id="claim-heading">
+      HHBXBHY5
+    </span>
+    <span class="govuk-body-m">
+      <a class="govuk-link" href="/admin/claims/0ed15eb8-bb7a-4beb-a8ec-8f93c9f0b801/tasks">View tasks</a>
+      <a class="govuk-link" href="/admin/claims/0ed15eb8-bb7a-4beb-a8ec-8f93c9f0b801">View full claim</a>
+      <a class="govuk-link" href="/admin/claims/0ed15eb8-bb7a-4beb-a8ec-8f93c9f0b801/amendments/new">Amend claim</a>
+      
+    </span>
+  </h1> </div>
+	<div class="govuk-grid-column-full"> </div>
+	<div class="govuk-grid-column-full">
+		<div class="govuk-inset-text">
+			<p class="govuk-body"> You are currently assigned this claim </p> <a class="govuk-button" data-module="govuk-button" href="/admin/claims/0ed15eb8-bb7a-4beb-a8ec-8f93c9f0b801/assignment" data-govuk-button-init="">Assign claim</a> </div>
+	</div>
+	<div class="govuk-summary-list govuk-!-margin-bottom-9" id="claim-summary">
+		<div class="govuk-grid-column-one-half">
+			<dl class="govuk-summary-list">
+				<div class="govuk-summary-list__row"><dt class="govuk-summary-list__key">TRN</dt>
+					<dd class="govuk-summary-list__value">3013857</dd>
+				</div>
+				<div class="govuk-summary-list__row"><dt class="govuk-summary-list__key">NI number</dt>
+					<dd class="govuk-summary-list__value">JW123456C</dd>
+				</div>
+				<div class="govuk-summary-list__row"><dt class="govuk-summary-list__key">Full name</dt>
+					<dd class="govuk-summary-list__value">Danielle Dean</dd>
+				</div>
+				<div class="govuk-summary-list__row"><dt class="govuk-summary-list__key">Date of birth</dt>
+					<dd class="govuk-summary-list__value">1 January 1990</dd>
+				</div>
+				<div class="govuk-summary-list__row"><dt class="govuk-summary-list__key">Email address</dt>
+					<dd class="govuk-summary-list__value">james.grant+test4@education.gov.uk</dd>
+				</div>
+				<div class="govuk-summary-list__row"><dt class="govuk-summary-list__key">Mobile number</dt>
+					<dd class="govuk-summary-list__value">N/A</dd>
+				</div>
+				<div class="govuk-summary-list__row"><dt class="govuk-summary-list__key">Reference</dt>
+					<dd class="govuk-summary-list__value">HHBXBHY5</dd>
+				</div>
+			</dl>
+		</div>
+		<div class="govuk-grid-column-one-half">
+			<dl class="govuk-summary-list">
+				<div class="govuk-summary-list__row"><dt class="govuk-summary-list__key">Submitted</dt>
+					<dd class="govuk-summary-list__value">1 June 2026 9:57am</dd>
+				</div>
+				<div class="govuk-summary-list__row"><dt class="govuk-summary-list__key">Decision due</dt>
+					<dd class="govuk-summary-list__value">10 August 2026</dd>
+				</div>
+				<div class="govuk-summary-list__row"><dt class="govuk-summary-list__key">Status</dt>
+					<dd class="govuk-summary-list__value">Awaiting decision - not on hold</dd>
+				</div>
+				<div class="govuk-summary-list__row"><dt class="govuk-summary-list__key">Claim amount</dt>
+					<dd class="govuk-summary-list__value">£4,500.00</dd>
+				</div>
+				<div class="govuk-summary-list__row"><dt class="govuk-summary-list__key">Provider name</dt>
+					<dd class="govuk-summary-list__value">The Sunflower Centre</dd>
+				</div>
+				<div class="govuk-summary-list__row"><dt class="govuk-summary-list__key">Provider URN</dt>
+					<dd class="govuk-summary-list__value">EY480405</dd>
+				</div>
+			</dl>
+		</div>
+	</div>
+	<div class="govuk-grid-column-two-thirds">
+		<h2 class="govuk-heading-l">Payroll details</h2>
+
+		<a class="govuk-button" data-module="govuk-button" href="#" data-govuk-button-init="">Retry HMRC validation</a>
+
+
+		<div class="hmcts-timeline hmrc_responses">
+			<div class="hmcts-timeline__item">
+				<section>
+					<h3 class="govuk-body">HMRC API response during claim journey</h3>
+					<p class="hmcts-timeline__description">Sort code: No - sort code not found</p>
+					<p class="hmcts-timeline__description">Account number: Inapplicable - sort code and/or account number failed initial validation, no further checks completed</p>
+					<p class="hmcts-timeline__description">Name: Inapplicable - sort code and/or account number failed initial validation, no further checks completed</p>
+					<details class="govuk-details" data-module="govuk-details">
+						<summary class="govuk-details__summary"> <span class="govuk-details__summary-text">
+                  HMRC JSON response
+                </span> </summary>
+						<div class="govuk-details__text"> <pre>{
+  "body": {
+    "nameMatches": "inapplicable",
+    "accountExists": "inapplicable",
+    "sortCodeIsPresentOnEISCD": "no",
+    "sortCodeSupportsDirectDebit": "no",
+    "accountNumberIsWellFormatted": "indeterminate",
+    "sortCodeSupportsDirectCredit": "no",
+    "nonStandardAccountDetailsRequiredForBacs": "no"
+  },
+  "code": 200
+}</pre> </div>
+					</details>
+				</section>
+			</div>
+			<div class="hmcts-timeline__item">
+				<section>
+					<h3 class="govuk-body">HMRC API response during claim journey</h3>
+					<p class="hmcts-timeline__description">Sort code: No - sort code not found</p>
+					<p class="hmcts-timeline__description">Account number: Inapplicable - sort code and/or account number failed initial validation, no further checks completed</p>
+					<p class="hmcts-timeline__description">Name: Inapplicable - sort code and/or account number failed initial validation, no further checks completed</p>
+					<details class="govuk-details" data-module="govuk-details">
+						<summary class="govuk-details__summary"> <span class="govuk-details__summary-text">
+                  HMRC JSON response
+                </span> </summary>
+						<div class="govuk-details__text"> <pre>{
+  "body": {
+    "nameMatches": "inapplicable",
+    "accountExists": "inapplicable",
+    "sortCodeIsPresentOnEISCD": "no",
+    "sortCodeSupportsDirectDebit": "no",
+    "accountNumberIsWellFormatted": "indeterminate",
+    "sortCodeSupportsDirectCredit": "no",
+    "nonStandardAccountDetailsRequiredForBacs": "no"
+  },
+  "code": 200
+}</pre> </div>
+					</details>
+				</section>
+			</div>
+			<div class="hmcts-timeline__item">
+				<section>
+					<h3 class="govuk-body">HMRC API response during claim journey</h3>
+					<p class="hmcts-timeline__description">Sort code: No - sort code not found</p>
+					<p class="hmcts-timeline__description">Account number: Inapplicable - sort code and/or account number failed initial validation, no further checks completed</p>
+					<p class="hmcts-timeline__description">Name: Inapplicable - sort code and/or account number failed initial validation, no further checks completed</p>
+					<details class="govuk-details" data-module="govuk-details">
+						<summary class="govuk-details__summary"> <span class="govuk-details__summary-text">
+                  HMRC JSON response
+                </span> </summary>
+						<div class="govuk-details__text"> <pre>{
+  "body": {
+    "nameMatches": "inapplicable",
+    "accountExists": "inapplicable",
+    "sortCodeIsPresentOnEISCD": "no",
+    "sortCodeSupportsDirectDebit": "no",
+    "accountNumberIsWellFormatted": "indeterminate",
+    "sortCodeSupportsDirectCredit": "no",
+    "nonStandardAccountDetailsRequiredForBacs": "no"
+  },
+  "code": 200
+}</pre> </div>
+					</details>
+				</section>
+			</div>
+		</div>
+		<form action="/admin/claims/0ed15eb8-bb7a-4beb-a8ec-8f93c9f0b801/tasks" accept-charset="UTF-8" method="post">
+			<input type="hidden" name="authenticity_token" value="ANnsZAGe8pa1mmBhnRWvtqfhwdqH3RRGSdCVG7JVeFzdUaZLRCb4mc-LRTHIIqk0Xj4JyIrj69tOUBpjz71u2g" autocomplete="off">
+			<input autocomplete="off" value="payroll_details" type="hidden" name="form[name]" id="form_name">
+			<div class="govuk-form-group">
+				<fieldset class="govuk-fieldset">
+					<legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+						<h3 class="govuk-fieldset__heading">The claimant’s personal bank account details have not been automatically validated. Has the claimant confirmed their personal bank account details?</h3></legend>
+					<input autocomplete="off" value="" type="hidden" name="form[passed]" id="form_passed">
+					<div class="govuk-radios govuk-radios--inline" data-module="govuk-radios" data-govuk-radios-init="">
+						<div class="govuk-radios__item">
+							<input id="form-passed-true-field" class="govuk-radios__input" type="radio" value="true" name="form[passed]">
+							<label for="form-passed-true-field" class="govuk-label govuk-radios__label">Yes</label>
+						</div>
+						<div class="govuk-radios__item">
+							<input id="form-passed-field" class="govuk-radios__input" type="radio" value="false" name="form[passed]">
+							<label for="form-passed-field" class="govuk-label govuk-radios__label">No</label>
+						</div>
+					</div>
+				</fieldset>
+			</div>
+			<button type="submit" formnovalidate="formnovalidate" class="govuk-button" data-module="govuk-button" data-prevent-double-click="true" data-govuk-button-init="">Save and continue</button>
+		</form>
+		<h2 class="govuk-heading-m">Task notes</h2>
+		<form action="/admin/claims/0ed15eb8-bb7a-4beb-a8ec-8f93c9f0b801/tasks/payroll_details/notes" accept-charset="UTF-8" method="post">
+			<input type="hidden" name="authenticity_token" value="ANnsZAGe8pa1mmBhnRWvtqfhwdqH3RRGSdCVG7JVeFzdUaZLRCb4mc-LRTHIIqk0Xj4JyIrj69tOUBpjz71u2g" autocomplete="off">
+			<div class="govuk-form-group">
+				<h3 class="govuk-label-wrapper"><label for="note-body-field" class="govuk-label govuk-label--s">Add a note to this task</label></h3>
+				<div class="govuk-hint" id="note-body-hint">Enter an update note here. Do not include any personal data about the claimant.</div>
+				<textarea id="note-body-field" class="govuk-textarea" rows="5" aria-describedby="note-body-hint" name="note[body]"></textarea>
+			</div>
+			<button type="submit" formnovalidate="formnovalidate" class="govuk-button" data-module="govuk-button" data-prevent-double-click="true" data-govuk-button-init="">Add note</button>
+		</form>
+		<nav aria-label="Pagination" class="govuk-pagination govuk-pagination--block">
+			<div class="govuk-pagination__prev">
+				<a href="/admin/claims/0ed15eb8-bb7a-4beb-a8ec-8f93c9f0b801/tasks/student_loan_plan" class="govuk-link govuk-pagination__link" rel="prev">
+					<svg class="govuk-pagination__icon govuk-pagination__icon--prev" xmlns="http://www.w3.org/2000/svg" height="13" width="15" focusable="false" viewBox="0 0 15 13" aria-hidden="true">
+						<path d="m6.5938-0.0078125-6.7266 6.7266 6.7441 6.4062 1.377-1.449-4.1856-3.9768h12.896v-2h-12.984l4.2931-4.293-1.414-1.414z"></path>
+					</svg><span class="govuk-pagination__link-title">Previous</span><span class="govuk-visually-hidden">:</span><span class="govuk-pagination__link-label">Student loan plan</span></a>
+			</div>
+			<ul class="govuk-pagination__list"></ul>
+			<div class="govuk-pagination__next">
+				<a href="/admin/claims/0ed15eb8-bb7a-4beb-a8ec-8f93c9f0b801/tasks/matching_details" class="govuk-link govuk-pagination__link" rel="next">
+					<svg class="govuk-pagination__icon govuk-pagination__icon--next" xmlns="http://www.w3.org/2000/svg" height="13" width="15" focusable="false" viewBox="0 0 15 13" aria-hidden="true">
+						<path d="m8.107-0.0078125-1.4136 1.414 4.2926 4.293h-12.986v2h12.896l-4.1855 3.9766 1.377 1.4492 6.7441-6.4062-6.7246-6.7266z"></path>
+					</svg><span class="govuk-pagination__link-title">Next</span><span class="govuk-visually-hidden">:</span><span class="govuk-pagination__link-label">Matching details</span></a>
+			</div>
+		</nav>
+	</div>
+</div>
+
+
+
+{% endblock %}

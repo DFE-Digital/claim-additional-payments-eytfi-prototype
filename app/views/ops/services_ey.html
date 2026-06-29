@@ -1,0 +1,116 @@
+{% extends "layouts/main_ops.html" %}
+
+{% from "govuk/components/button/macro.njk" import govukButton %}
+
+{% set pageName="Claim an early years teacher recognition payment" %}
+
+{% set activeNav = 'myclaims' %}
+
+{% block content %}
+
+	<div class="govuk-grid-row">
+		<div class="govuk-grid-column-two-thirds">
+			<h1 class="govuk-heading-xl">
+			<span class="govuk-caption-xl">Manage services</span>
+			Claim an early years teacher recognition payment
+			</h1>
+			<div class="govuk-panel govuk-panel--informational govuk-panel--small">
+				<h2 class="govuk-panel__title govuk-heading-m govuk-!-margin-bottom-2">Service open</h2>
+				<p class="govuk-panel__body"> This service is currently open and accepting claims for the 2025/2026 academic year. </p>
+			</div>
+			<form action="/admin/journey-configurations/early-years-teachers-recognition-payments" accept-charset="UTF-8" method="post">
+				<input type="hidden" name="_method" value="patch" autocomplete="off">
+				<input type="hidden" name="authenticity_token" value="Lfan3gdeWiJTbw7PPTVx3xfc_pe1RST34hZzxfH3crrwfu3xQuZQLSl-K59oAndd7gM2hbh722rllvy9jB9kPA" autocomplete="off">
+				<div class="govuk-form-group">
+					<label class="govuk-label" for="journey_configuration_current_academic_year">Accepting claims for academic year</label>
+					<select class="govuk-select" name="journey_configuration[current_academic_year]" id="journey_configuration_current_academic_year">
+						<option selected="selected" value="2025/2026">2025/2026</option>
+						<option value="2026/2027">2026/2027</option>
+						<option value="2027/2028">2027/2028</option>
+						<option value="2028/2029">2028/2029</option>
+					</select>
+				</div>
+				<div class="govuk-form-group">
+					<fieldset class="govuk-fieldset">
+						<legend class="govuk-fieldset__legend"> Service status </legend>
+						<div class="govuk-radios govuk-radios--conditional" data-module="govuk-radios" data-govuk-radios-init="">
+							<div class="govuk-radios__item">
+								<input class="govuk-radios__input" data-aria-controls="reminders-warning-message" type="radio" value="true" checked="checked" name="journey_configuration[open_for_submissions]" id="journey_configuration_open_for_submissions_true">
+								<label class="govuk-label govuk-radios__label" for="journey_configuration_open_for_submissions_true">Open</label>
+							</div>
+							<div class="govuk-radios__item">
+								<input class="govuk-radios__input" data-aria-controls="conditional-availability-message-conditional" type="radio" value="false" name="journey_configuration[open_for_submissions]" id="journey_configuration_open_for_submissions_false">
+								<label class="govuk-label govuk-radios__label" for="journey_configuration_open_for_submissions_false">Closed</label>
+							</div>
+							<div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-availability-message-conditional">
+								<div class="govuk-form-group">
+									<label class="govuk-label" for="journey_configuration_availability_message">Availability message</label>
+									<div class="govuk-hint" id="availability_message-hint">
+										<p> This is an optional message that should provide an explanation of why the service is closed and / or when we expect it to open again. </p>
+										<p> For example, "The service is closed for maintenance and will be available from 2pm today." </p>
+									</div>
+									<textarea class="govuk-textarea" aria-describedby="availability_message-hint" rows="5" name="journey_configuration[availability_message]" id="journey_configuration_availability_message"></textarea>
+								</div>
+							</div>
+						</div>
+					</fieldset>
+				</div>
+				<input type="submit" name="commit" value="Save" class="govuk-button" data-module="govuk-button" data-disable-with="Save" data-govuk-button-init=""> </form>
+		</div>
+	</div>
+	<hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+	<h2 class="govuk-heading-m">
+		Automatic approvals for submitted claims
+	</h2>
+		<div class="govuk-form-group">
+			<fieldset class="govuk-fieldset">
+				<legend class="govuk-fieldset__legend"> Automatic approvals  </legend>
+				<div class="govuk-radios govuk-radios--conditional" data-module="govuk-radios" data-govuk-radios-init="">
+					<div class="govuk-radios__item">
+						<input class="govuk-radios__input" data-aria-controls="reminders-warning-message" type="radio" value="true" checked="checked" name="journey_configuration[open_for_submissions]" id="journey_configuration_open_for_submissions_true">
+						<label class="govuk-label govuk-radios__label" for="journey_configuration_open_for_submissions_true">On</label>
+					</div>
+					<div class="govuk-radios__item">
+						<input class="govuk-radios__input" data-aria-controls="conditional-availability-message-conditional" type="radio" value="false" name="journey_configuration[open_for_submissions]" id="journey_configuration_open_for_submissions_false">
+						<label class="govuk-label govuk-radios__label" for="journey_configuration_open_for_submissions_false">Off</label>
+					</div>
+					<div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-availability-message-conditional">
+						<div class="govuk-form-group">
+							<label class="govuk-label" for="journey_configuration_availability_message">Availability message</label>
+							<div class="govuk-hint" id="availability_message-hint">
+								<p> This is an optional message that should provide an explanation of why the service is closed and / or when we expect it to open again. </p>
+								<p> For example, "The service is closed for maintenance and will be available from 2pm today." </p>
+							</div>
+							<textarea class="govuk-textarea" aria-describedby="availability_message-hint" rows="5" name="journey_configuration[availability_message]" id="journey_configuration_availability_message"></textarea>
+						</div>
+					</div>
+				</div>
+			</fieldset>
+		</div>
+		<input type="submit" name="commit" value="Save" class="govuk-button" data-module="govuk-button" data-disable-with="Save" data-govuk-button-init=""> </form>
+	<hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+	<h2 class="govuk-heading-m">
+		Upload eligible EYTRP providers
+	</h2>
+	<form enctype="multipart/form-data" action="/admin/eligible_eytfi_providers" accept-charset="UTF-8" method="post">
+		<input type="hidden" name="authenticity_token" value="Lfan3gdeWiJTbw7PPTVx3xfc_pe1RST34hZzxfH3crrwfu3xQuZQLSl-K59oAndd7gM2hbh722rllvy9jB9kPA" autocomplete="off">
+		<div class="govuk-form-group">
+			<label for="eligible-eytfi-providers-upload-academic-year-field" class="govuk-label">Academic year</label>
+			<select id="eligible-eytfi-providers-upload-academic-year-field" class="govuk-select" name="eligible_eytfi_providers_upload[academic_year]">
+				<option value="2025/2026">2025/2026</option>
+				<option value="2026/2027">2026/2027</option>
+				<option value="2027/2028">2027/2028</option>
+			</select>
+		</div>
+		<div class="govuk-form-group">
+			<label for="eligible-eytfi-providers-upload-file-field" class="govuk-label" id="eligible-eytfi-providers-upload-file-field-label">Eligible EYTRP providers</label>
+			<div class="govuk-hint" id="eligible-eytfi-providers-upload-file-hint">This file should be a CSV</div>
+			<div class="govuk-drop-zone" data-module="govuk-file-upload" data-govuk-file-upload-init="">
+				<button class="govuk-file-upload-button govuk-file-upload-button--empty" type="button" id="eligible-eytfi-providers-upload-file-field" aria-describedby="eligible-eytfi-providers-upload-file-hint" aria-labelledby="eligible-eytfi-providers-upload-file-field-label eligible-eytfi-providers-upload-file-field-comma eligible-eytfi-providers-upload-file-field"><span class="govuk-body govuk-file-upload-button__status" aria-live="polite">No file chosen</span><span class="govuk-visually-hidden" id="eligible-eytfi-providers-upload-file-field-comma">, </span><span class="govuk-file-upload-button__pseudo-button-container"><span class="govuk-button govuk-button--secondary govuk-file-upload-button__pseudo-button">Choose file</span> <span class="govuk-body govuk-file-upload-button__instruction">or drop file</span></span>
+				</button>
+				<input id="eligible-eytfi-providers-upload-file-field-input" class="govuk-file-upload" aria-describedby="eligible-eytfi-providers-upload-file-hint" type="file" name="eligible_eytfi_providers_upload[file]" hidden="true" tabindex="-1" aria-hidden="true">
+			</div><span class="govuk-file-upload-announcements govuk-visually-hidden" aria-live="assertive"></span></div>
+		<button type="submit" formnovalidate="formnovalidate" class="govuk-button" data-module="govuk-button" data-prevent-double-click="true" data-govuk-button-init="">Upload CSV</button>
+	</form>
+
+{% endblock %}

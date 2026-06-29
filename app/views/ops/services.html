@@ -1,0 +1,113 @@
+{% extends "layouts/main_ops.html" %}
+
+{% from "govuk/components/button/macro.njk" import govukButton %}
+
+{% set pageName="Claim an early years teacher recognition payment" %}
+
+{% set activeNav = 'myclaims' %}
+
+{% block content %}
+
+
+	<div class="govuk-grid-row">
+		<div class="govuk-grid-column-full">
+			<h1 class="govuk-heading-xl">
+				Manage services
+			</h1> 
+		</div>
+		<div class="govuk-grid-column-two-thirds">
+			<p class="govuk-body"> Here you can open or close a service for applications and change the academic year that claims are being accepted for. </p>
+		</div>
+		<div class="govuk-grid-column-full">
+			<table class="govuk-table">
+				<thead class="govuk-table__head">
+					<tr class="govuk-table__row">
+						<th scope="col" class="govuk-table__header">Service</th>
+						<th scope="col" class="govuk-table__header">Accepting claims for</th>
+						<th scope="col" class="govuk-table__header">Status</th>
+						<th scope="col" class="govuk-table__header"><span class="govuk-visually-hidden">Actions</span></th>
+					</tr>
+				</thead>
+				<tbody class="govuk-table__body">
+					<tr class="govuk-table__row" data-policy-configuration-routing-name="early-years-teachers-recognition-payments">
+						<th scope="row" class="govuk-table__header">Claim an early years teacher recognition payment</th>
+						<td class="govuk-table__cell">2025/2026</td>
+						<td class="govuk-table__cell">Open</td>
+						<td class="govuk-table__cell"> <a class="govuk-link" href="services_ey">
+					Change <span class="govuk-visually-hidden">Claim an early years teacher recognition payment</span>
+	</a> </td>
+					</tr>
+					<tr class="govuk-table__row" data-policy-configuration-routing-name="early-years-payment-provider-alternative-idv">
+						<th scope="row" class="govuk-table__header">Early years financial incentive payment service - Provider alternative IDV journey</th>
+						<td class="govuk-table__cell">2025/2026</td>
+						<td class="govuk-table__cell">Open</td>
+						<td class="govuk-table__cell"> <a class="govuk-link" href="#">
+					Change <span class="govuk-visually-hidden">Early years financial incentive payment service - Provider alternative IDV journey</span>
+	</a> </td>
+					</tr>
+					<tr class="govuk-table__row" data-policy-configuration-routing-name="early-years-payment-practitioner">
+						<th scope="row" class="govuk-table__header">Early years financial incentive payment service - Practitioner journey</th>
+						<td class="govuk-table__cell">2025/2026</td>
+						<td class="govuk-table__cell">Open</td>
+						<td class="govuk-table__cell"> <a class="govuk-link" href="#">
+					Change <span class="govuk-visually-hidden">Early years financial incentive payment service - Practitioner journey</span>
+	</a> </td>
+					</tr>
+					<tr class="govuk-table__row" data-policy-configuration-routing-name="early-years-payment-provider">
+						<th scope="row" class="govuk-table__header">Early years financial incentive payment service - Provider authenticated journey</th>
+						<td class="govuk-table__cell">2025/2026</td>
+						<td class="govuk-table__cell">Open</td>
+						<td class="govuk-table__cell"> <a class="govuk-link" href="#">
+					Change <span class="govuk-visually-hidden">Early years financial incentive payment service - Provider authenticated journey</span>
+	</a> </td>
+					</tr>
+					<tr class="govuk-table__row" data-policy-configuration-routing-name="early-years-payment">
+						<th scope="row" class="govuk-table__header">Early years financial incentive payment service - Provider start journey</th>
+						<td class="govuk-table__cell">2025/2026</td>
+						<td class="govuk-table__cell">Open</td>
+						<td class="govuk-table__cell"> <a class="govuk-link" href="#">
+					Change <span class="govuk-visually-hidden">Early years financial incentive payment service - Provider start journey</span>
+	</a> </td>
+					</tr>
+					<tr class="govuk-table__row" data-policy-configuration-routing-name="further-education-payments">
+						<th scope="row" class="govuk-table__header">Claim a targeted retention incentive payment for further education teachers</th>
+						<td class="govuk-table__cell">2025/2026</td>
+						<td class="govuk-table__cell">Open</td>
+						<td class="govuk-table__cell"> <a class="govuk-link" href="#">
+					Change <span class="govuk-visually-hidden">Claim a targeted retention incentive payment for further education teachers</span>
+	</a> </td>
+					</tr>
+					<tr class="govuk-table__row" data-policy-configuration-routing-name="get-a-teacher-relocation-payment">
+						<th scope="row" class="govuk-table__header">Get a teacher relocation payment</th>
+						<td class="govuk-table__cell">2025/2026</td>
+						<td class="govuk-table__cell">Open</td>
+						<td class="govuk-table__cell"> <a class="govuk-link" href="#">
+					Change <span class="govuk-visually-hidden">Get a teacher relocation payment</span>
+	</a> </td>
+					</tr>
+					<tr class="govuk-table__row" data-policy-configuration-routing-name="targeted-retention-incentive-payments">
+						<th scope="row" class="govuk-table__header">Claim a targeted retention incentive payment for school teachers</th>
+						<td class="govuk-table__cell">2025/2026</td>
+						<td class="govuk-table__cell">Open</td>
+						<td class="govuk-table__cell"> <a class="govuk-link" href="#">
+					Change <span class="govuk-visually-hidden">Claim a targeted retention incentive payment for school teachers</span>
+	</a> </td>
+					</tr>
+					<tr class="govuk-table__row" data-policy-configuration-routing-name="student-loans">
+						<th scope="row" class="govuk-table__header">Teachers: claim back your student loan repayments</th>
+						<td class="govuk-table__cell">2025/2026</td>
+						<td class="govuk-table__cell">Open</td>
+						<td class="govuk-table__cell"> <a class="govuk-link" href="#">
+					Change <span class="govuk-visually-hidden">Teachers: claim back your student loan repayments</span>
+	</a> </td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+  
+
+
+
+{% endblock %}

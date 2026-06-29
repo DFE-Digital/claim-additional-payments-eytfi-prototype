@@ -63,9 +63,213 @@
 
   /* line 21, app/assets/stylesheets/components/train.scss */
   .train .train__carriage .train__carriage__body {
-    margin-bottom: 10px;
+    margin-bottom: 0px;
     text-align: center;
   }
 
+
+  @media (min-width: 40.0625em) {
+    /* line 12, app/assets/stylesheets/components/panel.scss */
+    .govuk-panel--small .govuk-panel__title {
+      font-size: 1.1875rem;
+      line-height: 1.3157894737;
+    }
+  }
+
+  .govuk-panel--small{
+    padding:10px;
+    p{
+      color:white;
+    }
+  }
+
+
+  /* ==========================================================================
+    #TIMELINE
+    ========================================================================== */
+  /* line 5, app/assets/stylesheets/components/_timeline.scss */
+  .hmcts-timeline {
+    margin-bottom: 20px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  /* line 10, app/assets/stylesheets/components/_timeline.scss */
+  .hmcts-timeline:before {
+    background-color: #1d70b8;
+    content: "";
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 10px;
+    width: 5px;
+  }
+
+  /* line 21, app/assets/stylesheets/components/_timeline.scss */
+  .hmcts-timeline--full {
+    margin-bottom: 0;
+  }
+
+  /* line 23, app/assets/stylesheets/components/_timeline.scss */
+  .hmcts-timeline--full:before {
+    height: calc(100% - 75px);
+  }
+
+  /* line 28, app/assets/stylesheets/components/_timeline.scss */
+  .hmcts-timeline__item {
+    padding-bottom: 30px;
+    padding-left: 20px;
+    position: relative;
+  }
+
+  /* line 33, app/assets/stylesheets/components/_timeline.scss */
+  .hmcts-timeline__item:before {
+    background-color: #1d70b8;
+    content: "";
+    height: 5px;
+    left: 0;
+    position: absolute;
+    top: 10px;
+    width: 15px;
+  }
+
+  /* line 44, app/assets/stylesheets/components/_timeline.scss */
+  .hmcts-timeline__title {
+    font-family: "GDS Transport", arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-weight: 700;
+    font-size: 1rem;
+    line-height: 1.25;
+    display: inline;
+  }
+
+  @media print {
+    /* line 44, app/assets/stylesheets/components/_timeline.scss */
+    .hmcts-timeline__title {
+      font-family: sans-serif;
+    }
+  }
+
+  @media (min-width: 40.0625em) {
+    /* line 44, app/assets/stylesheets/components/_timeline.scss */
+    .hmcts-timeline__title {
+      font-size: 1.1875rem;
+      line-height: 1.3157894737;
+    }
+  }
+
+  @media print {
+    /* line 44, app/assets/stylesheets/components/_timeline.scss */
+    .hmcts-timeline__title {
+      font-size: 14pt;
+      line-height: 1.15;
+    }
+  }
+
+  /* line 49, app/assets/stylesheets/components/_timeline.scss */
+  .hmcts-timeline__by {
+    font-family: "GDS Transport", arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-weight: 400;
+    font-size: 1rem;
+    line-height: 1.25;
+    color: #505a5f;
+    display: inline;
+    margin: 0;
+  }
+
+  @media print {
+    /* line 49, app/assets/stylesheets/components/_timeline.scss */
+    .hmcts-timeline__by {
+      font-family: sans-serif;
+    }
+  }
+
+  @media (min-width: 40.0625em) {
+    /* line 49, app/assets/stylesheets/components/_timeline.scss */
+    .hmcts-timeline__by {
+      font-size: 1.1875rem;
+      line-height: 1.3157894737;
+    }
+  }
+
+  @media print {
+    /* line 49, app/assets/stylesheets/components/_timeline.scss */
+    .hmcts-timeline__by {
+      font-size: 14pt;
+      line-height: 1.15;
+    }
+  }
+
+  /* line 56, app/assets/stylesheets/components/_timeline.scss */
+  .hmcts-timeline__date {
+    font-family: "GDS Transport", arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-weight: 400;
+    font-size: 0.875rem;
+    line-height: 1.1428571429;
+    margin-top: 5px;
+    margin-bottom: 0;
+  }
+
+  @media print {
+    /* line 56, app/assets/stylesheets/components/_timeline.scss */
+    .hmcts-timeline__date {
+      font-family: sans-serif;
+    }
+  }
+
+  @media (min-width: 40.0625em) {
+    /* line 56, app/assets/stylesheets/components/_timeline.scss */
+    .hmcts-timeline__date {
+      font-size: 1rem;
+      line-height: 1.25;
+    }
+  }
+
+  @media print {
+    /* line 56, app/assets/stylesheets/components/_timeline.scss */
+    .hmcts-timeline__date {
+      font-size: 14pt;
+      line-height: 1.2;
+    }
+  }
+
+  /* line 62, app/assets/stylesheets/components/_timeline.scss */
+  .hmcts-timeline__description {
+    font-family: "GDS Transport", arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-weight: 400;
+    font-size: 0.875rem;
+    line-height: 1.1428571429;
+    margin-top: 20px;
+  }
+
+  @media print {
+    /* line 62, app/assets/stylesheets/components/_timeline.scss */
+    .hmcts-timeline__description {
+      font-family: sans-serif;
+    }
+  }
+
+  @media (min-width: 40.0625em) {
+    /* line 62, app/assets/stylesheets/components/_timeline.scss */
+    .hmcts-timeline__description {
+      font-size: 1rem;
+      line-height: 1.25;
+    }
+  }
+
+  @media print {
+    /* line 62, app/assets/stylesheets/components/_timeline.scss */
+    .hmcts-timeline__description {
+      font-size: 14pt;
+      line-height: 1.2;
+    }
+  }
 
 }
