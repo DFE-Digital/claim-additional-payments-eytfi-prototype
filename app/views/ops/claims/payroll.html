@@ -8,6 +8,27 @@
 
 {% block content %}
 
+{% if data.success %}
+     
+      <div class="govuk-notification-banner govuk-notification-banner--success" role="alert" aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner">
+        <div class="govuk-notification-banner__header">
+          <h2 class="govuk-notification-banner__title" id="govuk-notification-banner-title">
+            Success
+          </h2>
+        </div>
+        <div class="govuk-notification-banner__content">
+          	<h3 class="govuk-notification-banner__heading">
+            	HMRC API response attempted
+          	</h3>
+		  	<ul class="govuk-list govuk-list--bullet">
+				<li>Sort code: Yes - sort code found</li>
+				<li>Account number: Yes - sort code and account number match</li>
+				<li>Name: No - name does not match the account holder name</li>
+			</ul>
+        </div>
+      </div>
+    {% endif %}
+
 
 <div class="govuk-grid-row">
 	<div class="govuk-grid-column-full"> <span class="govuk-caption-xl">Early Years Teachers Recognition Payments (2025/2026)</span>
@@ -79,10 +100,48 @@
 	<div class="govuk-grid-column-two-thirds">
 		<h2 class="govuk-heading-l">Payroll details</h2>
 
-		<a class="govuk-button" data-module="govuk-button" href="#" data-govuk-button-init="">Retry HMRC validation</a>
+
+		<form class="feedback-form" id="feedback-form-example" accept-charset="UTF-8" method="post">
+			<button class="govuk-button" data-module="govuk-button" href="#" data-govuk-button-init="">Retry HMRC validation</button>
+		</form>
 
 
 		<div class="hmcts-timeline hmrc_responses">
+
+			{% if data.success %}
+
+			<div class="hmcts-timeline__item">
+				<section>
+					<h3 class="govuk-body">HMRC API response retry</h3>
+					<p class="hmcts-timeline__description">Sort code: Yes - sort code found</p>
+					<p class="hmcts-timeline__description">Account number: Yes - sort code and account number match</p>
+					<p class="hmcts-timeline__description">Name: No - name does not match the account holder name</p>
+					<details class="govuk-details" data-module="govuk-details">
+						<summary class="govuk-details__summary"> <span class="govuk-details__summary-text">
+							HMRC JSON response
+							</span> 
+						</summary>
+					<div class="govuk-details__text"> <pre>{
+						"body": {
+							"nameMatches": "inapplicable",
+							"accountExists": "inapplicable",
+							"sortCodeIsPresentOnEISCD": "no",
+							"sortCodeSupportsDirectDebit": "no",
+							"accountNumberIsWellFormatted": "indeterminate",
+							"sortCodeSupportsDirectCredit": "no",
+							"nonStandardAccountDetailsRequiredForBacs": "no"
+						},
+						"code": 200
+						}</pre> 
+					</div>
+					</details>
+				</section>
+			</div>
+
+			{% endif %}
+
+
+
 			<div class="hmcts-timeline__item">
 				<section>
 					<h3 class="govuk-body">HMRC API response during claim journey</h3>
@@ -93,18 +152,19 @@
 						<summary class="govuk-details__summary"> <span class="govuk-details__summary-text">
                   HMRC JSON response
                 </span> </summary>
-						<div class="govuk-details__text"> <pre>{
-  "body": {
-    "nameMatches": "inapplicable",
-    "accountExists": "inapplicable",
-    "sortCodeIsPresentOnEISCD": "no",
-    "sortCodeSupportsDirectDebit": "no",
-    "accountNumberIsWellFormatted": "indeterminate",
-    "sortCodeSupportsDirectCredit": "no",
-    "nonStandardAccountDetailsRequiredForBacs": "no"
-  },
-  "code": 200
-}</pre> </div>
+					<div class="govuk-details__text"> <pre>{
+						"body": {
+							"nameMatches": "inapplicable",
+							"accountExists": "inapplicable",
+							"sortCodeIsPresentOnEISCD": "no",
+							"sortCodeSupportsDirectDebit": "no",
+							"accountNumberIsWellFormatted": "indeterminate",
+							"sortCodeSupportsDirectCredit": "no",
+							"nonStandardAccountDetailsRequiredForBacs": "no"
+						},
+						"code": 200
+						}</pre> 
+					</div>
 					</details>
 				</section>
 			</div>

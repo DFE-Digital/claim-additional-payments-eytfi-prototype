@@ -201,3 +201,15 @@ router.post('/eligibility-criteria', (req, res) => {
 
 })
 
+
+///////
+// ops
+///////
+
+
+router.post('/ops/claims/payroll', (req, res) => {
+
+  req.session.data.success = 'HMRC bank validation has been retried'
+
+  res.redirect('/ops/claims/payroll')
+})
