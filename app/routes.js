@@ -213,3 +213,17 @@ router.post('/ops/claims/payroll', (req, res) => {
 
   res.redirect('/ops/claims/payroll')
 })
+
+router.post('/ops/services_ey', (req, res) => {
+
+  var autoApproval = req.session.data.automatic_approvals
+
+  if (autoApproval == 'true') {
+    req.session.data.success = 'on'
+  }else{
+    req.session.data.success = 'off'
+  }
+
+  res.redirect('/ops/services_ey')
+
+})

@@ -8,6 +8,26 @@
 
 {% block content %}
 
+{% if data.success %}
+     
+      <div class="govuk-notification-banner govuk-notification-banner--success" role="alert" aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner">
+        <div class="govuk-notification-banner__header">
+          <h2 class="govuk-notification-banner__title" id="govuk-notification-banner-title">
+            Success
+          </h2>
+        </div>
+        <div class="govuk-notification-banner__content">
+          	<h3 class="govuk-notification-banner__heading">
+            	Automatic approvals for submitted claims have been turned {{ data.success }}.
+          	</h3>
+        </div>
+      </div>
+
+
+    {% endif %}
+
+
+
 	<div class="govuk-grid-row">
 		<div class="govuk-grid-column-two-thirds">
 			<h1 class="govuk-heading-xl">
@@ -16,7 +36,7 @@
 			</h1>
 			<div class="govuk-panel govuk-panel--informational govuk-panel--small">
 				<h2 class="govuk-panel__title govuk-heading-m govuk-!-margin-bottom-2">Service open</h2>
-				<p class="govuk-panel__body"> This service is currently open and accepting claims for the 2025/2026 academic year. </p>
+				<p class="govuk-panel__body"> This service is currently open and accepting claims for the 2025/2026 academic year. Automatic approvals for submitted claims is currently {% if data.success == 'on' %}on{% else %}off{% endif %}.</p>
 			</div>
 			<form action="/admin/journey-configurations/early-years-teachers-recognition-payments" accept-charset="UTF-8" method="post">
 				<input type="hidden" name="_method" value="patch" autocomplete="off">
@@ -62,17 +82,20 @@
 	<h2 class="govuk-heading-m">
 		Automatic approvals for submitted claims
 	</h2>
+
+	<form class="auto" id="auto-example" accept-charset="UTF-8" method="post">
+		
 		<div class="govuk-form-group">
 			<fieldset class="govuk-fieldset">
 				<legend class="govuk-fieldset__legend"> Automatic approvals  </legend>
 				<div class="govuk-radios govuk-radios--conditional" data-module="govuk-radios" data-govuk-radios-init="">
 					<div class="govuk-radios__item">
-						<input class="govuk-radios__input" data-aria-controls="reminders-warning-message" type="radio" value="true" checked="checked" name="journey_configuration[open_for_submissions]" id="journey_configuration_open_for_submissions_true">
-						<label class="govuk-label govuk-radios__label" for="journey_configuration_open_for_submissions_true">On</label>
+						<input class="govuk-radios__input" data-aria-controls="reminders-warning-message" type="radio" value="true" checked="checked" name="automatic_approvals" id="auto_true">
+						<label class="govuk-label govuk-radios__label" for="auto_true">On</label>
 					</div>
 					<div class="govuk-radios__item">
-						<input class="govuk-radios__input" data-aria-controls="conditional-availability-message-conditional" type="radio" value="false" name="journey_configuration[open_for_submissions]" id="journey_configuration_open_for_submissions_false">
-						<label class="govuk-label govuk-radios__label" for="journey_configuration_open_for_submissions_false">Off</label>
+						<input class="govuk-radios__input" data-aria-controls="conditional-availability-message-conditional" type="radio" value="false" name="automatic_approvals" id="auto_false">
+						<label class="govuk-label govuk-radios__label" for="auto_false">Off</label>
 					</div>
 					<div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-availability-message-conditional">
 						<div class="govuk-form-group">
@@ -88,6 +111,9 @@
 			</fieldset>
 		</div>
 		<input type="submit" name="commit" value="Save" class="govuk-button" data-module="govuk-button" data-disable-with="Save" data-govuk-button-init=""> </form>
+
+	</form>
+		
 	<hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
 	<h2 class="govuk-heading-m">
 		Upload eligible EYTRP providers
