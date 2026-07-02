@@ -10,42 +10,23 @@
 
 
 	<div class="govuk-grid-row">
+
 		<div class="govuk-grid-column-full">
 
 
 			<div class="govuk-grid-row">
-				<div class="govuk-grid-column-one-half">
+				
+				<div class="govuk-grid-column-one-third">
 			
-					<h1 class="govuk-heading-l" style="float:left;">
+					<h1 class="govuk-heading-l">
 						My claims
 					</h1>
 
 				</div>
 
-				<div class="govuk-grid-column-one-half">
-
-
-					<h2 class="govuk-heading-m">
-						Search for a claim claims
-					</h2>
-
-					<form action="#" accept-charset="UTF-8" method="get">
-						<div class="govuk-form-group">
-							<label class="govuk-label" for="query">Enter a reference, email address, Teacher Reference Number, surname, or payment ID</label>
-							<input class="govuk-input govuk-input--width-20" type="text" name="query" id="query">
-							<div data-lastpass-icon-root="" style="position: relative !important; height: 0px !important; width: 0px !important; display: initial !important; float: left !important;"></div>
-						</div>
-						<div class="govuk-form-group govuk-!-margin-bottom-0">
-							<input type="submit" name="commit" value="Search" class="govuk-button govuk-!-margin-bottom-0" data-disable-with="Search"> </div>
-					</form>
-
-
-				</div>
-
-				<!-- 
-
-					
+				<div class="govuk-grid-column-two-thirds">
 			
+					
 					<div class="train" style="float:right;">
 						<div class="train__carriage">
 							<div class="train__carriage__title">
@@ -113,15 +94,170 @@
 							</div>
 						</div>	
 					</div>
-				
+
+
 				</div>
+
 			</div>
 
-			<hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+			<!--
+
+			<div class="govuk-grid-row">
+
+				<div class="govuk-grid-column-one-half govuk-!-margin-bottom-7">
+
+					<h2 class="govuk-heading-m">
+						Search for a claim
+					</h2>
+
+					<form action="#" accept-charset="UTF-8" method="get">
+						<div class="govuk-form-group">
+							<label class="govuk-label" for="query">Enter a reference, email address, Teacher Reference Number, surname, or payment ID</label>
+							<input class="govuk-input govuk-input--width-20" type="text" name="query" id="query">
+							<div data-lastpass-icon-root="" style="position: relative !important; height: 0px !important; width: 0px !important; display: initial !important; float: left !important;"></div>
+						</div>
+						<div class="govuk-form-group govuk-!-margin-bottom-0">
+							<input type="submit" name="commit" value="Search" class="govuk-button govuk-!-margin-bottom-0" data-disable-with="Search"> </div>
+					</form>
+
+				</div>
+
+			</div>
 
 			-->
 
-			<h2 class="govuk-heading-m">5 urgent claims</h2>
+			<div class="govuk-grid-row">
+
+				<div class="govuk-grid-column-full">
+
+					<div class="govuk-summary-card">
+						<div class="govuk-summary-card__title-wrapper">
+							<h2 class="govuk-summary-card__title">
+								Filters
+							</h2>
+							<!--
+							<ul class="govuk-summary-card__actions">
+								<li class="govuk-summary-card__action">
+									<a class="govuk-link" href="#">Hide filters</a>
+								</li>
+							</ul>
+							-->
+						</div>
+						<div class="govuk-summary-card__content">
+							
+							<div class="govuk-grid-row">
+
+								<div class="govuk-grid-column-full">
+
+									<div class="govuk-grid-one-third">
+										
+										<div class="govuk-form-group">
+											<label class="govuk-label" for="sort">
+												Policy scheme
+											</label>
+											<select class="govuk-select" id="sort" name="sort">
+												<option value="published">Recently published</option>
+												<option value="updated" selected>Recently updated</option>
+												<option value="views">Most views</option>
+												<option value="comments">Most comments</option>
+											</select>
+										</div>
+
+										<div class="govuk-form-group govuk-!-margin-right-7" style="display: inline-block;">
+											<fieldset class="govuk-fieldset" role="group" aria-describedby="start-issued-hint">
+												<legend class="govuk-fieldset__legend">
+													Start date
+												</legend>
+												
+												<div class="govuk-date-input" id="start-issued">
+													<div class="govuk-date-input__item">
+														<div class="govuk-form-group">
+														<label class="govuk-label govuk-date-input__label" for="start-issued-day">
+															Day
+														</label>
+														<input class="govuk-input govuk-date-input__input govuk-input--width-2" id="start-issued-day" name="start-issued-day" type="text" inputmode="numeric">
+														</div>
+													</div>
+													<div class="govuk-date-input__item">
+														<div class="govuk-form-group">
+														<label class="govuk-label govuk-date-input__label" for="start-issued-month">
+															Month
+														</label>
+														<input class="govuk-input govuk-date-input__input govuk-input--width-2" id="start-issued-month" name="start-issued-month" type="text" inputmode="numeric">
+														</div>
+													</div>
+													<div class="govuk-date-input__item">
+														<div class="govuk-form-group">
+														<label class="govuk-label govuk-date-input__label" for="start-issued-year">
+															Year
+														</label>
+														<input class="govuk-input govuk-date-input__input govuk-input--width-4" id="start-issued-year" name="start-issued-year" type="text" inputmode="numeric">
+														</div>
+													</div>
+												</div>
+												
+											</fieldset>
+										</div>
+
+
+										<div class="govuk-form-group" style="display: inline-block;">
+											<fieldset class="govuk-fieldset" role="group" aria-describedby="end-issued-hint">
+												<legend class="govuk-fieldset__legend">
+													End date
+												</legend>
+												
+												<div class="govuk-date-input" id="end-issued">
+													<div class="govuk-date-input__item">
+														<div class="govuk-form-group">
+														<label class="govuk-label govuk-date-input__label" for="end-issued-day">
+															Day
+														</label>
+														<input class="govuk-input govuk-date-input__input govuk-input--width-2" id="end-issued-day" name="end-issued-day" type="text" inputmode="numeric">
+														</div>
+													</div>
+													<div class="govuk-date-input__item">
+														<div class="govuk-form-group">
+														<label class="govuk-label govuk-date-input__label" for="end-issued-month">
+															Month
+														</label>
+														<input class="govuk-input govuk-date-input__input govuk-input--width-2" id="end-issued-month" name="end-issued-month" type="text" inputmode="numeric">
+														</div>
+													</div>
+													<div class="govuk-date-input__item">
+														<div class="govuk-form-group">
+														<label class="govuk-label govuk-date-input__label" for="end-issued-year">
+															Year
+														</label>
+														<input class="govuk-input govuk-date-input__input govuk-input--width-4" id="end-issued-year" name="end-issued-year" type="text" inputmode="numeric">
+														</div>
+													</div>
+												</div>
+												
+											</fieldset>
+										</div>
+
+									</div>
+									<div class="govuk-grid-one-third">
+									
+									</div>
+									<div class="govuk-grid-one-third">
+									
+									</div>
+								
+								</div>
+							
+							</div>
+
+
+						</div>
+					</div>
+
+				</div>
+
+			</div>
+
+
+			<h2 class="govuk-heading-m">Claims</h2>
 			<table class="govuk-table">
 				<thead class="govuk-table__head">
 					<tr class="govuk-table__row">
