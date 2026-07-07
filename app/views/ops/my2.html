@@ -1,0 +1,578 @@
+{% extends "layouts/main_ops.html" %}
+
+{% from "govuk/components/button/macro.njk" import govukButton %}
+
+{% set pageName="Claim an early years teacher recognition payment" %}
+
+{% set activeNav = 'myclaims' %}
+
+{% block content %}
+
+
+	<div class="govuk-grid-row">
+
+		<div class="govuk-grid-column-full">
+
+
+			<div class="govuk-grid-row">
+				
+				<div class="govuk-grid-column-one-third">
+			
+					<h1 class="govuk-heading-l">
+						My claims
+					</h1>
+
+				</div>
+
+				<div class="govuk-grid-column-two-thirds">
+			
+					
+					<div class="train" style="float:right;">
+						<div class="train__carriage">
+							<div class="train__carriage__title">
+							<h2 class="govuk-heading-s govuk-!-margin-bottom-1">Overdue</h2>
+							</div>
+
+							<div class="train__carriage__body">
+							<p class="govuk-body govuk-!-font-size-18 govuk-!-margin-bottom-0">0<span class="govuk-visually-hidden"> overdue claims</span></p>
+							</div>
+						</div>
+
+						<div>
+							<hr>
+						</div>
+
+						<div class="train__carriage">
+							<div class="train__carriage__title">
+								<h2 class="govuk-heading-s govuk-!-margin-bottom-1">Due today</h2>
+							</div>
+
+							<div class="train__carriage__body">
+							<p class="govuk-body govuk-!-font-size-18 govuk-!-margin-bottom-0">	0<span class="govuk-visually-hidden"> claims due today</span></p>
+							</div>
+						</div>
+
+						<div>
+							<hr>
+						</div>
+
+						<div class="train__carriage">
+							<div class="train__carriage__title">
+								<h2 class="govuk-heading-s govuk-!-margin-bottom-1">Due in 7 days</h2>
+							</div>
+
+							<div class="train__carriage__body">
+							<p class="govuk-body govuk-!-font-size-18 govuk-!-margin-bottom-0">0<span class="govuk-visually-hidden"> claims due within 7 days</span></p>
+							</div>
+						</div>
+
+						<div>
+							<hr>
+						</div>
+
+						<div class="train__carriage">
+							<div class="train__carriage__title">
+								<h2 class="govuk-heading-s govuk-!-margin-bottom-1">On hold</h2>
+							</div>
+
+							<div class="train__carriage__body">
+							<p class="govuk-body govuk-!-font-size-18 govuk-!-margin-bottom-0">0<span class="govuk-visually-hidden"> on hold claims</span></p>
+							</div>
+						</div>
+
+						<div>
+							<hr>
+						</div>
+
+						<div class="train__carriage">
+							<div class="train__carriage__title">
+								<h2 class="govuk-heading-s govuk-!-margin-bottom-1">Active claims</h2>
+							</div>
+
+							<div class="train__carriage__body">
+								<p class="govuk-body govuk-!-font-size-18 govuk-!-margin-bottom-0">0<span class="govuk-visually-hidden"> active assigned claims</span></p>
+							</div>
+						</div>	
+					</div>
+
+
+				</div>
+
+			</div>
+
+			<!--
+
+			<div class="govuk-grid-row">
+
+				<div class="govuk-grid-column-one-half govuk-!-margin-bottom-7">
+
+					<h2 class="govuk-heading-m">
+						Search for a claim
+					</h2>
+
+					<form action="#" accept-charset="UTF-8" method="get">
+						<div class="govuk-form-group">
+							<label class="govuk-label" for="query">Enter a reference, email address, Teacher Reference Number, surname, or payment ID</label>
+							<input class="govuk-input govuk-input--width-20" type="text" name="query" id="query">
+							<div data-lastpass-icon-root="" style="position: relative !important; height: 0px !important; width: 0px !important; display: initial !important; float: left !important;"></div>
+						</div>
+						<div class="govuk-form-group govuk-!-margin-bottom-0">
+							<input type="submit" name="commit" value="Search" class="govuk-button govuk-!-margin-bottom-0" data-disable-with="Search"> </div>
+					</form>
+
+				</div>
+
+			</div>
+
+			-->
+
+			<div class="govuk-grid-row">
+
+				<div class="govuk-grid-column-full">
+
+
+
+					<div class="govuk-accordion" data-module="govuk-accordion" id="accordion-with-summary-sections">
+						<div class="govuk-accordion__section">
+							<div class="govuk-accordion__section-header">
+								<h3 class="govuk-accordion__section-heading">
+									<span class="govuk-accordion__section-button" id="accordion-with-summary-sections-heading-1">
+										Filter claims
+									</span>
+								</h3>
+							</div>
+							<div id="accordion-with-summary-sections-content-1" class="govuk-accordion__section-content">
+								
+							
+								<div class="govuk-grid-row">
+
+										<div class="govuk-grid-column-one-third govuk-!-margin-bottom-2">
+
+											<div class="govuk-form-group govuk-!-margin-bottom-2">
+												<fieldset class="govuk-fieldset" role="group" aria-describedby="start-issued-hint">
+													<legend class="govuk-fieldset__legend">
+														Start date
+													</legend>
+													
+													<div class="govuk-date-input" id="start-issued">
+														<div class="govuk-date-input__item">
+															<div class="govuk-form-group">
+															<label class="govuk-label govuk-date-input__label" for="start-issued-day">
+																Day
+															</label>
+															<input class="govuk-input govuk-date-input__input govuk-input--width-2" id="start-issued-day" name="start-issued-day" type="text" inputmode="numeric">
+															</div>
+														</div>
+														<div class="govuk-date-input__item">
+															<div class="govuk-form-group">
+															<label class="govuk-label govuk-date-input__label" for="start-issued-month">
+																Month
+															</label>
+															<input class="govuk-input govuk-date-input__input govuk-input--width-2" id="start-issued-month" name="start-issued-month" type="text" inputmode="numeric">
+															</div>
+														</div>
+														<div class="govuk-date-input__item">
+															<div class="govuk-form-group">
+															<label class="govuk-label govuk-date-input__label" for="start-issued-year">
+																Year
+															</label>
+															<input class="govuk-input govuk-date-input__input govuk-input--width-4" id="start-issued-year" name="start-issued-year" type="text" inputmode="numeric">
+															</div>
+														</div>
+													</div>
+													
+												</fieldset>
+											</div>
+										</div>
+
+										<div class="govuk-grid-column-one-third govuk-!-margin-bottom-2">
+
+											<div class="govuk-form-group govuk-!-margin-bottom-2">
+												<fieldset class="govuk-fieldset" role="group" aria-describedby="end-issued-hint">
+													<legend class="govuk-fieldset__legend">
+														End date
+													</legend>
+													
+													<div class="govuk-date-input" id="end-issued">
+														<div class="govuk-date-input__item">
+															<div class="govuk-form-group">
+															<label class="govuk-label govuk-date-input__label" for="end-issued-day">
+																Day
+															</label>
+															<input class="govuk-input govuk-date-input__input govuk-input--width-2" id="end-issued-day" name="end-issued-day" type="text" inputmode="numeric">
+															</div>
+														</div>
+														<div class="govuk-date-input__item">
+															<div class="govuk-form-group">
+															<label class="govuk-label govuk-date-input__label" for="end-issued-month">
+																Month
+															</label>
+															<input class="govuk-input govuk-date-input__input govuk-input--width-2" id="end-issued-month" name="end-issued-month" type="text" inputmode="numeric">
+															</div>
+														</div>
+														<div class="govuk-date-input__item">
+															<div class="govuk-form-group">
+															<label class="govuk-label govuk-date-input__label" for="end-issued-year">
+																Year
+															</label>
+															<input class="govuk-input govuk-date-input__input govuk-input--width-4" id="end-issued-year" name="end-issued-year" type="text" inputmode="numeric">
+															</div>
+														</div>
+													</div>
+													
+												</fieldset>
+											</div>
+										</div>
+
+										<div class="govuk-grid-column-one-third govuk-!-margin-bottom-2">
+											
+											<div class="govuk-form-group">
+												<label class="govuk-label" for="sort">
+													Policy scheme
+												</label>
+												<select class="govuk-select" id="sort" name="sort">
+													<option value="published">Recently published</option>
+													<option value="updated" selected>Recently updated</option>
+													<option value="views">Most views</option>
+													<option value="comments">Most comments</option>
+												</select>
+											</div>
+									
+										</div>
+									
+								</div>
+									<div class="govuk-grid-row">
+
+										
+										<div class="govuk-grid-column-one-third">
+
+											<div class="govuk-form-group">
+												<fieldset class="govuk-fieldset">
+													<legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
+													<h3 class="govuk-fieldset__heading">
+														Blocked state
+													</h3>
+													</legend>
+													<div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+														<div class="govuk-checkboxes__item">
+															<input class="govuk-checkboxes__input" id="blocked" name="blocked" type="checkbox" value="hmrc">
+															<label class="govuk-label govuk-checkboxes__label" for="blocked">
+																On hold
+															</label>
+														</div>
+														<div class="govuk-checkboxes__item">
+															<input class="govuk-checkboxes__input" id="blocked-2" name="blocked" type="checkbox" value="employment-tribunal">
+															<label class="govuk-label govuk-checkboxes__label" for="blocked-2">
+																Awaiting claimant data 
+															</label>
+														</div>
+														<div class="govuk-checkboxes__item">
+															<input class="govuk-checkboxes__input" id="blocked-3" name="blocked" type="checkbox" value="MOD">
+															<label class="govuk-label govuk-checkboxes__label" for="blocked-3">
+																Awaiting provider verification 
+															</label>
+														</div>
+														<div class="govuk-checkboxes__item">
+															<input class="govuk-checkboxes__input" id="blocked-4" name="blocked" type="checkbox" value="DfT">
+															<label class="govuk-label govuk-checkboxes__label" for="blocked-4">
+																Awaiting retention period completion
+															</label>
+														</div>
+														<div class="govuk-checkboxes__item">
+															<input class="govuk-checkboxes__input" id="blocked-5" name="blocked" type="checkbox" value="DfT">
+															<label class="govuk-label govuk-checkboxes__label" for="blocked-5">
+																Awaiting retention check data 
+															</label>
+														</div>
+														<div class="govuk-checkboxes__item">
+															<input class="govuk-checkboxes__input" id="blocked-6" name="blocked" type="checkbox" value="DfT">
+															<label class="govuk-label govuk-checkboxes__label" for="blocked-6">
+																Failed bank details 
+															</label>
+														</div>
+													</div>
+												</fieldset>
+												</div>
+										
+										</div>
+										<div class="govuk-grid-column-one-third">
+
+											<div class="govuk-grid-row">
+
+												<div class="govuk-grid-column-full">
+
+													<div class="govuk-form-group">
+														<fieldset class="govuk-fieldset">
+															<legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
+															<h3 class="govuk-fieldset__heading">
+																Alternative verification
+															</h3>
+															</legend>
+															<div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+																<div class="govuk-checkboxes__item">
+																	<input class="govuk-checkboxes__input" id="alternative" name="alternative" type="checkbox" value="hmrc">
+																	<label class="govuk-label govuk-checkboxes__label" for="alternative">
+																		Verified
+																	</label>
+																</div>
+																<div class="govuk-checkboxes__item">
+																	<input class="govuk-checkboxes__input" id="alternative-2" name="alternative" type="checkbox" value="employment-tribunal">
+																	<label class="govuk-label govuk-checkboxes__label" for="alternative-2">
+																		Not verified
+																	</label>
+																</div>
+																<div class="govuk-checkboxes__item">
+																	<input class="govuk-checkboxes__input" id="alternative-3" name="alternative" type="checkbox" value="MOD">
+																	<label class="govuk-label govuk-checkboxes__label" for="alternative-3">
+																		Failed
+																	</label>
+																</div>
+															</div>
+														</fieldset>
+													</div>
+													
+												</div>
+
+											</div>
+
+											<div class="govuk-grid-row">
+
+												<div class="govuk-grid-column-full">
+
+													<div class="govuk-form-group">
+														<fieldset class="govuk-fieldset">
+															<legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
+															<h3 class="govuk-fieldset__heading">
+																One login verification
+															</h3>
+															</legend>
+															<div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+																<div class="govuk-checkboxes__item">
+																	<input class="govuk-checkboxes__input" id="one" name="one" type="checkbox" value="hmrc">
+																	<label class="govuk-label govuk-checkboxes__label" for="one">
+																		Verified
+																	</label>
+																</div>
+																<div class="govuk-checkboxes__item">
+																	<input class="govuk-checkboxes__input" id="one-2" name="one" type="checkbox" value="employment-tribunal">
+																	<label class="govuk-label govuk-checkboxes__label" for="one-2">
+																		Not verified
+																	</label>
+																</div>
+																<div class="govuk-checkboxes__item">
+																	<input class="govuk-checkboxes__input" id="one-3" name="one" type="checkbox" value="MOD">
+																	<label class="govuk-label govuk-checkboxes__label" for="one-3">
+																		Failed
+																	</label>
+																</div>
+															</div>
+														</fieldset>
+													</div>
+													
+												</div>
+
+											</div>
+																
+										</div>
+										<div class="govuk-grid-column-one-third">
+
+											<div class="govuk-grid-row">
+
+												<div class="govuk-grid-column-full">
+
+													<div class="govuk-form-group">
+														<fieldset class="govuk-fieldset">
+															<legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
+															<h3 class="govuk-fieldset__heading">
+																Provider verification
+															</h3>
+															</legend>
+															<div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+																<div class="govuk-checkboxes__item">
+																	<input class="govuk-checkboxes__input" id="provider" name="provider" type="checkbox" value="hmrc">
+																	<label class="govuk-label govuk-checkboxes__label" for="provider">
+																		Verified
+																	</label>
+																</div>
+																<div class="govuk-checkboxes__item">
+																	<input class="govuk-checkboxes__input" id="provider-2" name="provider" type="checkbox" value="employment-tribunal">
+																	<label class="govuk-label govuk-checkboxes__label" for="provider-2">
+																		Not verified
+																	</label>
+																</div>
+																<div class="govuk-checkboxes__item">
+																	<input class="govuk-checkboxes__input" id="provider-3" name="provider" type="checkbox" value="MOD">
+																	<label class="govuk-label govuk-checkboxes__label" for="provider-3">
+																		Failed
+																	</label>
+																</div>
+															</div>
+														</fieldset>
+													</div>
+													
+												</div>
+
+											</div>
+																
+										</div>
+
+
+									</div>
+								<div class="govuk-grid-row">
+
+									
+
+										<div class="govuk-grid-column-one-third govuk-!-margin-bottom-2">
+											
+											<div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+												<div class="govuk-checkboxes__item">
+													<input class="govuk-checkboxes__input" id="showAll" name="showAll" type="checkbox" value="hmrc">
+													<label class="govuk-label govuk-checkboxes__label" for="showAll">
+														Show all overdue claims 
+													</label>
+												</div>
+											</div>
+
+										</div>
+									
+								</div>
+								<div class="govuk-grid-row">
+									<div class="govuk-grid-column-full">
+										<button class="govuk-button" data-module="govuk-button" data-disable-with="Apply filters">Apply filters</button>
+									</div>
+								</div>
+
+
+
+
+
+
+
+
+
+
+
+							</div>
+						</div>
+						
+					</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+					
+			</div>
+
+			
+
+			<div class="govuk-grid-column-full">
+
+			<h2 class="govuk-heading-m">Claims</h2>
+			<table class="govuk-table">
+				<thead class="govuk-table__head">
+					<tr class="govuk-table__row">
+						<th scope="col" class="govuk-table__header">Reference</th>
+						<th scope="col" class="govuk-table__header">Applicant Name</th>
+						<th scope="col" class="govuk-table__header">ID Verification</th>
+						<th scope="col" class="govuk-table__header">Policy</th>
+						<th scope="col" class="govuk-table__header">Submitted</th>
+						<th scope="col" class="govuk-table__header">Decision deadline</th>
+						<th scope="col" class="govuk-table__header">Assigned to</th>
+					</tr>
+				</thead>
+				<tbody class="govuk-table__body">
+					<tr class="govuk-table__row">
+						<th scope="row" class="govuk-table__header"><a class="govuk-link" href="/admin/claims/5ecb99dd-1f49-4e17-959a-c2f27302c333/tasks">22VAFBPT</a></th>
+						<td class="govuk-table__cell">Mallory Bahringer</td>
+						<td class="govuk-table__cell"><strong class="govuk-tag app-task-list__task-completed govuk-tag--grey">Unverified</strong></td>
+						<td class="govuk-table__cell">FE</td>
+						<td class="govuk-table__cell">14 May 2026</td>
+						<td class="govuk-table__cell">24 September 2026</td>
+						<td class="govuk-table__cell"></td>
+					</tr>
+					<tr class="govuk-table__row">
+						<th scope="row" class="govuk-table__header"><a class="govuk-link" href="/ops/claims/example">HHBXBHY5</a></th>
+						<td class="govuk-table__cell">Danielle Dean</td>
+						<td class="govuk-table__cell"><strong class="govuk-tag app-task-list__task-completed govuk-tag--green">Passed</strong></td>
+						<td class="govuk-table__cell">EYTRP</td>
+						<td class="govuk-table__cell">1 June 2026</td>
+						<td class="govuk-table__cell">10 August 2026</td>
+						<td class="govuk-table__cell"></td>
+					</tr>
+					<tr class="govuk-table__row">
+						<th scope="row" class="govuk-table__header"><a class="govuk-link" href="/admin/claims/4f62f35b-1fff-47f9-86f6-18aadd403878/tasks">7WCEFFH7</a></th>
+						<td class="govuk-table__cell">Danielle Dean</td>
+						<td class="govuk-table__cell"><strong class="govuk-tag app-task-list__task-completed govuk-tag--green">Passed</strong></td>
+						<td class="govuk-table__cell">EYTRP</td>
+						<td class="govuk-table__cell">1 June 2026</td>
+						<td class="govuk-table__cell">10 August 2026</td>
+						<td class="govuk-table__cell"></td>
+					</tr>
+					<tr class="govuk-table__row">
+						<th scope="row" class="govuk-table__header"><a class="govuk-link" href="/admin/claims/fc52fe3a-9076-4af1-8633-48a8b14a1db7/tasks">H4NYGJF5</a></th>
+						<td class="govuk-table__cell">Danielle Dean</td>
+						<td class="govuk-table__cell"><strong class="govuk-tag app-task-list__task-completed govuk-tag--green">Passed</strong></td>
+						<td class="govuk-table__cell">EYTRP</td>
+						<td class="govuk-table__cell">1 June 2026</td>
+						<td class="govuk-table__cell">10 August 2026</td>
+						<td class="govuk-table__cell"></td>
+					</tr>
+					<tr class="govuk-table__row">
+						<th scope="row" class="govuk-table__header"><a class="govuk-link" href="/admin/claims/ad5d73c5-e5f2-417c-ad0a-417a06faeffd/tasks">WQ38SPBV</a></th>
+						<td class="govuk-table__cell">Danielle Dean</td>
+						<td class="govuk-table__cell"><strong class="govuk-tag app-task-list__task-completed govuk-tag--green">Passed</strong></td>
+						<td class="govuk-table__cell">EYTRP</td>
+						<td class="govuk-table__cell">1 June 2026</td>
+						<td class="govuk-table__cell">10 August 2026</td>
+						<td class="govuk-table__cell"></td>
+					</tr>
+					
+				</tbody>
+			</table>
+			 
+		</div>
+
+	</div>
+
+
+  
+
+
+
+{% endblock %}
