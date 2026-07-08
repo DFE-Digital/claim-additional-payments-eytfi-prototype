@@ -157,10 +157,22 @@
 										
 										<div class="govuk-form-group">
 											<label class="govuk-label" for="sort">
+												Assigned to
+											</label>
+											<select class="govuk-select" id="sort" name="sort">
+												<option value="published selected">John Doe</option>
+												<option value="updated">Recently updated</option>
+												<option value="views">Most views</option>
+												<option value="comments">Most comments</option>
+											</select>
+										</div>
+
+										<div class="govuk-form-group">
+											<label class="govuk-label" for="sort">
 												Policy scheme
 											</label>
 											<select class="govuk-select" id="sort" name="sort">
-												<option value="published" selected>Early years</option>
+												<option value="published selected">Early years</option>
 												<option value="updated">Recently updated</option>
 												<option value="views">Most views</option>
 												<option value="comments">Most comments</option>
@@ -240,14 +252,6 @@
 											</fieldset>
 										</div>
 
-										<div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
-											<div class="govuk-checkboxes__item">
-												<input class="govuk-checkboxes__input" id="showAll" name="showAll" type="checkbox" value="hmrc">
-												<label class="govuk-label govuk-checkboxes__label" for="showAll">
-													Show all overdue claims 
-												</label>
-											</div>
-										</div>
 
 									</div>
 									<div class="govuk-grid-column-one-third">
@@ -256,46 +260,29 @@
 											<fieldset class="govuk-fieldset">
 												<legend class="govuk-fieldset__legend">
 												<h3 class="govuk-fieldset__heading">
-													Blocked state
+													Decision deadline
 												</h3>
 												</legend>
 												<div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
 													<div class="govuk-checkboxes__item">
 														<input class="govuk-checkboxes__input" id="blocked" name="blocked" type="checkbox" value="hmrc">
 														<label class="govuk-label govuk-checkboxes__label" for="blocked">
-															On hold
+															Overdue
 														</label>
 													</div>
 													<div class="govuk-checkboxes__item">
 														<input class="govuk-checkboxes__input" id="blocked-2" name="blocked" type="checkbox" value="employment-tribunal">
 														<label class="govuk-label govuk-checkboxes__label" for="blocked-2">
-															Awaiting claimant data 
+															Due today
 														</label>
 													</div>
 													<div class="govuk-checkboxes__item">
 														<input class="govuk-checkboxes__input" id="blocked-3" name="blocked" type="checkbox" value="MOD">
 														<label class="govuk-label govuk-checkboxes__label" for="blocked-3">
-															Awaiting provider verification 
+															Due in 7 days
 														</label>
 													</div>
-													<div class="govuk-checkboxes__item">
-														<input class="govuk-checkboxes__input" id="blocked-4" name="blocked" type="checkbox" value="DfT">
-														<label class="govuk-label govuk-checkboxes__label" for="blocked-4">
-															Awaiting retention period completion
-														</label>
-													</div>
-													<div class="govuk-checkboxes__item">
-														<input class="govuk-checkboxes__input" id="blocked-5" name="blocked" type="checkbox" value="DfT">
-														<label class="govuk-label govuk-checkboxes__label" for="blocked-5">
-															Awaiting retention check data 
-														</label>
-													</div>
-													<div class="govuk-checkboxes__item">
-														<input class="govuk-checkboxes__input" id="blocked-6" name="blocked" type="checkbox" value="DfT">
-														<label class="govuk-label govuk-checkboxes__label" for="blocked-6">
-															Failed bank details 
-														</label>
-													</div>
+													
 												</div>
 											</fieldset>
 											</div>
@@ -311,108 +298,74 @@
 													<fieldset class="govuk-fieldset">
 														<legend class="govuk-fieldset__legend">
 														<h3 class="govuk-fieldset__heading">
-															Alternative verification
+															Claim stage
 														</h3>
 														</legend>
+
 														<div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
-															<div class="govuk-checkboxes__item">
-																<input class="govuk-checkboxes__input" id="alternative" name="alternative" type="checkbox" value="hmrc">
-																<label class="govuk-label govuk-checkboxes__label" for="alternative">
-																	Verified
-																</label>
-															</div>
-															<div class="govuk-checkboxes__item">
-																<input class="govuk-checkboxes__input" id="alternative-2" name="alternative" type="checkbox" value="employment-tribunal">
-																<label class="govuk-label govuk-checkboxes__label" for="alternative-2">
-																	Not verified
-																</label>
-															</div>
-															<div class="govuk-checkboxes__item">
-																<input class="govuk-checkboxes__input" id="alternative-3" name="alternative" type="checkbox" value="MOD">
-																<label class="govuk-label govuk-checkboxes__label" for="alternative-3">
-																	Failed
-																</label>
-															</div>
+														<div class="govuk-checkboxes__item">
+															<input class="govuk-checkboxes__input" id="claim-stage" name="claim-stage" type="checkbox" value="awaiting-qa" checked>
+															<label class="govuk-label govuk-checkboxes__label" for="claim-stage">
+															Awaiting QA
+															</label>
+														</div>
+
+														<div class="govuk-checkboxes__item">
+															<input class="govuk-checkboxes__input" id="claim-stage-2" name="claim-stage" type="checkbox" value="qa-complete">
+															<label class="govuk-label govuk-checkboxes__label" for="claim-stage-2">
+															QA complete
+															</label>
+														</div>
+
+														<div class="govuk-checkboxes__item">
+															<input class="govuk-checkboxes__input" id="claim-stage-3" name="claim-stage" type="checkbox" value="awaiting-decision">
+															<label class="govuk-label govuk-checkboxes__label" for="claim-stage-3">
+															Awaiting decision
+															</label>
+														</div>
+
+														<div class="govuk-checkboxes__item">
+															<input class="govuk-checkboxes__input" id="claim-stage-4" name="claim-stage" type="checkbox" value="decision-pass">
+															<label class="govuk-label govuk-checkboxes__label" for="claim-stage-4">
+															Decision pass
+															</label>
+														</div>
+
+														<div class="govuk-checkboxes__item">
+															<input class="govuk-checkboxes__input" id="claim-stage-5" name="claim-stage" type="checkbox" value="decision-fail">
+															<label class="govuk-label govuk-checkboxes__label" for="claim-stage-5">
+															Decision fail
+															</label>
+														</div>
+
+														<div class="govuk-checkboxes__item">
+															<input class="govuk-checkboxes__input" id="claim-stage-6" name="claim-stage" type="checkbox" value="awaiting-payroll">
+															<label class="govuk-label govuk-checkboxes__label" for="claim-stage-6">
+															Awaiting payroll
+															</label>
+														</div>
+
+														<div class="govuk-checkboxes__item">
+															<input class="govuk-checkboxes__input" id="claim-stage-7" name="claim-stage" type="checkbox" value="sent-to-payroll">
+															<label class="govuk-label govuk-checkboxes__label" for="claim-stage-7">
+															Sent to payroll
+															</label>
+														</div>
+
+														<div class="govuk-checkboxes__item">
+															<input class="govuk-checkboxes__input" id="claim-stage-8" name="claim-stage" type="checkbox" value="paid">
+															<label class="govuk-label govuk-checkboxes__label" for="claim-stage-8">
+															Paid
+															</label>
+														</div>
 														</div>
 													</fieldset>
-												</div>
+													</div>
 												
 											</div>
 
 										</div>
-
-										<div class="govuk-grid-row">
-
-											<div class="govuk-grid-column-full">
-
-												<div class="govuk-form-group">
-													<fieldset class="govuk-fieldset">
-														<legend class="govuk-fieldset__legend">
-														<h3 class="govuk-fieldset__heading">
-															One login verification
-														</h3>
-														</legend>
-														<div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
-															<div class="govuk-checkboxes__item">
-																<input class="govuk-checkboxes__input" id="one" name="one" type="checkbox" value="hmrc">
-																<label class="govuk-label govuk-checkboxes__label" for="one">
-																	Verified
-																</label>
-															</div>
-															<div class="govuk-checkboxes__item">
-																<input class="govuk-checkboxes__input" id="one-2" name="one" type="checkbox" value="employment-tribunal">
-																<label class="govuk-label govuk-checkboxes__label" for="one-2">
-																	Not verified
-																</label>
-															</div>
-															<div class="govuk-checkboxes__item">
-																<input class="govuk-checkboxes__input" id="one-3" name="one" type="checkbox" value="MOD">
-																<label class="govuk-label govuk-checkboxes__label" for="one-3">
-																	Failed
-																</label>
-															</div>
-														</div>
-													</fieldset>
-												</div>
-												
-											</div>
-
-											<div class="govuk-grid-column-full">
-
-												<div class="govuk-form-group">
-													<fieldset class="govuk-fieldset">
-														<legend class="govuk-fieldset__legend">
-														<h3 class="govuk-fieldset__heading">
-															Provider verification
-														</h3>
-														</legend>
-														<div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
-															<div class="govuk-checkboxes__item">
-																<input class="govuk-checkboxes__input" id="provider" name="provider" type="checkbox" value="hmrc">
-																<label class="govuk-label govuk-checkboxes__label" for="provider">
-																	Verified
-																</label>
-															</div>
-															<div class="govuk-checkboxes__item">
-																<input class="govuk-checkboxes__input" id="provider-2" name="provider" type="checkbox" value="employment-tribunal">
-																<label class="govuk-label govuk-checkboxes__label" for="provider-2">
-																	Not verified
-																</label>
-															</div>
-															<div class="govuk-checkboxes__item">
-																<input class="govuk-checkboxes__input" id="provider-3" name="provider" type="checkbox" value="MOD">
-																<label class="govuk-label govuk-checkboxes__label" for="provider-3">
-																	Failed
-																</label>
-															</div>
-														</div>
-													</fieldset>
-												</div>
-												
-											</div>
-
-										</div>
-															
+		
 							</div>
 
 
