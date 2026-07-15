@@ -9,266 +9,75 @@
 {% block content %}
 
 	<div class="govuk-grid-row">
+		
+    <div class="govuk-grid-column-one-half">
+			<h2 class="govuk-heading-m">Claims received (2025/2026)</h2>
+			<p class="govuk-body govuk-!-font-size-36">38</p>
+			<hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+			<h2 class="govuk-heading-m">Claims approved (2025/2026)</h2>
+			<p class="govuk-body govuk-!-font-size-36">1</p>
+			<hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+			<h2 class="govuk-heading-m">Claims rejected (2025/2026)</h2>
+			<p class="govuk-body govuk-!-font-size-36">1</p>
+			<hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible"> 
+    </div>
+		
+    <div class="govuk-grid-column-one-half">
+			<h2 class="govuk-heading-m">Total claims received</h2>
+			<p class="govuk-body govuk-!-font-size-36">50</p>
+			<hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+			<h2 class="govuk-heading-m">Claims approaching deadline</h2>
+			<p class="govuk-body govuk-!-font-size-36">0</p>
+			<hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+			<h2 class="govuk-heading-m">Claims passed deadline</h2>
+			<p class="govuk-body govuk-!-font-size-36">0</p>
+			<hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible"> 
+    </div>
+
+	</div>
+
+	<br>
+
+	<div class="govuk-grid-row">
 		<div class="govuk-grid-column-full">
-			
-			
-			<div class="govuk-form-group govuk-!-margin-right-7" style="display: inline-block;">
-				<fieldset class="govuk-fieldset" role="group" aria-describedby="start-issued-hint">
-					<legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
-						Start date
-					</legend>
-					
-					<div class="govuk-date-input" id="start-issued">
-						<div class="govuk-date-input__item">
-							<div class="govuk-form-group">
-							<label class="govuk-label govuk-date-input__label" for="start-issued-day">
-								Day
-							</label>
-							<input class="govuk-input govuk-date-input__input govuk-input--width-2" id="start-issued-day" name="start-issued-day" type="text" inputmode="numeric">
-							</div>
-						</div>
-						<div class="govuk-date-input__item">
-							<div class="govuk-form-group">
-							<label class="govuk-label govuk-date-input__label" for="start-issued-month">
-								Month
-							</label>
-							<input class="govuk-input govuk-date-input__input govuk-input--width-2" id="start-issued-month" name="start-issued-month" type="text" inputmode="numeric">
-							</div>
-						</div>
-						<div class="govuk-date-input__item">
-							<div class="govuk-form-group">
-							<label class="govuk-label govuk-date-input__label" for="start-issued-year">
-								Year
-							</label>
-							<input class="govuk-input govuk-date-input__input govuk-input--width-4" id="start-issued-year" name="start-issued-year" type="text" inputmode="numeric">
-							</div>
-						</div>
-					</div>
-					
-				</fieldset>
-			</div>
-
-			<div class="govuk-form-group" style="display: inline-block;">
-				<fieldset class="govuk-fieldset" role="group" aria-describedby="end-issued-hint">
-					<legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
-						End date
-					</legend>
-					
-					<div class="govuk-date-input" id="end-issued">
-						<div class="govuk-date-input__item">
-							<div class="govuk-form-group">
-							<label class="govuk-label govuk-date-input__label" for="end-issued-day">
-								Day
-							</label>
-							<input class="govuk-input govuk-date-input__input govuk-input--width-2" id="end-issued-day" name="end-issued-day" type="text" inputmode="numeric">
-							</div>
-						</div>
-						<div class="govuk-date-input__item">
-							<div class="govuk-form-group">
-							<label class="govuk-label govuk-date-input__label" for="end-issued-month">
-								Month
-							</label>
-							<input class="govuk-input govuk-date-input__input govuk-input--width-2" id="end-issued-month" name="end-issued-month" type="text" inputmode="numeric">
-							</div>
-						</div>
-						<div class="govuk-date-input__item">
-							<div class="govuk-form-group">
-							<label class="govuk-label govuk-date-input__label" for="end-issued-year">
-								Year
-							</label>
-							<input class="govuk-input govuk-date-input__input govuk-input--width-4" id="end-issued-year" name="end-issued-year" type="text" inputmode="numeric">
-							</div>
-						</div>
-					</div>
-					
-				</fieldset>
-			</div>
-			
-			 
-		</div>
-
-		<div class="govuk-grid-column-full">
-
-			{{ govukButton({
-				text: "Update date range",
-				href: "/ops"
-			}) }}	
-		</div>
+			<h1 class="govuk-heading-m">School Workforce Census Statistics</h1> </div>
 	</div>
 
 	<div class="govuk-grid-row">
+
+		<div class="govuk-grid-column-one-half">
+			<h2 class="govuk-heading-m">No data</h2>
+			<p class="govuk-body govuk-!-font-size-36">2.0%</p>
+			<hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible"> 
+    </div>
 		
-		<div class="govuk-grid-column-full">
-			
-			
-			<div class="govuk-tabs" data-module="govuk-tabs">
-				<h2 class="govuk-tabs__title">
-					Contents
-				</h2>
-				<ul class="govuk-tabs__list">
-					<li class="govuk-tabs__list-item govuk-tabs__list-item--selected">
-					<a class="govuk-tabs__tab" href="#past-day">
-						Overview
-					</a>
-					</li>
-					<li class="govuk-tabs__list-item">
-						<a class="govuk-tabs__tab" href="#past-week">
-							Claim health
-						</a>
-					</li>
-				</ul>
-				<div class="govuk-tabs__panel" id="past-day">
-					<h2 class="govuk-heading-m">Awaiting</h2>
+    <div class="govuk-grid-column-one-half">
+			<h2 class="govuk-heading-m">Any matches</h2>
+			<p class="govuk-body govuk-!-font-size-36">0.0%</p>
+			<hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible"> 
+    </div>
 
-					<div class="govuk-grid-row">	
-					
-						<div class="govuk-grid-column-one-half">
-							<h3 class="govuk-heading-s">Awaiting provider verification</h3>
-							<p class="govuk-body govuk-!-font-size-36">12</p>
-							<hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
-						</div>
-
-						<div class="govuk-grid-column-one-half">
-							<h3 class="govuk-heading-s">Awaiting claimant evidence</h3>
-							<p class="govuk-body govuk-!-font-size-36">25</p>
-							<hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
-						</div>
-				
-					</div>
-
-					<h2 class="govuk-heading-m">Total</h2>
-
-					<div class="govuk-grid-row">	
-					
-						<div class="govuk-grid-column-one-half">
-							<h3 class="govuk-heading-s">Total claims received</h3>
-							<p class="govuk-body govuk-!-font-size-36">38</p>
-							<hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
-						</div>
-
-						<div class="govuk-grid-column-one-half">
-							<h3 class="govuk-heading-s">Total claims reviewed</h3>
-							<p class="govuk-body govuk-!-font-size-36">90</p>
-							<hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
-						</div>
-
-					</div>
-
-					<h2 class="govuk-heading-m">Deadline</h2>
-
-					<div class="govuk-grid-row">	
-					
-						<div class="govuk-grid-column-one-half">
-							<h3 class="govuk-heading-s">Claims approaching deadline</h3>
-							<p class="govuk-body govuk-!-font-size-36">12</p>
-							<hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
-						</div>
-
-						<div class="govuk-grid-column-one-half">
-							<h3 class="govuk-heading-s">Claims passed deadline</h3>
-							<p class="govuk-body govuk-!-font-size-36">4</p>
-							<hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
-						</div>
-
-					</div>
-
-					<h2 class="govuk-heading-m">Claims</h2>
-
-					<div class="govuk-grid-row">	
-					
-						<div class="govuk-grid-column-one-half">
-							<h3 class="govuk-heading-s">Claims approved</h3>
-							<p class="govuk-body govuk-!-font-size-36">40</p>
-							<hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
-						</div>
-
-						<div class="govuk-grid-column-one-half">
-							<h3 class="govuk-heading-s">Claims rejected</h3>
-							<p class="govuk-body govuk-!-font-size-36">9</p>
-							<hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
-						</div>
-
-					</div>
-
-					<h2 class="govuk-heading-m">Other</h2>
-
-					<div class="govuk-grid-row">	
-					
-						<div class="govuk-grid-column-one-third">
-							<h3 class="govuk-heading-s">Claims stalled (no change in 14 days)</h3>
-							<p class="govuk-body govuk-!-font-size-36">3</p>
-							<hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
-						</div>
-
-						<div class="govuk-grid-column-one-third">
-							<h3 class="govuk-heading-s">Awaiting IDV completion</h3>
-							<p class="govuk-body govuk-!-font-size-36">2</p>
-							<hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
-						</div>
-
-						<div class="govuk-grid-column-one-third">
-							<h3 class="govuk-heading-s">EY claimant awaiting 6 month retention check</h3>
-							<p class="govuk-body govuk-!-font-size-36">7</p>
-							<hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
-						</div>
-
-					</div>
-
-				</div>
-				<div class="govuk-tabs__panel govuk-tabs__panel--hidden" id="past-week">
-					
-					<h2 class="govuk-heading-m">No movement</h2>
-
-					<div class="govuk-grid-row">	
-					
-						<div class="govuk-grid-column-one-half">
-							<h3 class="govuk-heading-s">Claims with no movement this week</h3>
-							<p class="govuk-body govuk-!-font-size-36">1</p>
-							<hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
-						</div>
-
-						<div class="govuk-grid-column-one-half">
-							<h3 class="govuk-heading-s">Claims with no movement over 14 days</h3>
-							<p class="govuk-body govuk-!-font-size-36">2</p>
-							<hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
-						</div>
-
-					</div>
-
-					<h2 class="govuk-heading-m">Claim / policy name</h2>
-
-					<div class="govuk-grid-row">	
-					
-						<div class="govuk-grid-column-full">
-							<h3 class="govuk-heading-s">In progress claims</h3>
-							<p class="govuk-body govuk-!-font-size-36">1</p>
-							<hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
-						</div>
-
-					</div>
-
-					<h2 class="govuk-heading-m">Claim / policy name</h2>
-
-					<div class="govuk-grid-row">	
-					
-						<div class="govuk-grid-column-full">
-							<h3 class="govuk-heading-s">In progress claims</h3>
-							<p class="govuk-body govuk-!-font-size-36">1</p>
-							<hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
-						</div>
-
-					</div>
-					
-					
-				</div>
-
-		</div>
-	
 	</div>
 
-	
-	
-	
+	<br>
+
+	<div class="govuk-grid-row">
+		
+    <div class="govuk-grid-column-full">
+			<h1 class="govuk-heading-m">Further Education Payments Statistics</h1> 
+    </div>
+    
+	</div>
+
+	<div class="govuk-grid-row">
+
+		<div class="govuk-grid-column-one-half">
+			<h2 class="govuk-heading-m">Provider verification tasks automatically passed (2025/2026) </h2>
+			<p class="govuk-body govuk-!-font-size-36">0</p>
+			<hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible"> 
+    </div>
+
+	</div>
 
   
 
