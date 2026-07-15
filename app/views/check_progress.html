@@ -1,0 +1,45 @@
+{% extends "layouts/main.html" %}
+
+{% from "govuk/components/button/macro.njk" import govukButton %}
+
+{% set pageName="Claim an early years teacher recognition payment" %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    
+    <h1 class="govuk-heading-xl">Check the progress of your claim</h1>
+
+    <div class="govuk-form-group">
+      <h2 class="govuk-label-wrapper">
+        <label class="govuk-label govuk-label--m" for="claimNumber">
+          What is your claim reference number?
+        </label>
+      </h2>
+      <div id="claimNumber-hint" class="govuk-hint">
+         You can find your claim reference number in the confirmation email you received when you submitted your claim.
+      </div>
+      <input class="govuk-input govuk-input--width-20" id="claimNumber" name="claimNumber" type="text" spellcheck="false" aria-describedby="claimNumber-hint" inputmode="numeric">
+    </div>
+
+    <div class="govuk-form-group">
+      <h2 class="govuk-label-wrapper">
+        <label class="govuk-label govuk-label--m" for="emailAddress">
+          What is your email address?
+        </label>
+      </h2>
+      <div id="emailAddress-hint" class="govuk-hint">
+         Enter the email address you used when you submitted your claim.
+      </div>
+      <input class="govuk-input govuk-input--width-20" id="emailAddress" name="emailAddress" type="text" spellcheck="false" aria-describedby="emailAddress-hint" inputmode="numeric">
+    </div>
+
+    <a href="/check_progress_result" class="govuk-button" data-module="govuk-button">
+      Check claim progress
+    </a>
+
+  </div>
+</div>
+
+{% endblock %}
