@@ -212,8 +212,10 @@ router.post('/nursery-search', (req, res) => {
 
   if (nurserySearch === 'true') {
     res.redirect('/eligibility-criteria');
-  } else {
+  } else if (nurserySearch === 'false') {
     res.redirect('/ineligible-teaching-qualification-held');
+  } else {
+    res.redirect('/nursery-results');
   }
 
 });
