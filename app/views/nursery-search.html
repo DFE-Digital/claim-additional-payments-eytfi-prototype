@@ -34,18 +34,23 @@
      If you teach at a <a class="govuk-link govuk-link--no-visited-state" href="https://www.gov.uk/guidance/childcare-on-domestic-premises">provider of childcare on domestic premises (CoDP)</a> and you cannot find it in the search, email <a href="mailto:EY-teacher.recognitionpayment@education.gov.uk" class="govuk-link">EY-teacher.recognitionpayment@education.gov.uk</a>.
     </p>
 
+
     <form action="/nursery-results" method="get">
-      {{ govukInput({
-        label: {
-          text: "Enter nursery name or postcode",
-          classes: "govuk-label--m"
-        },
-        hint: {
-          text: "Search by name or postcode."
-        },
-        id: "nursery-search",
-        name: "nurserySearch"
-      }) }}
+     
+      <div class="autocomplete-wrapper govuk-!-margin-top-3 govuk-!-margin-bottom-5" data-chosen="">
+        <div id="school-hint" class="govuk-hint">
+          Enter the name or address of the school or trust
+        </div>
+       
+        <select class="schoolSelecter" name="nurserySearch" id="nurserySearch" aria-describedby="school-hint">
+          
+
+
+          {% include "nursery-search__result.njk" %}
+
+        
+        </select>
+      </div>
 
       {{ govukButton({
         text: "Continue"
@@ -53,4 +58,33 @@
     </form>
   </div>
 </div>
+{% endblock %}
+
+{% block pageScripts %}
+  <script src="/public/javascripts/accessible-autocomplete.min.js"></script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const wrapper = document.querySelector('.autocomplete-wrapper');
+
+      if (!wrapper) return;
+
+      const theSchool = wrapper.dataset.chosen;
+      const input = document.querySelector('.autocomplete__input');
+
+      if (input) {
+        input.value = theSchool;
+      }
+
+      setTimeout(function () {
+        const menu = document.querySelector('.autocomplete__menu');
+
+        if (menu) {
+          menu.blur();
+          menu.classList.remove('autocomplete__menu--visible');
+          menu.classList.add('autocomplete__menu--hidden');
+        }
+      }, 100);
+    });
+  </script>
 {% endblock %}
