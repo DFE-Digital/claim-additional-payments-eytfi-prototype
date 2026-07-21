@@ -35,7 +35,7 @@
     </p>
 
 
-    <form action="/nursery-results" method="get">
+    <form method="post">
      
       <div class="autocomplete-wrapper govuk-!-margin-top-3 govuk-!-margin-bottom-5" data-chosen="">
         <div id="school-hint" class="govuk-hint">
@@ -43,12 +43,9 @@
         </div>
        
         <select class="schoolSelecter" name="nurserySearch" id="nurserySearch" aria-describedby="school-hint">
-          
-
 
           {% include "nursery-search__result.njk" %}
 
-        
         </select>
       </div>
 

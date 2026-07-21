@@ -203,6 +203,23 @@ router.post('/eligibility-criteria', (req, res) => {
 
 
 ///////
+// nursery search
+///////
+
+router.post('/nursery-search', (req, res) => {
+
+  const nurserySearch = req.session.data.nurserySearch;
+
+  if (nurserySearch === 'true') {
+    res.redirect('/eligibility-criteria');
+  } else {
+    res.redirect('/ineligible-teaching-qualification-held');
+  }
+
+});
+
+
+///////
 // ops
 ///////
 
@@ -227,3 +244,5 @@ router.post('/ops/services_ey', (req, res) => {
   res.redirect('/ops/services_ey')
 
 })
+
+
