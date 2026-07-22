@@ -18,9 +18,13 @@
   <div class="govuk-grid-column-two-thirds">
     <h1 class="govuk-heading-l">Check your email</h1>
 
-		<p class="govuk-body">We have sent a code to <strong>test@example.com</strong></p>
+    <div class="govuk-inset-text">
+      We have sent a code to <strong>test@example.com</strong>
+    </div>
 
-    <p class="govuk-body">The code will expire in 15 minutes</p>
+    <p class="govuk-body">The email contains a 6 digit security code.</p>
+    <p class="govuk-body">Your email might take a few minutes to arrive. If you do not get an email, check your spam folder.</p>
+    <p class="govuk-body">The code will expire after one hour.</p>
 
     <form action="/one-login-sign-up-create-your-password" method="get">
       {{ govukInput({

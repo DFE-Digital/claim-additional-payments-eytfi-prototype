@@ -66,7 +66,7 @@ router.get('/check-one-login-journey', (req, res) => {
   }
 
   if (oneLoginJourney === 'sign-up') {
-    return res.redirect('/one-login-sign-up-email')
+    return res.redirect('/one-login-sign-up-start')
   }
 
   return res.redirect('/one-login-continue-to-service')
@@ -184,18 +184,11 @@ router.post('/teaching-qualification-confirmation', (req, res) => {
 
 router.post('/eligibility-criteria', (req, res) => {
 
-  const eligible = req.session.data.eligible || []
+  var hasEligibleWorking = req.session.data.hasEligibleWorking
 
-  const selected = Array.isArray(eligible)
-    ? eligible
-    : [eligible]
-
-  if (
-    selected.includes('time') &&
-    selected.includes('performance')
-  ) {
+  if (hasEligibleWorking == 'yes') {
     res.redirect('/check-teaching-qualification')
-  } else {
+  }else{
     res.redirect('/ineligible-teaching-qualification-held')
   }
 

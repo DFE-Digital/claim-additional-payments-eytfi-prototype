@@ -45,7 +45,7 @@
 
     <form action="/check-one-login-journey" method="get">
       {{ govukButton({
-        text: "Continue"
+        text: "Create your GOV.UK One Login"
       }) }}
 
       <p class="govuk-body-s govuk-!-margin-bottom-2">Prototype journey selector</p>
@@ -62,8 +62,7 @@
         items: [
           {
             value: "signed-in",
-            text: "signed in journey",
-            checked: true
+            text: "signed in journey"
           },
           {
             value: "signed-out",
@@ -71,7 +70,8 @@
           },
           {
             value: "sign-up",
-            text: "sign up journey"
+            text: "sign up journey",
+            checked: true
           }
         ]
       }) }}

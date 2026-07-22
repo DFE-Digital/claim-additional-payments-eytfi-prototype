@@ -1,0 +1,38 @@
+{% extends "layouts/main.html" %}
+
+{% from "govuk/components/button/macro.njk" import govukButton %}
+
+{% set pageName="Claim an early years teacher recognition payment" %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    
+    <h1 class="govuk-heading-xl">Providing evidence for claim WQ38SPBV</h1>
+
+    <h2 class="govuk-heading-l">Support agent request</h2>
+
+    <div class="govuk-inset-text">
+      "Please upload proof of employment for the period 6 April 2024 to 5 April 2025. This can be a payslip, P60 or a letter from your employer confirming your employment."
+    </div>
+
+    <div class="govuk-form-group">
+      <label class="govuk-label" for="file-upload-1">
+        Upload a file
+      </label>
+      <input class="govuk-file-upload" id="file-upload-1" name="fileUpload1" type="file">
+    </div>
+
+    <form action="check_progress_upload_complete" method="post" enctype="multipart/form-data">
+
+      <button type="submit" class="govuk-button" data-module="govuk-button">
+        Upload
+      </button>
+    
+    </form>
+
+  </div>
+</div>
+
+{% endblock %}
