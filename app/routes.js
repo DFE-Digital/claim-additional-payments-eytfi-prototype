@@ -196,14 +196,16 @@ router.post('/eligibility-criteria', (req, res) => {
 
 
 router.post('/hmrc', (req, res) => {
-  const { hmrcJourney } = req.query
 
-  if (hmrcJourney === 'error') {
+  var hmrcJourney = req.session.data.hmrcJourney
+
+  if (hmrcJourney == 'error') {
     return res.redirect('/hmrc_error')
   }
 
-  else if (hmrcJourney === 'good') {
-    return res.redirect('/hmrc_good')
+  else if (hmrcJourney == 'good') {
+    req.session.data.success = 'HMRC verification completed successfully'
+    return res.redirect('/accept-payment')
   }
 
   else{
