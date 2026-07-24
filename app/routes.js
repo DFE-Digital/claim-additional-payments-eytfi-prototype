@@ -195,6 +195,25 @@ router.post('/eligibility-criteria', (req, res) => {
 })
 
 
+router.post('/hmrc', (req, res) => {
+  const { hmrcJourney } = req.query
+
+  if (hmrcJourney === 'error') {
+    return res.redirect('/hmrc_error')
+  }
+
+  else if (hmrcJourney === 'good') {
+    return res.redirect('/hmrc_good')
+  }
+
+  else{
+    return res.redirect('/hmrc_bad')
+  }
+
+
+})
+
+
 ///////
 // nursery search
 ///////
