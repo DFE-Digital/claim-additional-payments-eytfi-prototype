@@ -215,6 +215,11 @@ router.post('/hmrc', (req, res) => {
 
 })
 
+router.get('/confirm-where-you-work-no-success', (req, res) => {
+  delete req.session.data.success;
+  res.render('confirm-where-you-work')
+}) 
+
 
 ///////
 // nursery search

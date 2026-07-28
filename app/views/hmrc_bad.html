@@ -29,6 +29,14 @@
     <p class="govuk-body">If you work at Sunny Days Nursery, you can upload a payslip to confirm this.</p>
     <p class="govuk-body">If you selected the wrong nursery, go back and <a class="govuk-link govuk-link--no-visited-state" href="nursery-search">choose a different nursery</a>.</p>
 
+    <p class="govuk-body">The payslip must:</p>
+
+    <ul class="govuk-list govuk-list--bullet">
+      <li>show your full name</li>
+      <li>show the name of your workplace</li>
+      <li>be dated within the last 2 months</li>
+    </ul>
+
 
     <form action="/confirm-where-you-work-uploaded" method="get">
       {{ govukFileUpload({
