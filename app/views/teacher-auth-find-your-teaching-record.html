@@ -47,11 +47,24 @@
     }) }}
   </div>
 </div>
-<!--
+
 {{ govukButton({
-        text: "Match",
-        href: "/match",
-        classes: "govuk-button--inverse"
-      }) }}
--->
+  text: "Match",
+  href: "/match",
+  classes: "govuk-button--inverse"
+}) }}
+
+{{ govukButton({
+  text: "Match and check",
+  href: "/match_and_check",
+  classes: "govuk-button--inverse"
+}) }}
+
+{{ govukButton({
+  text: "Match & progress",
+  href: "/check_progress_result_match",
+  classes: "govuk-button--inverse"
+}) }}
+
+
 {% endblock %}
