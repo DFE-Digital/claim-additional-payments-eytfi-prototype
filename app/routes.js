@@ -266,3 +266,32 @@ router.post('/ops/services_ey', (req, res) => {
 })
 
 
+///////////////////
+
+///// claimant model
+
+///////////////////
+
+
+router.post('/claimantmodel/start', (req, res) => {
+
+  var type = req.session.data.type
+  var claimNumber = req.session.data.claimNumber
+
+  if (type == 'ref') {
+
+    if (claimNumber == 'rejected') {
+      res.redirect('claim-rejected')
+    }
+    else if (claimNumber == 'not found') {
+      res.redirect('claim-not-found')
+    }
+    else{
+      res.redirect('check_progress_result')
+    }
+    
+  }else{
+    res.redirect('one-login-continue-to-service')
+  }
+
+})
