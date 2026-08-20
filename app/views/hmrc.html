@@ -49,16 +49,18 @@
         items: [
           {
             value: "error",
-            text: "error journey"
+            text: "error journey",
+            checked: data.hmrcJourney == "error"
           },
           {
             value: "good",
             text: "good match journey",
-            checked: true
+            checked: data.hmrcJourney == "good"
           }, 
           {
             value: "bad",
-            text: "bad match journey"
+            text: "bad match journey",
+            checked: data.hmrcJourney == "bad"
           }
         ]
       }) }}
