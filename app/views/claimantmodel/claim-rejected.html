@@ -1,0 +1,53 @@
+{% extends "layouts/main.html" %}
+
+{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+
+{% set pageName = "Continue to the service you need to use" %}
+
+{% block pageBeforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "/one-login-start"
+  }) }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    
+    <h1 class="govuk-heading-xl">Claim WQ38SPBV has been rejected</h1>
+
+    <p class="govuk-body">
+			Unfortunately, you’re not eligible for an early years recognition payment at the moment
+    </p>
+
+    <p class="govuk-body">The reason your claim was not approved is:</p>
+
+    <ul class="govuk-list govuk-list--bullet">
+      <li>insert reason</li>
+    </ul>
+
+    <p class="govuk-body">
+      You may be eligible in the future. You can check the
+      <a
+        href="/guidance"
+        class="govuk-link"
+      >
+        guidance
+      </a>
+      again to see the full eligibility criteria and when you might be able to apply.
+    </p>
+
+    <p class="govuk-body">
+      Thank you for your contribution to early years education,
+    </p>
+
+    <p class="govuk-body">
+      Early years teacher recognition payment team<br>
+      Department for Education<br>
+    </p>
+
+  </div>
+</div>
+{% endblock %}

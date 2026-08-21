@@ -275,7 +275,7 @@ router.post('/ops/services_ey', (req, res) => {
 
 router.post('/claimantmodel/start', (req, res) => {
 
-  var type = req.session.data.type
+  var type = req.session.data.logintype
   var claimNumber = req.session.data.claimNumber
 
   if (type == 'ref') {

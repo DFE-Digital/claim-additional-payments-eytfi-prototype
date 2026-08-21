@@ -1,0 +1,90 @@
+{% extends "layouts/main.html" %}
+
+{% from "govuk/components/button/macro.njk" import govukButton %}
+
+{% set pageName="Claim an early years teacher recognition payment" %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-xl">Check the progress of your claim</h1>
+
+    <p class="govuk-body">
+      See the progress of your submitted claim or change your bank details for your submitted claim.
+    </p>
+    
+    <form method="post">
+    
+    <div class="govuk-form-group">
+      <fieldset class="govuk-fieldset" aria-describedby="contact-hint">
+        <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+          <h2 class="govuk-fieldset__heading">
+            How do you want to find your claim?
+          </h2>
+        </legend>
+        <div id="contact-hint" class="govuk-hint">
+          Select one option
+        </div>
+        <div class="govuk-radios" data-module="govuk-radios">
+          <div class="govuk-radios__item">
+            <input class="govuk-radios__input" id="contact" name="logintype" type="radio" value="ref" data-aria-controls="conditional-contact">
+            <label class="govuk-label govuk-radios__label" for="contact">
+              Enter a claim reference number
+            </label>
+          </div>
+          <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-contact">
+            
+            <div class="govuk-form-group">
+              <h3 class="govuk-label-wrapper">
+                <label class="govuk-label govuk-label--s" for="ref">
+                  What is your claim reference number?
+                </label>
+              </h3>
+              <div id="account-number-hint" class="govuk-hint">
+                Your claim reference would have been sent to your email address when you submitted your claim. The email will be sent by claims@dfe.com.
+              </div>
+              <input class="govuk-input" id="claimNumber" name="claimNumber" type="text">
+            </div>
+
+
+          </div>
+          <div class="govuk-radios__item">
+            <input class="govuk-radios__input" id="contact-2" name="logintype" type="radio" value="one">
+            <label class="govuk-label govuk-radios__label" for="contact-2">
+              Sign in with GOV.UK One Login
+            </label>
+            <div id="signIn-2-item-hint" class="govuk-hint govuk-radios__hint">
+              When submitted a claim you would have used GOV.UK One Login to confirm your identity. This account will be linked to your claim.
+            </div>
+          </div>
+         
+          
+        </div>
+      </fieldset>
+    </div>
+
+    <details class="govuk-details">
+      <summary class="govuk-details__summary">
+        <span class="govuk-details__summary-text">
+          Help with accessing your claim
+        </span>
+      </summary>
+      <div class="govuk-details__text">
+        <p class="govuk-body">
+          All claims are submitted through the online service with a GOV.UK One Login account. If you are having trouble accessing your claim, you can reset your password for your GOV.UK One Login account which will allow you to access your claim.
+        </p>
+      </div>
+    </details>
+
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+
+    </form>
+
+
+  </div>
+</div>
+
+{% endblock %}

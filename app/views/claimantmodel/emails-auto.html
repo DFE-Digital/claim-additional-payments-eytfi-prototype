@@ -1,0 +1,58 @@
+{% extends "govuk-prototype-kit/layouts/unbranded.html" %}
+
+{% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+
+{% set pageName = "Confirmation email" %}
+
+{% block pageTitle %}
+  Confirmation email
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    {{ govukSummaryList({
+      rows: [
+        {
+          key: {
+            text: "From"
+          },
+          value: {
+            text: "Department for Education <support@additionalteachingpayment.zendesk.com>"
+          }
+        },
+        {
+          key: {
+            text: "To"
+          },
+          value: {
+            text: "test@example.com"
+          }
+        },
+        {
+          key: {
+            text: "Subject"
+          },
+          value: {
+            text: "[whatever user added in subject field] Claim reference number: HDJ2123F"
+          }
+        }
+      ]
+    }) }}
+
+    <p class="govuk-body">Hello Edna,</p>
+
+    <p class="govuk-body">Thank you for contacting the Support Team.</p>
+
+    <p class="govuk-body">If you are looking for information about your claim, you can <a class="govuk-link govuk-link--no-visited-state" href="start">check the progress of your claim using your claim reference number</a>.</p>
+
+    <p class="govuk-body">You can also edit your bank details using your claim reference number.</p>
+
+    <p class="govuk-body">We will not reply to this email unless the matter is urgent.</p>
+
+    <p class="govuk-body">Kind regards,<br>
+    Support Team</p>
+
+  </div>
+</div>
+{% endblock %}
