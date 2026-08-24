@@ -278,20 +278,22 @@ router.post('/claimantmodel/start', (req, res) => {
   var type = req.session.data.logintype
   var claimNumber = req.session.data.claimNumber
 
-  if (type == 'ref') {
-
-    if (claimNumber == 'rejected') {
-      res.redirect('claim-rejected')
-    }
-    else if (claimNumber == 'not found') {
-      res.redirect('claim-not-found')
-    }
-    else{
-      res.redirect('check_progress_result')
-    }
-    
-  }else{
-    res.redirect('one-login-continue-to-service')
+  if (claimNumber == 'rejected') {
+    res.redirect('claim-rejected')
   }
+  else if (claimNumber == 'not found') {
+    res.redirect('claim-not-found')
+  }
+  else{
+    res.redirect('sent_you_an_email')
+  }
+  
+})
 
+
+router.post('/claimantmodel/bank-details', (req, res) => {
+
+  req.session.data.success = 'Bank details have been updated'
+
+  res.redirect('/claimantmodel/check_progress_result')
 })

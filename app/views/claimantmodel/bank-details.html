@@ -17,7 +17,7 @@
 {% block content %}
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
-    <form action="/gender" method="get">
+    <form method="post">
       <h1 class="govuk-heading-l">Enter your personal bank account details</h1>
 
       {{ govukInput({
@@ -28,7 +28,8 @@
           text: "For example: your name as it appears on your bank statement or bank card."
         },
         id: "account-name",
-        name: "accountName"
+        name: "accountName",
+        value: "Mr John Doe"
       }) }}
 
       {{ govukInput({
@@ -41,6 +42,7 @@
         id: "sort-code",
         name: "sortCode",
         classes: "govuk-input--width-10",
+        value: "123456",
         inputmode: "numeric"
       }) }}
 
@@ -54,6 +56,7 @@
         id: "account-number",
         name: "accountNumber",
         classes: "govuk-input--width-10",
+        value: "12345678",
         inputmode: "numeric"
       }) }}
 
@@ -62,7 +65,7 @@
       }) }}
 
       {{ govukButton({
-        text: "Continue"
+        text: "Save bank details"
       }) }}
     </form>
   </div>

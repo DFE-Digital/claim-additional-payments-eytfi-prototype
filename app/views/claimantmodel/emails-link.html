@@ -2,10 +2,10 @@
 
 {% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
 
-{% set pageName = "Confirmation email" %}
+{% set pageName = "Your claim progress link" %}
 
 {% block pageTitle %}
-  Confirmation email
+  Your claim progress link
 {% endblock %}
 
 {% block content %}
@@ -18,7 +18,7 @@
             text: "From"
           },
           value: {
-            text: "Department for Education <support@additionalteachingpayment.zendesk.com>"
+            text: "Claim an early years teacher recognition payment"
           }
         },
         {
@@ -34,7 +34,7 @@
             text: "Subject"
           },
           value: {
-            text: "[whatever user added in subject field] Claim reference number: HDJ2123F"
+            text: "Your claim progress link for claim reference number: HDJ2123F"
           }
         }
       ]
@@ -42,15 +42,18 @@
 
     <p class="govuk-body">Hello Edna,</p>
 
-    <p class="govuk-body">Thank you for contacting the Support Team.</p>
+    <p class="govuk-body">
+     Here is a link to <a class="govuk-link govuk-link--no-visited-state" href="check_progress_result">check the progress of your claim or edit payment bank details</a>.
+    </p>
 
-    <p class="govuk-body">If you are looking for information about your claim, or want to edit your bank detais, you can <a class="govuk-link govuk-link--no-visited-state" href="start">check the progress of your claim using your claim reference number</a>.</p>
+    <p class="govuk-body">
+      Thank you for your contribution to early years education,
+    </p>
 
-    <p class="govuk-body">We will not reply to this email unless the matter is urgent.</p>
-
-    <p class="govuk-body">Kind regards,<br>
-    Support Team</p>
-
+    <p class="govuk-body">
+      Early years teacher recognition payment team,<br>
+      Department for Education
+    </p>
   </div>
 </div>
 {% endblock %}
