@@ -1,0 +1,63 @@
+{% extends "govuk-prototype-kit/layouts/unbranded.html" %}
+
+{% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+
+{% set pageName = "Your claim progress link" %}
+
+{% block pageTitle %}
+  Your claim progress link
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    {{ govukSummaryList({
+      rows: [
+        {
+          key: {
+            text: "From"
+          },
+          value: {
+            text: "Claim an early years teacher recognition payment"
+          }
+        },
+        {
+          key: {
+            text: "To"
+          },
+          value: {
+            text: "test@example.com"
+          }
+        },
+        {
+          key: {
+            text: "Subject"
+          },
+          value: {
+            text: "Your claim reference number is: HDJ2123F"
+          }
+        }
+      ]
+    }) }}
+
+    <p class="govuk-body">Hello Edna,</p>
+
+    <p class="govuk-body">
+      Your claim reference number is: <b>HDJ2123F</b>
+    </p>
+
+    <p class="govuk-body">
+     Here is a link to <a class="govuk-link govuk-link--no-visited-state" href="check_progress_result?logintype=no&success=">check the progress of your claim or edit payment bank details</a>.
+    </p>
+
+    <p class="govuk-body">
+      Thank you for your contribution to early years education,
+    </p>
+
+    <p class="govuk-body">
+      Early years teacher recognition payment team,<br>
+      Department for Education
+    </p>
+  </div>
+</div>
+{% endblock %}

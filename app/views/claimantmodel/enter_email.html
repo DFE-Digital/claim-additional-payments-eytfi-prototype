@@ -1,0 +1,37 @@
+{% extends "layouts/main.html" %}
+
+{% from "govuk/components/button/macro.njk" import govukButton %}
+
+{% set pageName="Claim an early years teacher recognition payment" %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-xl">Get your claim reference number</h1>
+    
+    <form action="sent_you_an_email_if_reference" method="post">
+
+      <div class="govuk-form-group">
+        <h3 class="govuk-label-wrapper">
+          <label class="govuk-label govuk-label--s" for="ref">
+            What is your email address?
+          </label>
+        </h3>
+        <div id="account-number-hint" class="govuk-hint">
+          An email address would have been used when you submitted your claim. We will send you the latest claim reference number associated with your account.
+        </div>
+        <input class="govuk-input" id="claimNumber" name="claimNumber" type="text">
+      </div>
+
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+
+    </form>
+
+
+  </div>
+</div>
+
+{% endblock %}

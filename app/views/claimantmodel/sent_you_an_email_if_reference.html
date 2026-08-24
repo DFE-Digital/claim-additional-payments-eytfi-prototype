@@ -1,0 +1,38 @@
+{% extends "layouts/main.html" %}
+
+{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+
+{% set pageName = "We've sent you an email" %}
+
+{% block pageBeforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "/one-login-start"
+  }) }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-l">Check your email</h1>
+
+    <p class="govuk-body">
+      If there is a claim associated with that email address, we will send you a claim reference number. 
+    </p>
+
+    <p class="govuk-body">
+      If you do not receive an email with a reference within 5 minutes. Please check your junk or spam folder. If you still cannot find the email, please contact us at <a href="mailto:EY-teacher.recognitionpayment@education.gov.uk">EY-teacher.recognitionpayment@education.gov.uk</a>.
+    </p>
+
+    <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+
+    <p class="govuk-body-s">
+      Prototype only:
+      <a href="/claimantmodel/emails-reference" class="govuk-link govuk-link--no-visited-state" target="_blank" rel="noreferrer noopener">View email</a>
+    </p>
+
+    
+  </div>
+</div>
+{% endblock %}
