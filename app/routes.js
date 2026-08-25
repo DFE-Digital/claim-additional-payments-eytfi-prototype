@@ -278,14 +278,20 @@ router.post('/claimantmodel/start', (req, res) => {
   var type = req.session.data.logintype
   var claimNumber = req.session.data.claimNumber
 
-  if (claimNumber == 'rejected') {
-    res.redirect('claim-rejected')
-  }
-  else if (claimNumber == 'not found') {
-    res.redirect('claim-not-found')
-  }
-  else{
-    res.redirect('sent_you_an_email')
+  if (type == 'ref') {
+
+    if (claimNumber == 'rejected') {
+      res.redirect('claim-rejected')
+    }
+    else if (claimNumber == 'not found') {
+      res.redirect('claim-not-found')
+    }
+    else{
+      res.redirect('sent_you_an_email')
+    }
+
+  }else{
+    res.redirect('one-login-start')
   }
   
 })

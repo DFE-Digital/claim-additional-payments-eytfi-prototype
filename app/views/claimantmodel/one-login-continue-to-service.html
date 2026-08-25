@@ -27,10 +27,21 @@
       to automatically fill in forms within the service.
     </p>
 
-    {{ govukButton({
-      text: "Continue",
-      href: "bank-details?logintype=one"
-    }) }}
+    {% if data.logintype == "one" %}
+
+      {{ govukButton({
+        text: "Continue",
+        href: "claim-dashboard"
+      }) }}
+
+    {% else %}
+
+      {{ govukButton({
+        text: "Continue",
+        href: "start?logintype=no&success="
+      }) }}
+
+      {% endif %}
   </div>
 </div>
 {% endblock %}
