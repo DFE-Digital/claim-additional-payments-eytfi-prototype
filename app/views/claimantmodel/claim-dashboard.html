@@ -5,22 +5,11 @@
 
 {% set pageName = "Continue to the service you need to use" %}
 
-{% block pageBeforeContent %}
-  {{ govukBackLink({
-    text: "Back",
-    href: "/one-login-start"
-  }) }}
-{% endblock %}
-
 {% block content %}
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
     
     <h1 class="govuk-heading-xl">Your claims</h1>
-
-    <p class="govuk-body">
-			There is no claim with the reference number you entered. Please check the reference number and try again.
-    </p>
 
     <div class="govuk-summary-card">
       <div class="govuk-summary-card__title-wrapper">
@@ -29,7 +18,7 @@
         </h2>
         <ul class="govuk-summary-card__actions">
           <li class="govuk-summary-card__action">
-            <a class="govuk-link" href="check_progress_result.html">View claim<span class="govuk-visually-hidden"></span></a>
+            <a class="govuk-link govuk-link--no-visited-state" href="check_progress_result.html">View claim<span class="govuk-visually-hidden"></span></a>
           </li>
         </ul>
       </div>
@@ -64,7 +53,7 @@
         </h2>
         <ul class="govuk-summary-card__actions">
           <li class="govuk-summary-card__action">
-            <a class="govuk-link" href="#">View claim<span class="govuk-visually-hidden"></span></a>
+            <a class="govuk-link govuk-link--no-visited-state" href="claim-rejected">View claim<span class="govuk-visually-hidden"></span></a>
           </li>
         </ul>
       </div>
@@ -75,7 +64,7 @@
               Claim type
             </dt>
             <dd class="govuk-summary-list__value">
-              Claim an early years teacher recognition payment
+              Retention incentive payments for FE teachers
             </dd>
           </div>
           <div class="govuk-summary-list__row">

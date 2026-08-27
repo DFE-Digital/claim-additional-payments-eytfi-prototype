@@ -8,7 +8,7 @@
 {% block pageBeforeContent %}
   {{ govukBackLink({
     text: "Back",
-    href: "/one-login-start"
+    href: "claim-dashboard"
   }) }}
 {% endblock %}
 
@@ -19,7 +19,7 @@
     <h1 class="govuk-heading-xl">Claim WQ38SPBV has been rejected</h1>
 
     <p class="govuk-body">
-			Unfortunately, you’re not eligible for an early years recognition payment at the moment
+			Unfortunately, you’re not eligible for an early years recognition payment at the moment.
     </p>
 
     <p class="govuk-body">The reason your claim was not approved is:</p>
@@ -32,21 +32,21 @@
       You may be eligible in the future. You can check the
       <a
         href="/guidance"
-        class="govuk-link"
+        class="govuk-link govuk-link--no-visited-state"
       >
         guidance
       </a>
       again to see the full eligibility criteria and when you might be able to apply.
     </p>
 
-    <p class="govuk-body">
-      Thank you for your contribution to early years education,
-    </p>
+    {% if data.logintype == "one" %}
 
-    <p class="govuk-body">
-      Early years teacher recognition payment team<br>
-      Department for Education<br>
-    </p>
+      {{ govukButton({
+        text: "Return to your claims",
+        href: "claim-dashboard"
+      }) }}
+
+    {% endif %}
 
   </div>
 </div>

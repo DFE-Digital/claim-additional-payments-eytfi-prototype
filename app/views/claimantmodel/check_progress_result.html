@@ -4,6 +4,13 @@
 
 {% set pageName="Claim an early years teacher recognition payment" %}
 
+{% block pageBeforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "claim-dashboard"
+  }) }}
+{% endblock %}
+
 {% block content %}
 
 <div class="govuk-grid-row">
@@ -47,7 +54,7 @@
           In progress
         </dt>
         <dd class="govuk-summary-list__value">
-           <strong class="govuk-tag govuk-tag--blue">
+          <strong class="govuk-tag govuk-tag--blue">
             In review
           </strong>
         </dd>
@@ -143,7 +150,8 @@
             Account Number
           </dt>
           <dd class="govuk-summary-list__value">
-            ****1234
+            <!-- ****1234 -->
+            12341234
           </dd>
           <dd class="govuk-summary-list__actions">
             <a class="govuk-link govuk-link--no-visited-state" href="one-login-start.html">Change<span class="govuk-visually-hidden"> account number</span></a>
@@ -154,7 +162,8 @@
             Sort Code
           </dt>
           <dd class="govuk-summary-list__value">
-            ***123
+            <!-- ***123 -->
+            123456
           </dd>
           <dd class="govuk-summary-list__actions">
             <a class="govuk-link govuk-link--no-visited-state" href="one-login-start.html">Change<span class="govuk-visually-hidden"> sort code</span></a>
