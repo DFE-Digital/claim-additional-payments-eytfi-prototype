@@ -28,7 +28,7 @@
       }) }}
     {% endset %}
 
-    <form method="get">
+    <form method="post">
       {{ govukRadios({
         idPrefix: "has-national-insurance-number",
         name: "hasNationalInsuranceNumber",
@@ -55,8 +55,7 @@
       }) }}
 
       {{ govukButton({
-        text: "Continue",
-        href: "/hmrc.html"
+        text: "Continue"
       }) }}
     </form>
   </div>

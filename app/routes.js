@@ -266,6 +266,23 @@ router.post('/ops/services_ey', (req, res) => {
 })
 
 
+
+router.post('/teacher-auth-national-insurance-number', (req, res) => {
+
+  var national = req.session.data.hasNationalInsuranceNumber
+
+  if (national == 'yes') {
+
+    res.redirect('hmrc')
+
+  }else{
+    res.redirect('teacher-auth-teacher-reference-number')
+  }
+  
+})
+
+
+
 ///////////////////
 
 ///// claimant model
