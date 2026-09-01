@@ -1,0 +1,28 @@
+{% extends "layouts/main_schools.html" %}
+
+{% from "govuk/components/button/macro.njk" import govukButton %}
+
+{% set pageName="Claim an early years teacher recognition payment" %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-xl">You have already made a claim this year</h1>
+    
+    
+    <p class="govuk-body"> There are already claims submitted for this school this year with your one login account. </p>
+   
+    
+    <div class="govuk-!-padding-bottom-6"> 
+      <a class="govuk-button" data-module="govuk-button" href="/claimantmodel/claim-dashboard" data-govuk-button-init="">View claim submissions</a> 
+    </div>
+   
+    
+  </div>
+  
+
+</div>
+
+{% endblock %}

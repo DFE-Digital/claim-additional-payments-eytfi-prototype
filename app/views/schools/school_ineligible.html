@@ -1,0 +1,42 @@
+{% extends "layouts/main_schools.html" %}
+
+{% from "govuk/components/button/macro.njk" import govukButton %}
+
+{% set pageName="Claim an early years teacher recognition payment" %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-xl">The school you have selected is not eligible</h1>
+    <table class="govuk-table">
+      <caption class="govuk-table__caption govuk-table__caption--m">School selected</caption>
+      <tbody class="govuk-table__body">
+        <tr class="govuk-table__row">
+          <th class="govuk-table__header" scope="row">Name</th>
+          <td class="govuk-table__cell">Sawley Junior School</td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th class="govuk-table__header" scope="row">Address</th>
+          <td class="govuk-table__cell">Wilmot Street, Sawley, Nottingham, Nottinghamshire, NG10 3DQ</td>
+        </tr>
+      </tbody>
+    </table>
+    <p class="govuk-body"> The reason could be: </p>
+    <ul class="govuk-list govuk-list--bullet">
+      <li>your school may not be eligible as these payments are targeted at schools with high need for teachers</li>
+      <li>the school you listed is closed. This could be the case if it has changed status to become an academy or has been rebranded</li>
+      <li>the spelling of the school does not match our records. Check the spelling, including any apostrophes, hyphens or full stops used in the school's name</li>
+    </ul>
+    <div class="govuk-!-padding-bottom-6"> 
+      <a class="govuk-button" data-module="govuk-button" href="/targeted-retention-incentive-payments/current-school" data-govuk-button-init="">Change school</a> 
+    </div>
+    <p class="govuk-body"> For more information, check the eligibility criteria for <a class="govuk-link govuk-link--no-visited-state" href="https://www.gov.uk/guidance/targeted-retention-incentive-payments-for-school-teachers#eligibility-criteria">school targeted retention incentives</a>. </p>
+    <p class="govuk-body"> The information you entered is not stored. If you are unsure your information is correct, <a class="govuk-link govuk-link--no-visited-state" href="/targeted-retention-incentive-payments/landing-page">start again</a>. </p>
+  </div>
+  
+
+</div>
+
+{% endblock %}

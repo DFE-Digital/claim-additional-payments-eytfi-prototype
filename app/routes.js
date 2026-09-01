@@ -320,3 +320,44 @@ router.post('/claimantmodel/bank-details', (req, res) => {
 
   res.redirect('/claimantmodel/check_progress_result')
 })
+
+
+
+
+
+
+///////////////////
+
+///// STRI SCHOOL PAYMENTS
+
+///////////////////
+
+
+
+///////
+// school search
+///////
+
+router.post('/schools/school_search', (req, res) => {
+
+  const schoolSearch = req.session.data.schoolSearch;
+
+  if (schoolSearch == 'true') {
+    res.redirect('one-login-start');
+  } else if (schoolSearch == 'false') {
+    res.redirect('school_ineligible');
+  } 
+
+});
+
+router.post('/schools/one-login-continue-to-service', (req, res) => {
+
+  const schoolSearch = req.session.data.oneLoginReturnJourney;
+
+  if (schoolSearch == 'no') {
+    res.redirect('data_returned');
+  } else if (schoolSearch == 'yes') {
+    res.redirect('previous_claims');
+  } 
+
+});

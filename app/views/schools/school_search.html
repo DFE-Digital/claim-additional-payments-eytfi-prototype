@@ -7,10 +7,12 @@
 {% set pageName = "Which nursery do you teach in?" %}
 
 {% block pageBeforeContent %}
+
   {{ govukBackLink({
     text: "Back",
     href: "/"
   }) }}
+
 {% endblock %}
 
 {% block content %}
@@ -24,19 +26,19 @@
       <div class="govuk-form-group">
       
         <h1 class="govuk-label-wrapper">
-          <label class="govuk-label govuk-label--l" for="nurserySearch">
-            Which school do you teach in?
+          <label class="govuk-label govuk-label--l" for="schoolSearch">
+            Which school do you teach at?
           </label>
         </h1>
      
-          <div class="autocomplete-wrapper govuk-!-margin-top-3 govuk-!-margin-bottom-5" data-chosen="">
+          <div class="autocomplete-wrapper govuk-!-margin-top-3 govuk-!-margin-bottom-3" data-chosen="">
             <div id="school-hint" class="govuk-hint">
-              Enter the name or address of the school or trust
+              Enter the school name or postcode using at least 3 characters
             </div>
           
-            <select class="schoolSelecter" name="nurserySearch" id="nurserySearch" aria-describedby="school-hint">
+            <select class="schoolSelecter" name="schoolSearch" id="schoolSearch" aria-describedby="school-hint">
 
-              {% include "nursery-search__result.njk" %}
+              {% include "schools/schools_result.html" %}
 
             </select>
           </div>
@@ -46,29 +48,11 @@
         text: "Continue"
       }) }}
 
-      <details class="govuk-details">
-        <summary class="govuk-details__summary">
-          <span class="govuk-details__summary-text">
-            Help with school search
-          </span>
-        </summary>
-        <div class="govuk-details__text">
-            <ul class="govuk-list govuk-list--bullet">
-              <h2 class="govuk-heading-s">Help selecting a nursery</h2>
-              <p>If you work in more than one setting, choose the setting where you spend most of your time. </p>
-              <p>If you teach at a provider of <a class="govuk-link govuk-link--no-visited-state" href="https://www.gov.uk/guidance/childcare-on-domestic-premises">provider of childcare on domestic premises (CoDP)</a> and you cannot find it in the search, email <a href="mailto:EY-teacher.recognitionpayment@education.gov.uk" class="govuk-link">EY-teacher.recognitionpayment@education.gov.uk</a>. </p>
-              <p>If you cannot find your nursery in the search and think it's eligible, email <a href="mailto:EY-teacher.recognitionpayment@education.gov.uk" class="govuk-link">EY-teacher.recognitionpayment@education.gov.uk</a>. </p>
-              
-              <h2 class="govuk-heading-s">Information about nursery eligibility</h2>
-              <p>You can read the <a class="govuk-link govuk-link--no-visited-state" href="guidance">guidance</a> to check nursery eligibility criteria.</p>
-              <p>You can read the <a class="govuk-link govuk-link--no-visited-state" href="guidance_methodology">methodology</a> to find out how local authorities were selected.</p>
-            </ul>
-        </div>
-      </details>
 
     </form>
   </div>
 </div>
+
 {% endblock %}
 
 {% block pageScripts %}
