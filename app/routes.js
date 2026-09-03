@@ -354,10 +354,29 @@ router.post('/schools/one-login-continue-to-service', (req, res) => {
 
   const schoolSearch = req.session.data.oneLoginReturnJourney;
 
-  if (schoolSearch == 'no') {
+  if (schoolSearch == 'no previous claims, teacher auth attached') {
     res.redirect('data_returned');
-  } else if (schoolSearch == 'yes') {
+  } else if (schoolSearch == 'no previous claims, teacher auth not attached') {
+    res.redirect('teacher-auth-find-your-teaching-record');
+  } else{
     res.redirect('previous_claims');
-  } 
+  }
 
 });
+
+
+router.post('/schools/teacher-auth-national-insurance-number', (req, res) => {
+
+  var national = req.session.data.nationalYes
+
+  if (national == 'NI entered, matched') {
+
+    req.session.data.success = 'Teacher record has been found'
+
+    res.redirect('/schools/data-returned')
+
+  }else{
+    res.redirect('/schools/teacher-reference-number')
+  }
+  
+})

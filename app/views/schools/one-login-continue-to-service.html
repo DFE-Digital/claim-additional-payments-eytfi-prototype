@@ -32,29 +32,45 @@
         text: "Continue"
       }) }}
 
-      <p class="govuk-body-s govuk-!-margin-bottom-2">Prototype journey selector</p>
 
-      {{ govukRadios({
-        classes: "govuk-radios--small",
-        name: "oneLoginReturnJourney",
-        fieldset: {
-          legend: {
-            text: "Choose a One Login return journey",
-            classes: "govuk-visually-hidden"
-          }
-        },
-        items: [
-          {
-            value: "no",
-            text: "no previous claims",
-            checked: true
-          },
-          {
-            value: "yes",
-            text: "there is a previous claim"
-          }
-        ]
-      }) }}
+      <details class="govuk-details">
+        <summary class="govuk-details__summary">
+          <span class="govuk-details__summary-text">
+            Prototype
+          </span>
+        </summary>
+        <div class="govuk-details__text">
+          <p class="govuk-body-s govuk-!-margin-bottom-2">Prototype journey selector</p>
+
+            {{ govukRadios({
+              classes: "govuk-radios--small",
+              name: "oneLoginReturnJourney",
+              fieldset: {
+                legend: {
+                  text: "Choose a One Login return journey",
+                  classes: "govuk-visually-hidden"
+                }
+              },
+              items: [
+                {
+                  value: "no previous claims, teacher auth attached",
+                  text: "no previous claims, teacher auth attached",
+                  checked: true
+                },
+                {
+                  value: "no previous claims, teacher auth not attached",
+                  text: "no previous claims, teacher auth not attached"
+                },
+                {
+                  value: "yes",
+                  text: "there is a previous claim"
+                }
+              ]
+            }) }}
+        </div>
+      </details>
+
+      
     </form>
 
   </div>
