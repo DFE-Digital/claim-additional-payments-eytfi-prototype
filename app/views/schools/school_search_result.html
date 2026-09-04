@@ -1,0 +1,85 @@
+{% extends "layouts/main.html" %}
+
+{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/input/macro.njk" import govukInput %}
+
+{% set pageName = "Which nursery do you teach in?" %}
+
+{% block pageBeforeContent %}
+
+  {{ govukBackLink({
+    text: "Back",
+    href: "/"
+  }) }}
+
+{% endblock %}
+
+{% block content %}
+
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <form action="school_hours">
+
+      <div class="govuk-form-group">
+      
+        <h1 class="govuk-label-wrapper">
+          <label class="govuk-label govuk-label--l" for="schoolSearch">
+            Which school do you teach at?
+          </label>
+        </h1>
+
+        <div id="school-hint" class="govuk-hint">
+          Select your school from the search results.
+        </div>
+     
+        <div class="govuk-radios govuk-!-margin-bottom-3" data-module="govuk-radios">
+          <div class="govuk-radios__item">
+            <input class="govuk-radios__input" id="whereDoYouLive" name="whereDoYouLive" type="radio" value="Oaks academy">
+            <label class="govuk-label govuk-radios__label" for="whereDoYouLive">
+              Oaks academy, Blackpool, Lancashire, FY3 8AA
+            </label>
+          </div>
+        </div>
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+
+    </form>
+  </div>
+</div>
+
+{% endblock %}
+
+{% block pageScripts %}
+  <script src="/public/javascripts/accessible-autocomplete.min.js"></script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const wrapper = document.querySelector('.autocomplete-wrapper');
+
+      if (!wrapper) return;
+
+      const theSchool = wrapper.dataset.chosen;
+      const input = document.querySelector('.autocomplete__input');
+
+      if (input) {
+        input.value = theSchool;
+      }
+
+      setTimeout(function () {
+        const menu = document.querySelector('.autocomplete__menu');
+
+        if (menu) {
+          menu.blur();
+          menu.classList.remove('autocomplete__menu--visible');
+          menu.classList.add('autocomplete__menu--hidden');
+        }
+      }, 100);
+    });
+  </script>
+{% endblock %}

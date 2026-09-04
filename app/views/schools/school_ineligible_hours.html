@@ -1,0 +1,24 @@
+{% extends "layouts/main_schools.html" %}
+
+{% from "govuk/components/button/macro.njk" import govukButton %}
+
+{% set pageName="Claim an early years teacher recognition payment" %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-xl">You are not eligible for this payment</h1>
+    
+    <p class="govuk-body"> You are not eligible for a targeted retention incentive payment because you do not spend at least half of your contracted hours teaching chemistry, computing, mathematics or physics.</p>
+
+    <p class="govuk-body"> For more information, check the eligibility criteria for <a class="govuk-link govuk-link--no-visited-state" href="https://www.gov.uk/guidance/targeted-retention-incentive-payments-for-school-teachers#eligibility-criteria">school targeted retention incentives</a>. </p>
+    
+    <p class="govuk-body"> The information you entered is not stored. If you are unsure your information is correct, <a class="govuk-link govuk-link--no-visited-state" href="/targeted-retention-incentive-payments/landing-page">start again</a>. </p>
+  </div>
+  
+
+</div>
+
+{% endblock %}

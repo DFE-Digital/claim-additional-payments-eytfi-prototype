@@ -343,7 +343,7 @@ router.post('/schools/school_search', (req, res) => {
   const schoolSearch = req.session.data.schoolSearch;
 
   if (schoolSearch == 'true') {
-    res.redirect('one-login-start');
+    res.redirect('school_search_result');
   } else if (schoolSearch == 'false') {
     res.redirect('school_ineligible');
   } 
@@ -380,3 +380,16 @@ router.post('/schools/teacher-auth-national-insurance-number', (req, res) => {
   }
   
 })
+
+
+router.post('/schools/school_hours', (req, res) => {
+
+  const theHours = req.session.data.hours;
+
+  if (theHours == 'Yes') {
+    res.redirect('one-login-start');
+  } else {
+    res.redirect('school_ineligible_hours');
+  } 
+
+});
