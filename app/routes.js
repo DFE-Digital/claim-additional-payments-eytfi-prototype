@@ -367,16 +367,28 @@ router.post('/schools/one-login-continue-to-service', (req, res) => {
 
 router.post('/schools/teacher-auth-national-insurance-number', (req, res) => {
 
-  var national = req.session.data.nationalYes
+  var national = req.session.data.hasNationalInsuranceNumber
 
-  if (national == 'NI entered, matched') {
+  if (national == 'yes') {
 
-    req.session.data.success = 'Teacher record has been found'
-
-    res.redirect('/schools/data-returned')
+    res.redirect('/schools/teacher-auth-record-match')
 
   }else{
-    res.redirect('/schools/teacher-reference-number')
+    res.redirect('/schools/teacher-auth-teacher-reference-number')
+  }
+  
+})
+
+router.post('/schools/teacher-auth-teacher-reference-number', (req, res) => {
+
+  var national = req.session.data.hasTeacherReferenceNumber
+
+  if (national == 'yes') {
+
+    res.redirect('/schools/teacher-auth-record-match')
+
+  }else{
+    res.redirect('/schools/teacher-auth-no-teacher-reference-number')
   }
   
 })
@@ -393,3 +405,36 @@ router.post('/schools/school_hours', (req, res) => {
   } 
 
 });
+
+router.post('/schools/school_search_result', (req, res) => {
+
+  const schoolValid = req.session.data.schoolValid;
+
+  if (schoolValid == 'school valid') {
+    res.redirect('/schools/school_hours');
+  } else {
+    res.redirect('/schools/school_ineligible');
+  } 
+
+});
+
+router.post('/schools/teacher-auth-record-match', (req, res) => {
+  
+  const teacherAuthRecordMatch = req.session.data.teacherAuthRecordMatch;
+
+  if (teacherAuthRecordMatch === 'matched') {
+
+    req.session.data.success = 'Your details have been found'
+
+    return res.redirect('data_returned')
+  }
+
+  else if (teacherAuthRecordMatch === 'matched-qualification-ineligible') {
+    return res.redirect('ineligible-qualification-confirmed')
+  }
+
+  else{
+    return res.redirect('teacher-auth-record-not-matched')
+  }
+
+})

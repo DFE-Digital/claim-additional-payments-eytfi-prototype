@@ -17,6 +17,9 @@
 {% block content %}
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
+
+        <form method="post">
+
     {% set nationalInsuranceHtml %}
       {{ govukInput({
         label: {
@@ -54,36 +57,11 @@
       }) }}
 
 
-    <form method="post">
       {{ govukButton({
         text: "Continue"
       }) }}
-    
-      <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
 
-      <p class="govuk-body-s govuk-!-margin-bottom-2">Prototype journey selector</p>
-
-      {{ govukRadios({
-        classes: "govuk-radios--small",
-        name: "nationalYes",
-        fieldset: {
-          legend: {
-            text: "Choose a journey",
-            classes: "govuk-visually-hidden"
-          }
-        },
-        items: [
-          {
-            value: "NI entered, matched",
-            text: "NI entered, matched",
-            checked: true
-          },
-          {
-            value: "NI entered, but no match or NO NI entered",
-            text: "NI entered, but no match or NO NI entered"
-          }
-        ]
-      }) }}
+     
     </form>
 
   </div>
