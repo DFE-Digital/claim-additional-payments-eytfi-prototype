@@ -1,0 +1,64 @@
+{% extends "layouts/main.html" %}
+
+{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/file-upload/macro.njk" import govukFileUpload %}
+
+{% set pageName = "Confirm where you work" %}
+
+{% block pageBeforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "/eligibile-qualification-confirmed"
+  }) }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-l">We could not confirm that you work at the nursery you selected</h1>
+
+    <div class="govuk-warning-text">
+      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+      <strong class="govuk-warning-text__text">
+        <span class="govuk-visually-hidden">Warning</span>
+         You selected Sunny Days Nursery as your workplace, but we could not confirm this using HMRC records.
+      </strong>
+    </div>
+
+    <p class="govuk-body">If you work at Sunny Days Nursery, you can upload a payslip to confirm this.</p>
+    <p class="govuk-body">If you selected the wrong nursery, go back and <a class="govuk-link govuk-link--no-visited-state" href="nursery-search">choose a different nursery</a>.</p>
+
+    <p class="govuk-body">The payslip must:</p>
+
+    <ul class="govuk-list govuk-list--bullet">
+      <li>show your full name</li>
+      <li>show the name of your workplace</li>
+      <li>be dated within the last 2 months</li>
+    </ul>
+
+
+    <form action="/confirm-where-you-work-uploaded" method="get">
+      {{ govukFileUpload({
+        id: "workplace-document",
+        name: "workplaceDocument",
+        label: {
+          text: "Upload document",
+          classes: "govuk-label--m"
+        },
+        attributes: {
+          accept: "image/*,.pdf,application/pdf",
+          capture: "environment"
+        }
+      }) }}
+
+      {{ govukButton({
+        text: "Upload"
+      }) }}
+    </form>
+
+    <p>Uploaded files are processed securely and retained only for as long as necessary to review your claim, after which they are securely deleted. For more information, see the <a target="_blank" class="govuk-link govuk-link--no-visited-state" href="https://www.gov.uk/government/organisations/department-for-education/about/personal-information-charter">DFE personal information charter (opens in new tab)</a>.</p>
+
+  </div>
+</div>
+{% endblock %}

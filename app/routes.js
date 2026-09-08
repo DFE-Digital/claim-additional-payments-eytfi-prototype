@@ -454,3 +454,23 @@ router.post('/schools/data_returned', (req, res) => {
   }
 
 })
+
+router.post('/schools/hmrc', (req, res) => {
+
+  var hmrcJourney = req.session.data.hmrcJourney
+
+  if (hmrcJourney == 'error') {
+    return res.redirect('hmrc_error')
+  }
+
+  else if (hmrcJourney == 'good') {
+    req.session.data.success = 'HMRC has verified your details'
+    return res.redirect('accept-payment')
+  }
+
+  else{
+    return res.redirect('hmrc_bad')
+  }
+
+
+})
