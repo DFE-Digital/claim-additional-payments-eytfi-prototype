@@ -1,4 +1,4 @@
-{% extends "layouts/main.html" %}
+{% extends "layouts/main_schools.html" %}
 
 {% from "govuk/components/back-link/macro.njk" import govukBackLink %}
 {% from "govuk/components/button/macro.njk" import govukButton %}
@@ -16,18 +16,18 @@
 {% block content %}
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
-    <h1 class="govuk-heading-l">We could not confirm that you work at the nursery you selected</h1>
+    <h1 class="govuk-heading-l">We could not confirm that you work at the school you selected</h1>
 
     <div class="govuk-warning-text">
       <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
       <strong class="govuk-warning-text__text">
         <span class="govuk-visually-hidden">Warning</span>
-         You selected Sunny Days Nursery as your workplace, but we could not confirm this using HMRC records.
+         You selected Oaks academy as your workplace, but we could not confirm this using HMRC records.
       </strong>
     </div>
 
-    <p class="govuk-body">If you work at Sunny Days Nursery, you can upload a payslip to confirm this.</p>
-    <p class="govuk-body">If you selected the wrong nursery, go back and <a class="govuk-link govuk-link--no-visited-state" href="nursery-search">choose a different nursery</a>.</p>
+    <p class="govuk-body">If you work at Oaks academy, you can upload a payslip to confirm this.</p>
+    <p class="govuk-body">If you selected the wrong school, go back and <a class="govuk-link govuk-link--no-visited-state" href="school-search">choose a different school</a>.</p>
 
     <p class="govuk-body">The payslip must:</p>
 
@@ -38,7 +38,7 @@
     </ul>
 
 
-    <form action="/confirm-where-you-work-uploaded" method="get">
+    <form action="/schools/confirm-where-you-work-uploaded" method="get">
       {{ govukFileUpload({
         id: "workplace-document",
         name: "workplaceDocument",

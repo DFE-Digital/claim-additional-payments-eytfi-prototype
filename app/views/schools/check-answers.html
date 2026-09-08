@@ -25,38 +25,22 @@
       rows: [
         {
           key: {
-            text: "Nursery"
+            text: "School"
           },
           value: {
-            text: data.nursery or "Meadow View Children Centre, 56 Park Avenue, Middlesborough, BS1 4EE"
+            text: data.school or "Oaks academy, Blackpool, Lancashire, FY3 8AA"
           },
           actions: {
             items: [
               {
-                href: "/nursery-results",
+                href: "/schools/school_search",
                 text: "Change",
-                visuallyHiddenText: "nursery"
+                visuallyHiddenText: "school"
               }
             ]
           }
         },
-        {
-          key: {
-            text: "Uploaded payslip"
-          },
-          value: {
-            html: uploadedDocumentsSummary
-          },
-          actions: {
-            items: [
-              {
-                href: "/confirm-where-you-work-uploaded-documents",
-                text: "Change",
-                visuallyHiddenText: "uploaded documents"
-              }
-            ]
-          }
-        },
+        
         {
           key: {
             text: "Qualification"
@@ -99,7 +83,7 @@
           actions: {
             items: [
               {
-                href: "/home-address",
+                href: "/schools/home-address",
                 text: "Change",
                 visuallyHiddenText: "home address"
               }
@@ -116,7 +100,7 @@
           actions: {
             items: [
               {
-                href: "/gender",
+                href: "/schools/gender",
                 text: "Change",
                 visuallyHiddenText: "gender"
               }
@@ -158,7 +142,7 @@
           actions: {
             items: [
               {
-                href: "/bank-details",
+                href: "/schools/bank-details",
                 text: "Change",
                 visuallyHiddenText: "name on your account"
               }
@@ -175,7 +159,7 @@
           actions: {
             items: [
               {
-                href: "/bank-details",
+                href: "/schools/bank-details",
                 text: "Change",
                 visuallyHiddenText: "sort code"
               }
@@ -192,7 +176,7 @@
           actions: {
             items: [
               {
-                href: "/bank-details",
+                href: "/schools/bank-details",
                 text: "Change",
                 visuallyHiddenText: "account number"
               }

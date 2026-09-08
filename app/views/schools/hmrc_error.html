@@ -1,4 +1,4 @@
-{% extends "layouts/main.html" %}
+{% extends "layouts/main_schools.html" %}
 
 {% from "govuk/components/back-link/macro.njk" import govukBackLink %}
 {% from "govuk/components/button/macro.njk" import govukButton %}
@@ -18,10 +18,10 @@
   <div class="govuk-grid-column-two-thirds">
     <h1 class="govuk-heading-l">There has been an error with your HMRC verification</h1>
 
-    <p>HMRC could not verify that you work at the nursery you selected. We need to check this another way.</p>
+    <p>HMRC could not verify that you work at the school you selected. We need to check this another way.</p>
 
     <p class="govuk-body">
-      Upload a recent payslip to show that you work at Sunny Days Nursery.
+      Upload a recent payslip to show that you work at Oaks academy.
     </p>
 
     <p class="govuk-body">The document must:</p>
@@ -36,7 +36,7 @@
       You can upload a clear photo or a scanned copy of the document.
     </p>
 
-    <form action="/confirm-where-you-work-uploaded" method="get">
+    <form action="/schools/confirm-where-you-work-uploaded" method="get">
       {{ govukFileUpload({
         id: "workplace-document",
         name: "workplaceDocument",
