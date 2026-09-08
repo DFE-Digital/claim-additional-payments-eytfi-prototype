@@ -355,6 +355,7 @@ router.post('/schools/one-login-continue-to-service', (req, res) => {
   const schoolSearch = req.session.data.oneLoginReturnJourney;
 
   if (schoolSearch == 'no previous claims, teacher auth attached') {
+    req.session.data.success = 'Your teaching details have been found'
     res.redirect('data_returned');
   } else if (schoolSearch == 'no previous claims, teacher auth not attached') {
     res.redirect('teacher-auth-find-your-teaching-record');
@@ -435,6 +436,21 @@ router.post('/schools/teacher-auth-record-match', (req, res) => {
 
   else{
     return res.redirect('teacher-auth-record-not-matched')
+  }
+
+})
+
+router.post('/schools/data_returned', (req, res) => {
+  
+  const isCorrect = req.session.data.correct;
+
+  if (isCorrect === 'yes') {
+
+    return res.redirect('hmrc')
+  }
+
+  else{
+    return res.redirect('data_returned_incorrect')
   }
 
 })

@@ -1,0 +1,41 @@
+{% extends "layouts/main_schools.html" %}
+
+{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+
+{% set pageName = "You cannot use this service if you do not have a teacher reference number (TRN)" %}
+
+{% block pageBeforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "/teacher-auth-teacher-reference-number.html"
+  }) }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-l">
+      You need to update your details before you submit a claim
+    </h1>
+
+    <h2 class="govuk-heading-m">
+      How to update your teaching details
+    </h2>
+
+    <p class="govuk-body">You can use the <a href="#">access your teaching qualifications</a> service to update your details. Once your details have been updated you can restart your claim.</p>
+
+    <h2 class="govuk-heading-m">
+      How to about your qualification details
+    </h2>
+
+    <p class="govuk-body">
+      If you think any of your teacher training or qualified teacher status details are incorrect please email us directly at
+      <a href="mailto:teaching.status@education.gov.uk">teaching.status@education.gov.uk</a>
+    </p>
+
+    <p class="govuk-body">
+      If you think your first degree details are incorrect contact the educational provider you studied with and ask them to update DfE accordingly.
+    </p>
+  </div>
+</div>
+{% endblock %}

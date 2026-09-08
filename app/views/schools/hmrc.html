@@ -1,0 +1,71 @@
+{% extends "layouts/main.html" %}
+
+{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/panel/macro.njk" import govukPanel %}
+
+{% set pageName = "Find you teaching record" %}
+
+{% block pageBeforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "/one-login-continue-to-service"
+  }) }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    
+    <h1 class="govuk-heading-xl">How we'll check where you work</h1>
+
+    <p class="govuk-body">
+      We use HMRC data to confirm that you work at the nursery you selected. This is only used to verify your eligibility and will not affect your personal records, pay, tax or benefits. 
+    </p>
+
+    <p class="govuk-body">
+      If you'd rather not use this check, you can upload a payslip. We'll check this manually, which will take longer.
+    </p>
+
+    <form method="post">
+      <div class="govuk-button-group">
+        <button type="submit" class="govuk-button" data-module="govuk-button">
+          Continue
+        </button>
+        <a class="govuk-link govuk-link--no-visited-state" href="confirm-where-you-work-no-success">Upload evidence manually</a>
+      </div>
+
+      <p class="govuk-body-s govuk-!-margin-bottom-2">Prototype journey selector</p>
+
+      {{ govukRadios({
+        classes: "govuk-radios--small",
+        name: "hmrcJourney",
+        fieldset: {
+          legend: {
+            text: "Choose HMRC journey",
+            classes: "govuk-visually-hidden"
+          }
+        },
+        items: [
+          {
+            value: "error",
+            text: "error journey",
+            checked: data.hmrcJourney == "error"
+          },
+          {
+            value: "good",
+            text: "good match journey",
+            checked: data.hmrcJourney == "good"
+          }, 
+          {
+            value: "bad",
+            text: "bad match journey",
+            checked: data.hmrcJourney == "bad"
+          }
+        ]
+      }) }}
+    </form>
+
+  </div>
+</div>
+{% endblock %}
