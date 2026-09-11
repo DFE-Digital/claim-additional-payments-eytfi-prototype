@@ -381,10 +381,12 @@ router.post('/schools/one-login-continue-to-service', (req, res) => {
 
   const schoolSearch = req.session.data.oneLoginReturnJourney;
 
-  if (schoolSearch == 'no previous claims, teacher auth attached') {
+  if (schoolSearch == 'no previous claims, teacher auth attached, have NI number') {
     req.session.data.success = 'Your teaching details have been found'
-    res.redirect('data_returned');
-  } else if (schoolSearch == 'no previous claims, teacher auth not attached') {
+    res.redirect('hmrc_ni_returned');
+  } else if (schoolSearch == 'no previous claims, teacher auth attached, no NI number') {
+    res.redirect('hmrc_ni');
+  }else if (schoolSearch == 'no previous claims, teacher auth attached, no NI number') {
     res.redirect('teacher-auth-find-your-teaching-record');
   } else{
     res.redirect('previous_claims');

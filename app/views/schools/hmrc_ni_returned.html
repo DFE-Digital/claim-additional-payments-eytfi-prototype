@@ -1,0 +1,74 @@
+{% extends "layouts/main_schools.html" %}
+
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/radios/macro.njk" import govukRadios %}
+
+
+{% set pageName="Claim an early years teacher recognition payment" %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+   <form action="data_returned" method="get">
+
+    <div class="govuk-form-group">
+        <fieldset class="govuk-fieldset" aria-describedby="national-hint">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+            <h1 class="govuk-fieldset__heading govuk-heading-xl govuk-!-margin-bottom-5">
+              Is this your National Insurance number?
+            </h1>
+          </legend>
+          
+          <dl class="govuk-summary-list">
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                National insurance number
+              </dt>
+              <dd class="govuk-summary-list__value">
+                JS 12 34 56 A
+              </dd>
+            </div>
+          </dl>
+
+          <div class="govuk-radios" data-module="govuk-radios">
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="national" name="national" type="radio" value="yes">
+              <label class="govuk-label govuk-radios__label" for="national">
+                Yes
+              </label>
+            </div>
+            
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="national-2" name="national" type="radio" value="no" data-aria-controls="conditional-national-2">
+              <label class="govuk-label govuk-radios__label" for="national-2">
+                No
+              </label>
+            </div>
+
+            <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-national-2">
+              
+              <div class="govuk-form-group">
+                <label class="govuk-label" for="ni">
+                  What is your national insurance number?
+                </label>
+                <input class="govuk-input" id="ni" name="ni" type="text">
+              </div>
+
+            </div>
+            
+          </div>
+        </fieldset>
+      </div>
+
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+
+    </form>
+
+  </div>
+</div>
+
+{% endblock %}

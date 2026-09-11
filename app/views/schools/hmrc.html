@@ -17,37 +17,21 @@
 
 {% if data.success %}
         
-    <div class="govuk-notification-banner govuk-notification-banner--success" role="alert" aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner">
-      <div class="govuk-notification-banner__header">
-        <h2 class="govuk-notification-banner__title" id="govuk-notification-banner-title">
-          Success
-        </h2>
-      </div>
-      <div class="govuk-notification-banner__content">
-        <h3 class="govuk-notification-banner__heading">
-          {{ data.success }}
-        </h3>
-        {% if data.successText %}
-          <p>{{ data.successText }}</p>
-        {% endif %}
-      </div>
-    </div>
-
+   
 {% endif %} 
 
 
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
     
-    <h1 class="govuk-heading-xl">How we'll check where you work</h1>
+    <h1 class="govuk-heading-xl">Loading</h1>
 
-    <p class="govuk-body">
-      We use HMRC data to confirm that you work at the school you selected. This is only used to verify your eligibility and will not affect your personal records, pay, tax or benefits. 
-    </p>
-
-    <p class="govuk-body">
-      If you'd rather not use this check, you can upload a payslip. We'll check this manually, which will take longer.
-    </p>
+    <img
+      src="/public/images/Loading_icon.gif"
+      alt="loading gif"
+      class="govuk-!-width-full govuk-!-margin-bottom-3",
+      style="max-width: 200px;"
+    >
 
     <form method="post">
       <div class="govuk-button-group">
@@ -57,7 +41,7 @@
        <!-- <a class="govuk-link govuk-link--no-visited-state" href="confirm-where-you-work-no-success">Upload evidence manually</a>-->
       </div>
 
-      <p class="govuk-body-s govuk-!-margin-bottom-2">Prototype journey selector</p>
+      <p class="govuk-body-s govuk-!-margin-bottom-2">HMRC check -  data journey selector</p>
 
       {{ govukRadios({
         classes: "govuk-radios--small",
@@ -76,12 +60,12 @@
           },
           {
             value: "good",
-            text: "good match journey",
+            text: "good match journey - HMRC records match the school you selected",
             checked: data.hmrcJourney == "good"
-          }, 
+          },
           {
             value: "bad",
-            text: "bad match journey",
+            text: "bad match journey - HMRC records do not match the school you selected",
             checked: data.hmrcJourney == "bad"
           }
         ]
