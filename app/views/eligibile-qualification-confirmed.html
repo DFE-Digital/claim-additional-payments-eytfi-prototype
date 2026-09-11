@@ -32,10 +32,35 @@
       recognition payment.
     </p>
 
-    {{ govukButton({
-      text: "Continue",
-      href: "/confirm-where-you-work"
+    <form method="post">
+      {{ govukButton({
+      text: "Continue"
     }) }}
+
+      <p class="govuk-body-s govuk-!-margin-bottom-2">Do we have NI number?</p>
+
+      {{ govukRadios({
+        classes: "govuk-radios--small",
+        name: "oneLoginJourney",
+        fieldset: {
+          legend: {
+            text: "Choose a One Login journey",
+            classes: "govuk-visually-hidden"
+          }
+        },
+        items: [
+          {
+            value: "yes",
+            text: "yes",
+            checked: true
+          },
+          {
+            value: "no",
+            text: "no"
+          }
+        ]
+      }) }}
+    </form>
   </div>
 </div>
 {% endblock %}

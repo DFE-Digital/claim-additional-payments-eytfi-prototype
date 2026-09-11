@@ -14,6 +14,28 @@
 {% endblock %}
 
 {% block content %}
+
+{% if data.success %}
+        
+    <div class="govuk-notification-banner govuk-notification-banner--success" role="alert" aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner">
+      <div class="govuk-notification-banner__header">
+        <h2 class="govuk-notification-banner__title" id="govuk-notification-banner-title">
+          Success
+        </h2>
+      </div>
+      <div class="govuk-notification-banner__content">
+        <h3 class="govuk-notification-banner__heading">
+          {{ data.success }}
+        </h3>
+        {% if data.successText %}
+          <p>{{ data.successText }}</p>
+        {% endif %}
+      </div>
+    </div>
+
+{% endif %} 
+
+
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
     
@@ -32,7 +54,7 @@
         <button type="submit" class="govuk-button" data-module="govuk-button">
           Continue
         </button>
-        <a class="govuk-link govuk-link--no-visited-state" href="confirm-where-you-work-no-success">Upload evidence manually</a>
+       <!-- <a class="govuk-link govuk-link--no-visited-state" href="confirm-where-you-work-no-success">Upload evidence manually</a>-->
       </div>
 
       <p class="govuk-body-s govuk-!-margin-bottom-2">Prototype journey selector</p>

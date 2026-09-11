@@ -1,0 +1,130 @@
+{% extends "layouts/main_schools.html" %}
+
+{% from "govuk/components/button/macro.njk" import govukButton %}
+
+{% set pageName="Claim an early years teacher recognition payment" %}
+
+{% block content %}
+
+ {% if data.success %}
+        
+      <div class="govuk-notification-banner govuk-notification-banner--success" role="alert" aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner">
+        <div class="govuk-notification-banner__header">
+          <h2 class="govuk-notification-banner__title" id="govuk-notification-banner-title">
+            Success
+          </h2>
+        </div>
+        <div class="govuk-notification-banner__content">
+          <h3 class="govuk-notification-banner__heading">
+            {{ data.success }}
+          </h3>
+          {% if data.successText %}
+            <p>{{ data.successText }}</p>
+          {% endif %}
+        </div>
+      </div>
+
+  {% endif %} 
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-xl">Qualifications you hold</h1>
+
+    <dl class="govuk-summary-list">
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Qualified teacher status (QTS) date
+        </dt>
+        <dd class="govuk-summary-list__value">
+          01/09/2020
+        </dd>
+      </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Name of first degree
+        </dt>
+        <dd class="govuk-summary-list__value">
+          Bachelor of. Educaton (BEd)
+        </dd>
+      </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Degree code
+        </dt>
+        <dd class="govuk-summary-list__value">
+          X100
+        </dd>
+      </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Name of initial teacher training course
+        </dt>
+        <dd class="govuk-summary-list__value">
+          <p class="govuk-body">Primary Education with QTS</p>
+        </dd>
+      </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Date your course started
+        </dt>
+        <dd class="govuk-summary-list__value">
+          <p class="govuk-body">01/09/2018</p>
+        </dd>
+      </div>
+      
+    </dl>
+
+    <form method="post">
+
+      <div class="govuk-form-group">
+        <fieldset class="govuk-fieldset" aria-describedby="contact-hint">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+            <h2 class="govuk-fieldset__heading">
+              Are these details correct?
+            </h2>
+          </legend>
+          <div id="contact-hint" class="govuk-hint">
+            Select one option
+          </div>
+          <div class="govuk-radios" data-module="govuk-radios">
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="contact" name="contact" type="radio" value="yes">
+              <label class="govuk-label govuk-radios__label" for="contact">
+                Yes
+              </label>
+            </div>
+            
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="contact-2" name="contact" type="radio" value="no" data-aria-controls="conditional-contact-2">
+              <label class="govuk-label govuk-radios__label" for="contact-2">
+                No
+              </label>
+            </div>
+            <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-contact-2">
+              
+              <div class="govuk-form-group">
+                <h3 class="govuk-label-wrapper">
+                  <label class="govuk-label govuk-label--s" for="more-detail">
+                    What details are incorrect?
+                  </label>
+                </h3>
+                <div id="more-detail-hint" class="govuk-hint">
+                  We will use this information to review your details and contact you. You can still submit a claim.
+                </div>
+                <textarea class="govuk-textarea" id="more-detail" name="moreDetail" rows="5" aria-describedby="more-detail-hint"></textarea>
+              </div>
+            
+          </div>
+        </fieldset>
+      </div>
+
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+
+    </form>
+
+  </div>
+</div>
+
+{% endblock %}

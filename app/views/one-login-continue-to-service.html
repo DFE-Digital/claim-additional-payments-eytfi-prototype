@@ -27,10 +27,41 @@
       to automatically fill in forms within the service.
     </p>
 
-    {{ govukButton({
-      text: "Continue",
-      href: "/teacher-auth-find-your-teaching-record"
+    <form method="post">
+      {{ govukButton({
+      text: "Continue"
     }) }}
+
+      <p class="govuk-body-s govuk-!-margin-bottom-2">Is teacher auth already matched?</p>
+
+      {{ govukRadios({
+        classes: "govuk-radios--small",
+        name: "oneLoginJourney",
+        fieldset: {
+          legend: {
+            text: "Choose a One Login journey",
+            classes: "govuk-visually-hidden"
+          }
+        },
+        items: [
+          {
+            value: "yes, ok qualification",
+            text: "yes, ok qualification",
+            checked: true
+          },
+          {
+            value: "yes, bad qualification",
+            text: "yes, bad qualification",
+            checked: true
+          },
+          {
+            value: "no",
+            text: "no"
+          }
+        ]
+      }) }}
+    </form>
+
   </div>
 </div>
 {% endblock %}

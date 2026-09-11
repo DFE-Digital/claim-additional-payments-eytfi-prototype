@@ -1,27 +1,11 @@
 {% extends "layouts/main_schools.html" %}
 
 {% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/radios/macro.njk" import govukRadios %}
 
 {% set pageName="Claim an early years teacher recognition payment" %}
 
 {% block content %}
-
- {% if data.success %}
-        
-      <div class="govuk-notification-banner govuk-notification-banner--success" role="alert" aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner">
-        <div class="govuk-notification-banner__header">
-          <h2 class="govuk-notification-banner__title" id="govuk-notification-banner-title">
-            Success
-          </h2>
-        </div>
-        <div class="govuk-notification-banner__content">
-          <h3 class="govuk-notification-banner__heading">
-            {{ data.success }}
-          </h3>
-        </div>
-      </div>
-
-    {% endif %}
 
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
@@ -169,6 +153,43 @@
       {{ govukButton({
         text: "Continue"
       }) }}
+
+      <details class="govuk-details">
+        <summary class="govuk-details__summary">
+          <span class="govuk-details__summary-text">
+            Prototype
+          </span>
+        </summary>
+        <div class="govuk-details__text">
+          <p class="govuk-body-s govuk-!-margin-bottom-2">Prototype journey selector</p>
+
+            {{ govukRadios({
+              classes: "govuk-radios--small",
+              name: "dataType",
+              fieldset: {
+                legend: {
+                  text: "Data type",
+                  classes: "govuk-visually-hidden"
+                }
+              },
+              items: [
+                {
+                  value: "Yes, details eligible",
+                  text: "Yes, details eligible",
+                  checked: true
+                },
+                {
+                  value: "Yes, but not eligible",
+                  text: "Yes, but not eligible"
+                },
+                {
+                  value: "no",
+                  text: "no"
+                }
+              ]
+            }) }}
+        </div>
+      </details>
 
     </form>
 

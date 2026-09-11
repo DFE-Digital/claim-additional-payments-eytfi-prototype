@@ -239,6 +239,33 @@ router.post('/nursery-search', (req, res) => {
 });
 
 
+router.post('/one-login-continue-to-service', (req, res) => {
+
+  const oneLoginJourney = req.session.data.oneLoginJourney;
+
+  if (oneLoginJourney == 'yes, ok qualification') {
+    res.redirect('/eligibile-qualification-confirmed');
+  } else if (oneLoginJourney == 'yes, bad qualification') {
+    res.redirect('/ineligible-qualification-confirmed');
+  }else {
+    res.redirect('/teacher-auth-find-your-teaching-record');
+  }
+
+});
+
+router.post('/eligibile-qualification-confirmed', (req, res) => {
+
+  const oneLoginJourney = req.session.data.oneLoginJourney;
+
+  if (oneLoginJourney == 'yes') {
+    res.redirect('/hmrc_ni_returned');
+  } else {
+    res.redirect('/hmrc_ni');
+  }
+
+});
+
+
 ///////
 // ops
 ///////
@@ -273,7 +300,7 @@ router.post('/teacher-auth-national-insurance-number', (req, res) => {
 
   if (national == 'yes') {
 
-    res.redirect('hmrc')
+    res.redirect('teacher-auth-record-match')
 
   }else{
     res.redirect('teacher-auth-teacher-reference-number')
@@ -443,13 +470,17 @@ router.post('/schools/teacher-auth-record-match', (req, res) => {
 router.post('/schools/data_returned', (req, res) => {
   
   const isCorrect = req.session.data.correct;
+  const dataType = req.session.data.dataType;
 
-  if (isCorrect === 'yes') {
+  if (dataType === 'Yes, details eligible') {
 
     return res.redirect('hmrc')
-  }
 
-  else{
+  } else if (dataType === 'Yes, but not eligible') {
+
+    return res.redirect('data_returned_ineligible')
+
+  }else{
     return res.redirect('data_returned_incorrect')
   }
 
@@ -473,4 +504,38 @@ router.post('/schools/hmrc', (req, res) => {
   }
 
 
+})
+
+
+router.post('/schools/data_returned_teacher', (req, res) => {
+
+  var contact = req.session.data.contact
+
+  if (contact == 'yes') {
+    req.session.data.success = ""
+    req.session.data.successText = ''
+  }else{
+    req.session.data.success = 'Details submitted'
+    req.session.data.successText = 'We will review any incorrect data and contact you if we need more information.'
+  }
+ 
+  return res.redirect('data_returned_qualifications')
+  
+})
+
+router.post('/schools/data_returned_qualifications', (req, res) => {
+  
+  var contact = req.session.data.contact
+
+  if (contact == 'yes') {
+    req.session.data.success = ""
+    req.session.data.successText = ''
+  
+  }else{
+    req.session.data.success = 'Details submitted'
+    req.session.data.successText = 'We will review any incorrect data and contact you if we need more information.'
+  }
+  
+  return res.redirect('hmrc')
+  
 })
