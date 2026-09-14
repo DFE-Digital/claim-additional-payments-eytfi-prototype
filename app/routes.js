@@ -517,8 +517,8 @@ router.post('/schools/data_returned_teacher', (req, res) => {
     req.session.data.success = ""
     req.session.data.successText = ''
   }else{
-    req.session.data.success = 'Details submitted'
-    req.session.data.successText = 'We will review any incorrect data and contact you if we need more information.'
+    req.session.data.success = "We've received the details you provided."
+    req.session.data.successText = "We'll review them and contact you if we need more information."
   }
  
   return res.redirect('data_returned_qualifications')
@@ -534,8 +534,8 @@ router.post('/schools/data_returned_qualifications', (req, res) => {
     req.session.data.successText = ''
   
   }else{
-    req.session.data.success = 'Details submitted'
-    req.session.data.successText = 'We will review any incorrect data and contact you if we need more information.'
+    req.session.data.success = "We've received the details you provided."
+    req.session.data.successText = "We'll review them and contact you if we need more information."
   }
   
   return res.redirect('hmrc')
