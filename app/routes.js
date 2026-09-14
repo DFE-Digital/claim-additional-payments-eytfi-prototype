@@ -229,9 +229,9 @@ router.post('/nursery-search', (req, res) => {
   const nurserySearch = req.session.data.nurserySearch;
 
   if (nurserySearch === 'true') {
-    res.redirect('/eligibility-criteria');
+    res.redirect('/teaching-qualification-confirmation');
   } else if (nurserySearch === 'false') {
-    res.redirect('/ineligible-teaching-qualification-held');
+    res.redirect('/ineligible-nursery');
   } else {
     res.redirect('/nursery-results');
   }
