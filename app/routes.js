@@ -204,7 +204,6 @@ router.post('/hmrc', (req, res) => {
   }
 
   else if (hmrcJourney == 'good') {
-    req.session.data.success = 'HMRC has verified your details'
     return res.redirect('/accept-payment')
   }
 
@@ -497,7 +496,6 @@ router.post('/schools/hmrc', (req, res) => {
   }
 
   else if (hmrcJourney == 'good') {
-    req.session.data.success = 'HMRC has verified your details'
     return res.redirect('accept-payment')
   }
 
