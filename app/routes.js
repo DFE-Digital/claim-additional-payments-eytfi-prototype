@@ -97,9 +97,9 @@ router.get('/check-teacher-auth-record-match', (req, res) => {
 })
 
 router.post('/confirm-where-you-work-uploaded', (req, res) => {
-  req.session.data.pendingUploadedDocument = uploadedDocumentPreview
+  
 
-  return res.redirect('/confirm-where-you-work-uploaded')
+  return res.redirect('/accept-payment')
 })
 
 router.get('/check-uploaded-file', (req, res) => {
