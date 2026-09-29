@@ -1,4 +1,4 @@
-{% extends "layouts/main.html" %}
+{% extends "layouts/main_schools.html" %}
 
 {% from "govuk/components/back-link/macro.njk" import govukBackLink %}
 {% from "govuk/components/button/macro.njk" import govukButton %}
@@ -31,6 +31,9 @@
           <h3 class="govuk-notification-banner__heading">
             {{ data.success }}
           </h3>
+          {% if data.successText %}
+            <p>{{ data.successText }}</p>
+          {% endif %}
         </div>
       </div>
 

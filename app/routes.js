@@ -99,6 +99,7 @@ router.get('/check-teacher-auth-record-match', (req, res) => {
 router.post('/confirm-where-you-work-uploaded', (req, res) => {
   
 
+
   return res.redirect('/accept-payment')
 })
 
@@ -496,6 +497,8 @@ router.post('/schools/hmrc', (req, res) => {
   }
 
   else if (hmrcJourney == 'good') {
+    req.session.data.success = ""
+    req.session.data.successText = ''
     return res.redirect('accept-payment')
   }
 
@@ -537,5 +540,15 @@ router.post('/schools/data_returned_qualifications', (req, res) => {
   }
   
   return res.redirect('hmrc')
+  
+})
+
+router.post('/schools/confirm-where-you-work-uploaded', (req, res) => {
+  
+  
+    req.session.data.success = "Document uploaded successfully"
+    req.session.data.successText = "We'll review your document to confirm where you work."
+ 
+  return res.redirect('accept-payment')
   
 })
