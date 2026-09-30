@@ -1,6 +1,7 @@
 {% extends "layouts/main_schools.html" %}
 
 {% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/radios/macro.njk" import govukRadios %}
 
 {% set pageName="Claim an early years teacher recognition payment" %}
 
@@ -109,7 +110,7 @@
                   </label>
                 </h3>
                 <div id="more-detail-hint" class="govuk-hint">
-                  We will use this information to review your details and contact you. You can still submit a claim.
+                  Tell us which details are wrong. We'll use this information to review your details and contact you if we need to. You can still submit your claim.
                 </div>
                 <textarea class="govuk-textarea" id="more-detail" name="moreDetail" rows="5" aria-describedby="more-detail-hint"></textarea>
               </div>
