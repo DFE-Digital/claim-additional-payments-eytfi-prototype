@@ -18,6 +18,10 @@
   <div class="govuk-grid-column-two-thirds">
     <h1 class="govuk-heading-l">Continue to the service you need to use</h1>
 
+      {{ data.oneLoginReturnJourney }}
+
+      {{ data.dataType }}
+
     <p class="govuk-body">
       You've successfully proved your identity. You can now continue to the service
       you need to use.
@@ -54,12 +58,11 @@
               },
               items: [
                 {
-                  value: "no previous claims, teacher auth attached, have NI number",
-                  text: "no previous claims, teacher auth attached, have NI number",
-                  checked: true
+                  value: "scenario_one",
+                  text: "no previous claims, teacher auth attached, have NI number"
                 },
                 {
-                  value: "no previous claims, teacher auth attached, no NI number",
+                  value: "scenario_two",
                   text: "no previous claims, teacher auth attached, no NI number"
                 },
                 {

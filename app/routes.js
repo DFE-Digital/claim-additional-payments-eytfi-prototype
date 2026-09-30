@@ -361,6 +361,21 @@ router.post('/claimantmodel/bank-details', (req, res) => {
 
 
 
+router.get('/schools/start', function (req, res) {
+
+  if (req.query.oneLoginReturnJourney) {
+    req.session.oneLoginReturnJourney = req.query.oneLoginReturnJourney
+  }
+
+  if (req.query.dataType) {
+    req.session.dataType = req.query.dataType
+  }
+
+  res.render('schools/start')
+})
+
+
+
 ///////
 // school search
 ///////
@@ -381,12 +396,12 @@ router.post('/schools/one-login-continue-to-service', (req, res) => {
 
   const schoolSearch = req.session.data.oneLoginReturnJourney;
 
-  if (schoolSearch == 'no previous claims, teacher auth attached, have NI number') {
+  if (schoolSearch == 'scenario_one') {
     req.session.data.success = 'Your teaching details have been found'
     res.redirect('hmrc_ni_returned');
-  } else if (schoolSearch == 'no previous claims, teacher auth attached, no NI number') {
+  } else if (schoolSearch == 'scenario_two') {
     res.redirect('hmrc_ni');
-  }else if (schoolSearch == 'no previous claims, teacher auth attached, no NI number') {
+  }else if (schoolSearch == 'no previous claims, teacher auth not attached') {
     res.redirect('teacher-auth-find-your-teaching-record');
   } else{
     res.redirect('previous_claims');

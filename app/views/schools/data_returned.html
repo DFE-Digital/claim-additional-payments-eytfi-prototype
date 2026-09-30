@@ -11,6 +11,8 @@
   <div class="govuk-grid-column-two-thirds">
     <h1 class="govuk-heading-xl">Your details</h1>
 
+      {{ data.dataType }}
+
     <h2 class="govuk-heading-m">Teachers details</h2>
 
     <dl class="govuk-summary-list">
@@ -175,8 +177,7 @@
               items: [
                 {
                   value: "Yes, details eligible",
-                  text: "Yes, details eligible",
-                  checked: true
+                  text: "Yes, details eligible"
                 },
                 {
                   value: "Yes, but not eligible",
