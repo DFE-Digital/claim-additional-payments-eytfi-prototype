@@ -675,3 +675,19 @@ router.post('/fe/confirm-where-you-work-uploaded', (req, res) => {
   return res.redirect('spring-term')
   
 })
+
+
+router.post('/fe/spring-term', (req, res) => {
+
+  var spring = req.session.data.spring
+
+  if (spring == 'yes') {
+    return res.redirect('eligibility-criteria')
+  }
+
+  else{
+    return res.redirect('spring-term-ineligible')
+  }
+
+
+})
