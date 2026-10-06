@@ -1,0 +1,91 @@
+{% extends "layouts/main_schools.html" %}
+
+{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/input/macro.njk" import govukInput %}
+{% from "govuk/components/radios/macro.njk" import govukRadios %}
+
+{% set pageName = "Which school do you teach in?" %}
+
+{% block pageBeforeContent %}
+
+  {{ govukBackLink({
+    text: "Back",
+    href: "/"
+  }) }}
+
+{% endblock %}
+
+{% block content %}
+
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+      <div class="govuk-form-group">
+      
+        <h1 class="govuk-label-wrapper">
+          <label class="govuk-label govuk-label--l" for="schoolSearch">
+             Which further education provider directly employs you?
+          </label>
+        </h1>
+
+        <div id="school-hint" class="govuk-hint">
+          Select your school from the search results.
+        </div>
+     
+        <div class="govuk-radios govuk-!-margin-bottom-5 govuk-!-margin-top-2" data-module="govuk-radios">
+          <div class="govuk-radios__item">
+            <input class="govuk-radios__input" id="whereDoYouLive" name="whereDoYouLive" type="radio" value="Oaks academy">
+            <label class="govuk-label govuk-radios__label" for="whereDoYouLive">
+              Oaks academy, Blackpool, Lancashire, FY3 8AA
+            </label>
+          </div>
+        </div>
+
+        <form method="post">
+          {{ govukButton({
+            text: "Continue"
+          }) }}
+
+
+          <details class="govuk-details">
+            <summary class="govuk-details__summary">
+              <span class="govuk-details__summary-text">
+                Prototype
+              </span>
+            </summary>
+            <div class="govuk-details__text">
+              <p class="govuk-body-s govuk-!-margin-bottom-2">Prototype journey selector</p>
+
+                {{ govukRadios({
+                  classes: "govuk-radios--small",
+                  name: "schoolValid",
+                  fieldset: {
+                    legend: {
+                      text: "Prototype journey selector",
+                      classes: "govuk-visually-hidden"
+                    }
+                  },
+                  items: [
+                    {
+                      value: "employer valid",
+                      text: "employer valid",
+                      checked: true
+                    },
+                    {
+                      value: "employer not valid",
+                      text: "employer not valid"
+                    }
+                  ]
+                }) }}
+            </div>
+          </details>
+
+          
+        </form>
+
+  </div>
+</div>
+
+{% endblock %}

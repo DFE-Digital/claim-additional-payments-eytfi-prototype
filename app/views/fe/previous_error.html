@@ -1,0 +1,28 @@
+{% extends "layouts/main.html" %}
+
+{% from "govuk/components/button/macro.njk" import govukButton %}
+
+{% set pageName="Claim an early years teacher recognition payment" %}
+
+{% block pageBeforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "claim-dashboard"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+ 
+    <h1 class="govuk-heading-xl">You are not eligible for this payment because you are not within the first five years of teaching</h1>
+
+    <p class="govuk-body">
+      If you think this is a mistake you can contact the support team at <a href="mailto:support@education.gov.uk" class="govuk-link">support@education.gov.uk</a>.
+    </p>  
+   
+  </div>
+</div>
+
+{% endblock %}

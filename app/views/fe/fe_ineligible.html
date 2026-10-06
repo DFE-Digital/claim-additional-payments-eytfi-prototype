@@ -1,0 +1,46 @@
+{% extends "layouts/main_schools.html" %}
+
+{% from "govuk/components/button/macro.njk" import govukButton %}
+
+{% set pageName="Claim an early years teacher recognition payment" %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-xl">The further education provider you have selected is not eligible</h1>
+    
+    <table class="govuk-table">
+      <caption class="govuk-table__caption govuk-table__caption--m">Provider selected</caption>
+      <tbody class="govuk-table__body">
+        <tr class="govuk-table__row">
+          <th class="govuk-table__header" scope="row">Name</th>
+          <td class="govuk-table__cell">Oaks academy</td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th class="govuk-table__header" scope="row">Address</th>
+          <td class="govuk-table__cell">Blackpool, Lancashire, FY3 8AA</td>
+        </tr>
+      </tbody>
+    </table>
+    
+    <p class="govuk-body">This could be because: </p>
+
+    <ul class="govuk-list govuk-list--bullet">
+      <li>the payment is only available to further education providers that need teachers, and your provider may not be eligible</li>
+    </ul>
+
+    <p>If you think your provider is eligible, check the spelling of your provider's name and try searching again.</p>
+    <p>Check the <a class="govuk-link govuk-link--no-visited-state" href="#">eligibility criteria</a> for more information.</p>
+
+    <div class="govuk-!-padding-bottom-3"> 
+      <a class="govuk-button" data-module="govuk-button" href="fe_search" data-govuk-button-init="">Change provider</a> 
+    </div>
+
+  </div>
+  
+
+</div>
+
+{% endblock %}

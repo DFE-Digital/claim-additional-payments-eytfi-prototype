@@ -28,7 +28,7 @@
       to automatically fill in forms within the service.
     </p>
 
-    <form action="check-eligibility-intro">
+    <form method="post">
       {{ govukButton({
       text: "Continue"
     }) }}
@@ -46,18 +46,22 @@
         },
         items: [
           {
-            value: "ok",
-            text: "no previous claim, go to NI",
+            value: "already",
+            text: "Already claimed for year",
             checked: true
           },
           {
-            value: "yes, bad qualification",
-            text: "previous claim, previous years",
+            value: "previous_error",
+            text: "Is a returning claimant who is not within first five years of teaching",
             checked: true
           },
           {
-            value: "no",
-            text: "previous claim, this year"
+            value: "previous",
+            text: "Has previous successful claim"
+          },
+          {
+            value: "new",
+            text: "New claimant who is within first five years of teaching"
           }
         ]
       }) }}

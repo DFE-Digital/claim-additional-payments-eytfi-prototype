@@ -614,3 +614,64 @@ router.post('/fe/previously_claimed', (req, res) => {
 
 
 })
+
+
+router.post('/fe/one-login-continue-to-service', (req, res) => {
+
+  var oneLoginJourney = req.session.data.oneLoginJourney
+
+  if (oneLoginJourney == 'already') {
+    return res.redirect('check_progress_result')
+  } else if (oneLoginJourney == 'previous_error') {
+    return res.redirect('previous_error')
+  } else if (oneLoginJourney == 'previous') {
+    return res.redirect('fe_search')
+  } else{
+    return res.redirect('fe_search')
+  }
+
+})
+
+
+router.post('/fe/fe_search_result', (req, res) => {
+
+  var schoolValid = req.session.data.schoolValid
+
+  if (schoolValid == 'employer valid') {
+    return res.redirect('ni')
+  }
+
+  else{
+    return res.redirect('fe_ineligible')
+  }
+
+
+})
+
+
+
+router.post('/fe/hmrc', (req, res) => {
+
+  var hmrcJourney = req.session.data.hmrcJourney
+
+  if (hmrcJourney == 'good') {
+    return res.redirect('spring-term')
+  }
+
+  else{
+    return res.redirect('hmrc_bad')
+  }
+
+
+})
+
+
+router.post('/fe/confirm-where-you-work-uploaded', (req, res) => {
+  
+  
+    req.session.data.success = "Document uploaded successfully"
+    req.session.data.successText = "We'll review your document to confirm where you work."
+ 
+  return res.redirect('spring-term')
+  
+})
