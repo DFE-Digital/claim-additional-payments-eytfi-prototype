@@ -1,0 +1,53 @@
+{% extends "layouts/main_fe.html" %}
+
+{% from "govuk/components/button/macro.njk" import govukButton %}
+
+{% set pageName="Claim an early years teacher recognition payment" %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+
+  <div class="govuk-grid-column-two-thirds">
+
+
+    <form method="post">
+
+    <div class="govuk-form-group">
+      <fieldset class="govuk-fieldset">
+        <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+          <h1 class="govuk-fieldset__heading">
+            Did you apply for a targeted retention incentive payment in further education between 1 September 2025 and 31 May 2026?
+          </h1>
+        </legend>
+        <div class="govuk-hint" id="claim-previously-claimed-hint">
+          Tell us if you applied for the payment. Not whether it was approved or paid.
+        </div>
+        <div class="govuk-radios" data-module="govuk-radios">
+          <div class="govuk-radios__item">
+            <input class="govuk-radios__input" id="previous" name="previous" type="radio" value="yes">
+            <label class="govuk-label govuk-radios__label" for="previous">
+              Yes
+            </label>
+          </div>
+          <div class="govuk-radios__item">
+            <input class="govuk-radios__input" id="previous-2" name="previous" type="radio" value="no">
+            <label class="govuk-label govuk-radios__label" for="previous-2">
+              No
+            </label>
+          </div>
+        </div>
+      </fieldset>
+    </div>
+
+    <button type="submit" class="govuk-button" data-module="govuk-button">
+      Continue
+    </button>
+
+    </form>
+        
+
+  </div>
+</div>
+
+{% endblock %}

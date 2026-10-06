@@ -1,0 +1,57 @@
+{% extends "layouts/main_fe.html" %}
+
+{% from "govuk/components/button/macro.njk" import govukButton %}
+
+{% set pageName="Claim an early years teacher recognition payment" %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+
+  <div class="govuk-grid-column-two-thirds">
+
+
+    <form method="post">
+
+    <div class="govuk-form-group">
+      <fieldset class="govuk-fieldset">
+        <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+          <h1 class="govuk-fieldset__heading">
+            Do you have a GOV.UK One Login account?
+          </h1>
+        </legend>
+        <div class="govuk-radios" data-module="govuk-radios">
+          <div class="govuk-radios__item">
+            <input class="govuk-radios__input" id="oneLogin" name="oneLogin" type="radio" value="yes">
+            <label class="govuk-label govuk-radios__label" for="oneLogin">
+              Yes
+            </label>
+          </div>
+          <div class="govuk-radios__item">
+            <input class="govuk-radios__input" id="oneLogin-2" name="oneLogin" type="radio" value="no">
+            <label class="govuk-label govuk-radios__label" for="oneLogin-2">
+              No
+            </label>
+          </div>
+          <div class="govuk-radios__divider">or</div>
+          <div class="govuk-radios__item">
+            <input class="govuk-radios__input" id="oneLogin-6" name="oneLogin" type="radio" value="dontknow">
+            <label class="govuk-label govuk-radios__label" for="oneLogin-6">
+              I don't know
+            </label>
+          </div>
+        </div>
+      </fieldset>
+    </div>
+
+    <button type="submit" class="govuk-button" data-module="govuk-button">
+      Continue
+    </button>
+
+    </form>
+        
+
+  </div>
+</div>
+
+{% endblock %}

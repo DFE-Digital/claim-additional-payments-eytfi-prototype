@@ -567,3 +567,50 @@ router.post('/schools/confirm-where-you-work-uploaded', (req, res) => {
   return res.redirect('accept-payment')
   
 })
+
+
+
+
+
+
+
+
+
+///////
+// FE ROUTES
+///////
+
+router.post('/fe/one-login', (req, res) => {
+
+  var oneLogin = req.session.data.oneLogin
+
+  if (oneLogin == 'yes') {
+    return res.redirect('one-login-start')
+  }
+
+  else if (oneLogin == 'no') {
+    return res.redirect('previously_claimed')
+  }
+
+  else{
+    return res.redirect('previously_claimed')
+  }
+
+
+})
+
+
+router.post('/fe/previously_claimed', (req, res) => {
+
+  var previous = req.session.data.previous
+
+  if (previous == 'yes') {
+    return res.redirect('one-login-start')
+  }
+
+  else{
+    return res.redirect('check-eligibility-intro')
+  }
+
+
+})

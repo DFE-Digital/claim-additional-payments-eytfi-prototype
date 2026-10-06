@@ -1,0 +1,68 @@
+{% extends "layouts/main_fe.html" %}
+
+{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/radios/macro.njk" import govukRadios %}
+
+{% set pageName = "Continue to the service you need to use" %}
+
+{% block pageBeforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "/one-login-start"
+  }) }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-l">Continue to the service you need to use</h1>
+
+    <p class="govuk-body">
+      You've successfully proved your identity. You can now continue to the service
+      you need to use.
+    </p>
+
+    <p class="govuk-body">
+      Some of the information you shared when you proved your identity might be used
+      to automatically fill in forms within the service.
+    </p>
+
+    <form action="check-eligibility-intro">
+      {{ govukButton({
+      text: "Continue"
+    }) }}
+
+      <p class="govuk-body-s govuk-!-margin-bottom-2">Prototype journey</p>
+
+      {{ govukRadios({
+        classes: "govuk-radios--small",
+        name: "oneLoginJourney",
+        fieldset: {
+          legend: {
+            text: "Choose a One Login journey",
+            classes: "govuk-visually-hidden"
+          }
+        },
+        items: [
+          {
+            value: "ok",
+            text: "no previous claim, go to NI",
+            checked: true
+          },
+          {
+            value: "yes, bad qualification",
+            text: "previous claim, previous years",
+            checked: true
+          },
+          {
+            value: "no",
+            text: "previous claim, this year"
+          }
+        ]
+      }) }}
+    </form>
+
+  </div>
+</div>
+{% endblock %}
