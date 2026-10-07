@@ -1,0 +1,65 @@
+{% extends "layouts/main_fe.html" %}
+
+{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/radios/macro.njk" import govukRadios %}
+
+{% set pageName = "Continue to the service you need to use" %}
+
+{% block pageBeforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "/one-login-start"
+  }) }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <form method="post">
+      
+      <div class="govuk-form-group">
+        <fieldset class="govuk-fieldset">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+            <h1 class="govuk-fieldset__heading">Do you have a teaching qualification?</h1></legend>
+            <div class="govuk-radios" data-module="govuk-radios" data-govuk-radios-init="">
+              <div class="govuk-radios__item">
+                <input id="claim-teaching-qualification-yes-field" class="govuk-radios__input" type="radio" value="yes" name="teaching_qualification">
+                <label for="claim-teaching-qualification-yes-field" class="govuk-label govuk-radios__label">Yes</label>
+              </div>
+              <div class="govuk-radios__item">
+                <input id="claim-teaching-qualification-not-yet-field" class="govuk-radios__input" type="radio" value="not_yet" name="teaching_qualification">
+                <label for="claim-teaching-qualification-not-yet-field" class="govuk-label govuk-radios__label">Not yet, I am currently enrolled on one and working towards completing it</label>
+              </div>
+              <div class="govuk-radios__item">
+                <input id="claim-teaching-qualification-no-but-planned-field" class="govuk-radios__input" type="radio" value="no_but_planned" name="teaching_qualification">
+                <label for="claim-teaching-qualification-no-but-planned-field" class="govuk-label govuk-radios__label">No, but I plan to enrol on one in the next 12 months</label>
+              </div>
+              <div class="govuk-radios__item">
+                <input id="claim-teaching-qualification-no-not-planned-field" class="govuk-radios__input" type="radio" value="no" name="teaching_qualification">
+                <label for="claim-teaching-qualification-no-not-planned-field" class="govuk-label govuk-radios__label">No, and I do not plan to enrol on one in the next 12 months</label>
+              </div>
+            </div>
+        </fieldset>
+      </div>
+      
+      <details class="govuk-details">
+        <summary class="govuk-details__summary"><span class="govuk-details__summary-text">If you do not have a teaching qualification</span></summary>
+        <div class="govuk-details__text">
+          <p class="govuk-body"> To remain eligible for a retention payment next year, make sure you either: </p>
+          <ul class="govuk-list govuk-list--bullet">
+            <li>complete a teaching qualification in the next 12 months</li>
+            <li>enrol on a teaching qualification in the next 12 months</li>
+          </ul>
+        </div>
+      </details>
+
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+
+    </form>
+
+  </div>
+</div>
+{% endblock %}

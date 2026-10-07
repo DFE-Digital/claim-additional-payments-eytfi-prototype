@@ -1,0 +1,59 @@
+{% extends "layouts/main_fe.html" %}
+
+{% from "govuk/components/button/macro.njk" import govukButton %}
+
+{% set pageName="Claim an early years teacher recognition payment" %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+
+  <div class="govuk-grid-column-two-thirds">
+
+    <form method="post">
+
+    <div class="govuk-form-group">
+      <fieldset class="govuk-fieldset">
+        <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+          <h1 class="govuk-fieldset__heading">
+            Are you a member of staff with the responsibilities of a teacher?
+          </h1>
+        </legend>
+        <div class="govuk-hint" id="claim-teaching-responsibilities-hint">
+
+          <p class="govuk-body">
+            This means you must be doing all these:
+          </p>
+
+          <ul class="govuk-list govuk-list--bullet"><li>independently teaching timetabled guided learning hours to classes of students</li><li>planning and preparing lessons for classes of students</li><li>assessing learning and reporting on progress for classes of students</li></ul>
+        </div>
+
+        <div class="govuk-radios" data-module="govuk-radios">
+          <div class="govuk-radios__item">
+            <input class="govuk-radios__input" id="staff" name="staff" type="radio" value="yes">
+            <label class="govuk-label govuk-radios__label" for="staff">
+              Yes
+            </label>
+          </div>
+          <div class="govuk-radios__item">
+            <input class="govuk-radios__input" id="staff-2" name="staff" type="radio" value="no">
+            <label class="govuk-label govuk-radios__label" for="staff-2">
+              No
+            </label>
+          </div>
+          
+        </div>
+      </fieldset>
+    </div>
+
+    <button type="submit" class="govuk-button" data-module="govuk-button">
+      Continue
+    </button>
+
+    </form>
+        
+
+  </div>
+</div>
+
+{% endblock %}

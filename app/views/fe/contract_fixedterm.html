@@ -1,0 +1,47 @@
+{% extends "layouts/main_fe.html" %}
+
+{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/radios/macro.njk" import govukRadios %}
+
+{% set pageName = "Continue to the service you need to use" %}
+
+{% block pageBeforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "/one-login-start"
+  }) }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <form method="post">
+      
+      <div class="govuk-form-group">
+        <fieldset class="govuk-fieldset">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+            <h1 class="govuk-fieldset__heading">Does your fixed-term contract cover the full 2026 to 2027 academic year?</h1></legend>
+              <div class="govuk-radios" data-module="govuk-radios" data-govuk-radios-init="">
+                <div class="govuk-radios__item">
+                  <input id="claim-contract-type-permanent-field" aria-describedby="claim-contract-type-permanent-hint" class="govuk-radios__input" type="radio" value="Yes" name="contract">
+                  <label for="claim-contract-type-permanent-field" class="govuk-label govuk-radios__label">Yes</label>
+                </div>
+                <div class="govuk-radios__item">
+                  <input id="claim-contract-type-fixed-term-field" class="govuk-radios__input" type="radio" value="No" name="contract">
+                  <label for="claim-contract-type-fixed-term-field" class="govuk-label govuk-radios__label">No</label>
+                </div>
+              </div>
+        </fieldset>
+      </div>
+  
+
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+
+    </form>
+
+  </div>
+</div>
+{% endblock %}

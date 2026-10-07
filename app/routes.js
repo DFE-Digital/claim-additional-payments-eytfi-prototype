@@ -627,7 +627,7 @@ router.post('/fe/one-login-continue-to-service', (req, res) => {
   } else if (oneLoginJourney == 'previous') {
     return res.redirect('fe_search')
   } else{
-    return res.redirect('fe_search')
+    return res.redirect('check-eligibility-intro')
   }
 
 })
@@ -638,7 +638,7 @@ router.post('/fe/fe_search_result', (req, res) => {
   var schoolValid = req.session.data.schoolValid
 
   if (schoolValid == 'employer valid') {
-    return res.redirect('ni')
+    return res.redirect('academic_year')
   }
 
   else{
@@ -687,6 +687,110 @@ router.post('/fe/spring-term', (req, res) => {
 
   else{
     return res.redirect('spring-term-ineligible')
+  }
+
+
+})
+
+router.post('/fe/eligibility-criteria', (req, res) => {
+
+  var hasEligibleWorking = req.session.data.hasEligibleWorking
+
+  if (hasEligibleWorking == 'yes') {
+    res.redirect('check-teaching-qualification')
+  }else{
+    res.redirect('ineligible-teaching-qualification-held')
+  }
+
+})
+
+router.post('/fe/staff', (req, res) => {
+
+  var staff = req.session.data.staff
+
+  if (staff == 'yes') {
+    return res.redirect('fe_search')
+  }
+
+  else{
+    return res.redirect('ineligible')
+  }
+
+
+})
+
+
+router.post('/fe/academic_year', (req, res) => {
+
+  var startyear = req.session.data.startyear
+
+  if (startyear == 'pre-2022') {
+    return res.redirect('ineligible_years')
+  }
+
+  else{
+    return res.redirect('teaching_qualification')
+  }
+
+
+})
+
+router.post('/fe/teaching_qualification', (req, res) => {
+
+  var teaching_qualification = req.session.data.teaching_qualification
+
+  if (teaching_qualification == 'no') {
+    return res.redirect('ineligible_qualification')
+  }
+
+  else{
+    return res.redirect('contract')
+  }
+
+
+})
+
+router.post('/fe/contract', (req, res) => {
+
+  var contract = req.session.data.contract
+
+  if (contract == 'fixed_term') {
+    return res.redirect('contract_fixedterm')
+  } else if (contract == 'variable_hours') {
+    return res.redirect('contract_variable')
+  } else if (contract == 'permanent') {
+    return res.redirect('contract_permanent')
+  }
+  else{
+    return res.redirect('ineligible_contract')
+  }
+
+
+})
+
+router.post('/fe/contract_fixedterm', (req, res) => {
+
+  var contract = req.session.data.contract
+
+  if (contract == 'yes') {
+    return res.redirect('contract_permanent')
+  } 
+  else{
+    return res.redirect('contract_variable')
+  }
+
+
+})
+
+router.post('/fe/contract_variable', (req, res) => {
+
+  var contract = req.session.data.contract
+
+  if (contract == 'Yes') {
+    return res.redirect('contract_permanent')
+  } 
+  else{
+    return res.redirect('ineligible_yet')
   }
 
 

@@ -1,0 +1,77 @@
+{% extends "layouts/main_fe.html" %}
+
+{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/radios/macro.njk" import govukRadios %}
+
+{% set pageName = "Continue to the service you need to use" %}
+
+{% block pageBeforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "/one-login-start"
+  }) }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <form method="post">
+      
+      <div class="govuk-form-group">
+        <fieldset class="govuk-fieldset">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+            <h1 class="govuk-fieldset__heading">Which academic year did you start your further education (FE) teaching career in England?</h1></legend>
+          <div class="govuk-radios" data-module="govuk-radios" data-govuk-radios-init="">
+            <div class="govuk-radios__item">
+              <input id="claim-further-education-teaching-start-year-2026-field" class="govuk-radios__input" type="radio" value="2026" name="startyear">
+              <label for="claim-further-education-teaching-start-year-2026-field" class="govuk-label govuk-radios__label">September 2026 to August 2027</label>
+            </div>
+            <div class="govuk-radios__item">
+              <input id="claim-further-education-teaching-start-year-2025-field" class="govuk-radios__input" type="radio" value="2025" name="startyear">
+              <label for="claim-further-education-teaching-start-year-2025-field" class="govuk-label govuk-radios__label">September 2025 to August 2026</label>
+            </div>
+            <div class="govuk-radios__item">
+              <input id="claim-further-education-teaching-start-year-2024-field" class="govuk-radios__input" type="radio" value="2024" name="startyear">
+              <label for="claim-further-education-teaching-start-year-2024-field" class="govuk-label govuk-radios__label">September 2024 to August 2025</label>
+            </div>
+            <div class="govuk-radios__item">
+              <input id="claim-further-education-teaching-start-year-2023-field" class="govuk-radios__input" type="radio" value="2023" name="startyear">
+              <label for="claim-further-education-teaching-start-year-2023-field" class="govuk-label govuk-radios__label">September 2023 to August 2024</label>
+            </div>
+            <div class="govuk-radios__item">
+              <input id="claim-further-education-teaching-start-year-2022-field" class="govuk-radios__input" type="radio" value="2022" name="startyear">
+              <label for="claim-further-education-teaching-start-year-2022-field" class="govuk-label govuk-radios__label">September 2022 to August 2023</label>
+            </div>
+            <div class="govuk-radios__divider">or</div>
+            <div class="govuk-radios__item">
+              <input id="claim-further-education-teaching-start-year-pre-2022-field" class="govuk-radios__input" type="radio" value="pre-2022" name="startyear">
+              <label for="claim-further-education-teaching-start-year-pre-2022-field" class="govuk-label govuk-radios__label">Before September 2022</label>
+            </div>
+          </div>
+        </fieldset>
+      </div>
+
+      <details class="govuk-details">
+        <summary class="govuk-details__summary">
+          <span class="govuk-details__summary-text">What counts towards the first 5 years of a further education (FE) teaching career</span>
+        </summary>
+        <div class="govuk-details__text">
+          <p class="govuk-body">
+            This is the first academic year that you took on FE teaching responsibilities in England. We define this as the academic year when you took on the following teaching responsibilities at a post-16 education provider in England:
+          </p>
+
+          <ul class="govuk-list govuk-list--bullet"><li>independently teaching timetabled guided learning hours to classes of students</li><li>planning and preparing lessons for classes of students</li><li>assessing learning and reporting on progress for classes of students</li></ul>
+        </div>
+      </details>
+
+
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+
+    </form>
+
+  </div>
+</div>
+{% endblock %}
