@@ -795,3 +795,42 @@ router.post('/fe/contract_variable', (req, res) => {
 
 
 })
+
+router.post('/fe/contract_permanent', (req, res) => {
+
+  var permanent = req.session.data.permanent
+
+  if (permanent == 'less_than_2_5') {
+    return res.redirect('ineligible_25')
+  } 
+  else{
+    return res.redirect('contract_tlevel')
+  }
+
+})
+
+router.post('/fe/contract_tlevel', (req, res) => {
+
+  var tlevel = req.session.data.tlevel
+
+  if (tlevel == 'Yes') {
+    return res.redirect('contract_subjects')
+  } 
+  else{
+    return res.redirect('ineligible_tlevel')
+  }
+
+})
+
+router.post('/fe/contract_subjects', (req, res) => {
+
+  var subjects = req.session.data.subjects
+
+  if (subjects == 'none') {
+    return res.redirect('ineligible_subjects')
+  } 
+  else{
+    return res.redirect('/')
+  }
+
+})

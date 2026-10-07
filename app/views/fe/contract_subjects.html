@@ -1,0 +1,73 @@
+{% extends "layouts/main_fe.html" %}
+
+{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/radios/macro.njk" import govukRadios %}
+
+{% set pageName = "Continue to the service you need to use" %}
+
+{% block pageBeforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "/one-login-start"
+  }) }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    
+    <form method="post">
+      
+      <fieldset class="govuk-fieldset govuk-!-margin-bottom-5" aria-describedby="claim-subjects-taught-hint">
+        <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+          <h1 class="govuk-fieldset__heading">Which subject areas do you teach?</h1>
+        </legend>
+        <div class="govuk-hint" id="claim-subjects-taught-hint">Select all that apply</div>
+        <div class="govuk-checkboxes" data-module="govuk-checkboxes" data-govuk-checkboxes-init="">
+          <div class="govuk-checkboxes__item">
+            <input id="claim-subjects-taught-building-construction-field" class="govuk-checkboxes__input" type="checkbox" value="building_construction" name="subjects">
+            <label for="claim-subjects-taught-building-construction-field" class="govuk-label govuk-checkboxes__label">Building and construction</label>
+          </div>
+          <div class="govuk-checkboxes__item">
+            <input id="claim-subjects-taught-chemistry-field" class="govuk-checkboxes__input" type="checkbox" value="chemistry" name="subjects">
+            <label for="claim-subjects-taught-chemistry-field" class="govuk-label govuk-checkboxes__label">Chemistry</label>
+          </div>
+          <div class="govuk-checkboxes__item">
+            <input id="claim-subjects-taught-computing-field" class="govuk-checkboxes__input" type="checkbox" value="computing" name="subjects">
+            <label for="claim-subjects-taught-computing-field" class="govuk-label govuk-checkboxes__label">Computing, including digital and ICT</label>
+          </div>
+          <div class="govuk-checkboxes__item">
+            <input id="claim-subjects-taught-early-years-field" class="govuk-checkboxes__input" type="checkbox" value="early_years" name="subjects">
+            <label for="claim-subjects-taught-early-years-field" class="govuk-label govuk-checkboxes__label">Early years</label>
+          </div>
+          <div class="govuk-checkboxes__item">
+            <input id="claim-subjects-taught-engineering-manufacturing-field" class="govuk-checkboxes__input" type="checkbox" value="engineering_manufacturing" name="subjects">
+            <label for="claim-subjects-taught-engineering-manufacturing-field" class="govuk-label govuk-checkboxes__label">Engineering and manufacturing, including transport engineering and electronics</label>
+          </div>
+          <div class="govuk-checkboxes__item">
+            <input id="claim-subjects-taught-maths-field" class="govuk-checkboxes__input" type="checkbox" value="maths" name="subjects">
+            <label for="claim-subjects-taught-maths-field" class="govuk-label govuk-checkboxes__label">Maths</label>
+          </div>
+          <div class="govuk-checkboxes__item">
+            <input id="claim-subjects-taught-physics-field" class="govuk-checkboxes__input" type="checkbox" value="physics" name="subjects">
+            <label for="claim-subjects-taught-physics-field" class="govuk-label govuk-checkboxes__label">Physics</label>
+          </div>
+          <div class="govuk-checkboxes__divider">or</div>
+          <div class="govuk-checkboxes__item">
+            <input id="claim-subjects-taught-none-field" class="govuk-checkboxes__input" data-behaviour="exclusive" type="checkbox" value="none" name="subjects">
+            <label for="claim-subjects-taught-none-field" class="govuk-label govuk-checkboxes__label">I do not teach any of these subjects</label>
+          </div>
+        </div>
+      </fieldset>
+  
+
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+
+    </form>
+
+  </div>
+</div>
+{% endblock %}

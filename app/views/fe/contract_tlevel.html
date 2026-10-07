@@ -1,0 +1,61 @@
+{% extends "layouts/main_fe.html" %}
+
+{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/radios/macro.njk" import govukRadios %}
+
+{% set pageName = "Continue to the service you need to use" %}
+
+{% block pageBeforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "/one-login-start"
+  }) }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <form method="post">
+      
+      <div class="govuk-form-group">
+        <fieldset class="govuk-fieldset">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+            <h1 class="govuk-fieldset__heading">Do you spend at least half of your timetabled teaching hours teaching students on 16 to 19 study programmes, T Levels or 16 to 19 apprenticeships?</h1>
+          </legend>
+          <div class="govuk-hint" id="claim-half-teaching-hours-hint">
+            
+            <p class="govuk-body">
+              This also includes teaching:
+            </p>
+
+            <ul class="govuk-list govuk-list--bullet">
+              <li>students enrolled on these programmes who are 25 years old or younger with an Education, Health and Care Plan (EHCP)</li>
+              <li>14 to 16 year olds enrolled on 16 to 19 funded study programmes</li>
+            </ul>
+            
+          </div>
+
+          <div class="govuk-radios" data-module="govuk-radios" data-govuk-radios-init="">
+            <div class="govuk-radios__item">
+              <input id="claim-contract-type-permanent-field" aria-describedby="claim-contract-type-permanent-hint" class="govuk-radios__input" type="radio" value="Yes" name="tlevel">
+              <label for="claim-contract-type-permanent-field" class="govuk-label govuk-radios__label">Yes</label>
+            </div>
+            <div class="govuk-radios__item">
+              <input id="claim-contract-type-fixed-term-field" class="govuk-radios__input" type="radio" value="No" name="tlevel">
+              <label for="claim-contract-type-fixed-term-field" class="govuk-label govuk-radios__label">No</label>
+            </div>
+          </div>
+
+        </fieldset>
+      </div>
+
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+
+    </form>
+
+  </div>
+</div>
+{% endblock %}
