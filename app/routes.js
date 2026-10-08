@@ -625,7 +625,7 @@ router.post('/fe/one-login-continue-to-service', (req, res) => {
   } else if (oneLoginJourney == 'previous_error') {
     return res.redirect('previous_error')
   } else if (oneLoginJourney == 'previous') {
-    return res.redirect('fe_search')
+    return res.redirect('check_previous_application')
   } else{
     return res.redirect('check-eligibility-intro')
   }
@@ -647,7 +647,6 @@ router.post('/fe/fe_search_result', (req, res) => {
 
 
 })
-
 
 
 router.post('/fe/hmrc', (req, res) => {
@@ -830,7 +829,49 @@ router.post('/fe/contract_subjects', (req, res) => {
     return res.redirect('ineligible_subjects')
   } 
   else{
-    return res.redirect('/')
+    return res.redirect('contract_subjects_physics')
+  }
+
+})
+
+router.post('/fe/contract_subjects_physics', (req, res) => {
+
+  var claim_physics = req.session.data.claim_physics
+
+  if (claim_physics == 'none') {
+    return res.redirect('ineligible_subjects')
+  } 
+  else{
+    return res.redirect('contract_subjects_physics_time')
+  }
+
+})
+
+router.post('/fe/contract_subjects_physics_time', (req, res) => {
+
+  var hours_teaching_eligible_subjects = req.session.data.hours_teaching_eligible_subjects
+
+  if (hours_teaching_eligible_subjects == 'No') {
+    return res.redirect('ineligible_subjects_time')
+  } 
+  else{
+    return res.redirect('performance')
+  }
+
+})
+
+router.post('/fe/performance', (req, res) => {
+
+  var subject_to_formal_performance_action = req.session.data.subject_to_formal_performance_action
+  var subject_to_disciplinary_action = req.session.data.subject_to_disciplinary_action
+
+  if (subject_to_formal_performance_action == 'Yes') {
+    return res.redirect('ineligible_performance')
+  } 
+  else if (subject_to_disciplinary_action == 'Yes') {
+    return res.redirect('ineligible_performance')
+  }else{
+    return res.redirect('check_answers')
   }
 
 })

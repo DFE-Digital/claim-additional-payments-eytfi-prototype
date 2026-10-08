@@ -1,0 +1,74 @@
+{% extends "layouts/main_fe.html" %}
+
+{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/radios/macro.njk" import govukRadios %}
+
+{% set pageName = "Continue to the service you need to use" %}
+
+{% block pageBeforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "/one-login-start"
+  }) }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <form accept-charset="UTF-8" method="post">
+      <h1 class="govuk-heading-l">
+        Tell us if you are currently under any performance measures or disciplinary action
+      </h1>
+      <div class="govuk-form-group">
+        <fieldset class="govuk-fieldset" aria-describedby="claim-subject-to-formal-performance-action-hint">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+            <h2 class="govuk-fieldset__heading">Are you currently subject to any formal performance measures as a result of continuous poor teaching standards?</h2>
+          </legend>
+          <div class="govuk-hint" id="claim-subject-to-formal-performance-action-hint">This will be as a result of your underperformance as a teacher over a period of time. It could put your employment at the further education (FE) provider at risk and is something we will check with them as it will affect your eligibility.</div>
+          <div class="govuk-radios" data-module="govuk-radios" data-govuk-radios-init="">
+            <div class="govuk-radios__item">
+              <input id="claim-subject-to-formal-performance-action-true-field" class="govuk-radios__input" type="radio" value="Yes" checked="checked" name="subject_to_formal_performance_action">
+              <label for="claim-subject-to-formal-performance-action-true-field" class="govuk-label govuk-radios__label">Yes</label>
+            </div>
+            <div class="govuk-radios__item">
+              <input id="claim-subject-to-formal-performance-action-field" class="govuk-radios__input" type="radio" value="No" name="subject_to_formal_performance_action">
+              <label for="claim-subject-to-formal-performance-action-field" class="govuk-label govuk-radios__label">No</label>
+            </div>
+          </div>
+        </fieldset>
+      </div>
+      <div class="govuk-form-group">
+        <fieldset class="govuk-fieldset" aria-describedby="claim-subject-to-disciplinary-action-hint">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+            <h2 class="govuk-fieldset__heading">Are you currently subject to disciplinary action?</h2>
+          </legend>
+          <div class="govuk-hint" id="claim-subject-to-disciplinary-action-hint">This is more serious than performance measures and could be because of misconduct. It is something we will check with your FE provider as it affects your eligibility.</div>
+          <div class="govuk-radios" data-module="govuk-radios" data-govuk-radios-init="">
+            <div class="govuk-radios__item">
+              <input id="claim-subject-to-disciplinary-action-true-field" class="govuk-radios__input" type="radio" value="Yes" name="subject_to_disciplinary_action">
+              <label for="claim-subject-to-disciplinary-action-true-field" class="govuk-label govuk-radios__label">Yes</label>
+            </div>
+            <div class="govuk-radios__item">
+              <input id="claim-subject-to-disciplinary-action-field" class="govuk-radios__input" type="radio" value="No" checked="checked" name="subject_to_disciplinary_action">
+              <label for="claim-subject-to-disciplinary-action-field" class="govuk-label govuk-radios__label">No</label>
+            </div>
+          </div>
+        </fieldset>
+      </div>
+      
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+
+    
+    </form>
+        
+
+  
+
+    
+  </div>
+</div>
+{% endblock %}

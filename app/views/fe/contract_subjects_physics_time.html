@@ -1,0 +1,56 @@
+{% extends "layouts/main_fe.html" %}
+
+{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/radios/macro.njk" import govukRadios %}
+
+{% set pageName = "Continue to the service you need to use" %}
+
+{% block pageBeforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "/one-login-start"
+  }) }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    
+    <form method="post">
+      
+      <fieldset class="govuk-fieldset govuk-!-margin-bottom-5" aria-describedby="claim-hours-teaching-eligible-subjects-hint">
+        <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+          <h1 class="govuk-fieldset__heading">Do you spend at least half of your timetabled teaching hours teaching these eligible courses?</h1>
+        </legend>
+        <div class="govuk-hint" id="claim-hours-teaching-eligible-subjects-hint">
+          <p class="govuk-body"> At least 50% of your timetabled teaching hours must be spent teaching students in the following courses: </p>
+          <ul class="govuk-list govuk-list--bullet">
+            <li>A or AS level physics</li>
+            <li>GCSE physics</li>
+            <li>IBO&nbsp;level 1 / level 2 MYP physics</li>
+            <li>IBO&nbsp;level 3 in&nbsp;SL&nbsp;and&nbsp;HL&nbsp;physics, taught as part of a diploma or career related programme or as a standalone certificate</li>
+          </ul>
+        </div>
+        <div class="govuk-radios" data-module="govuk-radios" data-govuk-radios-init="">
+          <div class="govuk-radios__item">
+            <input id="claim-hours-teaching-eligible-subjects-true-field" class="govuk-radios__input" type="radio" value="Yes" name="hours_teaching_eligible_subjects">
+            <label for="claim-hours-teaching-eligible-subjects-true-field" class="govuk-label govuk-radios__label">Yes</label>
+          </div>
+          <div class="govuk-radios__item">
+            <input id="claim-hours-teaching-eligible-subjects-field" class="govuk-radios__input" type="radio" value="No" name="hours_teaching_eligible_subjects">
+            <label for="claim-hours-teaching-eligible-subjects-field" class="govuk-label govuk-radios__label">No</label>
+          </div>
+        </div>
+      </fieldset>
+  
+
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+
+    </form>
+
+  </div>
+</div>
+{% endblock %}

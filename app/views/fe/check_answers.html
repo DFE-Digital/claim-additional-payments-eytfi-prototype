@@ -1,0 +1,109 @@
+{% extends "layouts/main_fe.html" %}
+
+{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+{% from "govuk/components/checkboxes/macro.njk" import govukCheckboxes %}
+
+{% set pageName = "Confirm your details and complete your claim" %}
+
+{% block pageBeforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "/bank-details"
+  }) }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  
+<div class="govuk-grid-column-two-thirds">
+	<h1 class="govuk-heading-l">
+      Check your answers
+    </h1>
+	<h2 class="govuk-heading-m">
+    Eligibility details
+  </h2>
+	<div class="govuk-!-margin-bottom-9">
+		<dl class="govuk-summary-list">
+			<div class="govuk-summary-list__row"><dt class="govuk-summary-list__key">Are you a member of staff with the responsibilities of a teacher?</dt>
+				<dd class="govuk-summary-list__value">Yes</dd>
+				<dd class="govuk-summary-list__actions"><a class="govuk-link" href="/further-education-payments/teaching-responsibilities?change=check-your-answers-part-one">Change<span class="govuk-visually-hidden"> are you a member of staff with the responsibilities of a teacher?</span></a></dd>
+			</div>
+			<div class="govuk-summary-list__row"><dt class="govuk-summary-list__key">Which further education provider directly employs you?</dt>
+				<dd class="govuk-summary-list__value">Nottingham College</dd>
+				<dd class="govuk-summary-list__actions"><a class="govuk-link" href="/further-education-payments/further-education-provision-search?change=check-your-answers-part-one">Change<span class="govuk-visually-hidden"> which further education provider directly employs you?</span></a></dd>
+			</div>
+			<div class="govuk-summary-list__row"><dt class="govuk-summary-list__key">Which academic year did you start your further education (FE) teaching career in England?</dt>
+				<dd class="govuk-summary-list__value">September 2026 to August 2027</dd>
+				<dd class="govuk-summary-list__actions"><a class="govuk-link" href="/further-education-payments/further-education-teaching-start-year?change=check-your-answers-part-one">Change<span class="govuk-visually-hidden"> which academic year did you start your further education (fe) teaching career in england?</span></a></dd>
+			</div>
+			<div class="govuk-summary-list__row"><dt class="govuk-summary-list__key">Do you have a teaching qualification?</dt>
+				<dd class="govuk-summary-list__value">Yes</dd>
+				<dd class="govuk-summary-list__actions"><a class="govuk-link" href="/further-education-payments/teaching-qualification?change=check-your-answers-part-one">Change<span class="govuk-visually-hidden"> do you have a teaching qualification?</span></a></dd>
+			</div>
+			<div class="govuk-summary-list__row"><dt class="govuk-summary-list__key">What type of contract do you have directly with Nottingham College?</dt>
+				<dd class="govuk-summary-list__value">Permanent</dd>
+				<dd class="govuk-summary-list__actions"><a class="govuk-link" href="/further-education-payments/contract-type?change=check-your-answers-part-one">Change<span class="govuk-visually-hidden"> what type of contract do you have directly with nottingham college?</span></a></dd>
+			</div>
+			<div class="govuk-summary-list__row"><dt class="govuk-summary-list__key">On average, how many hours per week are you timetabled to teach at Nottingham College during the spring term?</dt>
+				<dd class="govuk-summary-list__value">20 hours or more per week</dd>
+				<dd class="govuk-summary-list__actions"><a class="govuk-link" href="/further-education-payments/teaching-hours-per-week?change=check-your-answers-part-one">Change<span class="govuk-visually-hidden"> on average, how many hours per week are you timetabled to teach at nottingham college during the spring term?</span></a></dd>
+			</div>
+			<div class="govuk-summary-list__row"><dt class="govuk-summary-list__key">Do you spend at least half of your timetabled teaching hours teaching students on 16 to 19 study programmes, T Levels or 16 to 19 apprenticeships?</dt>
+				<dd class="govuk-summary-list__value">Yes</dd>
+				<dd class="govuk-summary-list__actions"><a class="govuk-link" href="/further-education-payments/half-teaching-hours?change=check-your-answers-part-one">Change<span class="govuk-visually-hidden"> do you spend at least half of your timetabled teaching hours teaching students on 16 to 19 study programmes, t levels or 16 to 19 apprenticeships?</span></a></dd>
+			</div>
+			<div class="govuk-summary-list__row"><dt class="govuk-summary-list__key">Which subject areas do you teach?</dt>
+				<dd class="govuk-summary-list__value">Physics</dd>
+				<dd class="govuk-summary-list__actions"><a class="govuk-link" href="/further-education-payments/subjects-taught?change=check-your-answers-part-one">Change<span class="govuk-visually-hidden"> which subject areas do you teach?</span></a></dd>
+			</div>
+			<div class="govuk-summary-list__row"><dt class="govuk-summary-list__key">Physics courses</dt>
+				<dd class="govuk-summary-list__value">A or AS level physicsGCSE physicsIBO&nbsp;level 1 / level 2 MYP physicsIBO&nbsp;level 3 in&nbsp;SL&nbsp;and&nbsp;HL&nbsp;physics, taught as part of a diploma or career related programme or as a standalone certificate</dd>
+				<dd class="govuk-summary-list__actions"><a class="govuk-link" href="/further-education-payments/physics-courses?change=check-your-answers-part-one">Change<span class="govuk-visually-hidden"> physics courses</span></a></dd>
+			</div>
+			<div class="govuk-summary-list__row"><dt class="govuk-summary-list__key">Do you spend at least half of your timetabled teaching hours teaching these eligible courses?</dt>
+				<dd class="govuk-summary-list__value">Yes</dd>
+				<dd class="govuk-summary-list__actions"><a class="govuk-link" href="/further-education-payments/hours-teaching-eligible-subjects?change=check-your-answers-part-one">Change<span class="govuk-visually-hidden"> do you spend at least half of your timetabled teaching hours teaching these eligible courses?</span></a></dd>
+			</div>
+			<div class="govuk-summary-list__row"><dt class="govuk-summary-list__key">Are you currently subject to any formal performance measures as a result of continuous poor teaching standards?</dt>
+				<dd class="govuk-summary-list__value">No</dd>
+				<dd class="govuk-summary-list__actions"><a class="govuk-link" href="/further-education-payments/poor-performance?change=check-your-answers-part-one">Change<span class="govuk-visually-hidden"> are you currently subject to any formal performance measures as a result of continuous poor teaching standards?</span></a></dd>
+			</div>
+			<div class="govuk-summary-list__row"><dt class="govuk-summary-list__key">Are you currently subject to disciplinary action?</dt>
+				<dd class="govuk-summary-list__value">No</dd>
+				<dd class="govuk-summary-list__actions"><a class="govuk-link" href="/further-education-payments/poor-performance?change=check-your-answers-part-one">Change<span class="govuk-visually-hidden"> are you currently subject to disciplinary action?</span></a></dd>
+			</div>
+		</dl>
+	</div>
+	<p class="govuk-body">By selecting continue you are confirming that, to the best of your knowledge, the details you are providing are correct.</p>
+	
+  
+  <form action="/claim-complete" method="get">
+    
+    {{ govukCheckboxes({
+      idPrefix: "eligibility-confirmed",
+      name: "eligibilityConfirmed",
+      items: [
+        {
+          value: "yes",
+          text: "I confirm that I understand and accept these conditions."
+        }
+      ]
+    }) }}
+
+    {{ govukButton({
+      text: "Continue"
+    }) }}
+
+  </form>
+
+
+</div>
+
+    
+
+
+  </div>
+</div>
+{% endblock %}

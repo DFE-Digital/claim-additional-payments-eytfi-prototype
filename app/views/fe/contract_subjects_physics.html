@@ -1,0 +1,65 @@
+{% extends "layouts/main_fe.html" %}
+
+{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/radios/macro.njk" import govukRadios %}
+
+{% set pageName = "Continue to the service you need to use" %}
+
+{% block pageBeforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "/one-login-start"
+  }) }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    
+    <form method="post">
+      
+      <fieldset class="govuk-fieldset govuk-!-margin-bottom-5" aria-describedby="claim-physics-courses-hint">
+        <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+          <h1 class="govuk-fieldset__heading">Which physics courses do you teach?</h1></legend>
+        <div class="govuk-hint" id="claim-physics-courses-hint">
+          <p> Contact your provider if you are unsure which one to pick, or you cannot find the one you teach. </p>
+          <p> You can then email the helpdesk to check if it is eligible. </p>
+          <p> <a class="govuk-link" href="mailto:FE-targeted.retention-incentive@education.gov.uk">FE-targeted.retention-incentive@education.gov.uk</a> </p>
+          <p> Select all that apply </p>
+        </div>
+        <div class="govuk-checkboxes" data-module="govuk-checkboxes" data-govuk-checkboxes-init="">
+          <div class="govuk-checkboxes__item">
+            <input id="claim-physics-courses-alevel-physics-field" class="govuk-checkboxes__input" type="checkbox" value="alevel_physics" name="claim_physics">
+            <label for="claim-physics-courses-alevel-physics-field" class="govuk-label govuk-checkboxes__label">A or AS level physics</label>
+          </div>
+          <div class="govuk-checkboxes__item">
+            <input id="claim-physics-courses-gcse-physics-field" class="govuk-checkboxes__input" type="checkbox" value="gcse_physics" checked="checked" name="claim_physics">
+            <label for="claim-physics-courses-gcse-physics-field" class="govuk-label govuk-checkboxes__label">GCSE physics</label>
+          </div>
+          <div class="govuk-checkboxes__item">
+            <input id="claim-physics-courses-ibo-level-1-2-myp-physics-field" class="govuk-checkboxes__input" type="checkbox" value="ibo_level_1_2_myp_physics" name="claim_physics">
+            <label for="claim-physics-courses-ibo-level-1-2-myp-physics-field" class="govuk-label govuk-checkboxes__label">IBO&nbsp;level 1 / level 2 MYP physics</label>
+          </div>
+          <div class="govuk-checkboxes__item">
+            <input id="claim-physics-courses-ibo-level-3-physics-field" class="govuk-checkboxes__input" type="checkbox" value="ibo_level_3_physics" name="claim_physics">
+            <label for="claim-physics-courses-ibo-level-3-physics-field" class="govuk-label govuk-checkboxes__label">IBO&nbsp;level 3 in&nbsp;SL&nbsp;and&nbsp;HL&nbsp;physics, taught as part of a diploma or career related programme or as a standalone certificate</label>
+          </div>
+          <div class="govuk-checkboxes__divider">or</div>
+          <div class="govuk-checkboxes__item">
+            <input id="claim-physics-courses-none-field" class="govuk-checkboxes__input" data-behaviour="exclusive" type="checkbox" value="none" name="claim_physics">
+            <label for="claim-physics-courses-none-field" class="govuk-label govuk-checkboxes__label">I do not teach any of these courses</label>
+          </div>
+        </div>
+      </fieldset>
+  
+
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+
+    </form>
+
+  </div>
+</div>
+{% endblock %}

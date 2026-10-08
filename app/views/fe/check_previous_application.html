@@ -1,0 +1,40 @@
+{% extends "layouts/main_fe.html" %}
+
+{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+
+{% set pageName = "Confirm your details and complete your claim" %}
+
+{% block pageBeforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "/bank-details"
+  }) }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-l">We have found your previous application</h1>
+
+    <p>
+      Last year you successfully applied for a Further Education Targeted Retention Incentive payment.
+    </p>
+    <p>
+      We've pre-filled information that your provider verified from your previous application.
+    </p>
+    <p>
+      Please check your details and tell us if anything has changed.
+    </p>
+
+    <form action="check_previous_answers" method="get">
+
+      {{ govukButton({
+        text: "Check details"
+      }) }}
+    </form>
+
+  </div>
+</div>
+{% endblock %}
