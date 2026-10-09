@@ -1,0 +1,42 @@
+{% extends "layouts/main_fe.html" %}
+
+{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+{% from "govuk/components/checkboxes/macro.njk" import govukCheckboxes %}
+
+{% set pageName = "Confirm your details and complete your claim" %}
+
+{% block pageBeforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "/bank-details"
+  }) }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  
+  <div class="govuk-grid-column-two-thirds">
+   
+    <form class="edit_claim" id="edit_claim" action="check_answers_email_code" accept-charset="UTF-8" method="post">
+      <div class="govuk-form-group">
+        <h1 class="govuk-label-wrapper"><label for="claim-email-address-field" class="govuk-label govuk-label--xl"><span class="govuk-caption-xl">Personal details</span>Email address</label></h1>
+        <div class="govuk-hint" id="claim-email-address-hint">
+          <p class="govuk-body"> We recommend you use a non-work email address in case your circumstances change while we process your payment. </p>
+          <p class="govuk-body"> To verify your email address we will send you an email with a 6-digit passcode. You can enter the passcode on the next screen. </p>
+        </div>
+        <input id="claim-email-address-field" class="govuk-input" aria-describedby="claim-email-address-hint" autocomplete="email" spellcheck="false" type="email" name="claim[email_address]">
+        <div data-lastpass-icon-root="" data-lastpass-icon-for="claim-email-address-field" style="position: relative !important; height: 0px !important; width: 0px !important; display: initial !important; float: left !important;"></div>
+      </div>
+      <input autocomplete="off" type="hidden" name="claim[resend]" id="claim_resend">
+      <details class="govuk-details">
+        <summary class="govuk-details__summary"><span class="govuk-details__summary-text">Get help with access codes</span></summary>
+        <div class="govuk-details__text"> If you have any issues with the passcode, email us at: <a class="govuk-link" href="mailto:FE-targeted.retention-incentive@education.gov.uk?subject=Email%20verification">FE-targeted.retention-incentive@education.gov.uk</a>. </div>
+      </details>
+      <button type="submit" formnovalidate="formnovalidate" class="govuk-button" data-module="govuk-button" data-prevent-double-click="true" data-govuk-button-init="">Continue</button>
+    </form>
+  
+  </div>
+</div>
+{% endblock %}

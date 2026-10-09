@@ -1,0 +1,41 @@
+{% extends "layouts/main_fe.html" %}
+
+{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+{% from "govuk/components/checkboxes/macro.njk" import govukCheckboxes %}
+
+{% set pageName = "Confirm your details and complete your claim" %}
+
+{% block pageBeforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "/bank-details"
+  }) }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  
+  <div class="govuk-grid-column-two-thirds">
+	
+    <form action="check_answers_information" accept-charset="UTF-8" method="post">
+      <div class="govuk-panel govuk-panel--confirmation govuk-panel--informational">
+        <h1 class="govuk-panel__title">You’re eligible for a targeted retention incentive payment</h1> </div>
+      <div class="govuk-heading-m"> Based on what you’ve told us, you can apply for a retention payment of: </div>
+      <div class="govuk-heading-l"> £6,000 </div>
+      <button type="submit" formnovalidate="formnovalidate" class="govuk-button" data-module="govuk-button" data-prevent-double-click="true" data-govuk-button-init="">Apply now</button>
+      <div class="govuk-body"> If you teach at an FE provider with a higher proportion of disadvantaged students, you’ll receive a higher payment. This is based on the proportion of 16 to 19 students who attract <a class="govuk-link" href="https://www.gov.uk/guidance/16-to-19-funding-how-it-works">disadvantage funding</a>. </div>
+      <div class="govuk-body"> In the guidance on <a class="govuk-link" href="https://www.gov.uk/guidance/targeted-retention-incentive-payments-for-fe-teachers">targeted retention incentive payments for FE teachers</a>, you can find: </div>
+      <ul class="govuk-list govuk-list--bullet">
+        <li>why you’re eligible</li>
+        <li>the list of eligible FE providers</li>
+        <li>the payment values</li>
+      </ul>
+    </form>
+
+
+
+  </div>
+</div>
+{% endblock %}

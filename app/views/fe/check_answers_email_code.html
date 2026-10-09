@@ -1,0 +1,38 @@
+{% extends "layouts/main_fe.html" %}
+
+{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+{% from "govuk/components/checkboxes/macro.njk" import govukCheckboxes %}
+
+{% set pageName = "Confirm your details and complete your claim" %}
+
+{% block pageBeforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "/bank-details"
+  }) }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  
+  <div class="govuk-grid-column-two-thirds">
+   
+    <form action="check_answers_phone" accept-charset="UTF-8" method="post">
+      <div class="govuk-form-group">
+        <h1 class="govuk-label-wrapper"><label for="claim-one-time-password-field" class="govuk-label govuk-label--l"><span class="govuk-caption-xl">Email address verification</span>Enter the 6-digit passcode</label></h1>
+        <div class="govuk-hint" id="claim-one-time-password-hint">
+          <p class="govuk-body"> We have sent an email to <b><strong>alex.lee@education.gov.uk</strong></b> with a 6-digit passcode. </p>
+          <p class="govuk-body"> The passcode will expire 15 minutes after you receive it. </p>
+        </div>
+        <input id="claim-one-time-password-field" class="govuk-input govuk-input--width-5" aria-describedby="claim-one-time-password-hint" autocomplete="one-time-code" inputmode="numeric" type="text" name="claim[one_time_password]">
+      </div>
+      <div class="govuk-!-margin-bottom-6 govuk-body"> <a class="govuk-link govuk-link--no-visited-state" href="/further-education-payments/email-address?resend=true">Resend passcode (you will be sent back to the email address page)</a> </div>
+      <div class="govuk-button-group">
+        <button type="submit" formnovalidate="formnovalidate" class="govuk-button" data-module="govuk-button" data-prevent-double-click="true" data-govuk-button-init="">Confirm</button> <a class="govuk-button govuk-button--secondary" data-module="govuk-button" href="/further-education-payments/email-address" data-govuk-button-init="">Change email address</a> </div>
+    </form>
+  
+  </div>
+</div>
+{% endblock %}

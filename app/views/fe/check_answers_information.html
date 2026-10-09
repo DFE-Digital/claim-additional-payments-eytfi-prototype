@@ -1,0 +1,44 @@
+{% extends "layouts/main_fe.html" %}
+
+{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+{% from "govuk/components/checkboxes/macro.njk" import govukCheckboxes %}
+
+{% set pageName = "Confirm your details and complete your claim" %}
+
+{% block pageBeforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "/bank-details"
+  }) }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-xl">How we will use your information</h1>
+    <h2 class="govuk-heading-m">To process your application</h2>
+    <p class="govuk-body"> We will check the information you have provided with the: </p>
+    <ul class="govuk-list govuk-list--bullet">
+      <li>further education provider where you currently teach</li>
+      <li>the Student Loans Company</li>
+    </ul>
+    <h2 class="govuk-heading-m">
+        How we will pay you
+      </h2>
+    <p class="govuk-body"> DfE will make the payment directly to you. </p>
+    <p class="govuk-body"> To complete the rest of your application, you will need your: </p>
+    <ul class="govuk-list govuk-list--bullet">
+      <li>National Insurance number</li>
+      <li>bank account details</li>
+    </ul>
+    <h2 class="govuk-heading-m">Student loan deductions</h2>
+    <div class="govuk-body"> You can read how student loan deductions and Income Tax may affect your payment in the <a class="govuk-link" href="https://www.gov.uk/guidance/targeted-retention-incentive-payments-for-fe-teachers#payments">guidance on targeted retention incentive payments for FE teachers</a>. </div>
+    <form class="button_to" method="post" action="check_answers_ni">
+      <button class="govuk-button" data-module="govuk-button" new_tab="false" type="submit" data-govuk-button-init="">Continue</button>
+    </form>
+  </div>
+</div>
+{% endblock %}

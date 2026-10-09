@@ -1,0 +1,45 @@
+{% extends "layouts/main_fe.html" %}
+
+{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+{% from "govuk/components/checkboxes/macro.njk" import govukCheckboxes %}
+
+{% set pageName = "Confirm your details and complete your claim" %}
+
+{% block pageBeforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "/bank-details"
+  }) }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  
+  <div class="govuk-grid-column-two-thirds">
+   
+    <form action="check_answers_bank" accept-charset="UTF-8" method="post">
+      <div class="govuk-form-group">
+        <fieldset class="govuk-fieldset" aria-describedby="claim-provide-mobile-number-hint">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+            <h1 class="govuk-fieldset__heading"><span class="govuk-caption-xl">Personal details</span>Would you like to provide your mobile number?</h1></legend>
+          <div class="govuk-hint" id="claim-provide-mobile-number-hint">We will only use this number if we are unable to contact you via email. It may slow down your application if we are unable to reach you.</div>
+          <div class="govuk-radios govuk-radios--inline" data-module="govuk-radios" data-govuk-radios-init="">
+            <div class="govuk-radios__item">
+              <input id="claim-provide-mobile-number-true-field" class="govuk-radios__input" type="radio" value="true" name="claim[provide_mobile_number]">
+              <label for="claim-provide-mobile-number-true-field" class="govuk-label govuk-radios__label">Yes</label>
+            </div>
+            <div class="govuk-radios__item">
+              <input id="claim-provide-mobile-number-field" class="govuk-radios__input" type="radio" value="false" checked="checked" name="claim[provide_mobile_number]">
+              <label for="claim-provide-mobile-number-field" class="govuk-label govuk-radios__label">No</label>
+            </div>
+          </div>
+        </fieldset>
+      </div>
+      <button type="submit" formnovalidate="formnovalidate" class="govuk-button" data-module="govuk-button" data-prevent-double-click="true" data-govuk-button-init="">Continue</button>
+    </form>
+  
+  </div>
+</div>
+{% endblock %}

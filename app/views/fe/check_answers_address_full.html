@@ -1,0 +1,53 @@
+{% extends "layouts/main_fe.html" %}
+
+{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+{% from "govuk/components/checkboxes/macro.njk" import govukCheckboxes %}
+
+{% set pageName = "Confirm your details and complete your claim" %}
+
+{% block pageBeforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "/bank-details"
+  }) }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  
+  <div class="govuk-grid-column-two-thirds">
+   
+    <form class="edit_claim" id="edit_claim" action="check_answers_email" accept-charset="UTF-8" method="post">
+      <fieldset class="govuk-fieldset">
+        <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
+          <h1 class="govuk-fieldset__heading"><span class="govuk-caption-xl">Personal details</span>What is your address?</h1></legend>
+        <div class="govuk-form-group">
+          <label for="claim-address-line-1-field" class="govuk-label">House number or name<span class="govuk-visually-hidden"> line 1 of 2</span></label>
+          <input id="claim-address-line-1-field" class="govuk-input" autocomplete="address-line1" type="text" name="claim[address_line_1]">
+          <div data-lastpass-icon-root="" data-lastpass-icon-for="claim-address-line-1-field" style="position: relative !important; height: 0px !important; width: 0px !important; display: initial !important; float: left !important;"></div>
+        </div>
+        <div class="govuk-form-group">
+          <label for="claim-address-line-2-field" class="govuk-label">Building and street<span class="govuk-visually-hidden"> line 2 of 2</span></label>
+          <input id="claim-address-line-2-field" class="govuk-input" autocomplete="address-line2" type="text" name="claim[address_line_2]">
+        </div>
+        <div class="govuk-form-group">
+          <label for="claim-address-line-3-field" class="govuk-label">Town or city</label>
+          <input id="claim-address-line-3-field" class="govuk-input govuk-!-width-two-thirds" autocomplete="address-level2" type="text" name="claim[address_line_3]">
+        </div>
+        <div class="govuk-form-group">
+          <label for="claim-address-line-4-field" class="govuk-label">County (optional)</label>
+          <input id="claim-address-line-4-field" class="govuk-input govuk-!-width-two-thirds" autocomplete="address-level3" type="text" name="claim[address_line_4]">
+        </div>
+        <div class="govuk-form-group">
+          <label for="claim-postcode-field" class="govuk-label">Postcode</label>
+          <input id="claim-postcode-field" class="govuk-input govuk-input--width-10" autocomplete="postal-code" type="text" name="claim[postcode]">
+        </div>
+      </fieldset>
+      <button type="submit" formnovalidate="formnovalidate" class="govuk-button" data-module="govuk-button" data-prevent-double-click="true" data-govuk-button-init="">Continue</button>
+    </form>
+  
+  </div>
+</div>
+{% endblock %}

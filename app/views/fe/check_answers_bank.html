@@ -1,0 +1,46 @@
+{% extends "layouts/main_fe.html" %}
+
+{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+{% from "govuk/components/checkboxes/macro.njk" import govukCheckboxes %}
+
+{% set pageName = "Confirm your details and complete your claim" %}
+
+{% block pageBeforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "/bank-details"
+  }) }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  
+  <div class="govuk-grid-column-two-thirds">
+   
+    <form class="edit_claim" id="edit_claim" action="check_answers_gender" accept-charset="UTF-8" method="post">
+      <h1 class="govuk-heading-l">Enter the bank account details your salary is paid into</h1>
+      <p class="govuk-body"> Enter the details for the account that your employer pays your salary into. We may need to check these details with your employer so we can make sure it’s you. </p>
+      <div class="govuk-form-group"><strong class="govuk-label-wrapper"><label for="claim-banking-name-field" class="govuk-label govuk-label--s">Name on the account</label></strong>
+        <div class="govuk-hint" id="claim-banking-name-hint">Enter your name as it appears on your bank statement or bank card</div>
+        <input id="claim-banking-name-field" class="govuk-input" aria-describedby="claim-banking-name-hint" spellcheck="false" autocomplete="name" type="text" name="claim[banking_name]">
+      </div>
+      <div class="govuk-form-group"><strong class="govuk-label-wrapper"><label for="claim-bank-sort-code-field" class="govuk-label govuk-label--s">Sort code</label></strong>
+        <div class="govuk-hint" id="claim-bank-sort-code-hint">For example: 123456</div>
+        <input id="claim-bank-sort-code-field" class="govuk-input govuk-!-width-one-quarter" aria-describedby="claim-bank-sort-code-hint" autocomplete="off" inputmode="numeric" type="text" name="claim[bank_sort_code]">
+      </div>
+      <div class="govuk-form-group"><strong class="govuk-label-wrapper"><label for="claim-bank-account-number-field" class="govuk-label govuk-label--s">Account number</label></strong>
+        <div class="govuk-hint" id="claim-bank-account-number-hint">For example: 00103694</div>
+        <input id="claim-bank-account-number-field" class="govuk-input govuk-input--width-20" aria-describedby="claim-bank-account-number-hint" autocomplete="off" inputmode="numeric" type="text" name="claim[bank_account_number]">
+      </div>
+      <details class="govuk-details">
+        <summary class="govuk-details__summary"><span class="govuk-details__summary-text">Problems entering these details</span></summary>
+        <div class="govuk-details__text">If you keep entering your bank details without success and you know the details you are entering are correct, you will be able to confirm these on the next screen.</div>
+      </details>
+      <button type="submit" formnovalidate="formnovalidate" class="govuk-button" data-module="govuk-button" data-prevent-double-click="true" data-govuk-button-init="">Continue</button>
+    </form>
+  
+  </div>
+</div>
+{% endblock %}

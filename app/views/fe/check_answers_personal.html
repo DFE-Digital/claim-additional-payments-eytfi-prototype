@@ -1,0 +1,90 @@
+{% extends "layouts/main_fe.html" %}
+
+{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+{% from "govuk/components/checkboxes/macro.njk" import govukCheckboxes %}
+
+{% set pageName = "Confirm your details and complete your claim" %}
+
+{% block pageBeforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "/bank-details"
+  }) }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-xl">
+        Check your answers before sending your application
+      </h1>
+    <h2 class="govuk-heading-m">
+      Personal details
+    </h2>
+    <div class="govuk-!-margin-bottom-9">
+      <dl class="govuk-summary-list">
+        <div class="govuk-summary-list__row"><dt class="govuk-summary-list__key">National Insurance number</dt>
+          <dd class="govuk-summary-list__value">AA112233C</dd>
+          <dd class="govuk-summary-list__actions"><a class="govuk-link" href="/further-education-payments/national-insurance-number?change=check-your-answers">Change<span class="govuk-visually-hidden"> national insurance number</span></a></dd>
+        </div>
+        <div class="govuk-summary-list__row"><dt class="govuk-summary-list__key">Address</dt>
+          <dd class="govuk-summary-list__value">10 Sunny Lane, London, SW1A 1AA</dd>
+          <dd class="govuk-summary-list__actions"><a class="govuk-link" href="/further-education-payments/address?change=check-your-answers">Change<span class="govuk-visually-hidden"> address</span></a></dd>
+        </div>
+        <div class="govuk-summary-list__row"><dt class="govuk-summary-list__key">Email address</dt>
+          <dd class="govuk-summary-list__value">johndoe@gmail.com</dd>
+          <dd class="govuk-summary-list__actions"><a class="govuk-link" href="/further-education-payments/email-address?change=check-your-answers">Change<span class="govuk-visually-hidden"> email address</span></a></dd>
+        </div>
+        <div class="govuk-summary-list__row"><dt class="govuk-summary-list__key">Would you like to provide your mobile number?</dt>
+          <dd class="govuk-summary-list__value">No</dd>
+          <dd class="govuk-summary-list__actions"><a class="govuk-link" href="/further-education-payments/provide-mobile-number?change=check-your-answers">Change<span class="govuk-visually-hidden"> would you like to provide your mobile number?</span></a></dd>
+        </div>
+        <div class="govuk-summary-list__row"><dt class="govuk-summary-list__key">How is your gender recorded on your employer’s payroll system?</dt>
+          <dd class="govuk-summary-list__value">Male</dd>
+          <dd class="govuk-summary-list__actions"><a class="govuk-link" href="/further-education-payments/gender?change=check-your-answers">Change<span class="govuk-visually-hidden"> how is your gender recorded on your employer’s payroll system?</span></a></dd>
+        </div>
+      </dl>
+    </div>
+    <h2 class="govuk-heading-m">
+      Payment details
+    </h2>
+    <div class="govuk-!-margin-bottom-9">
+      <dl class="govuk-summary-list">
+        <div class="govuk-summary-list__row"><dt class="govuk-summary-list__key">Name on the bank account</dt>
+          <dd class="govuk-summary-list__value">testing</dd>
+          <dd class="govuk-summary-list__actions"><a class="govuk-link" href="/further-education-payments/personal-bank-account?change=check-your-answers">Change<span class="govuk-visually-hidden"> name on the bank account</span></a></dd>
+        </div>
+        <div class="govuk-summary-list__row"><dt class="govuk-summary-list__key">Bank sort code</dt>
+          <dd class="govuk-summary-list__value">123456</dd>
+          <dd class="govuk-summary-list__actions"><a class="govuk-link" href="/further-education-payments/personal-bank-account?change=check-your-answers">Change<span class="govuk-visually-hidden"> bank sort code</span></a></dd>
+        </div>
+        <div class="govuk-summary-list__row"><dt class="govuk-summary-list__key">Bank account number</dt>
+          <dd class="govuk-summary-list__value">00103694</dd>
+          <dd class="govuk-summary-list__actions"><a class="govuk-link" href="/further-education-payments/personal-bank-account?change=check-your-answers">Change<span class="govuk-visually-hidden"> bank account number</span></a></dd>
+        </div>
+      </dl>
+    </div>
+    <form action="check_answers_confirmation" accept-charset="UTF-8" method="post">
+      <input type="hidden" name="_method" value="patch" autocomplete="off">
+      <input type="hidden" name="authenticity_token" value="xl1V5_FPETkNzUuvrdyX2PYVhkNqZchPUtYP-6Iv7a0BXr4i3GP9mk-ajsuIBMZm7zX9Q3tzSl7lTnNGKM4yhg" autocomplete="off">
+      <div class="govuk-form-group">
+        <fieldset class="govuk-fieldset">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">Declaration</legend>
+          <div class="govuk-checkboxes" data-module="govuk-checkboxes" data-govuk-checkboxes-init="">
+            <div class="govuk-checkboxes__item">
+              <input name="claim[claimant_declaration]" type="hidden" value="0" autocomplete="off">
+              <input id="claim-claimant-declaration-1-field" class="govuk-checkboxes__input" type="checkbox" value="1" name="claim[claimant_declaration]">
+              <label for="claim-claimant-declaration-1-field" class="govuk-label govuk-checkboxes__label">I have checked the details I’ve provided and I’m confident they are correct and the bank details match those held by my FE employer for the account my wages are paid into. I understand that submitting incorrect information may cause a delay to any payment.</label>
+            </div>
+          </div>
+        </fieldset>
+      </div>
+      <button type="submit" formnovalidate="formnovalidate" class="govuk-button" data-module="govuk-button" data-prevent-double-click="true" data-govuk-button-init="">Accept and send</button>
+    </form>
+  </div>
+
+</div>
+{% endblock %}

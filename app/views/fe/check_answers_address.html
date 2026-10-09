@@ -1,0 +1,42 @@
+{% extends "layouts/main_fe.html" %}
+
+{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+{% from "govuk/components/checkboxes/macro.njk" import govukCheckboxes %}
+
+{% set pageName = "Confirm your details and complete your claim" %}
+
+{% block pageBeforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "/bank-details"
+  }) }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  
+  <div class="govuk-grid-column-two-thirds">
+   
+    <form class="edit_claim" id="edit_claim" action="check_answers_address_full" accept-charset="UTF-8" method="post">
+      <fieldset class="govuk-fieldset">
+        <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+          <h1 class="govuk-fieldset__heading">What is your home address?</h1></legend>
+        <div class="govuk-form-group">
+          <label for="claim-postcode-field" class="govuk-label govuk-label--m">Postcode</label>
+          <input id="claim-postcode-field" class="govuk-input govuk-input--width-10" required="required" autocomplete="postal-code" type="text" name="claim[postcode]">
+          <div data-lastpass-icon-root="" data-lastpass-icon-for="claim-postcode-field" style="position: relative !important; height: 0px !important; width: 0px !important; display: initial !important; float: left !important;"></div>
+        </div>
+      </fieldset>
+      <p class="govuk-body">
+        <a value="true" href="check_answers_address_full" class="govuk-link govuk-link--no-visited-state button-to-as-link"> Enter your address manually </a>
+      </p>
+      <p class="govuk-!-padding-top-6">
+        <button type="submit" formnovalidate="formnovalidate" class="govuk-button" data-module="govuk-button" data-prevent-double-click="true" name="claim[skip_postcode_search]" value="false" data-govuk-button-init="">Search</button>
+      </p>
+    </form>
+  
+  </div>
+</div>
+{% endblock %}

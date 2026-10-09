@@ -1,0 +1,33 @@
+{% extends "layouts/main_fe.html" %}
+
+{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+{% from "govuk/components/checkboxes/macro.njk" import govukCheckboxes %}
+
+{% set pageName = "Confirm your details and complete your claim" %}
+
+{% block pageBeforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "/bank-details"
+  }) }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  
+  <div class="govuk-grid-column-two-thirds">
+    <div class="govuk-panel govuk-panel--confirmation">
+      <h1 class="govuk-panel__title" id="reminders-title">We have set your reminder</h1> </div>
+    <h2 class="govuk-heading-m">What happens next</h2>
+    <p class="govuk-body"> We will send you a confirmation email now. If you don’t receive one, contact us on <a class="govuk-link" href="mailto:FE-targeted.retention-incentive@education.gov.uk">FE-targeted.retention-incentive@education.gov.uk</a>. </p>
+    <h3 class="govuk-heading-s">When will your reminder be sent?</h3>
+    <p class="govuk-body"> We will send you a reminder before the application window opens. You will be able to check your eligibility and apply at this time. </p>
+    <p class="govuk-body"> You’ll need to complete your application before the deadline. If any of your employment circumstances change it might affect your eligibility. </p>
+    <p class="govuk-inset-text"> It is your responsibility to apply for each payment you are eligible for. The Department for Education will not issue payments unless you apply, also we will not issue payments for claims made after the window has closed. </p>
+    <p class="govuk-body"> <a class="govuk-link" href="https://www.gov.uk/done/claim-additional-teaching-payment">What do you think of this service?</a> (takes 30 seconds) </p>
+  </div>
+
+</div>
+{% endblock %}

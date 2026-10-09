@@ -79,18 +79,7 @@
 	<p class="govuk-body">By selecting continue you are confirming that, to the best of your knowledge, the details you are providing are correct.</p>
 	
   
-  <form action="/claim-complete" method="get">
-    
-    {{ govukCheckboxes({
-      idPrefix: "eligibility-confirmed",
-      name: "eligibilityConfirmed",
-      items: [
-        {
-          value: "yes",
-          text: "I confirm that I understand and accept these conditions."
-        }
-      ]
-    }) }}
+  <form action="check_answers_eligible" method="get">
 
     {{ govukButton({
       text: "Continue"

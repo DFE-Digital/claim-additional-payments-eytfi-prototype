@@ -1,0 +1,50 @@
+{% extends "layouts/main_fe.html" %}
+
+{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+{% from "govuk/components/checkboxes/macro.njk" import govukCheckboxes %}
+
+{% set pageName = "Confirm your details and complete your claim" %}
+
+{% block pageBeforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "/bank-details"
+  }) }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  
+  <div class="govuk-grid-column-two-thirds">
+   
+    <form action="check_answers_personal" accept-charset="UTF-8" method="post">
+      <div class="govuk-form-group">
+        <fieldset class="govuk-fieldset" aria-describedby="claim-payroll-gender-hint">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+            <h1 class="govuk-fieldset__heading">How is your gender recorded on your employer’s payroll system?</h1></legend>
+          <div class="govuk-hint" id="claim-payroll-gender-hint">We need this information to match HMRC’s records to make tax contributions for you. If you’re not sure, contact your Payroll team.</div>
+          <div class="govuk-radios" data-module="govuk-radios" data-govuk-radios-init="">
+            <div class="govuk-radios__item">
+              <input id="claim-payroll-gender-female-field" class="govuk-radios__input" type="radio" value="female" name="claim[payroll_gender]">
+              <label for="claim-payroll-gender-female-field" class="govuk-label govuk-radios__label">Female</label>
+            </div>
+            <div class="govuk-radios__item">
+              <input id="claim-payroll-gender-male-field" class="govuk-radios__input" type="radio" value="male" name="claim[payroll_gender]">
+              <label for="claim-payroll-gender-male-field" class="govuk-label govuk-radios__label">Male</label>
+            </div>
+            <div class="govuk-radios__divider">or</div>
+            <div class="govuk-radios__item">
+              <input id="claim-payroll-gender-dont-know-field" class="govuk-radios__input" type="radio" value="dont_know" name="claim[payroll_gender]">
+              <label for="claim-payroll-gender-dont-know-field" class="govuk-label govuk-radios__label">I don’t know</label>
+            </div>
+          </div>
+        </fieldset>
+      </div>
+      <button type="submit" formnovalidate="formnovalidate" class="govuk-button" data-module="govuk-button" data-prevent-double-click="true" data-govuk-button-init="">Continue</button>
+    </form>
+  
+  </div>
+</div>
+{% endblock %}

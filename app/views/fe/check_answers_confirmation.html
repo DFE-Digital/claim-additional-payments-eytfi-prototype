@@ -1,0 +1,37 @@
+{% extends "layouts/main_fe.html" %}
+
+{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+{% from "govuk/components/checkboxes/macro.njk" import govukCheckboxes %}
+
+{% set pageName = "Confirm your details and complete your claim" %}
+
+{% block pageBeforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "/bank-details"
+  }) }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  
+  <div class="govuk-grid-column-two-thirds">
+    <div class="govuk-panel govuk-panel--confirmation">
+      <h1 class="govuk-panel__title" id="submitted-title">
+          You applied for a further education targeted retention incentive payment
+        </h1>
+      <div class="govuk-panel__body"> Your reference number
+        <br> <strong>CKZ3UN9K</strong> </div>
+    </div>
+    <p class="govuk-body"> We have sent you a confirmation email to johndoe@gmail.com. </p>
+    <h2 class="govuk-heading-m">
+        Updates on any future targeted retention incentive payments
+      </h2>
+    <p class="govuk-body"> As long as you continue to meet any eligibility criteria, there may be opportunities to claim a targeted retention incentive in the future. </p>
+    <p class="govuk-body"> You can set a reminder so you know when you are able to apply. We cannot issue payments unless you apply. </p> <a class="govuk-button" data-module="govuk-button" href="check_answers_reminders" data-govuk-button-init="">Set reminder</a> 
+  </div>
+
+</div>
+{% endblock %}
