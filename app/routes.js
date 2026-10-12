@@ -654,7 +654,7 @@ router.post('/fe/hmrc', (req, res) => {
   var hmrcJourney = req.session.data.hmrcJourney
 
   if (hmrcJourney == 'good') {
-    return res.redirect('spring-term')
+    return res.redirect('accept-payment')
   }
 
   else{
