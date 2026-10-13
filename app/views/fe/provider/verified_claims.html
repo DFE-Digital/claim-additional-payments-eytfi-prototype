@@ -1,0 +1,75 @@
+{% extends "layouts/main_fe_provider.html" %}
+
+{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+{% from "govuk/components/checkboxes/macro.njk" import govukCheckboxes %}
+
+{% set pageName = "Confirm your details and complete your claim" %}
+
+{% block pageBeforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "/bank-details"
+  }) }}
+{% endblock %}
+
+{% block content %}
+  
+  
+  {% if data.success == 'yes' %}
+
+	<div class="govuk-notification-banner govuk-notification-banner--success" data-module="govuk-notification-banner" role="alert" aria-labelledby="govuk-notification-banner-title" data-govuk-notification-banner-init="">
+		<div class="govuk-notification-banner__header">
+			<h2 class="govuk-notification-banner__title" id="govuk-notification-banner-title">
+        Done
+      </h2> 
+    </div>
+		<div class="govuk-notification-banner__content">
+			<p class="govuk-notification-banner__heading">Verification form for TEST USER sent to DfE</p>
+		</div>
+	</div>
+
+  {% endif %}
+
+	<h1 class="govuk-heading-l">
+      Verified claims (1)
+    </h1>
+
+	<div class="govuk-grid-row">
+		<div class="govuk-grid-column-one-quarter-from-desktop govuk-!-margin-bottom-5">
+			<div class="status-card status-card--rejected"> <span class="status-card__value">0</span> <span class="status-card__label">Rejected by DfE</span> </div>
+		</div>
+		<div class="govuk-grid-column-one-quarter-from-desktop govuk-!-margin-bottom-5">
+			<div class="status-card status-card--pending"> <span class="status-card__value">1</span> <span class="status-card__label">Pending DfE decision</span> </div>
+		</div>
+		<div class="govuk-grid-column-one-quarter-from-desktop govuk-!-margin-bottom-5">
+			<div class="status-card status-card--approved"> <span class="status-card__value">0</span> <span class="status-card__label">Approved by DfE</span> </div>
+		</div>
+		<div class="govuk-grid-column-one-quarter-from-desktop govuk-!-margin-bottom-5">
+			<div class="status-card status-card--paid"> <span class="status-card__value">£0</span> <span class="status-card__label">Total value of approved claims</span> </div>
+		</div>
+	</div>
+	<table class="govuk-table">
+		<thead class="govuk-table__head">
+			<tr class="govuk-table__row">
+				<th class="govuk-table__header" scope="col">Claimant name</th>
+				<th class="govuk-table__header" scope="col">Claim reference</th>
+				<th class="govuk-table__header" scope="col">Date verified</th>
+				<th class="govuk-table__header" scope="col">DfE Status</th>
+			</tr>
+		</thead>
+		<tbody class="govuk-table__body">
+			<tr class="govuk-table__row">
+				<td class="govuk-table__cell"><a class="govuk-link" href="/further-education-payments/providers/verified-claims/d733d780-657e-4119-90d6-c518c84f7beb">TEST USER</a></td>
+				<td class="govuk-table__cell">CKZ3UN9K</td>
+				<td class="govuk-table__cell">13 October 2026</td>
+				<td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--yellow">Pending</strong></td>
+			</tr>
+		</tbody>
+	</table>
+
+  
+
+
+{% endblock %}

@@ -1,0 +1,79 @@
+{% extends "layouts/main_fe_provider.html" %}
+
+{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+{% from "govuk/components/checkboxes/macro.njk" import govukCheckboxes %}
+
+{% set pageName = "Confirm your details and complete your claim" %}
+
+{% block pageBeforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "/bank-details"
+  }) }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  
+  
+  <div class="govuk-grid-column-two-thirds"> 
+    <span class="govuk-caption-xl">
+      Review claim - CKZ3UN9K
+      <strong class="govuk-tag govuk-tag--blue">In progress</strong>
+    </span>
+      <h1 class="govuk-heading-xl">
+      TEST USER
+    </h1>
+      <details class="govuk-details">
+        <summary class="govuk-details__summary"><span class="govuk-details__summary-text">Claim details</span></summary>
+        <div class="govuk-details__text">
+          <dl class="govuk-summary-list govuk-!-margin-bottom-0">
+            <div class="govuk-summary-list__row govuk-summary-list__row--no-actions"><dt class="govuk-summary-list__key">Date submitted</dt>
+              <dd class="govuk-summary-list__value">9 October 2026</dd>
+            </div>
+            <div class="govuk-summary-list__row govuk-summary-list__row--no-actions"><dt class="govuk-summary-list__key">Due date</dt>
+              <dd class="govuk-summary-list__value">30 October 2026</dd>
+            </div>
+          </dl>
+        </div>
+      </details>
+      <form action="contract" accept-charset="UTF-8" method="post">
+        <h2 class="govuk-heading-m">
+            Role and experience
+          </h2>
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">Does TEST USER have a teaching qualification?</legend>
+            <input autocomplete="off" value="" type="hidden" name="further_education_payments_providers_claims_verification_teaching_qualification_form[provider_verification_teaching_qualification]" id="further_education_payments_providers_claims_verification_teaching_qualification_form_provider_verification_teaching_qualification">
+            <div class="govuk-radios" data-module="govuk-radios" data-govuk-radios-init="">
+              <div class="govuk-radios__item">
+                <input id="further-education-payments-providers-claims-verification-teaching-qualification-form-provider-verification-teaching-qualification-yes-field" class="govuk-radios__input" type="radio" value="yes" name="further_education_payments_providers_claims_verification_teaching_qualification_form[provider_verification_teaching_qualification]">
+                <label for="further-education-payments-providers-claims-verification-teaching-qualification-form-provider-verification-teaching-qualification-yes-field" class="govuk-label govuk-radios__label">Yes</label>
+              </div>
+              <div class="govuk-radios__item">
+                <input id="further-education-payments-providers-claims-verification-teaching-qualification-form-provider-verification-teaching-qualification-not-yet-field" class="govuk-radios__input" type="radio" value="not_yet" name="further_education_payments_providers_claims_verification_teaching_qualification_form[provider_verification_teaching_qualification]">
+                <label for="further-education-payments-providers-claims-verification-teaching-qualification-form-provider-verification-teaching-qualification-not-yet-field" class="govuk-label govuk-radios__label">Not yet, but is enrolled on one</label>
+              </div>
+              <div class="govuk-radios__item">
+                <input id="further-education-payments-providers-claims-verification-teaching-qualification-form-provider-verification-teaching-qualification-no-but-planned-field" class="govuk-radios__input" type="radio" value="no_but_planned" name="further_education_payments_providers_claims_verification_teaching_qualification_form[provider_verification_teaching_qualification]">
+                <label for="further-education-payments-providers-claims-verification-teaching-qualification-form-provider-verification-teaching-qualification-no-but-planned-field" class="govuk-label govuk-radios__label">No, but is planning to enrol on one</label>
+              </div>
+              <div class="govuk-radios__item">
+                <input id="further-education-payments-providers-claims-verification-teaching-qualification-form-provider-verification-teaching-qualification-no-not-planned-field" class="govuk-radios__input" type="radio" value="no_not_planned" name="further_education_payments_providers_claims_verification_teaching_qualification_form[provider_verification_teaching_qualification]">
+                <label for="further-education-payments-providers-claims-verification-teaching-qualification-form-provider-verification-teaching-qualification-no-not-planned-field" class="govuk-label govuk-radios__label">No, and has no plan to enrol on one in the next 12 months</label>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+        <button type="submit" formnovalidate="formnovalidate" class="govuk-button" data-module="govuk-button" data-prevent-double-click="true" data-govuk-button-init="">Continue</button>
+        <button type="submit" formnovalidate="formnovalidate" class="govuk-button govuk-button--secondary govuk-!-margin-left-2" data-module="govuk-button" data-prevent-double-click="true" name="save_and_exit" value="true" data-govuk-button-init="">Save and come back later</button>
+      </form>
+    </div>
+  
+
+
+
+</div>
+{% endblock %}

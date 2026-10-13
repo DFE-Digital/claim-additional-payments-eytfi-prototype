@@ -1,0 +1,70 @@
+{% extends "layouts/main_fe_provider.html" %}
+
+{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+{% from "govuk/components/checkboxes/macro.njk" import govukCheckboxes %}
+
+{% set pageName = "Confirm your details and complete your claim" %}
+
+{% block pageBeforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "/bank-details"
+  }) }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  
+  
+  <div class="govuk-grid-column-two-thirds"> 
+    <span class="govuk-caption-xl">
+      Review claim - CKZ3UN9K
+      <strong class="govuk-tag govuk-tag--blue">In progress</strong>
+    </span>
+      <h1 class="govuk-heading-xl">
+      TEST USER
+    </h1>
+      <details class="govuk-details">
+        <summary class="govuk-details__summary"><span class="govuk-details__summary-text">Claim details</span></summary>
+        <div class="govuk-details__text">
+          <dl class="govuk-summary-list govuk-!-margin-bottom-0">
+            <div class="govuk-summary-list__row govuk-summary-list__row--no-actions"><dt class="govuk-summary-list__key">Date submitted</dt>
+              <dd class="govuk-summary-list__value">9 October 2026</dd>
+            </div>
+            <div class="govuk-summary-list__row govuk-summary-list__row--no-actions"><dt class="govuk-summary-list__key">Due date</dt>
+              <dd class="govuk-summary-list__value">30 October 2026</dd>
+            </div>
+          </dl>
+        </div>
+      </details>
+      <form action="check" accept-charset="UTF-8" method="post">
+        <h2 class="govuk-heading-m">
+            Continued employment
+          </h2>
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">Is TEST USER expected to work at Nottingham College or another eligible FE provider until the end of the academic year?</legend>
+            <input autocomplete="off" value="" type="hidden" name="further_education_payments_providers_claims_verification_continued_employment_form[provider_verification_continued_employment]" id="further_education_payments_providers_claims_verification_continued_employment_form_provider_verification_continued_employment">
+            <div class="govuk-radios" data-module="govuk-radios" data-govuk-radios-init="">
+              <div class="govuk-radios__item">
+                <input id="further-education-payments-providers-claims-verification-continued-employment-form-provider-verification-continued-employment-true-field" class="govuk-radios__input" type="radio" value="true" name="further_education_payments_providers_claims_verification_continued_employment_form[provider_verification_continued_employment]">
+                <label for="further-education-payments-providers-claims-verification-continued-employment-form-provider-verification-continued-employment-true-field" class="govuk-label govuk-radios__label">Yes</label>
+              </div>
+              <div class="govuk-radios__item">
+                <input id="further-education-payments-providers-claims-verification-continued-employment-form-provider-verification-continued-employment-field" class="govuk-radios__input" type="radio" value="false" name="further_education_payments_providers_claims_verification_continued_employment_form[provider_verification_continued_employment]">
+                <label for="further-education-payments-providers-claims-verification-continued-employment-form-provider-verification-continued-employment-field" class="govuk-label govuk-radios__label">No</label>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+        <button type="submit" formnovalidate="formnovalidate" class="govuk-button" data-module="govuk-button" data-prevent-double-click="true" data-govuk-button-init="">Continue</button>
+        <button type="submit" formnovalidate="formnovalidate" class="govuk-button govuk-button--secondary govuk-!-margin-left-2" data-module="govuk-button" data-prevent-double-click="true" name="save_and_exit" value="true" data-govuk-button-init="">Save and come back later</button>
+      </form>
+    </div>
+
+
+
+</div>
+{% endblock %}
