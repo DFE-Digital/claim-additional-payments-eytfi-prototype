@@ -1,0 +1,80 @@
+{% extends "govuk-prototype-kit/layouts/unbranded.html" %}
+
+{% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+
+{% set pageName = "Approved email" %}
+
+{% block pageTitle %}
+  Approved email
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    {{ govukSummaryList({
+      rows: [
+        {
+          key: {
+            text: "From"
+          },
+          value: {
+            text: "Claim additional payments for teaching"
+          }
+        },
+        {
+          key: {
+            text: "To"
+          },
+          value: {
+            text: "text@example.com"
+          }
+        },
+        {
+          key: {
+            text: "Subject"
+          },
+          value: {
+            text: "You have a new targeted retention incentive payment verification request for ((claimant_name)) – ((claim_reference))"
+          }
+        }
+      ]
+    }) }}
+
+    
+    <div class="email-message-body">
+      <p class="govuk-body">Dear <span class="placeholder">((recipient_name))</span></p>
+      <p class="govuk-body">Re: <span class="placeholder">((claimant_name))</span></p>
+      <p class="govuk-body">On <span class="placeholder">((claim_submission_date))</span>, the person named above applied for a targeted retention incentive payment for early career further education teachers.</p>
+      <h3 class="govuk-heading-m">We need you to verify some details before we make a decision</h3>
+      <p class="govuk-body"><a class="govuk-link" style="word-wrap: break-word; color: #1D70B8;" href="home">Access DfE Sign-in</a> to complete their verification form by <span class="placeholder">((verification_due_date))</span>.</p>
+      <p class="govuk-body">The information you provide in the verification form should be correct as of <span class="placeholder">((claim_submission_date))</span>.</p>
+
+      <p class="govuk-body">Email FE-Targeted.Retention-Incentive@education.gov.uk if you:</p>
+      <table role="presentation" style="padding: 0 0 20px 0;">
+        <tbody>
+          <tr>
+            <td style="font-family: Helvetica, Arial, sans-serif;">
+              <ul class="govuk-list govuk-list--bullet" style="Margin: 0 0 0 20px; padding: 0; list-style-type: disc;">
+                <li style="Margin: 5px 0 5px; padding: 0 0 0 5px; font-size: 19px;line-height: 25px; color: #0B0C0C;">do not employ the person named above</li>
+                <li style="Margin: 5px 0 5px; padding: 0 0 0 5px; font-size: 19px;line-height: 25px; color: #0B0C0C;">require support to complete the form</li>
+              </ul>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div style="Margin: 0 0 20px 0;">
+        <blockquote style="Margin: 0; border-left: 10px solid #B1B4B6;padding: 15px 0 0.1px 15px; font-size: 19px; line-height: 25px;">
+          <p>Make sure you include the claim reference number in your email so we can find the claim promptly. The claim reference number is <span class="placeholder">((claim_reference))</span>.</p>
+        </blockquote>
+      </div>
+      <h3 class="govuk-heading-m">Further information</h3>
+      <p>To find out more information about retention payments for early career further education teachers, visit: <a style="word-wrap: break-word; color: #1D70B8;" href="https://www.gov.uk/guidance/targeted-retention-incentive-payments-for-fe-teachers">https://www.gov.uk/guidance/targeted-retention-incentive-payments-for-fe-teachers</a></p>
+      <p>Regards,
+        <br>Further education targeted retention incentive payments</p>
+    </div>
+
+
+
+  </div>
+</div>
+{% endblock %}

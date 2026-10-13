@@ -691,3 +691,174 @@
 
 
 .autocomplete__wrapper{position:relative; font-family: "GDS Transport",arial,sans-serif;}.autocomplete__hint,.autocomplete__input{-webkit-appearance:none;border:2px solid #0b0c0c;border-radius:0;box-sizing:border-box;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;margin-bottom:0;width:100%}.autocomplete__input{background-color:transparent;position:relative}.autocomplete__hint{color:#b1b4b6;position:absolute}.autocomplete__input--default{padding:5px}.autocomplete__input--focused{outline:3px solid #fd0;outline-offset:0;box-shadow:inset 0 0 0 2px}.autocomplete__input--show-all-values{padding:5px 34px 5px 5px;cursor:pointer}.autocomplete__dropdown-arrow-down{z-index:-1;display:inline-block;position:absolute;right:8px;width:24px;height:24px;top:10px}.autocomplete__menu{background-color:#fff;border:2px solid #0b0c0c;border-top:0;color:#0b0c0c;margin:0;max-height:342px;overflow-x:hidden;padding:0;width:100%;width:calc(100% - 4px)}.autocomplete__menu--visible{display:block}.autocomplete__menu--hidden{display:none}.autocomplete__menu--overlay{box-shadow:rgba(0,0,0,.256863) 0 2px 6px;left:0;position:absolute;top:100%;z-index:100}.autocomplete__menu--inline{position:relative}.autocomplete__option{border-bottom:solid #b1b4b6;border-width:1px 0;cursor:pointer;display:block;position:relative}.autocomplete__option>*{pointer-events:none}.autocomplete__option:first-of-type{border-top-width:0}.autocomplete__option:last-of-type{border-bottom-width:0}.autocomplete__option--odd{background-color:#fafafa}.autocomplete__option--focused,.autocomplete__option:hover{background-color:#1d70b8;border-color:#1d70b8;color:#fff;outline:0}@media (-ms-high-contrast:active),(forced-colors:active){.autocomplete__menu{border-color:FieldText}.autocomplete__option{background-color:Field;color:FieldText}.autocomplete__option--focused,.autocomplete__option:hover{forced-color-adjust:none;background-color:SelectedItem;border-color:SelectedItem;color:SelectedItemText;outline-color:SelectedItemText}}.autocomplete__option--no-results{background-color:#fafafa;color:#646b6f;cursor:not-allowed}.autocomplete__hint,.autocomplete__input,.autocomplete__option{font-size:16px;line-height:1.25}.autocomplete__hint,.autocomplete__option{padding:5px}@media (min-width:641px){.autocomplete__hint,.autocomplete__input,.autocomplete__option{font-size:19px;line-height:1.31579}}
+
+
+
+
+
+
+
+
+/* ==========================================================================
+   #FE PROVIDER STATUS CARD
+   ========================================================================== */
+
+
+
+
+
+
+.status-card {
+    padding: 10px;
+    text-decoration: none;
+    border: none;
+    cursor: default;
+    background-color: var(--govuk-brand-colour, #1d70b8);
+    min-height: 100px;
+    font-family: "GDS Transport",arial,sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale
+}
+
+@media print {
+    .status-card {
+        font-family: sans-serif
+    }
+}
+
+.status-card {
+    font-variant-numeric: tabular-nums;
+    font-weight: 700;
+    font-size: 1.1875rem;
+    line-height: 1.3157894737
+}
+
+@media print {
+    .status-card {
+        font-size: 14pt;
+        line-height: 1.15
+    }
+}
+
+@media(min-width: 48.0625em) {
+    .status-card {
+        padding:20px
+    }
+}
+
+.status-card,.status-card:hover,.status-card:focus,.status-card:visited,.status-card:active {
+    color: inherit;
+    background-color: inherit;
+    text-decoration: none;
+    outline: none
+}
+
+.status-card--in-progress {
+    color: #16548a;
+    background-color: #d2e2f1
+}
+
+.status-card--in-progress:hover,.status-card--in-progress:focus,.status-card--in-progress:visited,.status-card--in-progress:active {
+    color: #16548a;
+    background-color: #d2e2f1;
+    text-decoration: none
+}
+
+.status-card--not-started {
+    color: #806f00;
+    background-color: #fff8cc
+}
+
+.status-card--not-started:hover,.status-card--not-started:focus,.status-card--not-started:visited,.status-card--not-started:active {
+    color: #806f00;
+    background-color: #fff8cc;
+    text-decoration: none
+}
+
+.status-card--pending {
+    color: #806f00;
+    background-color: #fff8cc
+}
+
+.status-card--pending:hover,.status-card--pending:focus,.status-card--pending:visited,.status-card--pending:active {
+    color: #806f00;
+    background-color: #fff8cc;
+    text-decoration: none
+}
+
+.status-card--approved {
+    color: #0b4144;
+    background-color: #d0e6e7
+}
+
+.status-card--approved:hover,.status-card--approved:focus,.status-card--approved:visited,.status-card--approved:active {
+    color: #0b4144;
+    background-color: #d0e6e7;
+    text-decoration: none
+}
+
+.status-card--rejected {
+    color: #982828;
+    background-color: #f4d7d7
+}
+
+.status-card--rejected:hover,.status-card--rejected:focus,.status-card--rejected:visited,.status-card--rejected:active {
+    color: #982828;
+    background-color: #f4d7d7;
+    text-decoration: none
+}
+
+.status-card--paid {
+    color: #16548a;
+    background-color: #d2e2f1
+}
+
+.status-card--paid:hover,.status-card--paid:focus,.status-card--paid:visited,.status-card--paid:active {
+    color: #16548a;
+    background-color: #d2e2f1;
+    text-decoration: none
+}
+
+.status-card__value {
+    font-family: "GDS Transport",arial,sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale
+}
+
+@media print {
+    .status-card__value {
+        font-family: sans-serif
+    }
+}
+
+.status-card__value {
+    font-variant-numeric: tabular-nums;
+    font-weight: 700;
+    font-size: 1.6875rem;
+    line-height: 1.1111111111
+}
+
+@media(min-width: 40.0625em) {
+    .status-card__value {
+        font-size:2.25rem;
+        line-height: 1.1111111111
+    }
+}
+
+@media print {
+    .status-card__value {
+        font-size: 24pt;
+        line-height: 1.05
+    }
+}
+
+.status-card__value {
+    display: block
+}
+
+.status-card__label {
+    text-decoration: none;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    hyphens: none
+}
