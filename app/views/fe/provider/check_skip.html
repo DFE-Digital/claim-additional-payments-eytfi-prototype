@@ -1,0 +1,71 @@
+{% extends "layouts/main_fe_provider.html" %}
+
+{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+{% from "govuk/components/checkboxes/macro.njk" import govukCheckboxes %}
+
+{% set pageName = "Confirm your details and complete your claim" %}
+
+{% block pageBeforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "/bank-details"
+  }) }}
+{% endblock %}
+
+{% block content %}  
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+
+    <span class="govuk-caption-xl">
+      Review claim - CKZ3UN9K
+      <strong class="govuk-tag govuk-tag--blue">In progress</strong>
+    </span>
+      <h1 class="govuk-heading-xl">
+        Lorena Wood
+      </h1>
+      <details class="govuk-details">
+        <summary class="govuk-details__summary"><span class="govuk-details__summary-text">Claim details</span></summary>
+        <div class="govuk-details__text">
+          <dl class="govuk-summary-list govuk-!-margin-bottom-0">
+            <div class="govuk-summary-list__row govuk-summary-list__row--no-actions"><dt class="govuk-summary-list__key">Date submitted</dt>
+              <dd class="govuk-summary-list__value">9 October 2026</dd>
+            </div>
+            <div class="govuk-summary-list__row govuk-summary-list__row--no-actions"><dt class="govuk-summary-list__key">Due date</dt>
+              <dd class="govuk-summary-list__value">30 October 2026</dd>
+            </div>
+          </dl>
+        </div>
+      </details>
+
+
+    <h1 class="govuk-heading-m">1 answer has been changed since the previous application</h1>
+
+    <p>
+      Last year Lorena Wood successfully applied for a Further Education Targeted Retention Incentive payment.
+    </p>
+    <p>
+      The answer has changed for this question:
+    </p>
+
+    <ul class="govuk-list govuk-list--bullet">
+      <li>Contracted hours</li>
+    </ul>
+
+    <p>
+      You will be asked to review this answer only. The other answers will be taken from the previous applicatio. You can still review them before confirming.
+    </p>
+
+    <form action="contract2" method="get">
+
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+    </form>
+
+  </div>
+</div>
+{% endblock %}

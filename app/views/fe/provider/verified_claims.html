@@ -26,7 +26,7 @@
       </h2> 
     </div>
 		<div class="govuk-notification-banner__content">
-			<p class="govuk-notification-banner__heading">Verification form for John Doe sent to DfE</p>
+			<p class="govuk-notification-banner__heading">Verification form for {{data.name}} sent to DfE</p>
 		</div>
 	</div>
 
@@ -60,12 +60,29 @@
 			</tr>
 		</thead>
 		<tbody class="govuk-table__body">
+
+      {% if data.name == 'John Doe' %}
+
 			<tr class="govuk-table__row">
-				<td class="govuk-table__cell"><a class="govuk-link" href="/further-education-payments/providers/verified-claims/d733d780-657e-4119-90d6-c518c84f7beb">John Doe</a></td>
+				<td class="govuk-table__cell"><a class="govuk-link" href="#">John Doe</a></td>
 				<td class="govuk-table__cell">CKZ3UN9K</td>
 				<td class="govuk-table__cell">13 October 2026</td>
 				<td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--yellow">Pending</strong></td>
 			</tr>
+
+      {% endif %}
+
+      {% if data.name == 'Lorena Wood' %}
+
+			<tr class="govuk-table__row">
+				<td class="govuk-table__cell"><a class="govuk-link" href="#">Lorena Wood</a></td>
+				<td class="govuk-table__cell">CKZ3UN9K</td>
+				<td class="govuk-table__cell">13 October 2026</td>
+				<td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--yellow">Pending</strong></td>
+			</tr>
+
+      {% endif %}
+
 		</tbody>
 	</table>
 
