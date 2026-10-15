@@ -671,7 +671,7 @@ router.post('/fe/confirm-where-you-work-uploaded', (req, res) => {
     req.session.data.success = "Document uploaded successfully"
     req.session.data.successText = "We'll review your document to confirm where you work."
  
-  return res.redirect('spring-term')
+  return res.redirect('accept-payment')
   
 })
 

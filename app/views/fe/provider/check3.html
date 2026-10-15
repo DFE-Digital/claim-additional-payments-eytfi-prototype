@@ -1,0 +1,155 @@
+{% extends "layouts/main_fe_provider.html" %}
+
+{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+{% from "govuk/components/checkboxes/macro.njk" import govukCheckboxes %}
+
+{% set pageName = "Confirm your details and complete your claim" %}
+
+{% block pageBeforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "/bank-details"
+  }) }}
+{% endblock %}
+
+{% block content %}  
+  
+<div class="govuk-grid-row">
+
+  <div class="govuk-grid-column-three-quarters"> 
+    <span class="govuk-caption-xl">
+      Joshua Deets
+    </span>
+      <h1 class="govuk-heading-l">
+      Claim reference: CKZ3UN9K
+    </h1>
+
+    <h2 class="govuk-heading-m">2 answers have been changed since the previous application</h2>
+
+    <p>
+      The answers have changed for these questions:
+    </p>
+
+    <ul class="govuk-list govuk-list--bullet">
+      <li>Subject area</li>
+      <li>Contracted hours</li>
+    </ul>
+
+    <h2 class="govuk-heading-m">The answers that have been changed</h2>
+
+    <div class="govuk-summary-card">
+        <div class="govuk-summary-card__title-wrapper">
+          <h2 class="govuk-summary-card__title">Contracted hours</h2> </div>
+        <div class="govuk-summary-card__content">
+          <dl class="govuk-summary-list">
+            <div class="govuk-summary-list__row"><dt class="govuk-summary-list__key">Timetabled hours per week</dt>
+              <dd class="govuk-summary-list__value">20 hours or more per week</dd>
+              <dd class="govuk-summary-list__actions"><a class="govuk-link" href="#">Change</a></dd>
+            </div>
+            <div class="govuk-summary-list__row"><dt class="govuk-summary-list__key">Teaches 16-19 study programmes, T Levels or 16-19 apprentices</dt>
+              <dd class="govuk-summary-list__value">Yes</dd>
+              <dd class="govuk-summary-list__actions"><a class="govuk-link" href="#">Change</a></dd>
+            </div>
+          </dl>
+        </div>
+      </div>
+    
+      <div class="govuk-summary-card">
+        <div class="govuk-summary-card__title-wrapper">
+          <h2 class="govuk-summary-card__title">Subject area</h2> </div>
+        <div class="govuk-summary-card__content">
+          <dl class="govuk-summary-list">
+            <div class="govuk-summary-list__row"><dt class="govuk-summary-list__key">Spend at least half of timetabled time teaching the eligible FE courses the claimant listed</dt>
+              <dd class="govuk-summary-list__value">Yes</dd>
+              <dd class="govuk-summary-list__actions"><a class="govuk-link" href="#">Change</a></dd>
+            </div>
+            <div class="govuk-summary-list__row"><dt class="govuk-summary-list__key">which subject areas do you teach?</dt>
+              <dd class="govuk-summary-list__value">Physics</dd>
+              <dd class="govuk-summary-list__actions"><a class="govuk-link" href="#">Change</a></dd>
+            </div>
+            <div class="govuk-summary-list__row"><dt class="govuk-summary-list__key">which subject areas do you teach?</dt>
+              <dd class="govuk-summary-list__value">GCSE Physics</dd>
+              <dd class="govuk-summary-list__actions"><a class="govuk-link" href="#">Change</a></dd>
+            </div>
+            <div class="govuk-summary-list__row"><dt class="govuk-summary-list__key">Employed until end of academic year</dt>
+              <dd class="govuk-summary-list__value">Yes</dd>
+              <dd class="govuk-summary-list__actions"><a class="govuk-link" href="#">Change</a></dd>
+            </div>
+          </dl>
+        </div>
+      </div>
+
+      <hr class="govuk-section-break govuk-section-break--xl govuk-section-break--visible">
+
+
+    <h2 class="govuk-heading-m">The answers that have not changed</h2>
+
+
+    <div class="govuk-summary-card">
+        <div class="govuk-summary-card__title-wrapper">
+          <h2 class="govuk-summary-card__title">Role and experience</h2> </div>
+        <div class="govuk-summary-card__content">
+          <dl class="govuk-summary-list">
+            <div class="govuk-summary-list__row"><dt class="govuk-summary-list__key">Teaching responsibilities</dt>
+              <dd class="govuk-summary-list__value">Yes</dd>
+            </div>
+            <div class="govuk-summary-list__row"><dt class="govuk-summary-list__key">FE teaching start year</dt>
+              <dd class="govuk-summary-list__value">Before September 2021</dd>
+            </div>
+            <div class="govuk-summary-list__row"><dt class="govuk-summary-list__key">Teaching qualification</dt>
+              <dd class="govuk-summary-list__value">Yes</dd>
+            </div>
+          </dl>
+        </div>
+      </div>
+      <div class="govuk-summary-card">
+        <div class="govuk-summary-card__title-wrapper">
+          <h2 class="govuk-summary-card__title">Type of contract</h2> </div>
+        <div class="govuk-summary-card__content">
+          <dl class="govuk-summary-list">
+            <div class="govuk-summary-list__row"><dt class="govuk-summary-list__key">Contract type</dt>
+              <dd class="govuk-summary-list__value">Permanent</dd>
+              <dd class="govuk-summary-list__actions"><a class="govuk-link" href="#">Change</a></dd>
+            </div>
+          </dl>
+        </div>
+      </div>
+      <div class="govuk-summary-card">
+        <div class="govuk-summary-card__title-wrapper">
+          <h2 class="govuk-summary-card__title">Performance and discipline</h2> </div>
+        <div class="govuk-summary-card__content">
+          <dl class="govuk-summary-list">
+            <div class="govuk-summary-list__row"><dt class="govuk-summary-list__key">Subject to performance measures</dt>
+              <dd class="govuk-summary-list__value">Yes</dd>
+              <dd class="govuk-summary-list__actions"><a class="govuk-link" href="#">Change</a></dd>
+            </div>
+            <div class="govuk-summary-list__row"><dt class="govuk-summary-list__key">Subject to disciplinary action</dt>
+              <dd class="govuk-summary-list__value">Yes</dd>
+              <dd class="govuk-summary-list__actions"><a class="govuk-link" href="#">Change</a></dd>
+            </div>
+          </dl>
+        </div>
+      </div>
+      
+      <form action='verified_claims?success=yes&name=Joshua+Deets' accept-charset="UTF-8" method="post">
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">Declaration</legend>
+            <div class="govuk-checkboxes" data-module="govuk-checkboxes" data-govuk-checkboxes-init="">
+              <div class="govuk-checkboxes__item">
+                <input name="further_education_payments_providers_claims_verification_check_answers_form[provider_verification_declaration]" type="hidden" value="0" autocomplete="off">
+                <input id="further-education-payments-providers-claims-verification-check-answers-form-provider-verification-declaration-1-field" class="govuk-checkboxes__input" type="checkbox" value="1" name="further_education_payments_providers_claims_verification_check_answers_form[provider_verification_declaration]">
+                <label for="further-education-payments-providers-claims-verification-check-answers-form-provider-verification-declaration-1-field" class="govuk-label govuk-checkboxes__label">Check to make sure your answers are accurate to the best of your knowledge. While the DfE runs its own checks, this claim is approved or rejected based on your answers. DfE will audit approved claims. If any of your teachers receive payments that are later found to be ineligible, we will take steps to recover the payment.</label>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+        <button type="submit" formnovalidate="formnovalidate" class="govuk-button" data-module="govuk-button" data-prevent-double-click="true" data-govuk-button-init="">Continue</button>
+      </form>
+    </div>
+
+</div>
+
+{% endblock %}
