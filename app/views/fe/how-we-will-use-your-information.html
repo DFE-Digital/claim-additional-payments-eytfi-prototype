@@ -46,10 +46,23 @@
       <li>bank account details</li>
     </ul>
 
-    {{ govukButton({
-      text: "Continue",
-      href: "/fe/check_answers_address"
-    }) }}
+    {% if data.oneLoginJourney == "previous" %}
+        
+      {{ govukButton({
+        text: "Continue",
+        href: "/fe/check_answers_personal"
+      }) }}
+      
+    {% else %}
+       
+      {{ govukButton({
+        text: "Continue",
+        href: "/fe/check_answers_address"
+      }) }}
+      
+    {% endif %}
+
+    
   </div>
 </div>
 {% endblock %}

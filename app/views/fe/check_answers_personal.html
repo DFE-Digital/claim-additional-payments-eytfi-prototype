@@ -18,12 +18,25 @@
 <div class="govuk-grid-row">
   
   <div class="govuk-grid-column-two-thirds">
-    <h1 class="govuk-heading-xl">
+
+    {% if data.oneLoginJourney == "previous" %}
+        
+       <h1 class="govuk-heading-l">
+        Check your personal details submitted in your last application 
+      </h1>
+
+    {% else %}
+       
+       <h1 class="govuk-heading-l">
         Check your answers before sending your application
       </h1>
+
+    {% endif %}
+
     <h2 class="govuk-heading-m">
       Personal details
     </h2>
+
     <div class="govuk-!-margin-bottom-9">
       <dl class="govuk-summary-list">
         <div class="govuk-summary-list__row"><dt class="govuk-summary-list__key">National Insurance number</dt>
