@@ -589,13 +589,12 @@ router.post('/fe/one-login', (req, res) => {
   }
 
   else if (oneLogin == 'no') {
-    return res.redirect('previously_claimed')
+    return res.redirect('staff')
   }
 
   else{
-    return res.redirect('previously_claimed')
+    return res.redirect('staff')
   }
-
 
 })
 
