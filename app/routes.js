@@ -626,7 +626,7 @@ router.post('/fe/one-login-continue-to-service', (req, res) => {
   } else if (oneLoginJourney == 'previous') {
     return res.redirect('check_previous_application')
   } else{
-    return res.redirect('check-eligibility-intro')
+    return res.redirect('staff')
   }
 
 })
@@ -721,8 +721,9 @@ router.post('/fe/staff', (req, res) => {
 router.post('/fe/academic_year', (req, res) => {
 
   var startyear = req.session.data.startyear
+  var academic = req.session.data.academic
 
-  if (startyear == 'pre-2022') {
+  if (academic == 'no') {
     return res.redirect('ineligible_years')
   }
 
