@@ -862,15 +862,12 @@ router.post('/fe/contract_subjects_physics_time', (req, res) => {
 
 router.post('/fe/performance', (req, res) => {
 
-  var subject_to_formal_performance_action = req.session.data.subject_to_formal_performance_action
-  var subject_to_disciplinary_action = req.session.data.subject_to_disciplinary_action
+  var hasEligibleWorking = req.session.data.hasEligibleWorking
 
-  if (subject_to_formal_performance_action == 'Yes') {
+  if (hasEligibleWorking == 'no') {
     return res.redirect('ineligible_performance')
   } 
-  else if (subject_to_disciplinary_action == 'Yes') {
-    return res.redirect('ineligible_performance')
-  }else{
+  else{
     return res.redirect('check_answers')
   }
 
