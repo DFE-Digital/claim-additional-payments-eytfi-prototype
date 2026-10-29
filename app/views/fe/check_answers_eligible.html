@@ -2,6 +2,7 @@
 
 {% from "govuk/components/back-link/macro.njk" import govukBackLink %}
 {% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/radios/macro.njk" import govukRadios %}
 {% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
 {% from "govuk/components/checkboxes/macro.njk" import govukCheckboxes %}
 
@@ -19,19 +20,74 @@
   
   <div class="govuk-grid-column-two-thirds">
 	
-    <form action="check_answers_information" accept-charset="UTF-8" method="post">
-      <div class="govuk-panel govuk-panel--confirmation govuk-panel--informational">
-        <h1 class="govuk-panel__title">You’re eligible for a targeted retention incentive payment</h1> </div>
-      <div class="govuk-heading-m"> Based on what you’ve told us, you can apply for a retention payment of: </div>
-      <div class="govuk-heading-l"> £6,000 </div>
-      <button type="submit" formnovalidate="formnovalidate" class="govuk-button" data-module="govuk-button" data-prevent-double-click="true" data-govuk-button-init="">Apply now</button>
+      <h1 class="govuk-heading-l">You may be eligible for a targeted retention incentive payment of up to £6,000</h1>
+      
       <div class="govuk-body"> If you teach at an FE provider with a higher proportion of disadvantaged students, you’ll receive a higher payment. This is based on the proportion of 16 to 19 students who attract <a class="govuk-link" href="https://www.gov.uk/guidance/16-to-19-funding-how-it-works">disadvantage funding</a>. </div>
-      <div class="govuk-body"> In the guidance on <a class="govuk-link" href="https://www.gov.uk/guidance/targeted-retention-incentive-payments-for-fe-teachers">targeted retention incentive payments for FE teachers</a>, you can find: </div>
+      <div class="govuk-body"> In the guidance on <a class="govuk-link govuk-link--no-visited-state" href="https://www.gov.uk/guidance/targeted-retention-incentive-payments-for-fe-teachers">targeted retention incentive payments for FE teachers</a>, you can find: </div>
       <ul class="govuk-list govuk-list--bullet">
         <li>why you’re eligible</li>
         <li>the list of eligible FE providers</li>
         <li>the payment values</li>
       </ul>
+
+      <h2 class="govuk-heading-m">Before you continue your claim</h2>
+
+    <p class="govuk-body">
+      The payment may affect your finances. You should check how it could impact you before you decide whether to accept it. While the payment is £4,500, the amount paid into your account may be lower if you need to pay tax or repay your student loan. 
+    </p>
+
+    <h3 class="govuk-heading-s">Student loan deductions</h3>
+
+    <p class="govuk-body">
+      If you are currently repaying a student loan, a deduction from your payment will go towards repaying it.
+    </p>
+
+    <h3 class="govuk-heading-s">Income Tax</h3>
+
+    <p class="govuk-body">
+      If you pay <a target="_blank" href="https://www.gov.uk/income-tax-rates#income-tax-rates-and-bands" class="govuk-link govuk-link--no-visited-state">the basic rate of Income Tax</a>,
+      we will pay tax and National Insurance for you and you will receive the full
+      amount. You may have to pay additional Income Tax if you pay the higher rate.
+    </p>
+
+    <h3 class="govuk-heading-s">Benefits</h3>
+
+    <p class="govuk-body govuk-!-margin-bottom-8">
+      The payment may affect any benefits you receive. You should
+      <a target="_blank" href="https://www.gov.uk/benefits-calculators" class="govuk-link govuk-link--no-visited-state">check how they might be affected</a> before
+      you accept the payment.
+    </p>
+            
+    <form action="check_answers_information" accept-charset="UTF-8" method="post">
+
+      {{ govukRadios({
+        classes: "govuk-radios--inline",
+        idPrefix: "accept-payment",
+        name: "acceptPayment",
+        fieldset: {
+          legend: {
+            text: "Do you want to continue with your claim?",
+            classes: "govuk-fieldset__legend--m"
+          }
+        },
+        hint: {
+          text: "If you click no, you'll cancel your claim and exit the service."
+        },
+        items: [
+          {
+            value: "yes",
+            text: "Yes"
+          },
+          {
+            value: "no",
+            text: "No"
+          }
+        ]
+      }) }}
+
+      {{ govukButton({
+        text: "Continue"
+      }) }}
     </form>
 
 
