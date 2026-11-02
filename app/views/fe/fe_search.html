@@ -21,7 +21,7 @@
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
 
-    <form action="/fe/academic_year">
+    <form method="post" action="/fe/academic_year">
 
       <div class="govuk-form-group">
       
@@ -30,17 +30,15 @@
             Which further education provider directly employs you?
           </label>
         </h1>
-
-         
-        
+            
 
           <div class="autocomplete-wrapper govuk-!-margin-top-3 govuk-!-margin-bottom-3" data-chosen="">
             <div id="school-hint" class="govuk-hint"
             </div>
           
-            <select class="schoolSelecter" name="schoolSearch" id="schoolSearch" aria-describedby="school-hint">
+            <select class="schoolSelecter" name="feSearch" id="feSearch" aria-describedby="school-hint">
 
-              {% include "schools/schools_result.html" %}
+              {% include "fe/schools_result.html" %}
 
             </select>
           </div>

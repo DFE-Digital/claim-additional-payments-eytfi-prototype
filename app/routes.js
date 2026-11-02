@@ -38,6 +38,29 @@ function buildUploadedDocumentSummary(uploadedDocuments) {
     .join('<br>')
 }
 
+router.use(function (req, res, next) {
+  if (req.method === 'GET' && !req.path.includes('.')) {
+    if (req.query.returnUrl && req.query.returnUrl.startsWith('/')) {
+      // Arrived from a Change link, so remember where to go back to
+      req.session.returnUrl = req.query.returnUrl
+    } else {
+      // Any other page visit cancels it (e.g. they clicked Back instead)
+      delete req.session.returnUrl
+    }
+    delete req.session.data.returnUrl   // keep it out of your form data
+  }
+  next()
+})
+
+router.post('*', function (req, res, next) {
+  const returnUrl = req.session.returnUrl
+  if (returnUrl) {
+    delete req.session.returnUrl
+    return res.redirect(returnUrl)
+  }
+  next()
+})
+
 router.get('/check-nursery', (req, res) => {
   const { nursery } = req.query
 
@@ -579,6 +602,34 @@ router.post('/schools/confirm-where-you-work-uploaded', (req, res) => {
 ///////
 // FE ROUTES
 ///////
+
+
+//prototype magic
+
+router.get('/fe/start', function (req, res) {
+  if (req.query.oneLoginJourney) {
+    req.session.data.oneLoginJourney = req.query.oneLoginJourney
+  }
+  return res.render('fe/start')
+})
+
+router.get('/fe/persona1', function (req, res) {
+  Object.assign(req.session.data, {
+    staff: 'Yes',
+    schoolSearch: 'Nottingham University Academy of Science and Technology',
+    startyear: 'September 2023 to August 2024',
+    teaching_qualification: 'No, but I plan to enrol on one in the next 12 months',
+    contract: 'Fixed term',
+    hours: '12 or more hours per week, but fewer than 20',
+    tlevel: 'No',
+    subjects: ['Computing, including digital and ICT'],
+    claim_physics: 'GCSE physics',
+    hours_teaching_eligible_subjects: 'Yes',
+    hasPerformance: 'Yes',
+    oneLoginJourney: 'previous',
+  })
+  res.redirect('/fe/start')
+})
 
 router.post('/fe/one-login', (req, res) => {
 

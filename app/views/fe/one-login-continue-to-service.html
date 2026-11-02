@@ -33,38 +33,47 @@
       text: "Continue"
     }) }}
 
-      <p class="govuk-body-s govuk-!-margin-bottom-2">Prototype journey</p>
+    <details class="govuk-details">
+      <summary class="govuk-details__summary">
+        <span class="govuk-details__summary-text">
+          Prototype journey
+        </span>
+      </summary>
+      <div class="govuk-details__text">
+        
+        {{ govukRadios({
+          classes: "govuk-radios--small",
+          name: "oneLoginJourney",
+          fieldset: {
+            legend: {
+              text: "Choose a One Login journey",
+              classes: "govuk-visually-hidden"
+            }
+          },
+          items: [
+            {
+              value: "already",
+              text: "Already claimed for year"
+            },
+            {
+              value: "previous_error",
+              text: "Is a returning claimant who is not within first five years of teaching"
+            },
+            {
+              value: "previous",
+              text: "Has previous successful claim"
+            },
+            {
+              value: "new",
+              text: "New claimant who is within first five years of teaching"
+            }
+          ]
+        }) }}
 
-      {{ govukRadios({
-        classes: "govuk-radios--small",
-        name: "oneLoginJourney",
-        fieldset: {
-          legend: {
-            text: "Choose a One Login journey",
-            classes: "govuk-visually-hidden"
-          }
-        },
-        items: [
-          {
-            value: "already",
-            text: "Already claimed for year",
-            checked: true
-          },
-          {
-            value: "previous_error",
-            text: "Is a returning claimant who is not within first five years of teaching",
-            checked: true
-          },
-          {
-            value: "previous",
-            text: "Has previous successful claim"
-          },
-          {
-            value: "new",
-            text: "New claimant who is within first five years of teaching"
-          }
-        ]
-      }) }}
+      </div>
+    </details>
+
+      
     </form>
 
   </div>
