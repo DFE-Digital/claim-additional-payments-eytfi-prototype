@@ -1,0 +1,64 @@
+{% extends "layouts/main_fe.html" %}
+
+{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+
+{% set pageName = "Link for this participant" %}
+
+{% block pageBeforeContent %}
+  {{ govukBackLink({ text: "Back", href: editHref }) }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+<div class="govuk-grid-column-two-thirds">
+
+<h1 class="govuk-heading-l">Link for this participant</h1>
+
+<p class="govuk-body">Send this link to the participant. It fills in the answers below and opens <strong>{{ startPage }}</strong>.</p>
+
+<div class="govuk-inset-text" id="research-link" style="word-break: break-all;">{{ link }}</div>
+
+<div class="govuk-button-group">
+  {{ govukButton({ text: "Copy link", attributes: { id: "copy-link" } }) }}
+  <a class="govuk-link" href="{{ link }}" target="_blank" rel="noreferrer noopener">Try it (opens in new tab)</a>
+</div>
+
+<h2 class="govuk-heading-m">Answers in this link</h2>
+{% if summary | length %}
+  {% set rows = [] %}
+  {% for item in summary %}
+    {% set _added = rows.push({ key: { text: item.key }, value: { html: item.values | join("<br>") } }) %}
+  {% endfor %}
+  {{ govukSummaryList({ rows: rows }) }}
+{% else %}
+  <p class="govuk-body">No answers set. The participant will answer every question.</p>
+{% endif %}
+
+<p class="govuk-body">
+  <a class="govuk-link" href="{{ editHref }}">Edit these answers</a><br>
+  <a class="govuk-link" href="/fe/research-setup">Create another link</a>
+</p>
+
+<div class="govuk-warning-text">
+  <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+  <strong class="govuk-warning-text__text">
+    <span class="govuk-visually-hidden">Warning</span>
+    Do not put a participant's real personal details in a link. Links are saved in browser history.
+  </strong>
+</div>
+
+<script>
+  document.getElementById('copy-link').addEventListener('click', function (e) {
+    e.preventDefault()
+    var button = this
+    navigator.clipboard.writeText(document.getElementById('research-link').textContent.trim()).then(function () {
+      button.textContent = 'Link copied'
+    })
+  })
+</script>
+
+</div>
+</div>
+{% endblock %}

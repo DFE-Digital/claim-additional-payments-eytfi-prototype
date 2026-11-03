@@ -80,16 +80,22 @@
 					<a class="govuk-link govuk-link--no-visited-state" href="/fe/contract_subjects?returnUrl=/fe/check_answers">Change<span class="govuk-visually-hidden"> which subject areas do you teach?</span></a>
 				</dd>
 			</div>
-			<div class="govuk-summary-list__row"><dt class="govuk-summary-list__key">Physics courses</dt>
-				<dd class="govuk-summary-list__value">{% if data['claim_physics'] %} {{ data['claim_physics'] }}{% else %} A or AS level physicsGCSE physicsIBO&nbsp;level 1 / level 2 MYP physicsIBO&nbsp;level 3 in&nbsp;SL&nbsp;and&nbsp;HL&nbsp;physics, taught as part of a diploma or career related programme or as a standalone certificate {% endif %}</dd>
+			{% for subject in feSelectedSubjects %}
+			<div class="govuk-summary-list__row"><dt class="govuk-summary-list__key">{{ subject.name | capitalize }} courses</dt>
+				<dd class="govuk-summary-list__value">
+					{% if subject.answers | length %}
+						{% for course in subject.answerText %}{{ course }}{% if not loop.last %}<br>{% endif %}{% endfor %}
+					{% else %}Not answered{% endif %}
+				</dd>
 				<dd class="govuk-summary-list__actions">
-					<a class="govuk-link govuk-link--no-visited-state" href="/fe/contract_subjects_physics?returnUrl=/fe/check_answers">Change<span class="govuk-visually-hidden"> physics courses</span></a>
+					<a class="govuk-link govuk-link--no-visited-state" href="/fe/contract_subjects_courses?returnUrl=/fe/check_answers#{{ subject.slug }}">Change<span class="govuk-visually-hidden"> {{ subject.name | lower }} courses</span></a>
 				</dd>
 			</div>
+			{% endfor %}
 			<div class="govuk-summary-list__row"><dt class="govuk-summary-list__key">Do you spend at least half of your timetabled teaching hours teaching these eligible courses?</dt>
 				<dd class="govuk-summary-list__value">{% if data['hours_teaching_eligible_subjects'] %} {{ data['hours_teaching_eligible_subjects'] }}{% else %} Yes {% endif %}</dd>
 				<dd class="govuk-summary-list__actions">
-					<a class="govuk-link govuk-link--no-visited-state" href="/fe/contract_subjects_physics_time?returnUrl=/fe/check_answers">Change<span class="govuk-visually-hidden"> do you spend at least half of your timetabled teaching hours teaching these eligible courses?</span></a>
+					<a class="govuk-link govuk-link--no-visited-state" href="/fe/contract_subjects_time?returnUrl=/fe/check_answers">Change<span class="govuk-visually-hidden"> do you spend at least half of your timetabled teaching hours teaching these eligible courses?</span></a>
 				</dd>
 			</div>
 			<div class="govuk-summary-list__row"><dt class="govuk-summary-list__key">Do you meet this eligibility criteria?</dt>

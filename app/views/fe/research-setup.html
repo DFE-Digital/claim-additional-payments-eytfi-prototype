@@ -1,0 +1,190 @@
+{% extends "layouts/main_fe.html" %}
+
+{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+
+{% set pageName = "Create a persona link" %}
+
+{#
+  Team page: pick answers for a research participant and get a link to send them.
+  Field names match the real question pages, prefixed with p_ (see routes.js, FE PERSONA LINK GENERATOR).
+  Values must match the radio/checkbox values on the question pages exactly.
+#}
+
+{% macro radios(name, label, options, hint) %}
+  {% set current = (values[name] or [""])[0] %}
+  <div class="govuk-form-group">
+    <fieldset class="govuk-fieldset">
+      <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">{{ label }}</legend>
+      {% if hint %}<div class="govuk-hint">{{ hint }}</div>{% endif %}
+      <div class="govuk-radios govuk-radios--small" data-module="govuk-radios">
+        {% for o in [["", "Not set"]].concat(options) %}
+          <div class="govuk-radios__item">
+            <input class="govuk-radios__input" id="p-{{ name }}-{{ loop.index }}" name="p_{{ name }}" type="radio" value="{{ o[0] }}" {% if current == o[0] %}checked{% endif %}>
+            <label class="govuk-label govuk-radios__label" for="p-{{ name }}-{{ loop.index }}">{{ o[1] }}</label>
+          </div>
+        {% endfor %}
+      </div>
+    </fieldset>
+  </div>
+{% endmacro %}
+
+{% block pageBeforeContent %}
+  {{ govukBackLink({ text: "Back", href: "/fe/personas" }) }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+<div class="govuk-grid-column-two-thirds">
+
+<h1 class="govuk-heading-l">Create a persona link</h1>
+<p class="govuk-body">Choose answers that match the research participant. You'll get a link to send them that fills in these answers and takes them to the page you choose.</p>
+<p class="govuk-body">Anything left as "Not set" is answered by the participant during the session.</p>
+
+<p class="govuk-body govuk-!-margin-bottom-2">Start from an existing persona:</p>
+<ul class="govuk-list">
+  {% for id, persona in personas %}
+    <li><a class="govuk-link" href="/fe/research-setup?from={{ id }}">{{ persona.name }}</a></li>
+  {% endfor %}
+</ul>
+
+<form method="get" action="/fe/research-link" novalidate>
+
+  <h2 class="govuk-heading-m govuk-!-margin-top-6">Where the participant starts</h2>
+  <div class="govuk-form-group">
+    <fieldset class="govuk-fieldset">
+      <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">Which page should the link open?</legend>
+      <div class="govuk-radios govuk-radios--small" data-module="govuk-radios">
+        {% for id, page in startPages %}
+          <div class="govuk-radios__item">
+            <input class="govuk-radios__input" id="p-goto-{{ loop.index }}" name="p_goto" type="radio" value="{{ id }}" {% if id in values.goto %}checked{% endif %}>
+            <label class="govuk-label govuk-radios__label" for="p-goto-{{ loop.index }}">{{ page.text }} <span class="govuk-hint govuk-!-display-inline">({{ page.href }})</span></label>
+          </div>
+        {% endfor %}
+      </div>
+    </fieldset>
+  </div>
+
+  <h2 class="govuk-heading-m govuk-!-margin-top-6">Signing in</h2>
+
+  {{ radios("oneLoginJourney", "One Login scenario", [
+    ["already", "Already claimed for year"],
+    ["previous_error", "Returning claimant not within first five years of teaching"],
+    ["previous", "Has previous successful claim"],
+    ["new", "New claimant within first five years of teaching"]
+  ]) }}
+
+  {{ radios("previous", "Did you apply for a targeted retention incentive payment in further education between 1 September 2025 and 31 May 2026?", [["yes", "Yes"], ["no", "No"]]) }}
+
+  <h2 class="govuk-heading-m govuk-!-margin-top-6">Role and employer</h2>
+
+  {{ radios("staff", "Are you a member of staff with the responsibilities of a teacher?", [["yes", "Yes"], ["no", "No"]]) }}
+
+  <div class="govuk-form-group">
+    <label class="govuk-label govuk-label--s" for="p-feSearch">Which further education provider directly employs you?</label>
+    <div class="govuk-hint">Leave blank to let the participant search</div>
+    <select class="govuk-select" id="p-feSearch" name="p_feSearch" data-current="{{ (values.feSearch or [''])[0] }}">
+      {% include "fe/schools_result.html" %}
+    </select>
+  </div>
+
+  {{ radios("schoolValid", "Employer result", [["employer valid", "Employer valid"], ["employer not valid", "Employer not valid"]]) }}
+
+  {{ radios("academic", "Did you start teaching FE courses after September 2022?", [["yes", "Yes"], ["no", "No"]]) }}
+
+  {{ radios("startyear", "Which academic year did you start your FE teaching career in England?", [
+    ["September 2022 to August 2023", "September 2022 to August 2023"],
+    ["September 2023 to August 2024", "September 2023 to August 2024"],
+    ["September 2024 to August 2025", "September 2024 to August 2025"],
+    ["September 2025 to August 2026", "September 2025 to August 2026"],
+    ["September 2026 to August 2027", "September 2026 to August 2027"]
+  ]) }}
+
+  {{ radios("teaching_qualification", "Do you have a teaching qualification?", [
+    ["yes", "Yes"],
+    ["Not yet, I am currently enrolled on one and working towards completing it§", "Not yet, I am currently enrolled on one and working towards completing it"],
+    ["No, but I plan to enrol on one in the next 12 months", "No, but I plan to enrol on one in the next 12 months"],
+    ["No, and I do not plan to enrol on one in the next 12 months", "No, and I do not plan to enrol on one in the next 12 months"]
+  ]) }}
+
+  <h2 class="govuk-heading-m govuk-!-margin-top-6">Contract and hours</h2>
+
+  {{ radios("contract", "What type of contract do you have?", [
+    ["permanent", "Permanent"],
+    ["Fixed term", "Fixed term"],
+    ["Variable hours", "Variable hours"],
+    ["I do not have a direct contract of employment with Nottingham College", "I do not have a direct contract of employment"]
+  ]) }}
+
+  {{ radios("hours", "On average, how many hours per week are you timetabled to teach during the spring term?", [
+    ["20 hours or more per week", "20 hours or more per week"],
+    ["12 or more hours per week, but fewer than 20", "12 or more hours per week, but fewer than 20"],
+    ["2.5 or more hours per week, but fewer than 12", "2.5 or more hours per week, but fewer than 12"],
+    ["Fewer than 2.5 hours each week", "Fewer than 2.5 hours each week"]
+  ]) }}
+
+  {{ radios("spring", "Have you taught there for the full spring term?", [["yes", "Yes"], ["no", "No"]]) }}
+
+  {{ radios("tlevel", "Do you spend at least half of your timetabled teaching hours on 16 to 19 study programmes, T Levels or 16 to 19 apprenticeships?", [["Yes", "Yes"], ["No", "No"]]) }}
+
+  <h2 class="govuk-heading-m govuk-!-margin-top-6">Subjects and courses</h2>
+
+  <div class="govuk-form-group">
+    <fieldset class="govuk-fieldset">
+      <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">Which subject areas do you teach?</legend>
+      <div class="govuk-hint">Tick a subject to choose its courses. Leave all unticked to let the participant answer.</div>
+      <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+        {% for subject in subjectCourses %}
+          {% set chosen = values[subject.field] or [] %}
+          <div class="govuk-checkboxes__item">
+            <input class="govuk-checkboxes__input" id="p-subject-{{ subject.slug }}" name="p_subjects" type="checkbox" value="{{ subject.label }}"
+              data-aria-controls="p-conditional-{{ subject.slug }}" {% if subject.label in (values.subjects or []) %}checked{% endif %}>
+            <label class="govuk-label govuk-checkboxes__label" for="p-subject-{{ subject.slug }}">{{ subject.label }}</label>
+          </div>
+          <div class="govuk-checkboxes__conditional govuk-checkboxes__conditional--hidden" id="p-conditional-{{ subject.slug }}">
+            <p class="govuk-body govuk-!-font-weight-bold govuk-!-margin-bottom-2">Which {{ (subject.name) | lower }} courses?</p>
+            <p class="govuk-hint">Leave unticked to let the participant answer</p>
+            {% for course in subject.courses %}
+              <div class="govuk-checkboxes__item">
+                <input class="govuk-checkboxes__input" id="p-{{ subject.slug }}-{{ loop.index }}" name="p_{{ subject.field }}" type="checkbox" value="{{ course.value }}" {% if course.value in chosen %}checked{% endif %}>
+                <label class="govuk-label govuk-checkboxes__label" for="p-{{ subject.slug }}-{{ loop.index }}">{{ course.html | safe }}</label>
+              </div>
+            {% endfor %}
+            <div class="govuk-checkboxes__divider">or</div>
+            <div class="govuk-checkboxes__item">
+              <input class="govuk-checkboxes__input" id="p-{{ subject.slug }}-none" name="p_{{ subject.field }}" type="checkbox" value="none" data-behaviour="exclusive" {% if "none" in chosen %}checked{% endif %}>
+              <label class="govuk-label govuk-checkboxes__label" for="p-{{ subject.slug }}-none">I do not teach any of these courses</label>
+            </div>
+          </div>
+        {% endfor %}
+        <div class="govuk-checkboxes__divider">or</div>
+        <div class="govuk-checkboxes__item">
+          <input class="govuk-checkboxes__input" id="p-subject-none" name="p_subjects" type="checkbox" value="none" data-behaviour="exclusive" {% if "none" in (values.subjects or []) %}checked{% endif %}>
+          <label class="govuk-label govuk-checkboxes__label" for="p-subject-none">I do not teach any of these subjects</label>
+        </div>
+      </div>
+    </fieldset>
+  </div>
+
+  {{ radios("hours_teaching_eligible_subjects", "Do you spend at least half of your timetabled teaching hours teaching these eligible courses?", [["Yes", "Yes"], ["No", "No"]]) }}
+
+  <h2 class="govuk-heading-m govuk-!-margin-top-6">Eligibility criteria</h2>
+
+  {{ radios("hasPerformance", "Performance measures: meets the eligibility criteria?", [["yes", "Yes"], ["no", "No"]]) }}
+
+  {{ radios("hasEligibleWorking", "Disciplinary action: meets the eligibility criteria?", [["yes", "Yes"], ["no", "No"]]) }}
+
+  {{ govukButton({ text: "Create link" }) }}
+</form>
+
+<script>
+  // Select the saved employer, if there is one
+  (function () {
+    var select = document.getElementById('p-feSearch')
+    if (select && select.dataset.current) select.value = select.dataset.current
+  })()
+</script>
+
+</div>
+</div>
+{% endblock %}

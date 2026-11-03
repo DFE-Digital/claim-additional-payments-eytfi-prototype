@@ -1,0 +1,63 @@
+{% extends "layouts/main_fe.html" %}
+
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+{% from "govuk/components/tag/macro.njk" import govukTag %}
+
+{% set pageName = "Choose a persona" %}
+
+{% block content %}
+<div class="govuk-grid-row">
+<div class="govuk-grid-column-two-thirds">
+
+<h1 class="govuk-heading-l">Choose a persona</h1>
+<p class="govuk-body">Selecting a persona clears any existing answers, fills in that persona's answers and takes you to the start page.</p>
+<p class="govuk-body"><a class="govuk-link" href="/fe/research-setup">Create a persona link for a research participant</a></p>
+
+{% for id, persona in personas %}
+  {% set rows = [] %}
+  {% for key, value in persona.answers %}
+    {% set _added = rows.push({
+      key: { text: labels[key] or key },
+      value: { text: value if value is string else value | join(", ") }
+    }) %}
+  {% endfor %}
+
+  <div class="govuk-summary-card">
+    <div class="govuk-summary-card__title-wrapper">
+      <h2 class="govuk-summary-card__title">
+        {{ persona.name }}
+        {% if activePersona == id %}
+          {{ govukTag({ text: "Active", classes: "govuk-tag--green govuk-!-margin-left-2" }) }}
+        {% endif %}
+      </h2>
+    </div>
+    <div class="govuk-summary-card__content">
+      <p class="govuk-body">{{ persona.description }}</p>
+
+      <details class="govuk-details">
+        <summary class="govuk-details__summary">
+          <span class="govuk-details__summary-text">View answers</span>
+        </summary>
+        <div class="govuk-details__text">
+          {{ govukSummaryList({ rows: rows, classes: "govuk-summary-list--no-border" }) }}
+        </div>
+      </details>
+
+      <div class="govuk-button-group govuk-!-margin-bottom-0">
+        {{ govukButton({
+          text: "Use " + persona.name,
+          href: "/fe/personas/" + id,
+          classes: "govuk-!-margin-bottom-0"
+        }) }}
+        <a class="govuk-link" href="/fe/research-setup?from={{ id }}">Customise and create a link</a>
+      </div>
+    </div>
+  </div>
+{% endfor %}
+
+<p class="govuk-body"><a class="govuk-link" href="/start-new-claim">Start with no answers instead</a></p>
+
+</div>
+</div>
+{% endblock %}

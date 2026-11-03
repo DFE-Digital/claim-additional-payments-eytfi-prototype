@@ -1,0 +1,87 @@
+{% extends "layouts/main_fe.html" %}
+
+{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+
+{#
+  Shows the courses for every subject picked on contract_subjects.
+  Courses come from app/data/fe-subject-courses.js.
+  One subject: the subject is the page heading.
+  Several subjects: "Which courses do you teach?" with a group per subject.
+#}
+
+{% set single = (subjects | length) == 1 %}
+{% set heading = ("Which " + (subjects[0].name | lower) + " courses do you teach?") if single else "Which courses do you teach?" %}
+{% set pageName = heading %}
+
+{% block pageBeforeContent %}
+  {{ govukBackLink({ text: "Back", href: "/fe/contract_subjects" }) }}
+{% endblock %}
+
+{% macro courseCheckboxes(subject) %}
+  {# Lets the kit clear this answer if every box is unticked #}
+  <input type="hidden" name="{{ subject.field }}" value="_unchecked">
+  <div class="govuk-checkboxes" data-module="govuk-checkboxes">
+    {% for course in subject.courses %}
+      <div class="govuk-checkboxes__item">
+        <input id="{{ subject.slug }}-course-{{ loop.index }}" class="govuk-checkboxes__input" type="checkbox"
+          name="{{ subject.field }}" value="{{ course.value }}" {% if course.value in subject.answers %}checked{% endif %}>
+        <label for="{{ subject.slug }}-course-{{ loop.index }}" class="govuk-label govuk-checkboxes__label">{{ course.html | safe }}</label>
+      </div>
+    {% endfor %}
+    <div class="govuk-checkboxes__divider">or</div>
+    <div class="govuk-checkboxes__item">
+      <input id="{{ subject.slug }}-course-none" class="govuk-checkboxes__input" type="checkbox" data-behaviour="exclusive"
+        name="{{ subject.field }}" value="none" {% if "none" in subject.answers %}checked{% endif %}>
+      <label for="{{ subject.slug }}-course-none" class="govuk-label govuk-checkboxes__label">I do not teach any of these {{ subject.name | lower }} courses</label>
+    </div>
+  </div>
+{% endmacro %}
+
+{% set hintHtml %}
+  <p>Contact your provider if you are unsure which one to pick, or you cannot find the one you teach.</p>
+  <p>You can then email the helpdesk to check if it is eligible.</p>
+  <p><a class="govuk-link" href="mailto:FE-targeted.retention-incentive@education.gov.uk">FE-targeted.retention-incentive@education.gov.uk</a></p>
+  <p>Select all that apply</p>
+{% endset %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <form method="post" action="/fe/contract_subjects_courses" novalidate>
+
+      {% if single %}
+        {% set subject = subjects[0] %}
+        <div class="govuk-form-group" id="{{ subject.slug }}">
+          <fieldset class="govuk-fieldset" aria-describedby="{{ subject.slug }}-courses-hint">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h1 class="govuk-fieldset__heading">{{ heading }}</h1>
+            </legend>
+            <div class="govuk-hint" id="{{ subject.slug }}-courses-hint">{{ hintHtml | safe }}</div>
+            {{ courseCheckboxes(subject) }}
+          </fieldset>
+        </div>
+      {% else %}
+        <h1 class="govuk-heading-l">{{ heading }}</h1>
+        <div class="govuk-body govuk-hint">{{ hintHtml | safe }}</div>
+
+        {% for subject in subjects %}
+          <div class="govuk-form-group" id="{{ subject.slug }}">
+            <fieldset class="govuk-fieldset">
+              <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+                <h2 class="govuk-fieldset__heading">{{ subject.name | capitalize }}</h2>
+              </legend>
+              {{ courseCheckboxes(subject) }}
+            </fieldset>
+          </div>
+        {% endfor %}
+      {% endif %}
+
+      {{ govukButton({ text: "Continue" }) }}
+
+    </form>
+
+  </div>
+</div>
+{% endblock %}

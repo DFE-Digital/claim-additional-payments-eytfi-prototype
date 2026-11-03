@@ -613,22 +613,118 @@ router.get('/fe/start', function (req, res) {
   return res.render('fe/start')
 })
 
-router.get('/fe/persona1', function (req, res) {
-  Object.assign(req.session.data, {
-    staff: 'Yes',
-    schoolSearch: 'Nottingham University Academy of Science and Technology',
-    startyear: 'September 2023 to August 2024',
-    teaching_qualification: 'No, but I plan to enrol on one in the next 12 months',
-    contract: 'Fixed term',
-    hours: '12 or more hours per week, but fewer than 20',
-    tlevel: 'No',
-    subjects: ['Computing, including digital and ICT'],
-    claim_physics: 'GCSE physics',
-    hours_teaching_eligible_subjects: 'Yes',
-    hasPerformance: 'Yes',
-    oneLoginJourney: 'previous',
+///////
+// FE PERSONAS
+// Add or edit personas here. Answer values must match the radio/checkbox
+// values on the question pages in app/views/fe exactly.
+///////
+
+const fePersonas = {
+  'persona-1': {
+    name: 'Persona 1',
+    description: 'Returning claimant on a fixed-term contract, teaches computing and GCSE physics',
+    answers: {
+      oneLoginJourney: 'previous',
+      staff: 'yes',
+      feSearch: 'Nottingham College',
+      startyear: 'September 2023 to August 2024',
+      teaching_qualification: 'No, but I plan to enrol on one in the next 12 months',
+      contract: 'Fixed term',
+      hours: '12 or more hours per week, but fewer than 20',
+      tlevel: 'No',
+      subjects: ['Computing, including digital and ICT'],
+      physics_courses: ['GCSE physics'],
+      hours_teaching_eligible_subjects: 'Yes',
+      hasPerformance: 'yes'
+    }
+  },
+  'persona-2': {
+    name: 'Persona 2 (example - edit me)',
+    description: 'New claimant, permanent full-time maths and physics teacher with a qualification',
+    answers: {
+      oneLoginJourney: 'new',
+      staff: 'yes',
+      feSearch: 'Bilborough College',
+      teaching_qualification: 'yes',
+      contract: 'permanent',
+      hours: '20 hours or more per week',
+      tlevel: 'Yes',
+      subjects: ['Maths', 'Physics'],
+      physics_courses: ['A or AS level physics', 'GCSE physics'],
+      hours_teaching_eligible_subjects: 'Yes',
+      hasPerformance: 'yes',
+      hasEligibleWorking: 'yes',
+      hmrcJourney: 'good'
+    }
+  },
+  'persona-3': {
+    name: 'Persona 3 (example - edit me)',
+    description: 'Variable hours teacher with fewer than 2.5 hours a week, no teaching qualification',
+    answers: {
+      oneLoginJourney: 'new',
+      staff: 'yes',
+      feSearch: 'Leicester College',
+      teaching_qualification: 'No, and I do not plan to enrol on one in the next 12 months',
+      contract: 'Variable hours',
+      hours: 'Fewer than 2.5 hours each week',
+      tlevel: 'No',
+      subjects: ['Early years'],
+      hmrcJourney: 'bad'
+    }
+  }
+}
+
+// Friendly labels for the personas page
+const fePersonaLabels = {
+  oneLogin: 'Has a One Login account',
+  oneLoginJourney: 'One Login scenario',
+  previous: 'Applied between September 2025 and May 2026',
+  staff: 'Teaching responsibilities',
+  feSearch: 'Employer',
+  schoolValid: 'Employer result',
+  academic: 'Started teaching FE after September 2022',
+  startyear: 'Start year',
+  teaching_qualification: 'Teaching qualification',
+  contract: 'Contract type',
+  hours: 'Hours per week',
+  spring: 'Taught the full spring term',
+  tlevel: '16 to 19 / T Levels',
+  subjects: 'Subjects',
+  building_construction_courses: 'Building and construction courses',
+  chemistry_courses: 'Chemistry courses',
+  computing_courses: 'Computing courses',
+  early_years_courses: 'Early years courses',
+  engineering_manufacturing_courses: 'Engineering and manufacturing courses',
+  maths_courses: 'Maths courses',
+  physics_courses: 'Physics courses',
+  hours_teaching_eligible_subjects: 'Half of hours on eligible courses',
+  hasPerformance: 'Performance criteria met',
+  hasEligibleWorking: 'Disciplinary criteria met',
+  hmrcJourney: 'HMRC check'
+}
+
+// Page listing all personas
+router.get('/fe/personas', function (req, res) {
+  res.render('fe/personas', {
+    personas: fePersonas,
+    labels: fePersonaLabels,
+    activePersona: req.session.data.activePersona
   })
+})
+
+// Load a persona: clears the session, sets its answers, goes to start
+router.get('/fe/personas/:id', function (req, res) {
+  const persona = fePersonas[req.params.id]
+  if (!persona) return res.redirect('/fe/personas')
+
+  req.session.data = JSON.parse(JSON.stringify(persona.answers))
+  req.session.data.activePersona = req.params.id
   res.redirect('/fe/start')
+})
+
+// Old link still works
+router.get('/fe/persona1', function (req, res) {
+  res.redirect('/fe/personas/persona-1')
 })
 
 router.post('/fe/one-login', (req, res) => {
@@ -872,33 +968,179 @@ router.post('/fe/contract_tlevel', (req, res) => {
 
 })
 
+///////
+// FE SUBJECT COURSES (dynamic)
+// The courses for each subject are kept in app/data/fe-subject-courses.js
+///////
+
+const feSubjectCourses = require('./data/fe-subject-courses')
+
+// The subjects the user ticked, in the order they appear on the page
+function feSelectedSubjects (data) {
+  const chosen = [].concat(data.subjects || [])
+  return Object.keys(feSubjectCourses)
+    .filter(label => chosen.includes(label))
+    .map(label => {
+      const config = feSubjectCourses[label]
+      const courses = config.courses.map(c => typeof c === 'string' ? { value: c, html: c } : c)
+      const answers = [].concat(data[config.field] || [])
+      // Plain-text labels of the chosen courses, for check answers
+      const answerText = answers.map(a => {
+        if (a === 'none') return 'I do not teach any of these courses'
+        const course = courses.find(c => c.value === a)
+        return course ? course.html.replace(/<[^>]+>/g, '').replace(' (opens in new tab)', '').replace(/&nbsp;/g, ' ').replace(/&amp;/g, '&') : a
+      })
+      return Object.assign({ label: label, name: label }, config, { courses, answers, answerText })
+    })
+}
+
+// Make the selected subjects available to every FE page (used on check answers)
+router.use('/fe', function (req, res, next) {
+  res.locals.feSelectedSubjects = feSelectedSubjects(req.session.data)
+  next()
+})
+
 router.post('/fe/contract_subjects', (req, res) => {
+  const selected = feSelectedSubjects(req.session.data)
 
-  var subjects = req.session.data.subjects
-
-  if (subjects == 'none') {
-    return res.redirect('ineligible_subjects')
-  } 
-  else{
-    return res.redirect('contract_subjects_physics')
+  if (selected.length === 0) {
+    return res.redirect('/fe/ineligible_subjects')
   }
-
+  res.redirect('/fe/contract_subjects_courses')
 })
 
-router.post('/fe/contract_subjects_physics', (req, res) => {
+// One page showing the courses for every subject the user picked
+router.get('/fe/contract_subjects_courses', (req, res) => {
+  const selected = feSelectedSubjects(req.session.data)
+  if (selected.length === 0) return res.redirect('/fe/contract_subjects')
 
-  var claim_physics = req.session.data.claim_physics
-
-  if (claim_physics == 'none') {
-    return res.redirect('ineligible_subjects')
-  } 
-  else{
-    return res.redirect('contract_subjects_physics_time')
-  }
-
+  res.render('fe/contract_subjects_courses', { subjects: selected })
 })
 
-router.post('/fe/contract_subjects_physics_time', (req, res) => {
+router.post('/fe/contract_subjects_courses', (req, res) => {
+  const selected = feSelectedSubjects(req.session.data)
+
+  // Ineligible if they teach none of the courses in every subject they picked
+  const teachesNone = selected.every(s => s.answers.length && s.answers.every(a => a === 'none'))
+  if (teachesNone) {
+    return res.redirect('/fe/ineligible_subjects')
+  }
+
+  res.redirect('/fe/contract_subjects_time')
+})
+
+// Older one-subject-per-page addresses, kept so saved links still work
+router.get('/fe/contract_subjects_courses/:slug', (req, res) => {
+  res.redirect('/fe/contract_subjects_courses' + (req.query.returnUrl ? '?returnUrl=' + encodeURIComponent(req.query.returnUrl) : '') + '#' + req.params.slug)
+})
+
+// Old physics-only addresses, kept so any saved links still work
+router.get('/fe/contract_subjects_physics', (req, res) => res.redirect('/fe/contract_subjects_courses#physics'))
+router.get('/fe/contract_subjects_physics_time', (req, res) => res.redirect('/fe/contract_subjects_time'))
+
+///////
+// FE PERSONA LINK GENERATOR
+// /fe/research-setup  - team member picks answers
+// /fe/research-link   - shows the link to send to a participant
+// /fe/load            - participant opens the link; answers are loaded and they land on the chosen page
+// Setup fields are prefixed with p_ so they don't overwrite the team member's own session answers.
+///////
+
+const feResearchStartPages = {
+  'start': { href: '/fe/start', text: 'Start page' },
+  'check_previous_application': { href: '/fe/check_previous_application', text: 'Check your previous application' },
+  'check_previous_answers': { href: '/fe/check_previous_answers', text: 'Check your previous answers' },
+  'check_answers': { href: '/fe/check_answers', text: 'Check your answers' }
+}
+
+// Turn query values into { key: [values] }, dropping blanks
+function feResearchValues (query, prefix) {
+  const values = {}
+  for (const [key, value] of Object.entries(query || {})) {
+    if (prefix && !key.startsWith(prefix)) continue
+    const name = prefix ? key.slice(prefix.length) : key
+    const list = [].concat(value).filter(v => v !== '' && v !== '_unchecked')
+    if (list.length) values[name] = list
+  }
+  return values
+}
+
+router.get('/fe/research-setup', (req, res) => {
+  // Prefill from a persona (?from=persona-1) or from a previous link (Edit these answers)
+  let values = feResearchValues(req.query, 'p_')
+  const persona = fePersonas[req.query.from]
+  if (persona) values = feResearchValues(persona.answers)
+  if (!values.goto) values.goto = ['start']
+
+  res.render('fe/research-setup', {
+    values,
+    personas: fePersonas,
+    startPages: feResearchStartPages,
+    subjectCourses: Object.entries(feSubjectCourses).map(([label, config]) => Object.assign({ label, name: label }, config, {
+      courses: config.courses.map(c => typeof c === 'string' ? { value: c, html: c } : c)
+    }))
+  })
+})
+
+router.get('/fe/research-link', (req, res) => {
+  const values = feResearchValues(req.query, 'p_')
+
+  // Remove the setup answers the kit auto-stored in the team member's own session
+  for (const key of Object.keys(req.session.data)) {
+    if (key.startsWith('p_')) delete req.session.data[key]
+  }
+
+  // Only keep course answers for subjects that were ticked
+  const subjects = values.subjects || []
+  for (const [label, config] of Object.entries(feSubjectCourses)) {
+    if (!subjects.includes(label)) delete values[config.field]
+  }
+
+  const params = new URLSearchParams()
+  const editParams = new URLSearchParams()
+  for (const [key, list] of Object.entries(values)) {
+    list.forEach(v => { params.append(key, v); editParams.append('p_' + key, v) })
+  }
+
+  const protocol = req.get('x-forwarded-proto') || req.protocol
+  const link = `${protocol}://${req.get('host')}/fe/load?${params}`
+
+  const summary = Object.entries(values)
+    .filter(([key]) => key !== 'goto')
+    .map(([key, list]) => {
+      const subject = Object.values(feSubjectCourses).find(c => c.field === key)
+      const text = list.map(v => {
+        if (v === 'none') return 'Does not teach any of these courses'
+        const course = subject && subject.courses.find(c => (c.value || c) === v)
+        return course ? String(course.html || course).replace(/<[^>]+>/g, '').replace(' (opens in new tab)', '').replace(/&nbsp;/g, ' ').replace(/&amp;/g, '&') : v
+      })
+      return { key: fePersonaLabels[key] || key, values: text }
+    })
+
+  res.render('fe/research-link', {
+    link,
+    summary,
+    startPage: (feResearchStartPages[(values.goto || [])[0]] || feResearchStartPages.start).text,
+    editHref: '/fe/research-setup?' + editParams
+  })
+})
+
+router.get('/fe/load', (req, res) => {
+  const values = feResearchValues(req.query)
+  const goto = (feResearchStartPages[(values.goto || [])[0]] || feResearchStartPages.start).href
+  delete values.goto
+
+  // Fresh session for the participant: single answers as text, checkbox answers as lists
+  const data = {}
+  const listFields = ['subjects'].concat(Object.values(feSubjectCourses).map(c => c.field))
+  for (const [key, list] of Object.entries(values)) {
+    data[key] = listFields.includes(key) ? list : list[0]
+  }
+  req.session.data = data
+  res.redirect(goto)
+})
+
+router.post('/fe/contract_subjects_time', (req, res) => {
 
   var hours_teaching_eligible_subjects = req.session.data.hours_teaching_eligible_subjects
 
@@ -923,3 +1165,4 @@ router.post('/fe/performance', (req, res) => {
   }
 
 })
+
