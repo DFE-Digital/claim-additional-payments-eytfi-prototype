@@ -1070,12 +1070,10 @@ router.get('/fe/research-setup', (req, res) => {
   let values = feResearchValues(req.query, 'p_')
   const persona = fePersonas[req.query.from]
   if (persona) values = feResearchValues(persona.answers)
-  if (!values.goto) values.goto = ['start']
 
   res.render('fe/research-setup', {
     values,
     personas: fePersonas,
-    startPages: feResearchStartPages,
     subjectCourses: Object.entries(feSubjectCourses).map(([label, config]) => Object.assign({ label, name: label }, config, {
       courses: config.courses.map(c => typeof c === 'string' ? { value: c, html: c } : c)
     }))
@@ -1084,6 +1082,7 @@ router.get('/fe/research-setup', (req, res) => {
 
 router.get('/fe/research-link', (req, res) => {
   const values = feResearchValues(req.query, 'p_')
+  delete values.goto // links always open the start page
 
   // Remove the setup answers the kit auto-stored in the team member's own session
   for (const key of Object.keys(req.session.data)) {

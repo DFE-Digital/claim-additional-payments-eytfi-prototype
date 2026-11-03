@@ -38,7 +38,7 @@
 <div class="govuk-grid-column-two-thirds">
 
 <h1 class="govuk-heading-l">Create a persona link</h1>
-<p class="govuk-body">Choose answers that match the research participant. You'll get a link to send them that fills in these answers and takes them to the page you choose.</p>
+<p class="govuk-body">Choose answers that match the research participant. You'll get a link to send them that fills in these answers and takes them to the start page.</p>
 <p class="govuk-body">Anything left as "Not set" is answered by the participant during the session.</p>
 
 <p class="govuk-body govuk-!-margin-bottom-2">Start from an existing persona:</p>
@@ -49,21 +49,6 @@
 </ul>
 
 <form method="get" action="/fe/research-link" novalidate>
-
-  <h2 class="govuk-heading-m govuk-!-margin-top-6">Where the participant starts</h2>
-  <div class="govuk-form-group">
-    <fieldset class="govuk-fieldset">
-      <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">Which page should the link open?</legend>
-      <div class="govuk-radios govuk-radios--small" data-module="govuk-radios">
-        {% for id, page in startPages %}
-          <div class="govuk-radios__item">
-            <input class="govuk-radios__input" id="p-goto-{{ loop.index }}" name="p_goto" type="radio" value="{{ id }}" {% if id in values.goto %}checked{% endif %}>
-            <label class="govuk-label govuk-radios__label" for="p-goto-{{ loop.index }}">{{ page.text }} <span class="govuk-hint govuk-!-display-inline">({{ page.href }})</span></label>
-          </div>
-        {% endfor %}
-      </div>
-    </fieldset>
-  </div>
 
   <h2 class="govuk-heading-m govuk-!-margin-top-6">Signing in</h2>
 
