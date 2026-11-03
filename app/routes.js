@@ -61,6 +61,28 @@ router.post('*', function (req, res, next) {
   next()
 })
 
+///////
+// FE PROVIDER: which claimant is being verified
+// Entry and check pages set the claimant; the shared question pages show
+// {{ claimantName }} so the name matches whichever claim was opened from /fe/provider/home.
+///////
+
+const providerClaimants = {
+  '/role': 'John Doe',
+  '/check': 'John Doe',
+  '/check_skip': 'Lorena Wood',
+  '/check2': 'Lorena Wood',
+  '/check3': 'Joshua Deets'
+}
+
+router.use('/fe/provider', function (req, res, next) {
+  if (req.method === 'GET' && providerClaimants[req.path]) {
+    req.session.data.claimant = providerClaimants[req.path]
+  }
+  res.locals.claimantName = req.session.data.claimant || 'John Doe'
+  next()
+})
+
 router.get('/check-nursery', (req, res) => {
   const { nursery } = req.query
 
