@@ -49,6 +49,18 @@ router.use(function (req, res, next) {
     }
     delete req.session.data.returnUrl   // keep it out of your form data
   }
+  res.locals.returnUrl = req.session.returnUrl   // lets Back links return to the check page
+  next()
+})
+
+// FE provider: remember which answers were submitted (confirmed) in this session
+router.post('/fe/provider/*', function (req, res, next) {
+  const confirmed = new Set(req.session.providerConfirmed || [])
+  for (const [key, q] of Object.entries(providerQuestions)) {
+    const form = req.body[PV + q.form]
+    if (form && form[q.field] !== undefined) confirmed.add(key)
+  }
+  req.session.providerConfirmed = [...confirmed]
   next()
 })
 
@@ -72,14 +84,121 @@ const providerClaimants = {
   '/check': 'John Doe',
   '/check_skip': 'Lorena Wood',
   '/check2': 'Lorena Wood',
-  '/check3': 'Joshua Deets'
+  '/check3': 'Joshua Deets',
+  '/check4': 'Clara Allen'
+}
+
+// Provider questions: where each answer is saved. Answers are saved as the option text, e.g. 'Fixed term'.
+const PV = 'further_education_payments_providers_claims_verification_'
+const providerQuestions = {
+  role: { form: 'teaching_responsibilities_form', field: 'provider_verification_teaching_responsibilities' },
+  years: { form: 'in_first_five_years_form', field: 'provider_verification_teaching_start_year' },
+  qualification: { form: 'teaching_qualification_form', field: 'provider_verification_teaching_qualification' },
+  contract: { form: 'contract_type_form', field: 'provider_verification_contract_type' },
+  performance: { form: 'performance_and_discipline_form', field: 'provider_verification_performance_measures' },
+  hours: { form: 'teaching_hours_per_week_form', field: 'provider_verification_teaching_hours_per_week' },
+  age: { form: 'half_teaching_hours_form', field: 'provider_verification_half_teaching_hours' },
+  subject: { form: 'half_timetabled_teaching_time_form', field: 'provider_verification_half_timetabled_teaching_time' },
+  employment: { form: 'continued_employment_form', field: 'provider_verification_continued_employment' }
+}
+
+// The answers already on each claim, before the provider changes anything.
+// Add a claimant here to pre-fill their pages and show changes on their check page.
+const providerClaimantAnswers = {
+  'Lorena Wood': {
+    contract: 'Permanent',
+    performance: 'Yes',
+    hours: '20 hours or more per week',
+    age: 'Yes',
+    subject: 'Yes',
+    employment: 'Yes'
+  },
+  'Joshua Deets': {
+    contract: 'Permanent',
+    performance: 'Yes',
+    hours: '20 hours or more per week',
+    age: 'Yes',
+    subject: 'Yes',
+    employment: 'Yes'
+  },
+  'Clara Allen': {
+    contract: 'Permanent',
+    performance: 'Yes',
+    hours: '20 hours or more per week',
+    age: 'Yes',
+    subject: 'Yes',
+    employment: 'Yes'
+  }
+}
+
+// Current saved answer for each provider question
+function providerCurrentAnswers (data) {
+  const answers = {}
+  for (const [key, q] of Object.entries(providerQuestions)) {
+    answers[key] = (data[PV + q.form] || {})[q.field]
+  }
+  return answers
 }
 
 router.use('/fe/provider', function (req, res, next) {
-  if (req.method === 'GET' && providerClaimants[req.path]) {
-    req.session.data.claimant = providerClaimants[req.path]
+  const data = req.session.data
+
+  // Tidy answers saved as lists like ['', 'Yes'] (shown as ',Yes') into a single answer
+  for (const [key, form] of Object.entries(data)) {
+    if (!key.startsWith(PV) || !form || typeof form !== 'object') continue
+    for (const [field, value] of Object.entries(form)) {
+      if (Array.isArray(value)) form[field] = value.filter(v => v !== '' && v !== '0').pop() || ''
+    }
   }
-  res.locals.claimantName = req.session.data.claimant || 'John Doe'
+
+  // Opening a claim from home (links have ?newClaim=yes), or a check page for a different
+  // claimant: start from that claimant's answers, with nothing marked as changed
+  const claimant = req.method === 'GET' && providerClaimants[req.path]
+  const newClaim = req.query.newClaim === 'yes'
+  delete data.newClaim
+  if (claimant && (newClaim || data.providerClaimLoaded !== claimant + '|v2')) {
+    data.claimant = claimant
+    data.providerClaimLoaded = claimant + '|v2'
+    Object.values(providerQuestions).forEach(q => { delete data[PV + q.form] })
+    const original = providerClaimantAnswers[claimant] || {}
+    for (const [key, value] of Object.entries(original)) {
+      const q = providerQuestions[key]
+      data[PV + q.form] = Object.assign({}, data[PV + q.form], { [q.field]: value })
+    }
+    req.session.providerChanged = []
+    req.session.providerConfirmed = []
+    req.session.providerSnapshot = providerCurrentAnswers(data)
+  }
+
+  // Spot answers changed since the last page: they can only change by submitting a page
+  if (req.method === 'GET') {
+    const current = providerCurrentAnswers(data)
+    const before = req.session.providerSnapshot || current
+    const changed = new Set(req.session.providerChanged || [])
+    for (const key of Object.keys(current)) {
+      if (current[key] !== before[key]) changed.add(key)
+    }
+    req.session.providerChanged = [...changed]
+    req.session.providerSnapshot = current
+  }
+
+  res.locals.claimantName = data.claimant || 'John Doe'
+
+  // Answers for the check pages: providerAnswers.hours.text, .changed
+  const original = providerClaimantAnswers[data.claimant] || {}
+  const current = providerCurrentAnswers(data)
+  const changedThisSession = req.session.providerChanged || []
+  res.locals.providerAnswers = {}
+  for (const key of Object.keys(providerQuestions)) {
+    res.locals.providerAnswers[key] = {
+      value: current[key],
+      text: current[key] || 'Not answered',
+      // Only tag answers changed in this session, and not if changed back to the original
+      changed: changedThisSession.includes(key) && current[key] !== original[key],
+      // Submitted on a page in this session (whether or not it changed)
+      confirmed: (req.session.providerConfirmed || []).includes(key)
+    }
+  }
   next()
 })
 
@@ -675,7 +794,6 @@ const fePersonas = {
       physics_courses: ['A or AS level physics', 'GCSE physics'],
       hours_teaching_eligible_subjects: 'Yes',
       hasPerformance: 'yes',
-      hasEligibleWorking: 'yes',
       hmrcJourney: 'good'
     }
   },
@@ -720,8 +838,7 @@ const fePersonaLabels = {
   maths_courses: 'Maths courses',
   physics_courses: 'Physics courses',
   hours_teaching_eligible_subjects: 'Half of hours on eligible courses',
-  hasPerformance: 'Performance criteria met',
-  hasEligibleWorking: 'Disciplinary criteria met',
+  hasPerformance: 'Not under formal performance management',
   hmrcJourney: 'HMRC check'
 }
 
@@ -1176,9 +1293,9 @@ router.post('/fe/contract_subjects_time', (req, res) => {
 
 router.post('/fe/performance', (req, res) => {
 
-  var hasEligibleWorking = req.session.data.hasEligibleWorking
+  var hasPerformance = req.session.data.hasPerformance
 
-  if (hasEligibleWorking == 'no') {
+  if (hasPerformance == 'no') {
     return res.redirect('ineligible_performance')
   } 
   else{

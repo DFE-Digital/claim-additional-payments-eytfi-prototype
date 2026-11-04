@@ -7,6 +7,8 @@
 
 {% set pageName = "Confirm your details and complete your claim" %}
 
+{% macro answer(a, claimantTag) %}{{ a.text }}{% if a.changed %} <strong class="govuk-tag govuk-tag--blue">Changed by you</strong>{% elif a.confirmed %} <strong class="govuk-tag govuk-tag--green">Confirmed by you</strong>{% elif claimantTag %} {{ claimantTag | safe }}{% endif %}{% endmacro %}
+
 {% block pageBeforeContent %}
   {{ govukBackLink({
     text: "Back",
@@ -49,7 +51,7 @@
         <div class="govuk-summary-card__content">
           <dl class="govuk-summary-list">
             <div class="govuk-summary-list__row"><dt class="govuk-summary-list__key">Contract type</dt>
-              <dd class="govuk-summary-list__value">Permanent</dd>
+              <dd class="govuk-summary-list__value">{{ answer(providerAnswers.contract) }}</dd>
               <dd class="govuk-summary-list__actions"><a class="govuk-link govuk-link--no-visited-state" href="/fe/provider/contract2?returnUrl=/fe/provider/check2">Change<span class="govuk-visually-hidden"> contract type</span></a></dd>
             </div>
           </dl>
@@ -57,18 +59,14 @@
       </div>
       <div class="govuk-summary-card">
         <div class="govuk-summary-card__title-wrapper">
-          <h2 class="govuk-summary-card__title">Performance and discipline</h2> </div>
+          <h2 class="govuk-summary-card__title">Performance</h2> </div>
         <div class="govuk-summary-card__content">
           <dl class="govuk-summary-list">
-            <div class="govuk-summary-list__row"><dt class="govuk-summary-list__key">Subject to performance measures</dt>
-              <dd class="govuk-summary-list__value">No</dd>
-              <dd class="govuk-summary-list__actions"><a class="govuk-link govuk-link--no-visited-state" href="/fe/provider/performance?returnUrl=/fe/provider/check2">Change<span class="govuk-visually-hidden"> subject to performance measures</span></a></dd>
+            <div class="govuk-summary-list__row"><dt class="govuk-summary-list__key">Does {{ claimantName }} meet the eligibility criteria?</dt>
+              <dd class="govuk-summary-list__value">{{ answer(providerAnswers.performance) }}</dd>
+              <dd class="govuk-summary-list__actions"><a class="govuk-link govuk-link--no-visited-state" href="/fe/provider/performance?returnUrl=/fe/provider/check2">Change<span class="govuk-visually-hidden"> whether {{ claimantName }} meets the performance eligibility criteria</span></a></dd>
             </div>
-            <div class="govuk-summary-list__row"><dt class="govuk-summary-list__key">Subject to disciplinary action</dt>
-              <dd class="govuk-summary-list__value">No</dd>
-              <dd class="govuk-summary-list__actions"><a class="govuk-link govuk-link--no-visited-state" href="/fe/provider/performance?returnUrl=/fe/provider/check2">Change<span class="govuk-visually-hidden"> subject to disciplinary action</span></a></dd>
-            </div>
-          </dl>
+                      </dl>
         </div>
       </div>
       <div class="govuk-summary-card">
@@ -77,11 +75,11 @@
         <div class="govuk-summary-card__content">
           <dl class="govuk-summary-list">
             <div class="govuk-summary-list__row"><dt class="govuk-summary-list__key">Timetabled hours per week</dt>
-              <dd class="govuk-summary-list__value">20 hours or more per week</dd>
+              <dd class="govuk-summary-list__value">{{ answer(providerAnswers.hours) }}</dd>
               <dd class="govuk-summary-list__actions"><a class="govuk-link govuk-link--no-visited-state" href="/fe/provider/hours?returnUrl=/fe/provider/check2">Change<span class="govuk-visually-hidden"> timetabled hours per week</span></a></dd>
             </div>
             <div class="govuk-summary-list__row"><dt class="govuk-summary-list__key">Teaches 16-19 study programmes, T Levels or 16-19 apprentices</dt>
-              <dd class="govuk-summary-list__value">Yes</dd>
+              <dd class="govuk-summary-list__value">{{ answer(providerAnswers.age) }}</dd>
               <dd class="govuk-summary-list__actions"><a class="govuk-link govuk-link--no-visited-state" href="/fe/provider/age?returnUrl=/fe/provider/check2">Change<span class="govuk-visually-hidden"> teaches 16-19 study programmes, T Levels or 16-19 apprentices</span></a></dd>
             </div>
           </dl>
@@ -94,7 +92,7 @@
         <div class="govuk-summary-card__content">
           <dl class="govuk-summary-list">
             <div class="govuk-summary-list__row"><dt class="govuk-summary-list__key">Spend at least half of timetabled time teaching the eligible FE courses the claimant listed</dt>
-              <dd class="govuk-summary-list__value">Yes</dd>
+              <dd class="govuk-summary-list__value">{{ answer(providerAnswers.subject) }}</dd>
               <dd class="govuk-summary-list__actions"><a class="govuk-link govuk-link--no-visited-state" href="/fe/provider/subject2?returnUrl=/fe/provider/check2">Change<span class="govuk-visually-hidden"> spend at least half of timetabled time teaching the eligible FE courses</span></a></dd>
             </div>
             <div class="govuk-summary-list__row"><dt class="govuk-summary-list__key">which subject areas do you teach?</dt>
@@ -106,7 +104,7 @@
               <dd class="govuk-summary-list__actions"><a class="govuk-link govuk-link--no-visited-state" href="/fe/provider/subject2?returnUrl=/fe/provider/check2">Change<span class="govuk-visually-hidden"> subject areas</span></a></dd>
             </div>
             <div class="govuk-summary-list__row"><dt class="govuk-summary-list__key">Employed until end of academic year</dt>
-              <dd class="govuk-summary-list__value">Yes</dd>
+              <dd class="govuk-summary-list__value">{{ answer(providerAnswers.employment) }}</dd>
               <dd class="govuk-summary-list__actions"><a class="govuk-link govuk-link--no-visited-state" href="/fe/provider/employment?returnUrl=/fe/provider/check2">Change<span class="govuk-visually-hidden"> employed until end of academic year</span></a></dd>
             </div>
           </dl>

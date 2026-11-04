@@ -10,7 +10,7 @@
 {% block pageBeforeContent %}
   {{ govukBackLink({
     text: "Back",
-    href: "/bank-details"
+    href: returnUrl or "/fe/provider/years"
   }) }}
 {% endblock %}
 
@@ -46,22 +46,21 @@
         <div class="govuk-form-group">
           <fieldset class="govuk-fieldset">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">Does {{ claimantName }} have a teaching qualification?</legend>
-            <input autocomplete="off" value="" type="hidden" name="further_education_payments_providers_claims_verification_teaching_qualification_form[provider_verification_teaching_qualification]" id="further_education_payments_providers_claims_verification_teaching_qualification_form_provider_verification_teaching_qualification">
             <div class="govuk-radios" data-module="govuk-radios" data-govuk-radios-init="">
               <div class="govuk-radios__item">
-                <input id="further-education-payments-providers-claims-verification-teaching-qualification-form-provider-verification-teaching-qualification-yes-field" class="govuk-radios__input" type="radio" value="yes" name="further_education_payments_providers_claims_verification_teaching_qualification_form[provider_verification_teaching_qualification]">
+                <input id="further-education-payments-providers-claims-verification-teaching-qualification-form-provider-verification-teaching-qualification-yes-field" class="govuk-radios__input" type="radio" value="Yes" name="further_education_payments_providers_claims_verification_teaching_qualification_form[provider_verification_teaching_qualification]" {% if (data['further_education_payments_providers_claims_verification_teaching_qualification_form'] or {})['provider_verification_teaching_qualification'] == 'Yes' %}checked{% endif %}>
                 <label for="further-education-payments-providers-claims-verification-teaching-qualification-form-provider-verification-teaching-qualification-yes-field" class="govuk-label govuk-radios__label">Yes</label>
               </div>
               <div class="govuk-radios__item">
-                <input id="further-education-payments-providers-claims-verification-teaching-qualification-form-provider-verification-teaching-qualification-not-yet-field" class="govuk-radios__input" type="radio" value="not_yet" name="further_education_payments_providers_claims_verification_teaching_qualification_form[provider_verification_teaching_qualification]">
+                <input id="further-education-payments-providers-claims-verification-teaching-qualification-form-provider-verification-teaching-qualification-not-yet-field" class="govuk-radios__input" type="radio" value="Not yet, but is enrolled on one" name="further_education_payments_providers_claims_verification_teaching_qualification_form[provider_verification_teaching_qualification]" {% if (data['further_education_payments_providers_claims_verification_teaching_qualification_form'] or {})['provider_verification_teaching_qualification'] == 'Not yet, but is enrolled on one' %}checked{% endif %}>
                 <label for="further-education-payments-providers-claims-verification-teaching-qualification-form-provider-verification-teaching-qualification-not-yet-field" class="govuk-label govuk-radios__label">Not yet, but is enrolled on one</label>
               </div>
               <div class="govuk-radios__item">
-                <input id="further-education-payments-providers-claims-verification-teaching-qualification-form-provider-verification-teaching-qualification-no-but-planned-field" class="govuk-radios__input" type="radio" value="no_but_planned" name="further_education_payments_providers_claims_verification_teaching_qualification_form[provider_verification_teaching_qualification]">
+                <input id="further-education-payments-providers-claims-verification-teaching-qualification-form-provider-verification-teaching-qualification-no-but-planned-field" class="govuk-radios__input" type="radio" value="No, but is planning to enrol on one" name="further_education_payments_providers_claims_verification_teaching_qualification_form[provider_verification_teaching_qualification]" {% if (data['further_education_payments_providers_claims_verification_teaching_qualification_form'] or {})['provider_verification_teaching_qualification'] == 'No, but is planning to enrol on one' %}checked{% endif %}>
                 <label for="further-education-payments-providers-claims-verification-teaching-qualification-form-provider-verification-teaching-qualification-no-but-planned-field" class="govuk-label govuk-radios__label">No, but is planning to enrol on one</label>
               </div>
               <div class="govuk-radios__item">
-                <input id="further-education-payments-providers-claims-verification-teaching-qualification-form-provider-verification-teaching-qualification-no-not-planned-field" class="govuk-radios__input" type="radio" value="no_not_planned" name="further_education_payments_providers_claims_verification_teaching_qualification_form[provider_verification_teaching_qualification]">
+                <input id="further-education-payments-providers-claims-verification-teaching-qualification-form-provider-verification-teaching-qualification-no-not-planned-field" class="govuk-radios__input" type="radio" value="No, and has no plan to enrol on one in the next 12 months" name="further_education_payments_providers_claims_verification_teaching_qualification_form[provider_verification_teaching_qualification]" {% if (data['further_education_payments_providers_claims_verification_teaching_qualification_form'] or {})['provider_verification_teaching_qualification'] == 'No, and has no plan to enrol on one in the next 12 months' %}checked{% endif %}>
                 <label for="further-education-payments-providers-claims-verification-teaching-qualification-form-provider-verification-teaching-qualification-no-not-planned-field" class="govuk-label govuk-radios__label">No, and has no plan to enrol on one in the next 12 months</label>
               </div>
             </div>

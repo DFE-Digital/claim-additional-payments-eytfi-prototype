@@ -153,11 +153,10 @@
 
   {{ radios("hours_teaching_eligible_subjects", "Do you spend at least half of your timetabled teaching hours teaching these eligible courses?", [["Yes", "Yes"], ["No", "No"]]) }}
 
-  <h2 class="govuk-heading-m govuk-!-margin-top-6">Eligibility criteria</h2>
+  <h2 class="govuk-heading-m govuk-!-margin-top-6">Performance</h2>
 
-  {{ radios("hasPerformance", "Performance measures: meets the eligibility criteria?", [["yes", "Yes"], ["no", "No"]]) }}
+  {{ radios("hasPerformance", "Doing their job as expected and not under formal performance management?", [["yes", "Yes"], ["no", "No"]]) }}
 
-  {{ radios("hasEligibleWorking", "Disciplinary action: meets the eligibility criteria?", [["yes", "Yes"], ["no", "No"]]) }}
 
   {{ govukButton({ text: "Create link" }) }}
 </form>
