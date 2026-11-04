@@ -122,25 +122,14 @@
     
       <div class="govuk-summary-card">
         <div class="govuk-summary-card__title-wrapper">
-          <h2 class="govuk-summary-card__title">Subject and eligible courses</h2> </div>
+          <h2 class="govuk-summary-card__title">Subject area</h2> </div>
         <div class="govuk-summary-card__content">
           <dl class="govuk-summary-list">
             <div class="govuk-summary-list__row"><dt class="govuk-summary-list__key">Spend at least half of timetabled time teaching the eligible FE courses the claimant listed</dt>
-              <dd class="govuk-summary-list__value">{{ answer(providerAnswers.subject) }}</dd>
-              <dd class="govuk-summary-list__actions"><a class="govuk-link govuk-link--no-visited-state" href="/fe/provider/subject?returnUrl=/fe/provider/check4">Change<span class="govuk-visually-hidden"> spend at least half of timetabled time teaching the eligible FE courses</span></a></dd>
-            </div>
-            <div class="govuk-summary-list__row"><dt class="govuk-summary-list__key">which subject areas do you teach?</dt>
-              <dd class="govuk-summary-list__value">Physics</dd>
-              <dd class="govuk-summary-list__actions"><a class="govuk-link govuk-link--no-visited-state" href="/fe/provider/subject?returnUrl=/fe/provider/check4">Change<span class="govuk-visually-hidden"> subject areas</span></a></dd>
-            </div>
-            <div class="govuk-summary-list__row"><dt class="govuk-summary-list__key">which eligible courses do you teach?</dt>
               <dd class="govuk-summary-list__value">
-                GCSE Physics 
-                <strong class="govuk-tag govuk-tag--green">
-                  Updated
-                </strong>
+                {{ answer(providerAnswers.subject) }}
               </dd>
-              <dd class="govuk-summary-list__actions"><a class="govuk-link govuk-link--no-visited-state" href="/fe/provider/subject?returnUrl=/fe/provider/check4">Change<span class="govuk-visually-hidden"> eligible courses</span></a></dd>
+              <dd class="govuk-summary-list__actions"><a class="govuk-link govuk-link--no-visited-state" href="/fe/provider/subject_area?returnUrl=/fe/provider/check4">Change<span class="govuk-visually-hidden"> spend at least half of timetabled time teaching the eligible FE courses</span></a></dd>
             </div>
             <div class="govuk-summary-list__row"><dt class="govuk-summary-list__key">Employed until end of academic year</dt>
               <dd class="govuk-summary-list__value">{{ answer(providerAnswers.employment) }}</dd>

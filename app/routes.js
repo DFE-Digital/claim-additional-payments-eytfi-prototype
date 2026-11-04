@@ -98,6 +98,7 @@ const providerQuestions = {
   performance: { form: 'performance_and_discipline_form', field: 'provider_verification_performance_measures' },
   hours: { form: 'teaching_hours_per_week_form', field: 'provider_verification_teaching_hours_per_week' },
   age: { form: 'half_teaching_hours_form', field: 'provider_verification_half_teaching_hours' },
+  subjects: { form: 'subjects_taught_form', field: 'provider_verification_subjects_taught', multiple: true },
   subject: { form: 'half_timetabled_teaching_time_form', field: 'provider_verification_half_timetabled_teaching_time' },
   employment: { form: 'continued_employment_form', field: 'provider_verification_continued_employment' }
 }
@@ -110,6 +111,7 @@ const providerClaimantAnswers = {
     performance: 'Yes',
     hours: '20 hours or more per week',
     age: 'Yes',
+    subjects: ['Physics'],
     subject: 'Yes',
     employment: 'Yes'
   },
@@ -118,6 +120,7 @@ const providerClaimantAnswers = {
     performance: 'Yes',
     hours: '20 hours or more per week',
     age: 'Yes',
+    subjects: ['Physics'],
     subject: 'Yes',
     employment: 'Yes'
   },
@@ -126,28 +129,42 @@ const providerClaimantAnswers = {
     performance: 'Yes',
     hours: '20 hours or more per week',
     age: 'Yes',
+    subjects: ['Physics'],
     subject: 'Yes',
     employment: 'Yes'
   }
 }
 
-// Current saved answer for each provider question
+// The courses each claimant listed, by subject. The provider confirms these on subject_area.
+const providerClaimCourses = {
+  'John Doe': { Physics: ['GCSE physics'] },
+  'Lorena Wood': { Physics: ['GCSE physics'] },
+  'Joshua Deets': { Physics: ['GCSE physics'] },
+  'Clara Allen': { Physics: ['GCSE physics'] }
+}
+
+// Current saved answer for each provider question (lists for checkbox questions)
 function providerCurrentAnswers (data) {
   const answers = {}
   for (const [key, q] of Object.entries(providerQuestions)) {
-    answers[key] = (data[PV + q.form] || {})[q.field]
+    const value = (data[PV + q.form] || {})[q.field]
+    answers[key] = q.multiple && value !== undefined ? [].concat(value).filter(v => v !== '') : value
   }
   return answers
 }
+
+const providerSame = (a, b) => JSON.stringify(a) === JSON.stringify(b)
 
 router.use('/fe/provider', function (req, res, next) {
   const data = req.session.data
 
   // Tidy answers saved as lists like ['', 'Yes'] (shown as ',Yes') into a single answer
+  // (checkbox questions are meant to be lists, so they're left alone)
+  const multipleFields = Object.values(providerQuestions).filter(q => q.multiple).map(q => q.field)
   for (const [key, form] of Object.entries(data)) {
     if (!key.startsWith(PV) || !form || typeof form !== 'object') continue
     for (const [field, value] of Object.entries(form)) {
-      if (Array.isArray(value)) form[field] = value.filter(v => v !== '' && v !== '0').pop() || ''
+      if (Array.isArray(value) && !multipleFields.includes(field)) form[field] = value.filter(v => v !== '' && v !== '0').pop() || ''
     }
   }
 
@@ -176,7 +193,7 @@ router.use('/fe/provider', function (req, res, next) {
     const before = req.session.providerSnapshot || current
     const changed = new Set(req.session.providerChanged || [])
     for (const key of Object.keys(current)) {
-      if (current[key] !== before[key]) changed.add(key)
+      if (!providerSame(current[key], before[key])) changed.add(key)
     }
     req.session.providerChanged = [...changed]
     req.session.providerSnapshot = current
@@ -190,15 +207,23 @@ router.use('/fe/provider', function (req, res, next) {
   const changedThisSession = req.session.providerChanged || []
   res.locals.providerAnswers = {}
   for (const key of Object.keys(providerQuestions)) {
+    const value = current[key]
     res.locals.providerAnswers[key] = {
-      value: current[key],
-      text: current[key] || 'Not answered',
+      value: Array.isArray(value) ? (value.length ? value : undefined) : value,
+      text: Array.isArray(value) ? (value.length ? value.map(v => v === 'none' ? 'Does not teach any of these subjects' : v).join(', ') : 'Not answered') : (value || 'Not answered'),
       // Only tag answers changed in this session, and not if changed back to the original
-      changed: changedThisSession.includes(key) && current[key] !== original[key],
+      changed: changedThisSession.includes(key) && !providerSame(value, original[key]),
       // Submitted on a page in this session (whether or not it changed)
       confirmed: (req.session.providerConfirmed || []).includes(key)
     }
   }
+
+  // Courses the claimant listed, for the subjects currently selected (subject_area and check pages)
+  const claimCourses = providerClaimCourses[data.claimant] || {}
+  const subjects = (current.subjects && current.subjects.length) ? current.subjects : Object.keys(claimCourses)
+  res.locals.providerCourses = subjects.filter(s => s !== 'none').map(s => ({ subject: s, courses: claimCourses[s] || [] }))
+  res.locals.providerCoursesText = res.locals.providerCourses.flatMap(s => s.courses)
+
   next()
 })
 

@@ -39,31 +39,51 @@
           </dl>
         </div>
       </details>
-      <form action="employment" accept-charset="UTF-8" method="post">
+      <form action="subject_area" accept-charset="UTF-8" method="post">
         <h2 class="govuk-heading-m">
             Subject area
           </h2>
         <div class="govuk-form-group">
-          <fieldset class="govuk-fieldset" aria-describedby="further-education-payments-providers-claims-verification-half-timetabled-teaching-time-form-provider-verification-half-timetabled-teaching-time-hint">
-            <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">During the spring term, did {{ claimantName }} spend at least half of their timetabled teaching hours teaching these courses?</legend>
-            <div class="govuk-hint" id="further-education-payments-providers-claims-verification-half-timetabled-teaching-time-form-provider-verification-half-timetabled-teaching-time-hint">
-              <ul class="govuk-list govuk-list--bullet">
-                <li>A or AS level physics</li>
-                <li>GCSE physics</li>
-                <li>IBO&nbsp;level 1 / level 2 MYP physics</li>
-                <li>IBO&nbsp;level 3 in&nbsp;SL&nbsp;and&nbsp;HL&nbsp;physics, taught as part of a diploma or career related programme or as a standalone certificate</li>
-              </ul>
-            </div>
-            <div class="govuk-radios" data-module="govuk-radios" data-govuk-radios-init="">
-              <div class="govuk-radios__item">
-                <input id="further-education-payments-providers-claims-verification-half-timetabled-teaching-time-form-provider-verification-half-timetabled-teaching-time-true-field" class="govuk-radios__input" type="radio" value="Yes" name="further_education_payments_providers_claims_verification_half_timetabled_teaching_time_form[provider_verification_half_timetabled_teaching_time]" {% if (data['further_education_payments_providers_claims_verification_half_timetabled_teaching_time_form'] or {})['provider_verification_half_timetabled_teaching_time'] == 'Yes' %}checked{% endif %}>
-                <label for="further-education-payments-providers-claims-verification-half-timetabled-teaching-time-form-provider-verification-half-timetabled-teaching-time-true-field" class="govuk-label govuk-radios__label">Yes</label>
+          <fieldset class="govuk-fieldset" >
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">During the spring term, what subjects did {{ claimantName }} teach?</legend>
+            
+            <input type="hidden" name="further_education_payments_providers_claims_verification_subjects_taught_form[provider_verification_subjects_taught]" value="_unchecked">
+          <div class="govuk-checkboxes" data-module="govuk-checkboxes" data-govuk-checkboxes-init="">
+              <div class="govuk-checkboxes__item">
+                <input id="claim-subjects-taught-building-construction-field" class="govuk-checkboxes__input" type="checkbox" value="Building and construction" name="further_education_payments_providers_claims_verification_subjects_taught_form[provider_verification_subjects_taught]" {% if "Building and construction" in ((data['further_education_payments_providers_claims_verification_subjects_taught_form'] or {})['provider_verification_subjects_taught'] or []) %}checked{% endif %}>
+                <label for="claim-subjects-taught-building-construction-field" class="govuk-label govuk-checkboxes__label">Building and construction</label>
               </div>
-              <div class="govuk-radios__item">
-                <input id="further-education-payments-providers-claims-verification-half-timetabled-teaching-time-form-provider-verification-half-timetabled-teaching-time-field" class="govuk-radios__input" type="radio" value="No" name="further_education_payments_providers_claims_verification_half_timetabled_teaching_time_form[provider_verification_half_timetabled_teaching_time]" {% if (data['further_education_payments_providers_claims_verification_half_timetabled_teaching_time_form'] or {})['provider_verification_half_timetabled_teaching_time'] == 'No' %}checked{% endif %}>
-                <label for="further-education-payments-providers-claims-verification-half-timetabled-teaching-time-form-provider-verification-half-timetabled-teaching-time-field" class="govuk-label govuk-radios__label">No</label>
+              <div class="govuk-checkboxes__item">
+                <input id="claim-subjects-taught-chemistry-field" class="govuk-checkboxes__input" type="checkbox" value="Chemistry" name="further_education_payments_providers_claims_verification_subjects_taught_form[provider_verification_subjects_taught]" {% if "Chemistry" in ((data['further_education_payments_providers_claims_verification_subjects_taught_form'] or {})['provider_verification_subjects_taught'] or []) %}checked{% endif %}>
+                <label for="claim-subjects-taught-chemistry-field" class="govuk-label govuk-checkboxes__label">Chemistry</label>
+              </div>
+              <div class="govuk-checkboxes__item">
+                <input id="claim-subjects-taught-computing-field" class="govuk-checkboxes__input" type="checkbox" value="Computing, including digital and ICT" name="further_education_payments_providers_claims_verification_subjects_taught_form[provider_verification_subjects_taught]" {% if "Computing, including digital and ICT" in ((data['further_education_payments_providers_claims_verification_subjects_taught_form'] or {})['provider_verification_subjects_taught'] or []) %}checked{% endif %}>
+                <label for="claim-subjects-taught-computing-field" class="govuk-label govuk-checkboxes__label">Computing, including digital and ICT</label>
+              </div>
+              <div class="govuk-checkboxes__item">
+                <input id="claim-subjects-taught-early-years-field" class="govuk-checkboxes__input" type="checkbox" value="Early years" name="further_education_payments_providers_claims_verification_subjects_taught_form[provider_verification_subjects_taught]" {% if "Early years" in ((data['further_education_payments_providers_claims_verification_subjects_taught_form'] or {})['provider_verification_subjects_taught'] or []) %}checked{% endif %}>
+                <label for="claim-subjects-taught-early-years-field" class="govuk-label govuk-checkboxes__label">Early years</label>
+              </div>
+              <div class="govuk-checkboxes__item">
+                <input id="claim-subjects-taught-engineering-manufacturing-field" class="govuk-checkboxes__input" type="checkbox" value="Engineering and manufacturing, including transport engineering and electronics" name="further_education_payments_providers_claims_verification_subjects_taught_form[provider_verification_subjects_taught]" {% if "Engineering and manufacturing, including transport engineering and electronics" in ((data['further_education_payments_providers_claims_verification_subjects_taught_form'] or {})['provider_verification_subjects_taught'] or []) %}checked{% endif %}>
+                <label for="claim-subjects-taught-engineering-manufacturing-field" class="govuk-label govuk-checkboxes__label">Engineering and manufacturing, including transport engineering and electronics</label>
+              </div>
+              <div class="govuk-checkboxes__item">
+                <input id="claim-subjects-taught-maths-field" class="govuk-checkboxes__input" type="checkbox" value="Maths" name="further_education_payments_providers_claims_verification_subjects_taught_form[provider_verification_subjects_taught]" {% if "Maths" in ((data['further_education_payments_providers_claims_verification_subjects_taught_form'] or {})['provider_verification_subjects_taught'] or []) %}checked{% endif %}>
+                <label for="claim-subjects-taught-maths-field" class="govuk-label govuk-checkboxes__label">Maths</label>
+              </div>
+              <div class="govuk-checkboxes__item">
+                <input id="claim-subjects-taught-physics-field" class="govuk-checkboxes__input" type="checkbox" value="Physics" name="further_education_payments_providers_claims_verification_subjects_taught_form[provider_verification_subjects_taught]" {% if "Physics" in ((data['further_education_payments_providers_claims_verification_subjects_taught_form'] or {})['provider_verification_subjects_taught'] or []) %}checked{% endif %}>
+                <label for="claim-subjects-taught-physics-field" class="govuk-label govuk-checkboxes__label">Physics</label>
+              </div>
+              <div class="govuk-checkboxes__divider">or</div>
+              <div class="govuk-checkboxes__item">
+                <input id="claim-subjects-taught-none-field" class="govuk-checkboxes__input" data-behaviour="exclusive" type="checkbox" value="none" name="further_education_payments_providers_claims_verification_subjects_taught_form[provider_verification_subjects_taught]" {% if "none" in ((data['further_education_payments_providers_claims_verification_subjects_taught_form'] or {})['provider_verification_subjects_taught'] or []) %}checked{% endif %}>
+                <label for="claim-subjects-taught-none-field" class="govuk-label govuk-checkboxes__label">I do not teach any of these subjects</label>
               </div>
             </div>
+
           </fieldset>
         </div>
         <button type="submit" formnovalidate="formnovalidate" class="govuk-button" data-module="govuk-button" data-prevent-double-click="true" data-govuk-button-init="">Continue</button>

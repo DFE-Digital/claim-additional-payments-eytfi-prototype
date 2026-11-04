@@ -48,13 +48,17 @@
           <fieldset class="govuk-fieldset" aria-describedby="further-education-payments-providers-claims-verification-half-timetabled-teaching-time-form-provider-verification-half-timetabled-teaching-time-hint">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">During the spring term, did {{ claimantName }} spend at least half of their timetabled teaching hours teaching these courses?</legend>
             <div class="govuk-hint" id="further-education-payments-providers-claims-verification-half-timetabled-teaching-time-form-provider-verification-half-timetabled-teaching-time-hint">
-              <ul class="govuk-list govuk-list--bullet">
-                <li>A or AS level physics</li>
-                <li>GCSE physics</li>
-                <li>IBO&nbsp;level 1 / level 2 MYP physics</li>
-                <li>IBO&nbsp;level 3 in&nbsp;SL&nbsp;and&nbsp;HL&nbsp;physics, taught as part of a diploma or career related programme or as a standalone certificate</li>
-              </ul>
-            </div>
+            {% for group in providerCourses %}
+              {% if providerCourses | length > 1 %}<p class="govuk-body govuk-!-font-weight-bold govuk-!-margin-bottom-1">{{ group.subject }}</p>{% endif %}
+              {% if group.courses | length %}
+                <ul class="govuk-list govuk-list--bullet">
+                  {% for course in group.courses %}<li>{{ course }}</li>{% endfor %}
+                </ul>
+              {% else %}
+                <p class="govuk-body">{{ claimantName }} did not list any {{ group.subject | lower }} courses.</p>
+              {% endif %}
+            {% endfor %}
+          </div>
             <div class="govuk-radios" data-module="govuk-radios" data-govuk-radios-init="">
               <div class="govuk-radios__item">
                 <input id="further-education-payments-providers-claims-verification-half-timetabled-teaching-time-form-provider-verification-half-timetabled-teaching-time-true-field" class="govuk-radios__input" type="radio" value="Yes" name="further_education_payments_providers_claims_verification_half_timetabled_teaching_time_form[provider_verification_half_timetabled_teaching_time]" {% if (data['further_education_payments_providers_claims_verification_half_timetabled_teaching_time_form'] or {})['provider_verification_half_timetabled_teaching_time'] == 'Yes' %}checked{% endif %}>
