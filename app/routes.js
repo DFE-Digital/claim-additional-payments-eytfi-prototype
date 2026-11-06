@@ -780,67 +780,11 @@ router.get('/fe/start', function (req, res) {
 })
 
 ///////
-// FE PERSONAS
-// Add or edit personas here. Answer values must match the radio/checkbox
-// values on the question pages in app/views/fe exactly.
+// FE ANSWER LABELS
+// Friendly names for each answer, shown on the persona link page (/fe/research-link)
 ///////
 
-const fePersonas = {
-  'persona-1': {
-    name: 'Persona 1',
-    description: 'Returning claimant on a fixed-term contract, teaches computing and GCSE physics',
-    answers: {
-      oneLoginJourney: 'previous',
-      staff: 'yes',
-      feSearch: 'Nottingham College',
-      startyear: 'September 2023 to August 2024',
-      teaching_qualification: 'No, but I plan to enrol on one in the next 12 months',
-      contract: 'Fixed term',
-      hours: '12 or more hours per week, but fewer than 20',
-      tlevel: 'No',
-      subjects: ['Computing, including digital and ICT'],
-      physics_courses: ['GCSE physics'],
-      hours_teaching_eligible_subjects: 'Yes',
-      hasPerformance: 'yes'
-    }
-  },
-  'persona-2': {
-    name: 'Persona 2 (example - edit me)',
-    description: 'New claimant, permanent full-time maths and physics teacher with a qualification',
-    answers: {
-      oneLoginJourney: 'new',
-      staff: 'yes',
-      feSearch: 'Bilborough College',
-      teaching_qualification: 'yes',
-      contract: 'permanent',
-      hours: '20 hours or more per week',
-      tlevel: 'Yes',
-      subjects: ['Maths', 'Physics'],
-      physics_courses: ['A or AS level physics', 'GCSE physics'],
-      hours_teaching_eligible_subjects: 'Yes',
-      hasPerformance: 'yes',
-      hmrcJourney: 'good'
-    }
-  },
-  'persona-3': {
-    name: 'Persona 3 (example - edit me)',
-    description: 'Variable hours teacher with fewer than 2.5 hours a week, no teaching qualification',
-    answers: {
-      oneLoginJourney: 'new',
-      staff: 'yes',
-      feSearch: 'Leicester College',
-      teaching_qualification: 'No, and I do not plan to enrol on one in the next 12 months',
-      contract: 'Variable hours',
-      hours: 'Fewer than 2.5 hours each week',
-      tlevel: 'No',
-      subjects: ['Early years'],
-      hmrcJourney: 'bad'
-    }
-  }
-}
-
-// Friendly labels for the personas page
-const fePersonaLabels = {
+const feAnswerLabels = {
   oneLogin: 'Has a One Login account',
   oneLoginJourney: 'One Login scenario',
   previous: 'Applied between September 2025 and May 2026',
@@ -867,28 +811,9 @@ const fePersonaLabels = {
   hmrcJourney: 'HMRC check'
 }
 
-// Page listing all personas
-router.get('/fe/personas', function (req, res) {
-  res.render('fe/personas', {
-    personas: fePersonas,
-    labels: fePersonaLabels,
-    activePersona: req.session.data.activePersona
-  })
-})
-
-// Load a persona: clears the session, sets its answers, goes to start
-router.get('/fe/personas/:id', function (req, res) {
-  const persona = fePersonas[req.params.id]
-  if (!persona) return res.redirect('/fe/personas')
-
-  req.session.data = JSON.parse(JSON.stringify(persona.answers))
-  req.session.data.activePersona = req.params.id
-  res.redirect('/fe/start')
-})
-
-// Old link still works
-router.get('/fe/persona1', function (req, res) {
-  res.redirect('/fe/personas/persona-1')
+// Persona pages have been replaced by the link generator; old links go there
+router.get(['/fe/personas', '/fe/personas/:id', '/fe/persona1'], function (req, res) {
+  res.redirect('/fe/research-setup')
 })
 
 router.post('/fe/one-login', (req, res) => {
@@ -1230,14 +1155,11 @@ function feResearchValues (query, prefix) {
 }
 
 router.get('/fe/research-setup', (req, res) => {
-  // Prefill from a persona (?from=persona-1) or from a previous link (Edit these answers)
-  let values = feResearchValues(req.query, 'p_')
-  const persona = fePersonas[req.query.from]
-  if (persona) values = feResearchValues(persona.answers)
+  // Prefill from a previous link (Edit these answers)
+  const values = feResearchValues(req.query, 'p_')
 
   res.render('fe/research-setup', {
     values,
-    personas: fePersonas,
     subjectCourses: Object.entries(feSubjectCourses).map(([label, config]) => Object.assign({ label, name: label }, config, {
       courses: config.courses.map(c => typeof c === 'string' ? { value: c, html: c } : c)
     }))
@@ -1277,7 +1199,7 @@ router.get('/fe/research-link', (req, res) => {
         const course = subject && subject.courses.find(c => (c.value || c) === v)
         return course ? String(course.html || course).replace(/<[^>]+>/g, '').replace(' (opens in new tab)', '').replace(/&nbsp;/g, ' ').replace(/&amp;/g, '&') : v
       })
-      return { key: fePersonaLabels[key] || key, values: text }
+      return { key: feAnswerLabels[key] || key, values: text }
     })
 
   res.render('fe/research-link', {

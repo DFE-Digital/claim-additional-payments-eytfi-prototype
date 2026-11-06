@@ -30,7 +30,7 @@
 {% endmacro %}
 
 {% block pageBeforeContent %}
-  {{ govukBackLink({ text: "Back", href: "/fe/personas" }) }}
+  {{ govukBackLink({ text: "Back", href: "/" }) }}
 {% endblock %}
 
 {% block content %}
@@ -40,13 +40,6 @@
 <h1 class="govuk-heading-l">Create a persona link</h1>
 <p class="govuk-body">Choose answers that match the research participant. You'll get a link to send them that fills in these answers and takes them to the start page.</p>
 <p class="govuk-body">Anything left as "Not set" is answered by the participant during the session.</p>
-
-<p class="govuk-body govuk-!-margin-bottom-2">Start from an existing persona:</p>
-<ul class="govuk-list">
-  {% for id, persona in personas %}
-    <li><a class="govuk-link" href="/fe/research-setup?from={{ id }}">{{ persona.name }}</a></li>
-  {% endfor %}
-</ul>
 
 <form method="get" action="/fe/research-link" novalidate>
 
