@@ -989,11 +989,11 @@ router.post('/fe/contract', (req, res) => {
 
   var contract = req.session.data.contract
 
-  if (contract == 'fixed_term') {
+  if (contract == 'Fixed term') {
     return res.redirect('contract_fixedterm')
-  } else if (contract == 'variable_hours') {
+  } else if (contract == 'Variable hours') {
     return res.redirect('contract_variable')
-  } else if (contract == 'permanent') {
+  } else if (contract == 'Permanent') {
     return res.redirect('contract_permanent')
   }
   else{
