@@ -940,6 +940,9 @@ router.post('/fe/eligibility-criteria', (req, res) => {
 
 router.post('/fe/staff', (req, res) => {
 
+  //force happy path for now
+  return res.redirect('fe_search')
+
   var staff = req.session.data.staff
 
   if (staff == 'yes') {
@@ -997,7 +1000,9 @@ router.post('/fe/contract', (req, res) => {
     return res.redirect('contract_permanent')
   }
   else{
-    return res.redirect('ineligible_contract')
+   // return res.redirect('ineligible_contract')
+   //happy path for now
+    return res.redirect('contract_permanent')
   }
 
 
@@ -1033,6 +1038,10 @@ router.post('/fe/contract_variable', (req, res) => {
 
 router.post('/fe/contract_permanent', (req, res) => {
 
+  //happy path for now
+  return res.redirect('contract_tlevel')
+
+
   var permanent = req.session.data.permanent
 
   if (permanent == 'less_than_2_5') {
@@ -1045,6 +1054,9 @@ router.post('/fe/contract_permanent', (req, res) => {
 })
 
 router.post('/fe/contract_tlevel', (req, res) => {
+
+  //happy path for now
+  return res.redirect('contract_subjects')
 
   var tlevel = req.session.data.tlevel
 
@@ -1226,6 +1238,9 @@ router.get('/fe/load', (req, res) => {
 })
 
 router.post('/fe/contract_subjects_time', (req, res) => {
+
+  //happy path for now
+  return res.redirect('performance')
 
   var hours_teaching_eligible_subjects = req.session.data.hours_teaching_eligible_subjects
 
