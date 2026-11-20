@@ -1,0 +1,55 @@
+{% extends "layouts/main_schools.html" %}
+
+{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/radios/macro.njk" import govukRadios %}
+{% from "govuk/components/error-summary/macro.njk" import govukErrorSummary %}
+
+{% set pageName = ("Error: " if screenerError else "") + "Is the qualification you want to add in chemistry, computing, maths or physics?" %}
+
+{% block pageBeforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "/schools/data_returned_qualifications_added" if (data.addedQualifications | length) else "/schools/data_returned_qualifications"
+  }) }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    {% if screenerError %}
+      {{ govukErrorSummary({
+        titleText: "There is a problem",
+        errorList: [{ text: screenerError, href: "#qualification-in-eligible-subject" }]
+      }) }}
+    {% endif %}
+
+    <form method="post" novalidate>
+
+      {{ govukRadios({
+        idPrefix: "qualification-in-eligible-subject",
+        name: "qualificationInEligibleSubject",
+        classes: "govuk-radios--inline",
+        errorMessage: { text: screenerError } if screenerError else false,
+        fieldset: {
+          legend: {
+            text: "Is the qualification you want to add in chemistry, computing, maths or physics?",
+            isPageHeading: true,
+            classes: "govuk-fieldset__legend--l"
+          }
+        },
+        hint: { text: "This could be an initial teacher training course or a degree." },
+        items: [
+          { value: "yes", text: "Yes" },
+          { value: "no", text: "No" }
+        ]
+      }) }}
+
+      {{ govukButton({ text: "Continue" }) }}
+
+    </form>
+
+  </div>
+</div>
+{% endblock %}

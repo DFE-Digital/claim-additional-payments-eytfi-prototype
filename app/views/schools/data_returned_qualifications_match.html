@@ -1,0 +1,173 @@
+{% extends "layouts/main_schools.html" %}
+
+{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/radios/macro.njk" import govukRadios %}
+{% from "govuk/components/error-summary/macro.njk" import govukErrorSummary %}
+
+{% set pageName = ("Error: " if matchError else "") + "We found an eligible qualification" %}
+
+{% block pageBeforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "/schools/hmrc_ni"
+  }) }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    {% if matchError %}
+      {{ govukErrorSummary({
+        titleText: "There is a problem",
+        errorList: [{ text: matchError, href: "#qualification-match-correct" }]
+      }) }}
+    {% endif %}
+
+    {% if corrected %}
+
+      {% if matchUpdated %}
+        <div class="govuk-notification-banner govuk-notification-banner--success" role="alert" aria-labelledby="match-updated-title" data-module="govuk-notification-banner">
+          <div class="govuk-notification-banner__header">
+            <h2 class="govuk-notification-banner__title" id="match-updated-title">Success</h2>
+          </div>
+          <div class="govuk-notification-banner__content">
+            <h3 class="govuk-notification-banner__heading">Qualification updated</h3>
+          </div>
+        </div>
+      {% endif %}
+
+      <h1 class="govuk-heading-xl">Check your qualification</h1>
+
+      <div class="govuk-inset-text">
+        You’ve changed the details of this qualification. We’ll review your changes and certificate alongside your claim. We may contact you if we need more information.
+      </div>
+
+      <dl class="govuk-summary-list">
+        <div class="govuk-summary-list__row govuk-summary-list__row--no-actions">
+          <dt class="govuk-summary-list__key">Type</dt>
+          <dd class="govuk-summary-list__value">{{ "Higher education (degree)" if corrected.type == "Higher Education" else corrected.type }}{% if changed.type %} <strong class="govuk-tag govuk-tag--blue govuk-!-margin-left-1">Changed</strong>{% endif %}</dd>
+        </div>
+        <div class="govuk-summary-list__row govuk-summary-list__row--no-actions">
+          <dt class="govuk-summary-list__key">Subject</dt>
+          <dd class="govuk-summary-list__value">{{ corrected.subject }}{% if changed.subject %} <strong class="govuk-tag govuk-tag--blue govuk-!-margin-left-1">Changed</strong>{% endif %}</dd>
+        </div>
+        <div class="govuk-summary-list__row govuk-summary-list__row--no-actions">
+          <dt class="govuk-summary-list__key">Certificate</dt>
+          <dd class="govuk-summary-list__value">{{ corrected.certificate }}</dd>
+        </div>
+      </dl>
+
+      <p class="govuk-body">
+        <a class="govuk-link govuk-link--no-visited-state" href="/schools/data_returned_qualifications_correct?edit=yes&from=match">Change these details</a>
+      </p>
+
+      <form method="post" novalidate>
+        {{ govukButton({ text: "Continue" }) }}
+      </form>
+
+    {% else %}
+
+    <h1 class="govuk-heading-xl">We found an eligible qualification</h1>
+
+    <p class="govuk-body">Our records show you have a qualification that meets the criteria for this payment.</p>
+
+    <dl class="govuk-summary-list">
+      <div class="govuk-summary-list__row govuk-summary-list__row--no-actions">
+        <dt class="govuk-summary-list__key">
+          Type
+        </dt>
+        <dd class="govuk-summary-list__value">
+          Higher education (degree)
+        </dd>
+      </div>
+      <div class="govuk-summary-list__row govuk-summary-list__row--no-actions">
+        <dt class="govuk-summary-list__key">
+          Subject
+        </dt>
+        <dd class="govuk-summary-list__value">
+          Applied computing (100358)
+        </dd>
+      </div>
+    </dl>
+
+    {# Example data: other qualifications on their record that don't count towards the payment #}
+    <details class="govuk-details">
+      <summary class="govuk-details__summary">
+        <span class="govuk-details__summary-text">See other qualifications we hold for you</span>
+      </summary>
+      <div class="govuk-details__text">
+        <p class="govuk-body">These qualifications are on your record, but they do not count towards this payment. You do not need to check them.</p>
+        <h3 class="govuk-heading-s govuk-!-margin-bottom-2">Qualification 1</h3>
+        <dl class="govuk-summary-list govuk-!-margin-bottom-6">
+          <div class="govuk-summary-list__row govuk-summary-list__row--no-actions">
+            <dt class="govuk-summary-list__key">Type</dt>
+            <dd class="govuk-summary-list__value">A level</dd>
+          </div>
+          <div class="govuk-summary-list__row govuk-summary-list__row--no-actions">
+            <dt class="govuk-summary-list__key">Subject</dt>
+            <dd class="govuk-summary-list__value">Mathematics</dd>
+          </div>
+        </dl>
+        <h3 class="govuk-heading-s govuk-!-margin-bottom-2">Qualification 2</h3>
+        <dl class="govuk-summary-list govuk-!-margin-bottom-6">
+          <div class="govuk-summary-list__row govuk-summary-list__row--no-actions">
+            <dt class="govuk-summary-list__key">Type</dt>
+            <dd class="govuk-summary-list__value">A level</dd>
+          </div>
+          <div class="govuk-summary-list__row govuk-summary-list__row--no-actions">
+            <dt class="govuk-summary-list__key">Subject</dt>
+            <dd class="govuk-summary-list__value">History</dd>
+          </div>
+        </dl>
+        <h3 class="govuk-heading-s govuk-!-margin-bottom-2">Qualification 3</h3>
+        <dl class="govuk-summary-list govuk-!-margin-bottom-6">
+          <div class="govuk-summary-list__row govuk-summary-list__row--no-actions">
+            <dt class="govuk-summary-list__key">Type</dt>
+            <dd class="govuk-summary-list__value">Initial teacher training</dd>
+          </div>
+          <div class="govuk-summary-list__row govuk-summary-list__row--no-actions">
+            <dt class="govuk-summary-list__key">Subject</dt>
+            <dd class="govuk-summary-list__value">Primary education</dd>
+          </div>
+        </dl>
+        <p class="govuk-body govuk-!-margin-bottom-0">If any of the qualification details we hold about you are wrong, email <a class="govuk-link" href="mailto:teaching.status@education.gov.uk">teaching.status@education.gov.uk</a>.</p>
+      </div>
+    </details>
+
+    <form method="post" novalidate>
+
+      {% set wrongHtml %}
+        <p>
+          On the next page, you can correct the details. We'll check your qualification before we make a decision on your claim.
+        </p>
+      {% endset %}
+
+      {{ govukRadios({
+        idPrefix: "qualification-match-correct",
+        name: "qualificationMatchCorrect",
+        errorMessage: { text: matchError } if matchError else false,
+        fieldset: {
+          legend: {
+            text: "Is this qualification correct?",
+            classes: "govuk-fieldset__legend--m"
+          }
+        },
+        items: [
+          { value: "yes", text: "Yes" },
+          { value: "no", text: "No, some of these details are wrong", conditional: { html: wrongHtml } }
+        ]
+      }) }}
+
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+
+    </form>
+
+    {% endif %}
+
+  </div>
+</div>
+{% endblock %}

@@ -54,6 +54,38 @@ router.use(function (req, res, next) {
 })
 
 // FE provider: remember which answers were submitted (confirmed) in this session
+// Schools: Change link for 'Date your course started' on /schools/data_returned_qualifications.
+// The change page returns to the qualifications page and shows a one-off success banner
+// if the date changed.
+function schoolsCourseStartDate (data) {
+  const pad = v => String(v).trim().padStart(2, '0')
+  const day = data['courseStartDate-day'] || '01'
+  const month = data['courseStartDate-month'] || '09'
+  const year = data['courseStartDate-year'] || '2018'
+  return pad(day) + '/' + pad(month) + '/' + String(year).trim()
+}
+
+router.get('/schools/data_returned_qualifications_changed_start_date', function (req, res, next) {
+  req.session.courseStartBefore = schoolsCourseStartDate(req.session.data)
+  next()
+})
+
+// Runs before the returnUrl redirect so it works when coming from a Change link
+router.post('/schools/data_returned_qualifications_changed_start_date', function (req, res, next) {
+  if (schoolsCourseStartDate(req.session.data) !== req.session.courseStartBefore) {
+    req.session.qualificationsUpdated = 'Date your course started has been updated'
+  }
+  delete req.session.courseStartBefore
+  next()
+})
+
+router.get('/schools/data_returned_qualifications', function (req, res, next) {
+  res.locals.courseStartDate = schoolsCourseStartDate(req.session.data)
+  res.locals.qualificationsUpdated = req.session.qualificationsUpdated
+  delete req.session.qualificationsUpdated   // show it once only
+  next()
+})
+
 router.post('/fe/provider/*', function (req, res, next) {
   const confirmed = new Set(req.session.providerConfirmed || [])
   for (const [key, q] of Object.entries(providerQuestions)) {
@@ -714,6 +746,11 @@ router.post('/schools/hmrc', (req, res) => {
 })
 
 
+// Course start date change page: if there's no returnUrl, go back to the qualifications page
+router.post('/schools/data_returned_qualifications_changed_start_date', (req, res) => {
+  res.redirect('/schools/data_returned_qualifications')
+})
+
 router.post('/schools/data_returned_teacher', (req, res) => {
 
   var contact = req.session.data.contact
@@ -730,17 +767,259 @@ router.post('/schools/data_returned_teacher', (req, res) => {
   
 })
 
-router.post('/schools/data_returned_qualifications', (req, res) => {
-  
-  var contact = req.session.data.contact
+///////
+// SCHOOLS: add a qualification on /schools/data_returned_qualifications
+// Only chemistry, computing, maths or physics qualifications can be added.
+///////
 
-  if (contact == 'yes') {
-    req.session.data.success = ""
-    req.session.data.successText = ''
-  
-  }else{
+const schoolsAddableSubjects = ['Chemistry', 'Computing', 'Maths', 'Physics']
+
+router.get('/schools/data_returned_qualifications_add', (req, res) => {
+  res.locals.errors = req.session.addQualificationErrors || []
+  // Look up an error by field, e.g. errorMap['#new-qualification-type']
+  res.locals.errorMap = Object.fromEntries(res.locals.errors.map(e => [e.href, e.text]))
+  delete req.session.addQualificationErrors
+  res.render('schools/data_returned_qualifications_add', { subjects: schoolsAddableSubjects })
+})
+
+// Shared by both add pages. options.page: the add page to return to with errors.
+// options.allowedSubjects: if set, the subject must be one of these.
+function schoolsAddQualification (req, res, options) {
+  const data = req.session.data
+  const type = data.newQualificationType
+  // On the eligible page each type has its own subject field and list
+  const byType = options.subjectsByType && options.subjectsByType[type]
+  const subject = ((byType ? data[byType.field] : data.newQualificationSubject) || '').trim()
+  const subjectHref = byType ? '#new-qualification-subject-' + byType.slug : '#new-qualification-subject'
+  const errors = []
+
+  if (!type) errors.push({ text: 'Select the type of qualification', href: '#new-qualification-type' })
+  const allowed = byType ? byType.subjects : options.allowedSubjects
+  if (options.subjectsByType && !byType) {
+    // no type chosen yet, so there's no subject list to check
+  } else if (!subject) {
+    errors.push({ text: allowed ? 'Select the subject of the qualification' : 'Enter the subject of the qualification', href: subjectHref })
+  } else if (allowed && !allowed.includes(subject)) {
+    errors.push({ text: 'Select a chemistry, computing, maths or physics subject from the list', href: subjectHref })
+  }
+
+  // Prototype only: the form sends the file name, not the file itself
+  const certificate = data.newQualificationCertificate
+  if (!certificate) errors.push({ text: 'Upload your qualification certificate', href: '#new-qualification-certificate' })
+  else if (!/\.(pdf|jpe?g|png)$/i.test(certificate)) errors.push({ text: 'The selected file must be a PDF, JPG or PNG', href: '#new-qualification-certificate' })
+
+  if (errors.length) {
+    req.session.addQualificationErrors = errors
+    return res.redirect(options.page)
+  }
+
+  const qualification = {
+    type: type,
+    subject: subject,
+    certificate: certificate
+  }
+  if (options.corrected) {
+    data.correctedQualification = qualification
+  } else {
+    data.addedQualifications = (data.addedQualifications || []).concat(qualification)
+  }
+  ;['newQualificationType', 'newQualificationSubject', 'newQualificationCertificate']
+    .concat(Object.values(options.subjectsByType || {}).map(t => t.field))
+    .forEach(key => { delete data[key] })
+
+  if (options.corrected) {
+    req.session.matchUpdated = true
+    const returnTo = req.session.correctReturnTo || '/schools/data_returned_qualifications_match'
+    delete req.session.correctReturnTo
+    return res.redirect(returnTo)
+  }
+  req.session.addedUpdated = 'Qualification added'
+  res.redirect('/schools/data_returned_qualifications_added')
+}
+
+// Add a qualification: free text subject
+router.post('/schools/data_returned_qualifications_add', (req, res) => {
+  schoolsAddQualification(req, res, { page: '/schools/data_returned_qualifications_add' })
+})
+
+// Add a qualification: subject picked from the eligible subjects list (autocomplete)
+const schoolsEligibleSubjects = require('./data/schools-eligible-subjects')
+// ITT and QTS must be confirmed by the provider, so only degrees can be added or corrected
+const schoolsDegreeOnly = { 'Higher Education': schoolsEligibleSubjects['Higher Education'] }
+
+router.get('/schools/data_returned_qualifications_add_eligible', (req, res) => {
+  res.locals.errors = req.session.addQualificationErrors || []
+  res.locals.errorMap = Object.fromEntries(res.locals.errors.map(e => [e.href, e.text]))
+  delete req.session.addQualificationErrors
+  res.render('schools/data_returned_qualifications_add_eligible', { qualificationTypes: schoolsDegreeOnly, degreeOnly: true })
+})
+
+router.post('/schools/data_returned_qualifications_add_eligible', (req, res) => {
+  schoolsAddQualification(req, res, {
+    page: '/schools/data_returned_qualifications_add_eligible',
+    subjectsByType: schoolsDegreeOnly
+  })
+})
+
+// Eligible match found: confirm the eligible qualification on their record
+// The eligible qualification on record (example data)
+const schoolsMatchedQualification = {
+  type: 'Higher Education',
+  subject: 'Applied computing'
+}
+
+function schoolsCompareCorrection (corrected) {
+  const original = schoolsMatchedQualification
+  return corrected ? {
+    type: corrected.type !== original.type,
+    subject: corrected.subject !== original.subject
+  } : {}
+}
+
+// Concept: 'show, don't ask' - the eligible qualification is shown, with no question
+router.get('/schools/data_returned_qualifications_show', (req, res) => {
+  res.render('schools/data_returned_qualifications_show', { qualification: schoolsMatchedQualification })
+})
+
+router.post('/schools/data_returned_qualifications_show', (req, res) => {
+  req.session.data.success = ''
+  req.session.data.successText = ''
+  res.redirect('/schools/hmrc')
+})
+
+router.get('/schools/data_returned_qualifications_match', (req, res) => {
+  res.locals.matchError = req.session.matchError
+  delete req.session.matchError
+  res.locals.matchUpdated = req.session.matchUpdated
+  delete req.session.matchUpdated   // banner shows once only
+
+  const corrected = req.session.data.correctedQualification
+  const original = schoolsMatchedQualification
+  res.render('schools/data_returned_qualifications_match', {
+    corrected: corrected,
+    changed: corrected ? {
+      type: corrected.type !== original.type,
+      subject: corrected.subject !== original.subject
+    } : {}
+  })
+})
+
+router.post('/schools/data_returned_qualifications_match', (req, res) => {
+  const answer = req.session.data.qualificationMatchCorrect
+  delete req.session.data.qualificationMatchCorrect   // ask again each time
+
+  // After a correction there's no question, just Continue
+  if (req.session.data.correctedQualification) {
     req.session.data.success = "We've received the details you provided."
     req.session.data.successText = "We'll review them and contact you if we need more information."
+    return res.redirect('/schools/hmrc')
+  }
+
+  if (answer === 'yes') {
+    req.session.data.success = ''
+    req.session.data.successText = ''
+    return res.redirect('/schools/hmrc')
+  }
+  // No: correct the qualification on record, starting from what we hold
+  if (answer === 'no') {
+    Object.assign(req.session.data, {
+      newQualificationType: 'Higher Education',
+      newQualificationSubjectHigherEducation: 'Applied computing'
+    })
+    return res.redirect('/schools/data_returned_qualifications_correct?from=match')
+  }
+  req.session.matchError = 'Select yes if this qualification is correct'
+  res.redirect('/schools/data_returned_qualifications_match')
+})
+
+// No eligible match: shows what we hold and how to get it corrected. A dead end: nothing can be added or edited here
+router.get('/schools/data_returned_qualifications_no_match', (req, res) => {
+  res.render('schools/data_returned_qualifications_no_match')
+})
+
+// Correct the qualification on record (from 'No' on the eligible match page)
+router.get('/schools/data_returned_qualifications_correct', (req, res) => {
+  if (req.query.from === 'match') req.session.correctReturnTo = '/schools/data_returned_qualifications_match'
+  res.locals.correctBack = req.session.correctReturnTo || '/schools/data_returned_qualifications_match'
+  const corrected = req.session.data.correctedQualification
+  if (req.query.edit === 'yes' && corrected) {
+    const byType = schoolsEligibleSubjects[corrected.type]
+    Object.assign(req.session.data, {
+      newQualificationType: corrected.type
+    })
+    if (byType) req.session.data[byType.field] = corrected.subject
+  }
+  res.locals.errors = req.session.addQualificationErrors || []
+  res.locals.errorMap = Object.fromEntries(res.locals.errors.map(e => [e.href, e.text]))
+  delete req.session.addQualificationErrors
+  res.render('schools/data_returned_qualifications_correct', { qualificationTypes: schoolsDegreeOnly, degreeOnly: true })
+})
+
+router.post('/schools/data_returned_qualifications_correct', (req, res) => {
+  schoolsAddQualification(req, res, {
+    page: '/schools/data_returned_qualifications_correct',
+    subjectsByType: schoolsDegreeOnly,
+    corrected: true
+  })
+})
+
+// Screener before adding: only chemistry, computing, maths or physics qualifications count
+router.get('/schools/data_returned_qualifications_screener', (req, res) => {
+  res.locals.screenerError = req.session.screenerError
+  delete req.session.screenerError
+  res.render('schools/data_returned_qualifications_screener')
+})
+
+router.post('/schools/data_returned_qualifications_screener', (req, res) => {
+  const answer = req.session.data.qualificationInEligibleSubject
+  delete req.session.data.qualificationInEligibleSubject   // ask again each time
+  if (answer === 'yes') return res.redirect('/schools/data_returned_qualifications_add_eligible')
+  if (answer === 'no') return res.redirect('/schools/data_returned_qualifications_ineligible')
+  req.session.screenerError = 'Select yes if the qualification is in chemistry, computing, maths or physics'
+  res.redirect('/schools/data_returned_qualifications_screener')
+})
+
+// Qualifications you've added: only the ones they added, then Continue (no Yes/No)
+router.get('/schools/data_returned_qualifications_added', (req, res, next) => {
+  res.locals.addedUpdated = req.session.addedUpdated
+  delete req.session.addedUpdated   // show it once only
+  next()
+})
+
+router.post('/schools/data_returned_qualifications_added', (req, res) => {
+  const added = (req.session.data.addedQualifications || []).length
+  req.session.data.success = added ? "We've received the details you provided." : ''
+  req.session.data.successText = added ? "We'll review them and contact you if we need more information." : ''
+  res.redirect('/schools/hmrc')
+})
+
+router.get('/schools/data_returned_qualifications_remove/:index', (req, res) => {
+  const list = req.session.data.addedQualifications || []
+  const index = parseInt(req.params.index, 10)
+  if (list[index]) {
+    list.splice(index, 1)
+    req.session.addedUpdated = 'Qualification removed'
+  }
+  res.redirect('/schools/data_returned_qualifications_added')
+})
+
+router.post('/schools/data_returned_qualifications', (req, res) => {
+  
+  // 'Are these details correct?' No: add the incorrect or missing qualification
+  if (req.session.data.contact == 'no') {
+    delete req.session.data.contact   // ask again when they come back to this page
+    return res.redirect('data_returned_qualifications_screener')
+  }
+
+  // Show the 'received your details' message later in the journey only if they added a qualification
+  var added = (req.session.data.addedQualifications || []).length
+
+  if (added) {
+    req.session.data.success = "We've received the details you provided."
+    req.session.data.successText = "We'll review them and contact you if we need more information."
+  } else {
+    req.session.data.success = ""
+    req.session.data.successText = ''
   }
   
   return res.redirect('hmrc')

@@ -2,13 +2,22 @@
 
 {% from "govuk/components/button/macro.njk" import govukButton %}
 {% from "govuk/components/radios/macro.njk" import govukRadios %}
+{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
 
 {% set pageName="Claim an early years teacher recognition payment" %}
+
+{% block pageBeforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "/schools/data_returned_qualifications"
+  }) }}
+{% endblock %}
 
 {% block content %}
 
  {% if data.success %}
-        
+       
+ <!--
       <div class="govuk-notification-banner govuk-notification-banner--success" role="alert" aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner">
         <div class="govuk-notification-banner__header">
           <h2 class="govuk-notification-banner__title" id="govuk-notification-banner-title">
@@ -24,100 +33,80 @@
           {% endif %}
         </div>
       </div>
-
+-->
   {% endif %} 
 
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
+
+    {% if qualificationsUpdated %}
+      <div class="govuk-notification-banner govuk-notification-banner--success" role="alert" aria-labelledby="qualifications-updated-title" data-module="govuk-notification-banner">
+        <div class="govuk-notification-banner__header">
+          <h2 class="govuk-notification-banner__title" id="qualifications-updated-title">
+            Success
+          </h2>
+        </div>
+        <div class="govuk-notification-banner__content">
+          <h3 class="govuk-notification-banner__heading">
+            {{ qualificationsUpdated }}
+          </h3>
+        </div>
+      </div>
+    {% endif %}
+
     <h1 class="govuk-heading-xl">Your qualifications</h1>
 
+    <p>These are qualifications we have on record for you.</p>
+
     <dl class="govuk-summary-list">
-      <div class="govuk-summary-list__row">
+      <div class="govuk-summary-list__row govuk-summary-list__row--no-actions">
         <dt class="govuk-summary-list__key">
-          Qualified teacher status (QTS) date
+          Type
         </dt>
         <dd class="govuk-summary-list__value">
-          01/09/2020
+          Higher Education
         </dd>
       </div>
-      <div class="govuk-summary-list__row">
+      <div class="govuk-summary-list__row govuk-summary-list__row--no-actions">
         <dt class="govuk-summary-list__key">
-          Name of first degree
+         Subject
         </dt>
         <dd class="govuk-summary-list__value">
-          Bachelor of. Educaton (BEd)
-        </dd>
-      </div>
-      <div class="govuk-summary-list__row">
-        <dt class="govuk-summary-list__key">
-          Degree code
-        </dt>
-        <dd class="govuk-summary-list__value">
-          X100
-        </dd>
-      </div>
-      <div class="govuk-summary-list__row">
-        <dt class="govuk-summary-list__key">
-          Name of initial teacher training course
-        </dt>
-        <dd class="govuk-summary-list__value">
-          <p class="govuk-body">Primary Education with QTS</p>
-        </dd>
-      </div>
-      <div class="govuk-summary-list__row">
-        <dt class="govuk-summary-list__key">
-          Date your course started
-        </dt>
-        <dd class="govuk-summary-list__value">
-          <p class="govuk-body">01/09/2018</p>
+          Applied computing (100358)
         </dd>
       </div>
       
     </dl>
 
-    <form method="post">
+    <!--
+    <p class="govuk-body">
+      To make a permanent change to the qualification details we hold about you, email <a class="govuk-link" href="mailto:teaching.status@education.gov.uk">teaching.status@education.gov.uk</a>.
+    </p>
+    -->
 
-      <div class="govuk-form-group">
-        <fieldset class="govuk-fieldset" aria-describedby="contact-hint">
-          <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
-            <h2 class="govuk-fieldset__heading">
-              Are these details correct?
-            </h2>
-          </legend>
-          <div id="contact-hint" class="govuk-hint">
-            Select one option
-          </div>
-          <div class="govuk-radios" data-module="govuk-radios">
-            <div class="govuk-radios__item">
-              <input class="govuk-radios__input" id="contact" name="contact" type="radio" value="yes">
-              <label class="govuk-label govuk-radios__label" for="contact">
-                Yes
-              </label>
-            </div>
-            
-            <div class="govuk-radios__item">
-              <input class="govuk-radios__input" id="contact-2" name="contact" type="radio" value="no" data-aria-controls="conditional-contact-2">
-              <label class="govuk-label govuk-radios__label" for="contact-2">
-                No
-              </label>
-            </div>
-            <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-contact-2">
-              
-              <div class="govuk-form-group">
-                <h3 class="govuk-label-wrapper">
-                  <label class="govuk-label govuk-label--s" for="more-detail">
-                    What details are incorrect?
-                  </label>
-                </h3>
-                <div id="more-detail-hint" class="govuk-hint">
-                  Tell us which details are wrong. We'll use this information to review your details and contact you if we need to. You can still submit your claim.
-                </div>
-                <textarea class="govuk-textarea" id="more-detail" name="moreDetail" rows="5" aria-describedby="more-detail-hint"></textarea>
-              </div>
-            
-          </div>
-        </fieldset>
-      </div>
+    <form method="post" novalidate>
+
+      {% set incorrectHtml %}
+        <p>
+          On the next page, you'll need to add the details of any qualifications that are incorrect or missing.
+        </p>
+      {% endset %}
+
+      {{ govukRadios({
+        idPrefix: "contact",
+        name: "contact",
+        fieldset: {
+          legend: {
+            text: "Are these details correct?",
+            classes: "govuk-fieldset__legend--m"
+          }
+        },
+        hint: { text: "Select one option" },
+        items: [
+          { value: "yes", text: "Yes" },
+          { value: "no", text: "No", conditional: { html: incorrectHtml } }
+        ]
+      }) }}
 
       {{ govukButton({
         text: "Continue"

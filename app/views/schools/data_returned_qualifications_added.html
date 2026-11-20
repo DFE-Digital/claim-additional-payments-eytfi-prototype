@@ -1,0 +1,83 @@
+{% extends "layouts/main_schools.html" %}
+
+{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+
+{% set pageName = "Qualifications you've added" %}
+
+{% block pageBeforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "/schools/data_returned_qualifications"
+  }) }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    {% if addedUpdated %}
+      <div class="govuk-notification-banner govuk-notification-banner--success" role="alert" aria-labelledby="added-updated-title" data-module="govuk-notification-banner">
+        <div class="govuk-notification-banner__header">
+          <h2 class="govuk-notification-banner__title" id="added-updated-title">
+            Success
+          </h2>
+        </div>
+        <div class="govuk-notification-banner__content">
+          <h3 class="govuk-notification-banner__heading">
+            {{ addedUpdated }}
+          </h3>
+        </div>
+      </div>
+    {% endif %}
+
+    <h1 class="govuk-heading-xl">Qualifications you've added</h1>
+
+    <div class="govuk-inset-text">
+      <p class="govuk-body">Any qualification details added will only be used to process your claim.</p>
+      <p class="govuk-body govuk-!-margin-bottom-0">To make a permanent change to the qualification details we hold about you, email <a class="govuk-link" href="mailto:teaching.status@education.gov.uk">teaching.status@education.gov.uk</a>.</p>
+    </div>
+
+    {% if data.addedQualifications | length %}
+      <p class="govuk-body">We'll use these details to process your claim.</p>
+      {% for qualification in data.addedQualifications %}
+        <h2 class="govuk-heading-m">{{ "Corrected degree" if qualification.corrected else "Qualification " + loop.index }}</h2>
+        <dl class="govuk-summary-list">
+          <div class="govuk-summary-list__row govuk-summary-list__row--no-actions">
+            <dt class="govuk-summary-list__key">Type</dt>
+            <dd class="govuk-summary-list__value">{{ qualification.type }}</dd>
+          </div>
+          <div class="govuk-summary-list__row govuk-summary-list__row--no-actions">
+            <dt class="govuk-summary-list__key">Subject</dt>
+            <dd class="govuk-summary-list__value">{{ qualification.subject }}</dd>
+          </div>
+          {% if qualification.certificate %}
+          <div class="govuk-summary-list__row govuk-summary-list__row--no-actions">
+            <dt class="govuk-summary-list__key">Certificate</dt>
+            <dd class="govuk-summary-list__value">{{ qualification.certificate }}</dd>
+          </div>
+          {% endif %}
+        </dl>
+        <p class="govuk-body">
+          <a class="govuk-link govuk-link--no-visited-state" href="/schools/data_returned_qualifications_remove/{{ loop.index0 }}">Remove<span class="govuk-visually-hidden"> {{ qualification.subject | lower }} qualification</span></a>
+        </p>
+      {% endfor %}
+    {% else %}
+      <p class="govuk-body">You have not added any qualifications.</p>
+    {% endif %}
+
+    {{ govukButton({
+      text: "Add another qualification" if data.addedQualifications | length else "Add a qualification",
+      href: "/schools/data_returned_qualifications_screener",
+      classes: "govuk-button--secondary"
+    }) }}
+
+    <form method="post" novalidate>
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+    </form>
+
+  </div>
+</div>
+{% endblock %}

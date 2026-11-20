@@ -1,0 +1,29 @@
+{% extends "layouts/main_schools.html" %}
+
+{% from "govuk/components/button/macro.njk" import govukButton %}
+
+{% set pageName = "You are not eligible for this payment" %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-xl">You are not eligible for this payment</h1>
+
+    <p class="govuk-body">You are not eligible for a targeted retention incentive payment because you do not have an eligible qualification.</p>
+
+    <p class="govuk-body">To be eligible, you must have one of these:</p>
+
+    <ul class="govuk-list govuk-list--bullet">
+      <li>an initial teacher training (ITT) course specialising in chemistry, computing, mathematics or physics</li>
+      <li>an undergraduate or postgraduate degree in chemistry, computing, mathematics or physics</li>
+    </ul>
+
+    <p class="govuk-body">For more information, check the eligibility criteria for <a class="govuk-link govuk-link--no-visited-state" href="https://www.gov.uk/guidance/targeted-retention-incentive-payments-for-school-teachers#eligibility-criteria">school targeted retention incentives</a>.</p>
+
+  </div>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,50 @@
+{% extends "layouts/main_schools.html" %}
+
+{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/date-input/macro.njk" import govukDateInput %}
+
+{% set pageName = "When did your course start?" %}
+
+{% block pageBeforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: returnUrl or "/schools/data_returned_qualifications"
+  }) }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <form method="post" novalidate>
+
+      {{ govukDateInput({
+        id: "course-start-date",
+        namePrefix: "courseStartDate",
+        fieldset: {
+          legend: {
+            text: "When did your course start?",
+            isPageHeading: true,
+            classes: "govuk-fieldset__legend--l"
+          }
+        },
+        hint: {
+          text: "For example, 1 9 2018"
+        },
+        items: [
+          { name: "day", classes: "govuk-input--width-2", value: data['courseStartDate-day'] or "01" },
+          { name: "month", classes: "govuk-input--width-2", value: data['courseStartDate-month'] or "09" },
+          { name: "year", classes: "govuk-input--width-4", value: data['courseStartDate-year'] or "2018" }
+        ]
+      }) }}
+
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+
+    </form>
+
+  </div>
+</div>
+{% endblock %}

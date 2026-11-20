@@ -11,9 +11,13 @@
 
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
-    <h1 class="govuk-heading-xl">Your details</h1>
+
+
+    <h1 class="govuk-heading-xl">Check your details</h1>
 
     <h2 class="govuk-heading-m">Teachers details</h2>
+
+    <p class="govuk-body">If any details are incorrect, you can change and submit a correction as part of your claim.</p>
 
     <dl class="govuk-summary-list">
       <div class="govuk-summary-list__row">
@@ -69,47 +73,7 @@
 
     <form method="post">
 
-      <div class="govuk-form-group">
-        <fieldset class="govuk-fieldset" aria-describedby="contact-hint">
-          <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
-            <h2 class="govuk-fieldset__heading">
-              Are these details correct?
-            </h2>
-          </legend>
-          <div id="contact-hint" class="govuk-hint">
-            Select one option
-          </div>
-          <div class="govuk-radios" data-module="govuk-radios">
-            <div class="govuk-radios__item">
-              <input class="govuk-radios__input" id="contact" name="contact" type="radio" value="yes">
-              <label class="govuk-label govuk-radios__label" for="contact">
-                Yes
-              </label>
-            </div>
-            
-            <div class="govuk-radios__item">
-              <input class="govuk-radios__input" id="contact-2" name="contact" type="radio" value="no" data-aria-controls="conditional-contact-2">
-              <label class="govuk-label govuk-radios__label" for="contact-2">
-                No
-              </label>
-            </div>
-            <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-contact-2">
-              
-              <div class="govuk-form-group">
-                <h3 class="govuk-label-wrapper">
-                  <label class="govuk-label govuk-label--s" for="more-detail">
-                    What details are incorrect?
-                  </label>
-                </h3>
-                <div id="more-detail-hint" class="govuk-hint">
-                  Tell us which details are wrong. We'll use this information to review your details and contact you if we need to. You can still submit your claim.
-                </div>
-                <textarea class="govuk-textarea" id="more-detail" name="moreDetail" rows="5" aria-describedby="more-detail-hint"></textarea>
-              </div>
-            
-          </div>
-        </fieldset>
-      </div>
+      <p class="govuk-body">By selecting continue you are confirming that, to the best of your knowledge, the details you are providing are correct.</p>
 
       {{ govukButton({
         text: "Continue"

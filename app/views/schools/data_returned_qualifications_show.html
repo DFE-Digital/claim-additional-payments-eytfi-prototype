@@ -1,0 +1,94 @@
+{% extends "layouts/main_schools.html" %}
+
+{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+
+{#
+  Concept: 'show, don't ask'. When the record already has an eligible qualification,
+  we show it and let people continue. There's no question and no way to correct it
+  in the claim, only the email for permanent changes to their record.
+#}
+
+{% set pageName = "Your qualification meets the criteria" %}
+{% set q = qualification %}
+
+{% block pageBeforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "/schools/hmrc_ni"
+  }) }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+
+    <h1 class="govuk-heading-xl">Your qualification meets the criteria</h1>
+
+    <p class="govuk-body">We’ve checked the qualifications we hold for you. This qualification means you can claim this payment, so you do not need to do anything.</p>
+
+    <dl class="govuk-summary-list">
+      <div class="govuk-summary-list__row govuk-summary-list__row--no-actions">
+        <dt class="govuk-summary-list__key">Type</dt>
+        <dd class="govuk-summary-list__value">{{ "Higher education (degree)" if q.type == "Higher Education" else q.type }}</dd>
+      </div>
+      <div class="govuk-summary-list__row govuk-summary-list__row--no-actions">
+        <dt class="govuk-summary-list__key">Subject</dt>
+        <dd class="govuk-summary-list__value">{{ q.subject }}</dd>
+      </div>
+    </dl>
+
+    <!--
+    {# Example data: other qualifications on their record that don't count towards the payment #}
+    <details class="govuk-details">
+      <summary class="govuk-details__summary">
+        <span class="govuk-details__summary-text">See other qualifications we hold for you</span>
+      </summary>
+      <div class="govuk-details__text">
+        <p class="govuk-body">These qualifications are on your record, but they do not count towards this payment. You do not need to check them.</p>
+        <h3 class="govuk-heading-s govuk-!-margin-bottom-2">Qualification 1</h3>
+        <dl class="govuk-summary-list govuk-!-margin-bottom-6">
+          <div class="govuk-summary-list__row govuk-summary-list__row--no-actions">
+            <dt class="govuk-summary-list__key">Type</dt>
+            <dd class="govuk-summary-list__value">A level</dd>
+          </div>
+          <div class="govuk-summary-list__row govuk-summary-list__row--no-actions">
+            <dt class="govuk-summary-list__key">Subject</dt>
+            <dd class="govuk-summary-list__value">Mathematics</dd>
+          </div>
+        </dl>
+        <h3 class="govuk-heading-s govuk-!-margin-bottom-2">Qualification 2</h3>
+        <dl class="govuk-summary-list govuk-!-margin-bottom-6">
+          <div class="govuk-summary-list__row govuk-summary-list__row--no-actions">
+            <dt class="govuk-summary-list__key">Type</dt>
+            <dd class="govuk-summary-list__value">A level</dd>
+          </div>
+          <div class="govuk-summary-list__row govuk-summary-list__row--no-actions">
+            <dt class="govuk-summary-list__key">Subject</dt>
+            <dd class="govuk-summary-list__value">History</dd>
+          </div>
+        </dl>
+        <h3 class="govuk-heading-s govuk-!-margin-bottom-2">Qualification 3</h3>
+        <dl class="govuk-summary-list govuk-!-margin-bottom-6">
+          <div class="govuk-summary-list__row govuk-summary-list__row--no-actions">
+            <dt class="govuk-summary-list__key">Type</dt>
+            <dd class="govuk-summary-list__value">Initial teacher training</dd>
+          </div>
+          <div class="govuk-summary-list__row govuk-summary-list__row--no-actions">
+            <dt class="govuk-summary-list__key">Subject</dt>
+            <dd class="govuk-summary-list__value">Primary education</dd>
+          </div>
+        </dl>
+        <p class="govuk-body govuk-!-margin-bottom-0">If any of the qualification details we hold about you are wrong, email <a class="govuk-link" href="mailto:teaching.status@education.gov.uk">teaching.status@education.gov.uk</a>.</p>
+      </div>
+    </details>
+    -->
+
+    <form method="post" novalidate>
+      {{ govukButton({ text: "Continue" }) }}
+    </form>
+
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,80 @@
+{% extends "layouts/main_schools.html" %}
+
+{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+
+{% set pageName = "We could not find an eligible qualification" %}
+
+{% block pageBeforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "/schools/hmrc_ni"
+  }) }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+
+    <h1 class="govuk-heading-xl">We could not find an eligible qualification</h1>
+
+    <p class="govuk-body">None of the qualifications on your record meet the criteria for this payment.</p>
+
+    <p class="govuk-body">To be eligible, you must have one of these:</p>
+    <ul class="govuk-list govuk-list--bullet">
+      <li>an initial teacher training (ITT) course specialising in chemistry, computing, maths or physics</li>
+      <li>an undergraduate or postgraduate degree in chemistry, computing, maths or physics</li>
+    </ul>
+
+    {# Example data: the qualifications on their record, none of which count #}
+    <h2 class="govuk-heading-m">Qualifications we hold for you</h2>
+
+    <h2 class="govuk-heading-s govuk-!-margin-bottom-2">Qualification 1</h2>
+    <dl class="govuk-summary-list govuk-!-margin-bottom-6">
+      <div class="govuk-summary-list__row govuk-summary-list__row--no-actions">
+        <dt class="govuk-summary-list__key">Type</dt>
+        <dd class="govuk-summary-list__value">Higher education (degree)</dd>
+      </div>
+      <div class="govuk-summary-list__row govuk-summary-list__row--no-actions">
+        <dt class="govuk-summary-list__key">Subject</dt>
+        <dd class="govuk-summary-list__value">History</dd>
+      </div>
+    </dl>
+
+    <h2 class="govuk-heading-s govuk-!-margin-bottom-2">Qualification 2</h2>
+    <dl class="govuk-summary-list govuk-!-margin-bottom-6">
+      <div class="govuk-summary-list__row govuk-summary-list__row--no-actions">
+        <dt class="govuk-summary-list__key">Type</dt>
+        <dd class="govuk-summary-list__value">A level</dd>
+      </div>
+      <div class="govuk-summary-list__row govuk-summary-list__row--no-actions">
+        <dt class="govuk-summary-list__key">Subject</dt>
+        <dd class="govuk-summary-list__value">Mathematics</dd>
+      </div>
+    </dl>
+
+    <h2 class="govuk-heading-s govuk-!-margin-bottom-2">Qualification 3</h2>
+    <dl class="govuk-summary-list govuk-!-margin-bottom-6">
+      <div class="govuk-summary-list__row govuk-summary-list__row--no-actions">
+        <dt class="govuk-summary-list__key">Type</dt>
+        <dd class="govuk-summary-list__value">Initial teacher training</dd>
+      </div>
+      <div class="govuk-summary-list__row govuk-summary-list__row--no-actions">
+        <dt class="govuk-summary-list__key">Subject</dt>
+        <dd class="govuk-summary-list__value">Primary education</dd>
+      </div>
+    </dl>
+
+    <h2 class="govuk-heading-m">What to do if your details are wrong</h2>
+
+    <p class="govuk-body">If you believe your details are wrong, to get your details corrected:</p>
+    <ul class="govuk-list govuk-list--bullet">
+      <li>contact the provider you did your ITT with</li>
+      <li>or email <a class="govuk-link" href="mailto:teaching.status@education.gov.uk">teaching.status@education.gov.uk</a></li>
+    </ul>
+
+    <p class="govuk-body">Once your record has been updated, if you have an eligible qualification, you can start a new claim.</p>
+
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,85 @@
+{% extends "layouts/main_schools.html" %}
+
+{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/radios/macro.njk" import govukRadios %}
+{% from "govuk/components/input/macro.njk" import govukInput %}
+{% from "govuk/components/error-summary/macro.njk" import govukErrorSummary %}
+{% from "govuk/components/file-upload/macro.njk" import govukFileUpload %}
+
+{% set pageName = ("Error: " if errors | length else "") + "Add a qualification" %}
+
+
+{% block pageBeforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "/schools/data_returned_qualifications_added" if (data.addedQualifications | length) else "/schools/data_returned_qualifications"
+  }) }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    {% if errors | length %}
+      {{ govukErrorSummary({ titleText: "There is a problem", errorList: errors }) }}
+    {% endif %}
+
+    <h1 class="govuk-heading-xl">Add a qualification</h1>
+    <!--
+    <div class="govuk-inset-text">
+      <p class="govuk-body">Any qualification details added will only be used to process your claim.</p>
+      <p class="govuk-body govuk-!-margin-bottom-0">To make a permanent change to the qualification details we hold about you, email <a class="govuk-link" href="mailto:teaching.status@education.gov.uk">teaching.status@education.gov.uk</a>.</p>
+    </div>
+    -->
+    <form method="post" novalidate>
+
+      {% set typeError = errorMap['#new-qualification-type'] if errorMap else '' %}
+      {{ govukRadios({
+        idPrefix: "new-qualification-type",
+        name: "newQualificationType",
+        value: data.newQualificationType,
+        errorMessage: { text: typeError } if typeError else false,
+        fieldset: {
+          legend: { text: "What type of qualification is it?", classes: "govuk-fieldset__legend--m" }
+        },
+        items: [
+          { value: "Higher Education", text: "Higher education, for example a degree" },
+          { value: "Initial teacher training", text: "Initial teacher training" },
+          { value: "A level", text: "A level" }
+        ]
+      }) }}
+
+      {% set subjectError = errorMap['#new-qualification-subject'] if errorMap else '' %}
+      {{ govukInput({
+        id: "new-qualification-subject",
+        name: "newQualificationSubject",
+        value: data.newQualificationSubject,
+        errorMessage: { text: subjectError } if subjectError else false,
+        label: { text: "What subject is the qualification in?", classes: "govuk-label--m" },
+        hint: { text: "For example, Applied computing or Mathematics." },
+        spellcheck: true
+      }) }}
+
+
+      <h2 class="govuk-heading-m">Upload your certificate</h2>
+      <p class="govuk-body">Upload a copy of your qualification certificate. We use it to check your qualification.</p>
+
+      {% set certificateError = errorMap['#new-qualification-certificate'] if errorMap else '' %}
+      {{ govukFileUpload({
+        id: "new-qualification-certificate",
+        name: "newQualificationCertificate",
+        label: { text: "Upload a file", classes: "govuk-label--s" },
+        hint: { text: "Your file must be a PDF, JPG or PNG and smaller than 10MB." },
+        errorMessage: { text: certificateError } if certificateError else false,
+        attributes: { accept: ".pdf,.jpg,.jpeg,.png" },
+        javascript: true
+      }) }}
+
+      {{ govukButton({ text: "Add qualification" }) }}
+
+    </form>
+
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,156 @@
+{% extends "layouts/main_schools.html" %}
+
+{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/radios/macro.njk" import govukRadios %}
+{% from "govuk/components/input/macro.njk" import govukInput %}
+{% from "govuk/components/error-summary/macro.njk" import govukErrorSummary %}
+{% from "govuk/components/file-upload/macro.njk" import govukFileUpload %}
+
+{% set pageName = ("Error: " if errors | length else "") + ("Add a degree" if degreeOnly else "Add a qualification") %}
+
+
+{% block pageBeforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "/schools/data_returned_qualifications_screener"
+  }) }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    {% if errors | length %}
+      {{ govukErrorSummary({ titleText: "There is a problem", errorList: errors }) }}
+    {% endif %}
+
+    <h1 class="govuk-heading-xl">{{ "Add a degree" if degreeOnly else "Add a qualification" }}</h1>
+    <!--
+    <div class="govuk-inset-text">
+      <p class="govuk-body">Any qualification details added will only be used to process your claim.</p>
+      <p class="govuk-body govuk-!-margin-bottom-0">To make a permanent change to the qualification details we hold about you, email <a class="govuk-link" href="mailto:teaching.status@education.gov.uk">teaching.status@education.gov.uk</a>.</p>
+    </div>
+    -->
+    <form method="post" novalidate>
+
+      {% if degreeOnly %}
+        {# Only degrees can be added or corrected in the service #}
+        {% set qt = qualificationTypes['Higher Education'] %}
+        {% set subjectError = errorMap['#new-qualification-subject-' + qt.slug] if errorMap else '' %}
+        <input type="hidden" name="newQualificationType" value="Higher Education">
+        <div class="govuk-form-group{% if subjectError %} govuk-form-group--error{% endif %}">
+          <label class="govuk-label govuk-label--m" for="new-qualification-subject-{{ qt.slug }}">
+            What subject is your degree in?
+          </label>
+          <div id="new-qualification-subject-{{ qt.slug }}-hint" class="govuk-hint">
+            Start typing, then choose a chemistry, computing, maths or physics subject from the list
+          </div>
+          {% if subjectError %}
+            <p id="new-qualification-subject-{{ qt.slug }}-error" class="govuk-error-message">
+              <span class="govuk-visually-hidden">Error:</span> {{ subjectError }}
+            </p>
+          {% endif %}
+          {# Options come from app/data/schools-eligible-subjects.js #}
+          <select class="govuk-select app-subject-autocomplete" id="new-qualification-subject-{{ qt.slug }}" name="{{ qt.field }}"
+            aria-describedby="new-qualification-subject-{{ qt.slug }}-hint{% if subjectError %} new-qualification-subject-{{ qt.slug }}-error{% endif %}"
+            data-current="{{ data[qt.field] or '' }}">
+            <option value=""></option>
+            {% for subject in qt.subjects %}
+              <option value="{{ subject }}">{{ subject }}</option>
+            {% endfor %}
+          </select>
+        </div>
+      {% else %}
+      {% set typeError = errorMap['#new-qualification-type'] if errorMap else '' %}
+      {% set typeItems = [] %}
+      {% for value, qt in qualificationTypes %}
+        {% set subjectError = errorMap['#new-qualification-subject-' + qt.slug] if errorMap else '' %}
+        {% set subjectHtml %}
+          <div class="govuk-form-group{% if subjectError %} govuk-form-group--error{% endif %}">
+            <label class="govuk-label govuk-label--s" for="new-qualification-subject-{{ qt.slug }}">
+              Subject
+            </label>
+            <div id="new-qualification-subject-{{ qt.slug }}-hint" class="govuk-hint">
+              Start typing, then choose from the list
+            </div>
+            {% if subjectError %}
+              <p id="new-qualification-subject-{{ qt.slug }}-error" class="govuk-error-message">
+                <span class="govuk-visually-hidden">Error:</span> {{ subjectError }}
+              </p>
+            {% endif %}
+            {# Options come from app/data/schools-eligible-subjects.js #}
+            <select class="govuk-select app-subject-autocomplete" id="new-qualification-subject-{{ qt.slug }}" name="{{ qt.field }}"
+              aria-describedby="new-qualification-subject-{{ qt.slug }}-hint{% if subjectError %} new-qualification-subject-{{ qt.slug }}-error{% endif %}"
+              data-current="{{ data[qt.field] or '' }}">
+              <option value=""></option>
+              {% for subject in qt.subjects %}
+                <option value="{{ subject }}">{{ subject }}</option>
+              {% endfor %}
+            </select>
+          </div>
+        {% endset %}
+        {% set _added = typeItems.push({ value: value, text: qt.label, conditional: { html: subjectHtml } }) %}
+      {% endfor %}
+
+      {{ govukRadios({
+        idPrefix: "new-qualification-type",
+        name: "newQualificationType",
+        value: data.newQualificationType,
+        errorMessage: { text: typeError } if typeError else false,
+        fieldset: {
+          legend: { text: "What type of qualification is it?", classes: "govuk-fieldset__legend--m" }
+        },
+        hint: { text: "Then choose the subject. You can only add a chemistry, computing, maths or physics qualification." },
+        items: typeItems
+      }) }}
+      {% endif %}
+
+      <p class="govuk-body">
+        <a class="govuk-link govuk-link--no-visited-state" href="/schools/data_returned_qualifications_ineligible">I cannot find my qualification</a>
+      </p>
+
+
+      <h2 class="govuk-heading-m">Upload your certificate</h2>
+      <p class="govuk-body">Upload a copy of your qualification certificate. We use it to check your qualification.</p>
+
+      {% set certificateError = errorMap['#new-qualification-certificate'] if errorMap else '' %}
+      {{ govukFileUpload({
+        id: "new-qualification-certificate",
+        name: "newQualificationCertificate",
+        label: { text: "Upload a file", classes: "govuk-label--s" },
+        hint: { text: "Your file must be a PDF, JPG or PNG and smaller than 10MB." },
+        errorMessage: { text: certificateError } if certificateError else false,
+        attributes: { accept: ".pdf,.jpg,.jpeg,.png" },
+        javascript: true
+      }) }}
+
+      {{ govukButton({ text: "Add qualification" }) }}
+
+    </form>
+
+  </div>
+</div>
+{% endblock %}
+
+{% block pageScripts %}
+  <script src="/public/javascripts/accessible-autocomplete.min.js"></script>
+  <script>
+    // Subject lists: type-ahead search, one for each qualification type
+    (function () {
+      if (!window.accessibleAutocomplete) return
+      document.querySelectorAll('select.app-subject-autocomplete').forEach(function (select) {
+        var current = select.dataset.current || ''
+        select.value = current
+        accessibleAutocomplete.enhanceSelectElement({
+          selectElement: select,
+          defaultValue: current,
+          minLength: 1,
+          showAllValues: true,
+          autoselect: false,     // don't highlight the first suggestion
+          confirmOnBlur: false   // leaving the box doesn't pick a subject
+        })
+      })
+    })()
+  </script>
+{% endblock %}
