@@ -19,7 +19,7 @@
   <div class="govuk-grid-column-two-thirds">
    
 
-    <form action="data_returned_qualifications">
+    <form method="post" action="/schools/hmrc_ni" novalidate>
       <div class="govuk-form-group">
         <h1 class="govuk-label-wrapper">
           <label class="govuk-label govuk-label--l" for="ni">
@@ -32,6 +32,39 @@
       {{ govukButton({
         text: "Continue"
       }) }}
+
+      <details class="govuk-details">
+        <summary class="govuk-details__summary">
+          <span class="govuk-details__summary-text">
+            Prototype
+          </span>
+        </summary>
+        <div class="govuk-details__text">
+          <p class="govuk-body-s govuk-!-margin-bottom-2">Prototype journey selector</p>
+
+            {{ govukRadios({
+              classes: "govuk-radios--small",
+              name: "qualificationScenario",
+              fieldset: {
+                legend: {
+                  text: "Prototype journey selector",
+                  classes: "govuk-visually-hidden"
+                }
+              },
+              items: [
+                {
+                  value: "eligible qualification",
+                  text: "eligible qualification found",
+                  checked: true
+                },
+                {
+                  value: "no eligible qualification",
+                  text: "no eligible qualification found"
+                }
+              ]
+            }) }}
+        </div>
+      </details>
     </form>
   </div>
 </div>

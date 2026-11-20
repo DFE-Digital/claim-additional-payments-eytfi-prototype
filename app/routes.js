@@ -672,6 +672,14 @@ router.post('/schools/school_hours', (req, res) => {
 
 });
 
+// National Insurance number: the prototype journey selector picks the qualifications outcome
+router.post('/schools/hmrc_ni', (req, res) => {
+  if (req.session.data.qualificationScenario === 'no eligible qualification') {
+    return res.redirect('/schools/data_returned_qualifications_no_match')
+  }
+  res.redirect('/schools/data_returned_qualifications_show')
+})
+
 router.post('/schools/school_search_result', (req, res) => {
 
   const schoolValid = req.session.data.schoolValid;
