@@ -96,6 +96,21 @@ router.post('/fe/provider/*', function (req, res, next) {
   next()
 })
 
+// Schools accept payment: 'no' cancels the claim. Registered before the
+// returnUrl catch-all so a 'no' always reaches the cancelled page.
+router.post('/schools/accept-payment', (req, res) => {
+  if (req.session.data.acceptPayment === 'no') {
+    delete req.session.returnUrl
+    return res.redirect('/schools/payment-rejected')
+  }
+  const returnUrl = req.session.returnUrl
+  if (returnUrl) {
+    delete req.session.returnUrl
+    return res.redirect(returnUrl)
+  }
+  res.redirect('/schools/how-we-will-use-your-information_nonotify')
+})
+
 router.post('*', function (req, res, next) {
   const returnUrl = req.session.returnUrl
   if (returnUrl) {
