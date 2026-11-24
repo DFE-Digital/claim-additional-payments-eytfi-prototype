@@ -1,0 +1,48 @@
+{% extends "layouts/main_fe.html" %}
+
+{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+
+{% set pageName = "Confirm your details and complete your claim" %}
+
+{% block pageBeforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "/bank-details"
+  }) }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-l">We have found your previous application</h1>
+
+    <div class="govuk-inset-text">
+      <p class="govuk-body govuk-!-font-weight-bold">This is the last year you can claim.</p>
+      <p class="govuk-body">
+        You can only claim in the first 5 years of your further education teaching career.
+        You started teaching in the 2022 to 2023 academic year, so the 2026 to 2027 academic year is your fifth and final year.
+      </p>
+    </div>
+
+    <p>
+      You previously applied for a Further Education Targeted Retention Incentive payment.
+    </p>
+    <p>
+      We've pre-filled information that your provider verified from your previous application so you do not have to do it again. This does not mean that you're automatically eligible again. 
+    </p>
+    <p>
+      Check your details and tell us if anything has changed.
+    </p>
+
+    <form action="check_previous_answers" method="get">
+
+      {{ govukButton({
+        text: "Check details"
+      }) }}
+    </form>
+
+  </div>
+</div>
+{% endblock %}
