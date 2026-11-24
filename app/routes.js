@@ -1177,7 +1177,7 @@ router.post('/fe/fe_search_result', (req, res) => {
   var schoolValid = req.session.data.schoolValid
 
   if (schoolValid == 'employer valid') {
-    return res.redirect('academic_year')
+    return res.redirect('academic_year_old')
   }
 
   else{
@@ -1260,6 +1260,16 @@ router.post('/fe/staff', (req, res) => {
 
 })
 
+
+// Old design of the start year question: one page listing each academic year
+router.post('/fe/academic_year_old', (req, res) => {
+  if (req.session.data.startyear === 'Before September 2022') {
+    req.session.data.academic = 'no'
+    return res.redirect('ineligible_years')
+  }
+  req.session.data.academic = 'yes'
+  return res.redirect('teaching_qualification')
+})
 
 router.post('/fe/academic_year', (req, res) => {
 
