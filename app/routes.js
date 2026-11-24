@@ -641,6 +641,8 @@ router.post('/schools/one-login-continue-to-service', (req, res) => {
     res.redirect('teacher-auth-find-your-teaching-record');
   } else if (schoolSearch == 'not_within_five_years') {
     res.redirect('ineligible_years');
+  } else if (schoolSearch == 'qts_after_sept_2026') {
+    res.redirect('ineligible_qts');
   } else{
     res.redirect('previous_claims');
   }

@@ -1,0 +1,29 @@
+{% extends "layouts/main_schools.html" %}
+
+{% set pageName = "You are not eligible for this payment" %}
+
+{#
+  PLACEHOLDER: ineligible because QTS or QTLS was awarded on or after 1 September 2026.
+  Content to be confirmed with policy. Not linked into the journey yet.
+#}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-xl">You are not eligible for this payment</h1>
+
+    <p class="govuk-body">You are not eligible for a targeted retention incentive payment because you were awarded qualified teacher status (QTS) or qualified teacher learning and skills (QTLS) status on or after 1 September 2026.</p>
+
+    <p class="govuk-body">To claim this year, you must have been awarded QTS or QTLS before 1 September 2026.</p>
+
+    <p class="govuk-body">For more information, check the eligibility criteria for <a class="govuk-link govuk-link--no-visited-state" href="/schools/guidance_schools#qts-and-qtls">school targeted retention incentives</a>.</p>
+
+    <p class="govuk-body">If you think this is wrong, email <a class="govuk-link govuk-link--no-visited-state" href="mailto:schools-targeted.retention-incentive@education.gov.uk">schools-targeted.retention-incentive@education.gov.uk</a>.</p>
+
+  </div>
+
+</div>
+
+{% endblock %}

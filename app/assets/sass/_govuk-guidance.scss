@@ -85,3 +85,7 @@
   .published-dates-button-group form, .published-dates-button-group > div{margin-right: 20px;}
 }
 @media (max-width: 40.0525em){.published-dates-button-group > div{margin-bottom: 15px;}}
+
+// Lists in guidance body use the GOV.UK Frontend bullet list class.
+// Stop the govspeak list margin adding a second indent on top of it.
+.govspeak .govuk-list--bullet, .gem-c-govspeak .govuk-list--bullet{margin-left: 0; padding-left: 20px;}
