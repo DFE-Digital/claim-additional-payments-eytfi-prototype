@@ -639,6 +639,8 @@ router.post('/schools/one-login-continue-to-service', (req, res) => {
     res.redirect('hmrc_ni');
   }else if (schoolSearch == 'no previous claims, teacher auth not attached') {
     res.redirect('teacher-auth-find-your-teaching-record');
+  } else if (schoolSearch == 'not_within_five_years') {
+    res.redirect('ineligible_years');
   } else{
     res.redirect('previous_claims');
   }

@@ -1,0 +1,31 @@
+{% extends "layouts/main_schools.html" %}
+
+{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+
+{% set pageName = "You are not eligible for this payment" %}
+
+{% block pageBeforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "/schools/one-login-continue-to-service"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-xl">You are not eligible for this payment</h1>
+
+    <p class="govuk-body">You are not eligible for a targeted retention incentive payment because you are no longer in the first 5 years of your teaching career in England.</p>
+
+    <p class="govuk-body">For more information, check the eligibility criteria for <a class="govuk-link govuk-link--no-visited-state" href="guidance#eligibility-criteria">school targeted retention incentives</a>.</p>
+
+    <p class="govuk-body">If you think this is wrong, email <a class="govuk-link govuk-link--no-visited-state" href="mailto:schools-targeted.retention-incentive@education.gov.uk">schools-targeted.retention-incentive@education.gov.uk</a>.</p>
+
+  </div>
+
+</div>
+
+{% endblock %}
