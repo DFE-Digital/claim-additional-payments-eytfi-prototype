@@ -692,7 +692,7 @@ router.post('/schools/hmrc_ni', (req, res) => {
   if (req.session.data.qualificationScenario === 'no eligible qualification') {
     return res.redirect('/schools/data_returned_qualifications_no_match')
   }
-  res.redirect('/schools/data_returned_qualifications_show')
+  res.redirect('/schools/hmrc')
 })
 
 router.post('/schools/school_search_result', (req, res) => {
@@ -1163,6 +1163,8 @@ router.post('/fe/one-login-continue-to-service', (req, res) => {
     return res.redirect('previous_error')
   } else if (oneLoginJourney == 'previous') {
     return res.redirect('check_previous_application')
+  } else if (oneLoginJourney == 'previous_final_year') {
+    return res.redirect('check_previous_application_final_year')
   } else{
     return res.redirect('staff')
   }
