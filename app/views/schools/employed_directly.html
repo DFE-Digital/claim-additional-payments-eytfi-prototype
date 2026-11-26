@@ -1,0 +1,44 @@
+{% extends "layouts/main_schools.html" %}
+
+{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/radios/macro.njk" import govukRadios %}
+
+{% set pageName = "Are you employed directly by your school?" %}
+
+{% block pageBeforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "/schools/entire_term_contract"
+  }) }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <form method="post" action="/schools/employed_directly">
+
+      {{ govukRadios({
+        name: "employedDirectly",
+        fieldset: {
+          legend: {
+            text: "Are you employed directly by your school?",
+            isPageHeading: true,
+            classes: "govuk-fieldset__legend--l"
+          }
+        },
+        items: [
+          { value: "yes", text: "Yes, I'm employed by my school" },
+          { value: "no", text: "No, I'm employed by a private agency" }
+        ],
+        value: data['employedDirectly']
+      }) }}
+
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+
+    </form>
+  </div>
+</div>
+{% endblock %}

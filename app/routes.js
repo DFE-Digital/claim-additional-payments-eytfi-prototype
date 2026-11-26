@@ -684,20 +684,55 @@ router.post('/schools/school_hours', (req, res) => {
   const theHours = req.session.data.hours;
 
   if (theHours == 'Yes') {
-    res.redirect('one-login-start');
+    res.redirect('supply_teacher');
   } else {
     res.redirect('school_ineligible_hours');
   } 
 
 });
 
-// National Insurance number: the prototype journey selector picks the qualifications outcome
-router.post('/schools/hmrc_ni', (req, res) => {
+// Schools supply teacher question: supply teachers are asked about their contract
+router.post('/schools/supply_teacher', (req, res) => {
+  if (req.session.data.supplyTeacher === 'yes') {
+    return res.redirect('/schools/entire_term_contract')
+  }
+  res.redirect('/schools/performance')
+})
+
+// Schools supply teacher contract question: no contract for a full term is not eligible
+router.post('/schools/entire_term_contract', (req, res) => {
+  if (req.session.data.entireTermContract === 'no') {
+    return res.redirect('/schools/ineligible_supply')
+  }
+  res.redirect('/schools/employed_directly')
+})
+
+// Schools supply teacher: employed directly by the school, or through an agency
+router.post('/schools/employed_directly', (req, res) => {
+  if (req.session.data.employedDirectly === 'no') {
+    return res.redirect('/schools/ineligible_supply')
+  }
+  res.redirect('/schools/performance')
+})
+
+// Schools performance and discipline question
+router.post('/schools/performance', (req, res) => {
+  if (req.session.data.schoolsPerformance === 'no') {
+    return res.redirect('/schools/ineligible_performance')
+  }
+  res.redirect('/schools/one-login-start')
+})
+
+// National Insurance number: the prototype journey selector picks the qualifications outcome.
+// Used by both the NI number entry page and the "Is this your NI number?" page.
+function schoolsNiNext (req, res) {
   if (req.session.data.qualificationScenario === 'no eligible qualification') {
     return res.redirect('/schools/data_returned_qualifications_no_match')
   }
   res.redirect('/schools/hmrc')
-})
+}
+router.post('/schools/hmrc_ni', schoolsNiNext)
+router.post('/schools/hmrc_ni_returned', schoolsNiNext)
 
 router.post('/schools/school_search_result', (req, res) => {
 

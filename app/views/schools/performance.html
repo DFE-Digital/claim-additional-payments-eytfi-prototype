@@ -1,0 +1,55 @@
+{% extends "layouts/main_schools.html" %}
+
+{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/radios/macro.njk" import govukRadios %}
+
+{% set pageName = "Check if you’re eligible" %}
+
+{% block pageBeforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "/schools/supply_teacher"
+  }) }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <form method="post" action="/schools/performance">
+
+      <h1 class="govuk-heading-l">Check if you’re eligible</h1>
+
+      <p class="govuk-body">You must meet the <a class="govuk-link govuk-link--no-visited-state" target="_blank" rel="noreferrer noopener" href="/schools/guidance#eligibility-criteria">eligibility criteria (opens in new tab)</a> for the targeted retention incentive payment for school teachers.</p>
+
+      <p class="govuk-body">To be eligible, you must:</p>
+
+      <ul class="govuk-list govuk-list--bullet">
+        <li>spend at least half of your contracted hours teaching chemistry, computing, mathematics or physics</li>
+        <li>be doing your job as expected and not be under formal performance management or disciplinary action</li>
+      </ul>
+
+      {{ govukRadios({
+        name: "schoolsPerformance",
+        fieldset: {
+          legend: {
+            text: "Do you meet this eligibility criteria?",
+            classes: "govuk-fieldset__legend--m"
+          }
+        },
+        items: [
+          { value: "yes", text: "Yes" },
+          { value: "no", text: "No" }
+        ],
+        value: data['schoolsPerformance']
+      }) }}
+
+      {{ govukButton({
+        text: "Confirm and continue"
+      }) }}
+    </form>
+
+  </div>
+</div>
+{% endblock %}
