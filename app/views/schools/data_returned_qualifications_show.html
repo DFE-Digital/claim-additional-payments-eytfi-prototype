@@ -15,7 +15,7 @@
 {% block pageBeforeContent %}
   {{ govukBackLink({
     text: "Back",
-    href: "/schools/hmrc_ni"
+    href: "/schools/one-login-continue-to-service"
   }) }}
 {% endblock %}
 
@@ -84,6 +84,16 @@
       </div>
     </details>
     -->
+
+    <details class="govuk-details">
+      <summary class="govuk-details__summary">
+        <span class="govuk-details__summary-text">Something wrong with this qualification?</span>
+      </summary>
+      <div class="govuk-details__text">
+        <p class="govuk-body">If a detail is wrong, such as the subject, you can get it corrected by emailing <a class="govuk-link" href="mailto:teaching.status@education.gov.uk">teaching.status@education.gov.uk</a>. They’ll update the qualification details we hold about you.</p>
+        <p class="govuk-body govuk-!-margin-bottom-0">You can still continue with your claim while this happens.</p>
+      </div>
+    </details>
 
     <form method="post" novalidate>
       {{ govukButton({ text: "Continue" }) }}

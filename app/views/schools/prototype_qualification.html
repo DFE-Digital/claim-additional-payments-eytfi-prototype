@@ -1,0 +1,47 @@
+{% extends "layouts/main_schools.html" %}
+
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/radios/macro.njk" import govukRadios %}
+
+{% set pageName = "Prototype: qualification check" %}
+
+{#
+  Prototype-only page. Users of the real service would not see this.
+  It stands in for the automatic check of the qualifications DfE holds,
+  so we can choose which qualification page to show.
+#}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <form method="post" action="/schools/prototype_qualification">
+
+      <span class="govuk-caption-l">Prototype only</span>
+
+      {{ govukRadios({
+        name: "qualificationScenario",
+        fieldset: {
+          legend: {
+            text: "Is the qualification we hold for this teacher eligible?",
+            isPageHeading: true,
+            classes: "govuk-fieldset__legend--l"
+          }
+        },
+        hint: {
+          text: "Users would not see this page. It picks which qualification page to show before the National Insurance number questions."
+        },
+        items: [
+          { value: "eligible qualification", text: "Yes, eligible qualification found" },
+          { value: "no eligible qualification", text: "No, no eligible qualification found" }
+        ],
+        value: data['qualificationScenario'] or "eligible qualification"
+      }) }}
+
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+
+    </form>
+  </div>
+</div>
+{% endblock %}

@@ -584,6 +584,13 @@ router.post('/claimantmodel/bank-details', (req, res) => {
   res.redirect('/claimantmodel/check_progress_result')
 })
 
+// Claim progress page: show the success banner once, then clear it
+router.get('/claimantmodel/check_progress_result', (req, res) => {
+  const successBanner = req.session.data.success
+  req.session.data.success = ''
+  res.render('claimantmodel/check_progress_result', { successBanner })
+})
+
 
 
 
@@ -633,11 +640,14 @@ router.post('/schools/one-login-continue-to-service', (req, res) => {
   const schoolSearch = req.session.data.oneLoginReturnJourney;
 
   if (schoolSearch == 'scenario_one') {
-    req.session.data.success = 'Your teaching details have been found'
-    res.redirect('hmrc_ni_returned');
+    // Has an NI number: after the qualification page, ask them to confirm it
+    req.session.data.niQuestion = 'confirm'
+    res.redirect('prototype_qualification');
   } else if (schoolSearch == 'scenario_two') {
-    res.redirect('hmrc_ni');
-  }else if (schoolSearch == 'no previous claims, teacher auth not attached') {
+    // No NI number held: after the qualification page, ask them to enter it
+    req.session.data.niQuestion = 'enter'
+    res.redirect('prototype_qualification');
+  } else if (schoolSearch == 'no previous claims, teacher auth not attached') {
     res.redirect('teacher-auth-find-your-teaching-record');
   } else if (schoolSearch == 'not_within_five_years') {
     res.redirect('ineligible_years');
@@ -684,7 +694,9 @@ router.post('/schools/school_hours', (req, res) => {
   const theHours = req.session.data.hours;
 
   if (theHours == 'Yes') {
-    res.redirect('supply_teacher');
+    // Supply teacher pages (supply_teacher, entire_term_contract, employed_directly)
+    // are out of the flow for now: the performance page covers supply teachers instead
+    res.redirect('performance');
   } else {
     res.redirect('school_ineligible_hours');
   } 
@@ -723,12 +735,16 @@ router.post('/schools/performance', (req, res) => {
   res.redirect('/schools/one-login-start')
 })
 
-// National Insurance number: the prototype journey selector picks the qualifications outcome.
-// Used by both the NI number entry page and the "Is this your NI number?" page.
-function schoolsNiNext (req, res) {
+// Prototype-only qualification check: picks which qualification page to show
+router.post('/schools/prototype_qualification', (req, res) => {
   if (req.session.data.qualificationScenario === 'no eligible qualification') {
     return res.redirect('/schools/data_returned_qualifications_no_match')
   }
+  res.redirect('/schools/data_returned_qualifications_show')
+})
+
+// National Insurance number pages come after the qualification page
+function schoolsNiNext (req, res) {
   res.redirect('/schools/hmrc')
 }
 router.post('/schools/hmrc_ni', schoolsNiNext)
@@ -946,7 +962,11 @@ router.get('/schools/data_returned_qualifications_show', (req, res) => {
 router.post('/schools/data_returned_qualifications_show', (req, res) => {
   req.session.data.success = ''
   req.session.data.successText = ''
-  res.redirect('/schools/hmrc')
+  if (req.session.data.niQuestion === 'confirm') {
+    req.session.data.success = 'Your teaching details have been found'
+    return res.redirect('/schools/hmrc_ni_returned')
+  }
+  res.redirect('/schools/hmrc_ni')
 })
 
 router.get('/schools/data_returned_qualifications_match', (req, res) => {

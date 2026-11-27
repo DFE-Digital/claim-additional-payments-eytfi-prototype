@@ -66,39 +66,6 @@
         text: "Continue"
       }) }}
 
-      <details class="govuk-details">
-        <summary class="govuk-details__summary">
-          <span class="govuk-details__summary-text">
-            Prototype
-          </span>
-        </summary>
-        <div class="govuk-details__text">
-          <p class="govuk-body-s govuk-!-margin-bottom-2">Prototype journey selector</p>
-
-            {{ govukRadios({
-              classes: "govuk-radios--small",
-              name: "qualificationScenario",
-              fieldset: {
-                legend: {
-                  text: "Prototype journey selector",
-                  classes: "govuk-visually-hidden"
-                }
-              },
-              items: [
-                {
-                  value: "eligible qualification",
-                  text: "eligible qualification found",
-                  checked: true
-                },
-                {
-                  value: "no eligible qualification",
-                  text: "no eligible qualification found"
-                }
-              ]
-            }) }}
-        </div>
-      </details>
-
     </form>
 
   </div>

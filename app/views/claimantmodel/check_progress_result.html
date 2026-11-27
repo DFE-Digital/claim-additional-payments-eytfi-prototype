@@ -1,6 +1,7 @@
 {% extends "layouts/main.html" %}
 
 {% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/notification-banner/macro.njk" import govukNotificationBanner %}
 
 {% set pageName="Claim an early years teacher recognition payment" %}
 
@@ -17,6 +18,13 @@
   <div class="govuk-grid-column-two-thirds">
 
   
+    {% if successBanner %}
+      {{ govukNotificationBanner({
+        type: "success",
+        html: '<h3 class="govuk-notification-banner__heading">' + successBanner + '</h3>'
+      }) }}
+    {% endif %}
+
     <h1 class="govuk-heading-xl">We're reviewing claim WQ38SPBV</h1>
 
     <h2 class="govuk-heading-l">Claim progress</h2>
